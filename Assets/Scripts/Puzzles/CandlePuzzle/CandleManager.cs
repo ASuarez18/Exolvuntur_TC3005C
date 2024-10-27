@@ -1,66 +1,74 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CandleManager : MonoBehaviour
 {
     public Animator doorAnimator;
-    private string sequence ="";
-    private int currentPos = 0;
-    private GameObject[] velas;
+    private string _sequence ="";
+    private int _currentPos = 0;
+    private GameObject[] _velas;
+    public TMP_Text sequenceText;
 
 
     // Start is called before the first frame update
     void Start()
     {
         //Inicializacion de arreglo de objetos velas para apagarlas y verificarlas
-        velas = new GameObject[5];
+        _velas = new GameObject[5];
 
         //Inicializacion de secuencia de comparacion de manera aleatoria
         for(int i = 0; i < 5; i++) 
         {
             string newNumber = UnityEngine.Random.Range(1, 6).ToString();
-            if (!sequence.Contains(newNumber))
+            if (!_sequence.Contains(newNumber))
             {
-                sequence = sequence + newNumber;
+                _sequence = _sequence + newNumber;
             }
             
         }
 
         //Verificacion de asignacion completa de numeros para secuencia 
-        if(sequence.Length < 5)
+        if(_sequence.Length < 5)
         {
             for(int i = 1;i< 6;i++) 
             {
-                if (!sequence.Contains(i.ToString()))
+                if (!_sequence.Contains(i.ToString()))
                 {
-                    sequence = sequence + i.ToString();           
+                    _sequence = _sequence + i.ToString();           
                 }
             }
         }
 
-        Debug.Log(sequence);
+        Debug.Log(_sequence);
+        sequenceText.text = _sequence;
     }
 
     public void VelaEncendida(GameObject vela)
     {
         Debug.Log("Vela encendida:" + vela.name);
-        velas[currentPos] = vela;
-        if (sequence[currentPos] == vela.name[vela.name.Length - 1])
+        _velas[_currentPos] = vela;
+        if (_sequence[_currentPos] == vela.name[vela.name.Length - 1])
         {
             Debug.Log("Acierto de vela");
-            currentPos++;
+            _currentPos++;
         }
         else
         {
             Debug.Log("Equivocacion de vela");
-            foreach(GameObject objeto in velas)
+            foreach(GameObject objeto in _velas)
             {
-                objeto.GetComponent<CandleBehavior>().apagarVela();
+                if(objeto != null)
+                {
+                    objeto.GetComponent<CandleBehavior>().apagarVela();
+                }
+                
             }
-            currentPos = 0;
-            Array.Clear(velas,0,velas.Length);
+            _currentPos = 0;
+            Array.Clear(_velas,0,_velas.Length);
+            
         }
     }
 }
