@@ -151,7 +151,7 @@ namespace LocalPhoton.MainMenu
         {
             Debug.LogFormat($"*** PUNConnector: Room List Updated!");
             // Populate the room in all clients
-            //RoomCreator.Instance.PopulateRoomList(roomList);
+            RoomCreator.Instance.PopulateRoomList(roomList);
         }
 
         /// <summary>

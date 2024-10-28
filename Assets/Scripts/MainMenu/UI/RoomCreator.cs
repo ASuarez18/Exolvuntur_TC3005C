@@ -6,7 +6,7 @@ using LocalPhoton.MainMenu;
 namespace MainMenu.UI
 {
     /// <summary>
-    /// Class in chearge of creating rooms and populate hte room list
+    /// Class in charge of creating rooms and populate hte room list
     /// </summary>
     public class RoomCreator : MonoBehaviour
     {
