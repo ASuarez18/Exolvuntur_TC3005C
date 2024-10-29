@@ -14,15 +14,10 @@ namespace LocalPhoton.MainMenu
     {
         public override void OnEnable()
         {
-            // TODO: Funcionalidad de cambio de mapas *
-            // ChangeMapBetweenRounds = _changeMapBetweenRounds;
+            UIManager.Instance.OnCreateRoomEvent += CreateRoom;
+            UIManager.Instance.OnLeaveRoomEvent += LeaveRoom;
 
-            // TODO: Manejo de eventos de UIManager  **
-            // UIManager.Instance.OnCreateRoomEvent += CreateRoom;
-            // UIManager.Instance.OnLeaveRoomEvent += LeaveRoom;
-
-            // TODO: Script de PunRoomButtonInfo ***
-            // PUNRoomButtonInfo.OnJoinRoomEvent += JoinRoom;
+            PUNRoomButtonInfo.OnJoinRoomEvent += JoinRoom;
 
             // Base of PUN OnEnable method
             base.OnEnable();
@@ -31,12 +26,10 @@ namespace LocalPhoton.MainMenu
 
         public override void OnDisable()
         {
-            // TODO: Manejo de eventos de UIManager
-            // UIManager.Instance.OnCreateRoomEvent -= CreateRoom;
-            // UIManager.Instance.OnLeaveRoomEvent -= LeaveRoom;
+            UIManager.Instance.OnCreateRoomEvent -= CreateRoom;
+            UIManager.Instance.OnLeaveRoomEvent -= LeaveRoom;
 
-            // TODO: Script de PunRoomButtonInfo
-            // PUNRoomButtonInfo.OnJoinRoomEvent -= JoinRoom;
+            PUNRoomButtonInfo.OnJoinRoomEvent -= JoinRoom;
 
             // Base of PUN OnDisable method
             base.OnDisable();
@@ -47,9 +40,8 @@ namespace LocalPhoton.MainMenu
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            // TODO: Manejo de Canvas de UIManager
-            // UIManager.Instance.PrepareCanvas();
-            // UIManager.Instance.SetLoadingCanvasGroup(true, "Connecting to Photon Network...");
+            UIManager.Instance.PrepareCanvas();
+            UIManager.Instance.SetLoadingCanvasGroup(true, "Connecting to Photon Network...");
 
             // Start connection to PhotonNetwork
             if (!PhotonNetwork.IsConnected)
@@ -64,8 +56,7 @@ namespace LocalPhoton.MainMenu
             PhotonNetwork.AutomaticallySyncScene = true;
 
             Debug.LogFormat($"*** PUNConnector: Connected to Photon Network!");
-            // TODO: Manejo de Canvas de UIManager
-            // UIManager.Instance.SetLoadingCanvasGroup(true, "Connected to Photon Network! Joining Lobby...");
+            UIManager.Instance.SetLoadingCanvasGroup(true, "Connected to Photon Network! Joining Lobby...");
 
             Debug.LogFormat($"*** PUNConnector: Joining Lobby...");
             PhotonNetwork.JoinLobby();
@@ -75,9 +66,8 @@ namespace LocalPhoton.MainMenu
         {
             Debug.LogFormat($"*** PUNConnector: Joined Lobby!");
 
-            // TODO: Manejo de Canvas de UIManager
-            // UIManager.Instance.SetLoadingCanvasGroup(false);
-            //UIManager.Instance.SetMainMenuCanvasGroup(true);
+            UIManager.Instance.SetLoadingCanvasGroup(false);
+            UIManager.Instance.SetMainMenuCanvasGroup(true);
 
             // Set the PlayerNickName in the Network
             PhotonNetwork.NickName = "Player" + Random.Range(0, 1000).ToString("0000");
@@ -91,8 +81,7 @@ namespace LocalPhoton.MainMenu
         private void CreateRoom(string roomName)
         {
             Debug.LogFormat($"*** PUNConnector: Creating Room {roomName}...");
-            // TODO: Manejo de Canvas de UIManager
-            // UIManager.Instance.SetLoadingCanvasGroup(true, "Creating Room...");
+            UIManager.Instance.SetLoadingCanvasGroup(true, "Creating Room...");
 
             RoomOptions roomOptions = new RoomOptions();
             // Max Players in a room will be 4
@@ -104,24 +93,20 @@ namespace LocalPhoton.MainMenu
         public override void OnJoinedRoom()
         {
             Debug.LogFormat($"*** PUNConnector: Joined Room [{PhotonNetwork.CurrentRoom.Name}]!");
-            // TODO: Manejo de Canvas de UIManager
-            //UIManager.Instance.SetLoadingCanvasGroup(false);
-            //UIManager.Instance.SetJoinedRoomCanvasGroup(true, PhotonNetwork.CurrentRoom.Name);
+            UIManager.Instance.SetLoadingCanvasGroup(false);
+            UIManager.Instance.SetJoinedRoomCanvasGroup(true, PhotonNetwork.CurrentRoom.Name);
 
-            // TODO: Manejar Players dentro del Room ***
             PlayerCreator.Instance.CreatePlayersInRoom(PhotonNetwork.PlayerList);
 
             // If the player is the master client, show the start game button   
             if (PhotonNetwork.IsMasterClient)
             {
-                // TODO: Manejo de Canvas de UIManager
-                //UIManager.Instance.ButtonStartGame.SetActive(true);
+                UIManager.Instance.ButtonStartGame.SetActive(true);
                 Debug.LogFormat($"*** PUNConnector: Im master");
             }
             else
             {
-                // TODO: Manejo de Canvas de UIManager
-                //UIManager.Instance.ButtonStartGame.SetActive(false);
+                UIManager.Instance.ButtonStartGame.SetActive(false);
                 Debug.LogFormat($"*** PUNConnector: Im master");
             }
         }
@@ -133,18 +118,16 @@ namespace LocalPhoton.MainMenu
         private void LeaveRoom()
         {
             Debug.LogFormat($"*** PUNConnector: Left Room [{PhotonNetwork.CurrentRoom.Name}]!");
-            // TODO: Manejo de Canvas de UIManager
-            //UIManager.Instance.SetJoinedRoomCanvasGroup(false);
-            //UIManager.Instance.SetLoadingCanvasGroup(true, "Leaving Room...");
+            UIManager.Instance.SetJoinedRoomCanvasGroup(false);
+            UIManager.Instance.SetLoadingCanvasGroup(true, "Leaving Room...");
             PhotonNetwork.LeaveRoom();
         }
 
         public override void OnLeftRoom()
         {
-            // TODO: Manejo de Canvas de UIManager
-            //UIManager.Instance.SetCreateRoomCanvasGroup(false);
-            //UIManager.Instance.SetLoadingCanvasGroup(false);
-            //UIManager.Instance.SetMainMenuCanvasGroup(true);
+            UIManager.Instance.SetCreateRoomCanvasGroup(false);
+            UIManager.Instance.SetLoadingCanvasGroup(false);
+            UIManager.Instance.SetMainMenuCanvasGroup(true);
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
@@ -161,9 +144,8 @@ namespace LocalPhoton.MainMenu
         private void JoinRoom(RoomInfo roomInfo)
         {
             Debug.LogFormat($"*** PUNConnector: Joining Room [{roomInfo.Name}]...");
-            // TODO: Manejo de Canvas de UIManager
-            //UIManager.Instance.SetLoadingCanvasGroup(true, "Joining Room...");
-            //UIManager.Instance.SetRoomListCanvasGroup(false);
+            UIManager.Instance.SetLoadingCanvasGroup(true, "Joining Room...");
+            UIManager.Instance.SetRoomListCanvasGroup(false);
             PhotonNetwork.JoinRoom(roomInfo.Name);
         }
 
@@ -173,9 +155,8 @@ namespace LocalPhoton.MainMenu
 
             StringBuilder sb = new StringBuilder(" Failed to join Room : " + message);
 
-            // TODO: Manejo de Canvas de UIManager
-            //UIManager.Instance.SetLoadingCanvasGroup(false);
-            //UIManager.Instance.SetErrorCanvasGroup(true, sb.ToString());
+            UIManager.Instance.SetLoadingCanvasGroup(false);
+            UIManager.Instance.SetErrorCanvasGroup(true, sb.ToString());
         }
 
         public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -195,13 +176,11 @@ namespace LocalPhoton.MainMenu
             Debug.LogFormat($"*** PUNConnector: Player [{newMasterClient.NickName}] is the new Master Client!");
             if (PhotonNetwork.IsMasterClient)
             {
-                // TODO: Manejo de Canvas de UIManager
-                //UIManager.Instance.ButtonStartGame.SetActive(true);
+                UIManager.Instance.ButtonStartGame.SetActive(true);
             }
             else
             {
-                // TODO: Manejo de Canvas de UIManager
-                //UIManager.Instance.ButtonStartGame.SetActive(false);
+                UIManager.Instance.ButtonStartGame.SetActive(false);
             }
         }
 
@@ -222,10 +201,6 @@ namespace LocalPhoton.MainMenu
         /// </summary>
         public void StartGame()
         {
-            // Gets the sceneCount from the build settings
-            //int sceneCount = UnityEngine.SceneManagement.SceneManager.sceneCountInBuildSettings;
-            //int selectedScene = _changeMapBetweenRounds ? Random.Range(1, sceneCount) : 1;
-            
             // Loads Main Scene that will be index 1
             PhotonNetwork.LoadLevel(1);
         }
