@@ -11,6 +11,9 @@ public class CandleManager : MonoBehaviour
     private int _currentPos = 0;
     private GameObject[] _velas;
     public TMP_Text sequenceText;
+    public GameObject sequenceTextObject;
+
+    public List<GameObject> spawnPoints = new List<GameObject>();
 
 
     // Start is called before the first frame update
@@ -44,6 +47,14 @@ public class CandleManager : MonoBehaviour
 
         Debug.Log(_sequence);
         sequenceText.text = _sequence;
+
+        int indexPosition = UnityEngine.Random.Range(0, spawnPoints.Count +1);
+
+        Debug.Log(indexPosition);
+
+        sequenceTextObject.transform.position = spawnPoints[indexPosition].transform.position;
+        sequenceTextObject.transform.rotation = spawnPoints[indexPosition].transform.rotation;
+
     }
 
     public void VelaEncendida(GameObject vela)
