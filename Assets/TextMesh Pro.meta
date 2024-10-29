@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TextMesh Pro.meta
 guid: f54d1bd14bd3ca042bd867b519fee8cc
+========
+guid: 4735a3adee283a746b11f37eb3512652
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Textures/DesertCliffRock.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

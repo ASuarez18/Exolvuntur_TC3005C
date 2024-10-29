@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Puzzles/CandlePuzzle/Laterns and candles/textures/Candle [Specular].tif.meta
 guid: acf89a61fce384b4aa08863c75014119
 timeCreated: 1495213617
+========
+guid: 185ea4de8a5e15446a84d3e1a0e26db9
+timeCreated: 1565057169
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Textures/DryRockyDirt/DryRockyDirt_YFliped_Normal.png.meta
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}
@@ -8,7 +13,11 @@ TextureImporter:
   mipmaps:
     mipMapMode: 0
     enableMipMap: 1
+<<<<<<<< HEAD:Assets/Prefabs/Puzzles/CandlePuzzle/Laterns and candles/textures/Candle [Specular].tif.meta
     sRGBTexture: 1
+========
+    sRGBTexture: 0
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Textures/DryRockyDirt/DryRockyDirt_YFliped_Normal.png.meta
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -44,7 +53,11 @@ TextureImporter:
   alphaUsage: 1
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
+<<<<<<<< HEAD:Assets/Prefabs/Puzzles/CandlePuzzle/Laterns and candles/textures/Candle [Specular].tif.meta
   textureType: 0
+========
+  textureType: 1
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Textures/DryRockyDirt/DryRockyDirt_YFliped_Normal.png.meta
   textureShape: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
@@ -66,6 +79,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+<<<<<<<< HEAD:Assets/Prefabs/Puzzles/CandlePuzzle/Laterns and candles/textures/Candle [Specular].tif.meta
   - buildTarget: Android
     maxTextureSize: 256
     textureFormat: -1
@@ -74,6 +88,8 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+========
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Textures/DryRockyDirt/DryRockyDirt_YFliped_Normal.png.meta
   spriteSheet:
     serializedVersion: 2
     sprites: []

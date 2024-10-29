@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Materials/Floor2.mat.meta
 guid: 1dedc857dbfdfbf42a9a972220ba2906
+========
+guid: 6750597b9c82b8545bf3be41e276fce6
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Materials/DesertSandBrick_StandardShader 1.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000

@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Prefabs/Puzzles/CandlePuzzle/Laterns and candles/textures/Candle [Normal].png.meta
 guid: a95106e16ef6d234f81030c5607b0906
 timeCreated: 1495217464
+========
+guid: 2161ba133e4339643a2a41e132531c56
+timeCreated: 1565057184
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Textures/DryRockyDirt/DryRockyDirt_Normal.png.meta
 licenseType: Store
 TextureImporter:
   fileIDToRecycleName: {}
@@ -66,6 +71,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+<<<<<<<< HEAD:Assets/Prefabs/Puzzles/CandlePuzzle/Laterns and candles/textures/Candle [Normal].png.meta
   - buildTarget: Android
     maxTextureSize: 256
     textureFormat: -1
@@ -74,6 +80,8 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+========
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Textures/DryRockyDirt/DryRockyDirt_Normal.png.meta
   spriteSheet:
     serializedVersion: 2
     sprites: []
