@@ -783,7 +783,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &175667655
 RectTransform:
@@ -3094,7 +3094,7 @@ GameObject:
   - component: {fileID: 891968442}
   - component: {fileID: 891968441}
   m_Layer: 5
-  m_Name: Panel_Settings
+  m_Name: Panel_JoinedRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4787,7 +4787,7 @@ GameObject:
   - component: {fileID: 1292404348}
   - component: {fileID: 1292404347}
   m_Layer: 5
-  m_Name: Text (TMP)_Settings
+  m_Name: Text (TMP)_JoinedRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4832,7 +4832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: crear sala
+  m_text: Nombre de la sala
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 194a60be53d25a94286546d65d1eab80, type: 2}
   m_sharedMaterial: {fileID: -2137336316147361915, guid: 194a60be53d25a94286546d65d1eab80,
@@ -4860,13 +4860,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 60
-  m_fontSizeBase: 60
+  m_fontSize: 58
+  m_fontSizeBase: 58
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 3
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -4896,7 +4896,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -95.34771, y: 0, z: -91.88047, w: 9.657925}
+  m_margin: {x: -239.42891, y: 0, z: -242.62364, w: 7.802868}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5530,7 +5530,7 @@ GameObject:
   - component: {fileID: 1448060609}
   - component: {fileID: 1448060608}
   m_Layer: 5
-  m_Name: Text (TMP)_Settings
+  m_Name: Text (TMP)_CreateRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6126,7 +6126,7 @@ GameObject:
   - component: {fileID: 1623475933}
   - component: {fileID: 1623475932}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: Canvas_JoinedRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6193,7 +6193,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &1623475935
 RectTransform:
@@ -6207,8 +6207,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1649469050}
   - {fileID: 891968440}
+  - {fileID: 1649469050}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -8407,6 +8407,6 @@ SceneRoots:
   - {fileID: 169061890}
   - {fileID: 175667655}
   - {fileID: 256625551}
+  - {fileID: 1623475935}
   - {fileID: 1048037804}
   - {fileID: 1369242482}
-  - {fileID: 1623475935}
