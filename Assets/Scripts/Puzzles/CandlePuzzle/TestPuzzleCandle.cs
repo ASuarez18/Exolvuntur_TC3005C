@@ -1,3 +1,4 @@
+using Puzzles.CandlePuzzle;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class TestPuzzleCandle : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            candle.GetComponent<CandleBehavior>().encenderVela();
+            //candle.GetComponent<CandleBehavior>().encenderVela();
         }
         
     }
