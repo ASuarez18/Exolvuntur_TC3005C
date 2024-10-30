@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using MainMenu.UI;
+using Data;
+using System.IO;
 
 namespace LocalPhoton.MainMenu
 {
@@ -12,12 +14,26 @@ namespace LocalPhoton.MainMenu
     /// </summary>
     public class PUNConnector : MonoBehaviourPunCallbacks
     {
+        private PlayerData _playerData;
+        string dataFilePath = Path.Combine(Application.dataPath, "GameData", "PlayerData.txt");
+
         public override void OnEnable()
         {
             UIManager.Instance.OnCreateRoomEvent += CreateRoom;
             UIManager.Instance.OnLeaveRoomEvent += LeaveRoom;
 
             PUNRoomButtonInfo.OnJoinRoomEvent += JoinRoom;
+
+            // Saving Player's Nickname
+            if (!File.Exists(dataFilePath))
+            {
+                _playerData = new PlayerData { playerNickName = "Player" + Random.Range(0, 1000).ToString("0000") };
+                string jsonData = JsonUtility.ToJson(_playerData);
+                Directory.CreateDirectory(Path.GetDirectoryName(dataFilePath));
+                File.WriteAllText(dataFilePath, jsonData);
+            }
+            else
+                Debug.Log("Player information found");
 
             // Base of PUN OnEnable method
             base.OnEnable();
@@ -69,8 +85,21 @@ namespace LocalPhoton.MainMenu
             UIManager.Instance.SetLoadingCanvasGroup(false);
             UIManager.Instance.SetMainMenuCanvasGroup(true);
 
-            // Set the PlayerNickName in the Network
-            PhotonNetwork.NickName = "Player" + Random.Range(0, 1000).ToString("0000");
+            // Set the PlayerNickName in the Network with the local player data
+            string loadInfoText = File.ReadAllText(dataFilePath);
+            PlayerData loadInfo = JsonUtility.FromJson<PlayerData>(loadInfoText);
+            PhotonNetwork.NickName = loadInfo.playerNickName;
+
+            // Verifies if the player is a new player
+            if (loadInfo.newPlayer)
+            {
+                UIManager.Instance.SetUsernameInputCanvasGroup(true);
+            }                         
+            else                      
+            {                         
+                UIManager.Instance.SetUsernameInputCanvasGroup(false);
+                UIManager.Instance.SetMainMenuCanvasGroup(true);
+            }
         }
 
         /// <summary>

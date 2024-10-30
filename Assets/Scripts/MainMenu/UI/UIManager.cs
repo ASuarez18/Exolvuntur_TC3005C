@@ -1,3 +1,4 @@
+using Data;
 using Photon.Pun;
 using System;
 using System.Collections.Generic;
@@ -51,6 +52,10 @@ namespace MainMenu.UI
         // Start Game Button 
         [SerializeField, Space] private GameObject _buttonStartGame;
         public GameObject ButtonStartGame => _buttonStartGame;
+
+        // Player Data 
+        private PlayerData _playerData;
+        string dataFilePath = Path.Combine(Application.dataPath, "GameData", "PlayerData.txt");
 
         // Singletoning the UIManager
         private static UIManager _instance;
@@ -250,19 +255,19 @@ namespace MainMenu.UI
         /// </summary>
         public void ButtonConfirmUsernameClicked()
         {
-            //    // Creates and sets with the canvas information a new Player Data
-            //    _playerData = new PlayerData
-            //    {
-            //        playerUsername = _usernameInputField.text,
-            //        playerExists = true
-            //    };
+            // Creates and sets with the canvas information a new Player Data
+            _playerData = new PlayerData
+            {
+                playerNickName = _usernameInputField.text,
+                newPlayer = false
+            };
 
-            //    // Json Serialization of data & write the info into the file
-            //    string jsonData = JsonUtility.ToJson(_playerData);
-            //    File.WriteAllText(Application.dataPath + "/GameData/PlayerData.txt", jsonData);
+            // Json Serialization of data & write the info into the file
+            string jsonData = JsonUtility.ToJson(_playerData);
+            File.WriteAllText(dataFilePath, jsonData);
 
-            //    // Assign the username to the Nickname of Photon
-            //    PhotonNetwork.NickName = _usernameInputField.text;
+            // Assign the username to the Nickname of Photon
+            PhotonNetwork.NickName = _usernameInputField.text;
 
             // Manage Canvas
             SetUsernameInputCanvasGroup(false);
