@@ -1,0 +1,6 @@
+newmtl Wood_A
+map_Kd Wood_A.png
+bump Wood_A_NRM.png
+Kd 1 1 1
+d 1
+
