@@ -14,7 +14,7 @@ namespace MainMenu.UI
     public class UIManager : MonoBehaviour
     {
         // Game Title Canvas
-        [SerializeField] private CanvasGroup _gameTittleCanvasGroup;
+        //[SerializeField] private CanvasGroup _gameTittleCanvasGroup;
 
         // Main Menu Canvas
         [SerializeField, Space] private CanvasGroup _mainMenuCanvasGroup;
@@ -32,7 +32,7 @@ namespace MainMenu.UI
 
         // Loading canvas
         [SerializeField, Space] private CanvasGroup _loadingCanvasGroup;
-        [SerializeField] private TMP_Text _loadingText;
+        //[SerializeField] private TMP_Text _loadingText;
 
         // Error Canvas 
         [SerializeField, Space] private CanvasGroup _errorCanvasGroup;
@@ -82,8 +82,8 @@ namespace MainMenu.UI
         public void PrepareCanvas()
         {
             // Disables all canvas groups, JIC
-            SetGameTitleCanvasGroup(true);
-            SetMainMenuCanvasGroup(false);
+            //SetGameTitleCanvasGroup(true);
+            SetMainMenuCanvasGroup(true);
             SetCreateRoomCanvasGroup(false);
             SetJoinedRoomCanvasGroup(false);
             SetRoomListCanvasGroup(false);
@@ -128,10 +128,10 @@ namespace MainMenu.UI
         /// Sets the game title canvas group active status
         /// </summary>
         /// <param name="activeStatus"></param>
-        public void SetGameTitleCanvasGroup(bool activeStatus)
-        {
-            SetCanvasGroupState(_gameTittleCanvasGroup, activeStatus);
-        }
+        //public void SetGameTitleCanvasGroup(bool activeStatus)
+        //{
+        //    SetCanvasGroupState(_gameTittleCanvasGroup, activeStatus);
+        //}
 
         /// <summary>
         /// Sets the Username Input canvas group active status
@@ -202,7 +202,7 @@ namespace MainMenu.UI
         /// <param name="loadingText"></param>
         public void SetLoadingCanvasGroup(bool activeStatus, string loadingText = "Loading...")
         {
-            _loadingText.text = loadingText;
+            //_loadingText.text = loadingText;
 
             SetCanvasGroupState(_loadingCanvasGroup, activeStatus);
         }
