@@ -45,7 +45,7 @@ namespace Player_Controller
         void Update()
         {
             //Input que regresa la posicion que se debe mover
-            Vector3 movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             //Input que regresa la posicion que se debe rotar la camara
             Vector2 cameraView = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
             //Movimiento y vista del personaje

@@ -1,0 +1,6 @@
+newmtl Metal_B
+map_Kd Metal_B.png
+bump Metal_B_NRM.png
+Kd 1 1 1
+d 1
+

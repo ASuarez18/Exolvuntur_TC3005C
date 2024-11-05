@@ -9,7 +9,7 @@ namespace Player{
     {
         //Atributos de la clase jugador
         private float gravity = -9.81f;
-        private float speed = 2.0f;
+        private float speed = 10.0f;
         private bool groundedPlayer;
         private Vector3 velocity;
         private Vector2 cameraLook;
