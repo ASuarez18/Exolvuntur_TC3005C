@@ -12,6 +12,7 @@ namespace Interfaces{
         public void Move(Vector3 position);
         public void CameraView(Vector2 position, Transform camera);
         public bool AreYouOnTheGround();
+        public void setPlayerSpeed(float speed);
     }
 }
 

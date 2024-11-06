@@ -9,7 +9,7 @@ namespace Player{
     {
         //Atributos de la clase jugador
         private float gravity = -9.81f;
-        private float speed = 10.0f;
+        private float speed = 30.0f;
         private bool groundedPlayer;
         private Vector3 velocity;
         private Vector2 cameraLook;
@@ -80,6 +80,11 @@ namespace Player{
         public bool AreYouOnTheGround(){
             Debug.DrawRay(controller.transform.position,Vector3.down*0.15f,Color.red);
             return Physics.Raycast(controller.transform.position,Vector3.down,out RaycastHit Hit,0.15f,groundMask);
+        }
+
+        public void setPlayerSpeed(float speed)
+        {
+            this.speed = speed;
         }
     }
 }

@@ -39,6 +39,7 @@ namespace Player_Controller
             //Desaparecemos el curso de la pantalla
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            character.setPlayerSpeed(30.0f);
         }
 
         // Update is called once per frame
@@ -55,6 +56,16 @@ namespace Player_Controller
             {
                 character.Move(movementDirection);
             }
+
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                character.setPlayerSpeed(15f);
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftShift))
+            {
+                character.setPlayerSpeed(30f);
+            }
+
             // Ground character
             character.AreYouOnTheGround();
         }
