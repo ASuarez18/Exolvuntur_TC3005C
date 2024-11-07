@@ -42,13 +42,18 @@ namespace LocalPhoton.MainMenu
 
         public override void OnDisable()
         {
+            base.OnDisable();
+
+            if (UIManager.Instance == null)
+                return;
+
             UIManager.Instance.OnCreateRoomEvent -= CreateRoom;
             UIManager.Instance.OnLeaveRoomEvent -= LeaveRoom;
 
-            PUNRoomButtonInfo.OnJoinRoomEvent -= JoinRoom;
+            if (PUNRoomButtonInfo.OnJoinRoomEvent == null)
+                return;
 
-            // Base of PUN OnDisable method
-            base.OnDisable();
+            PUNRoomButtonInfo.OnJoinRoomEvent -= JoinRoom;
         }
 
         private void Start()
@@ -231,6 +236,7 @@ namespace LocalPhoton.MainMenu
         public void StartGame()
         {
             // Loads Main Scene that will be index 1
+
             PhotonNetwork.LoadLevel(1);
         }
     }

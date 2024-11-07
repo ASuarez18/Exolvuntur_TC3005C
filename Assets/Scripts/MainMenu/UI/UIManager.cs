@@ -1,5 +1,6 @@
 using Data;
 using Photon.Pun;
+using LocalPhoton.MainMenu;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -240,6 +241,7 @@ namespace MainMenu.UI
         public void ButtonLeaveRoomClicked()
         {
             OnLeaveRoomEvent?.Invoke();
+            PUNCharacterSelector.Instance.ReleaseCharacterOnExit();
         }
 
         /// <summary>
@@ -274,7 +276,7 @@ namespace MainMenu.UI
             SetMainMenuCanvasGroup(true);
         }
 
-
+        
         /// <summary>
         /// Action when any of the resolution buttons is clicked
         /// </summary>
