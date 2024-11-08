@@ -1,5 +1,6 @@
 using UnityEngine;
 using Interfaces;
+using UnityEditor.Animations;
 
 namespace PlayerController
 {
@@ -12,7 +13,7 @@ namespace PlayerController
         private bool groundedPlayer;
         private Vector3 velocity;
         private Vector2 cameraLook;
-        //private readonly AnimatorController _animator;
+        private Animator _animator;
 
         //nombre de los parametros de la animacion
         private const string FrontWalkAnimation = "Forward";
@@ -31,7 +32,7 @@ namespace PlayerController
                 groundMask = groundLayerMask;
 
                 //Nuevo animador
-                //_animator = new AnimatorController();
+                _animator = controller.GetComponent<Animator>();
                 //_animator.Animator = controller.GetComponentInChildren<Animator>();
             }
 
@@ -60,8 +61,8 @@ namespace PlayerController
             controller.Move(localDirection * Time.deltaTime * speed + velocity * Time.deltaTime);
 
             // Actualizar animaciones
-            //_animator.SetFloat(FrontWalkAnimation, direction.z);
-            //_animator.SetFloat(SideWalkAnimation, direction.x);
+            _animator.SetFloat("Forward", direction.z);
+            _animator.SetFloat("Side", direction.x);
         }
 
         //Funcion de movimiento de la camara
