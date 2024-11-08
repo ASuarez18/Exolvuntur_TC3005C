@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/Puzzles.meta
+guid: d17ca1fa83add324287a0c62aaded3e4
+========
 guid: 62405a868ee8c9d4ab143d82700f395e
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Textures/RuinStoneBricks.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

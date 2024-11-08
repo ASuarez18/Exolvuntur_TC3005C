@@ -1,6 +1,16 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Decrepit Dungeon LITE/Prefabs/Doors/Door_D.prefab.meta
+<<<<<<<< HEAD:Assets/Prefabs/Puzzles/CandlePuzzle/Laterns and candles/Sprites/red_flame_0.controller.meta
+guid: e1632a0282d258442a9629e80a57f68f
+timeCreated: 1495214276
+========
+guid: 6a07feca79d15f84d83a75c6432bd05c
+timeCreated: 1431630858
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Decrepit Dungeon LITE/Prefabs/Doors/Door_D.prefab.meta
+=======
 guid: b41216b6ff6d03b48b0013640687b817
 timeCreated: 1512177388
+>>>>>>> AlanHernandezA01783347:Assets/DungeonModules/FBX/Materials/beam_A.mat.meta
 licenseType: Store
 NativeFormatImporter:
   mainObjectFileID: 2100000

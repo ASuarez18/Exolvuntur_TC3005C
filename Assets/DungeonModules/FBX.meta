@@ -1,7 +1,19 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Decrepit Dungeon LITE/EXAMPLE/Demo_Scene.meta
+<<<<<<<< HEAD:Assets/Prefabs/Puzzles/CandlePuzzle/Laterns and candles/Meshes.meta
+guid: ff5906147eee4504198082dd645f582e
+folderAsset: yes
+timeCreated: 1495213671
+========
+guid: 47bb64a859f000849a7f0399ceb4f80e
+folderAsset: yes
+timeCreated: 1428018068
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Decrepit Dungeon LITE/EXAMPLE/Demo_Scene.meta
+=======
 guid: 6af40c11067980044b9b11f8e1db57a5
 folderAsset: yes
 timeCreated: 1511990479
+>>>>>>> AlanHernandezA01783347:Assets/DungeonModules/FBX.meta
 licenseType: Store
 DefaultImporter:
   userData: 

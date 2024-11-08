@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/TimeLines/TimeLineFinalTimeline.playable.meta
+guid: affedb5aa0d1be947b619212af654ab7
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+========
 guid: 1fe720c95284ff24d8a9a2d5ef1b7c8c
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Materials/RuinStoneBricks_StandardShader.mat.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 

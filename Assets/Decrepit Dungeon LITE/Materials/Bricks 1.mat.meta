@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Decrepit Dungeon LITE/EXAMPLE/Demo_SceneSettings.lighting.meta
+<<<<<<<< HEAD:Assets/Materials/Floor.mat.meta
+guid: a49fe60d7da36314ea2cf42c872543f9
+========
+guid: fa8b35f85a7a4da4c9b990b9fbb07d9b
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Decrepit Dungeon LITE/EXAMPLE/Demo_SceneSettings.lighting.meta
+=======
 guid: d0a26910aa0eb6e4cac3bd59b139b7b3
+>>>>>>> AlanHernandezA01783347:Assets/Decrepit Dungeon LITE/Materials/Bricks 1.mat.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 2100000
