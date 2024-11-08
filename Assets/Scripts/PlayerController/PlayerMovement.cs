@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Interfaces;
 
-namespace Player{
+namespace PlayerController
+{
 
-    public class Player : IMovement
+    public class PlayerMovement : IMovement
     {
         //Atributos de la clase jugador
         private float gravity = -9.81f;
@@ -26,7 +25,7 @@ namespace Player{
         public Transform orientation;
 
         //Constructor de la clase jugador para inicializar las variables
-        public Player(CharacterController characterController, LayerMask groundLayerMask)
+        public PlayerMovement(CharacterController characterController, LayerMask groundLayerMask)
             {
                 controller = characterController;
                 groundMask = groundLayerMask;
@@ -36,7 +35,7 @@ namespace Player{
                 //_animator.Animator = controller.GetComponentInChildren<Animator>();
             }
 
-        protected Player()
+        protected PlayerMovement()
         {
             
         }

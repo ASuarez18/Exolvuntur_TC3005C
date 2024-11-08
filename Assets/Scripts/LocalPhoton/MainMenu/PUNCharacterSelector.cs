@@ -225,8 +225,8 @@ namespace LocalPhoton.MainMenu
             //    // Update the button interactable state
             //    _characterSelection[i] = isCharacterSelected;
 
-            }
-            CharacterSelectionUpdate();
+            //}
+            //CharacterSelectionUpdate();
         }
     }
 }

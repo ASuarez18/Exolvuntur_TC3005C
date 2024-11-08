@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Interfaces;
-using UnityEngine.SceneManagement;
 
-namespace Player_Controller
+namespace PlayerController
 {
     public class PlayerControllerInput : MonoBehaviour
     {
@@ -26,7 +23,7 @@ namespace Player_Controller
         void Start()
         {
             //Instanciamos un nuevo objeto de tipo Player y su constructor
-            character = new Player.Player(GetComponent<CharacterController>(), groundMask);
+            character = new PlayerMovement(GetComponent<CharacterController>(), groundMask);
             // Obtén el primer hijo y su componente AudioController
             // Verificar si el objeto tiene al menos un hijo
              // Verificar si el objeto tiene al menos un hijo
