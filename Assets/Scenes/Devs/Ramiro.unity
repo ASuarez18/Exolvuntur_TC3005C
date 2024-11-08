@@ -358,7 +358,7 @@ Transform:
   m_GameObject: {fileID: 213473936}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 26.28, z: 3.3}
+  m_LocalPosition: {x: -0.1, y: 26.28, z: 4.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -671,10 +671,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1525002023}
-    - targetCorrespondingSourceObject: {fileID: 7005969160324496437, guid: 4f842b8a4128886499604830ec294e69,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1525002025}
     - targetCorrespondingSourceObject: {fileID: 7005969160324496437, guid: 4f842b8a4128886499604830ec294e69,
         type: 3}
       insertIndex: -1
@@ -1385,28 +1381,6 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
---- !u!114 &1525002025
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1525002020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e7d89809d33a444ba0585b4a0fd872e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  forward: 0
-  side: 0
-  task: 0
-  anim: {fileID: 1525002026}
---- !u!95 &1525002026 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4364497856299941109, guid: 4f842b8a4128886499604830ec294e69,
-    type: 3}
-  m_PrefabInstance: {fileID: 359789579}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1598719198
 GameObject:
   m_ObjectHideFlags: 0
