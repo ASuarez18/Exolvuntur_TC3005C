@@ -358,11 +358,11 @@ Transform:
   m_GameObject: {fileID: 213473936}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: 26.28, z: 4.88}
+  m_LocalPosition: {x: 100.62068, y: 50.379997, z: 272.60617}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1525002021}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &213473940
 MonoBehaviour:
@@ -467,8 +467,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Click
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e690f40f3a61cb46a0755d80444db45, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e690f40f3a61cb46a0755d80444db45, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -657,7 +657,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7670161751883376271, guid: 4f842b8a4128886499604830ec294e69,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 213473939}
+      addedObject: {fileID: 1658775418}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 532587258505305197, guid: 4f842b8a4128886499604830ec294e69,
         type: 3}
@@ -999,7 +999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4c148b9bbd894478231204db41bf2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPlayer: {fileID: 213473939}
+  _cameraPOV: {fileID: 0}
   groundMask:
     serializedVersion: 2
     m_Bits: 0
@@ -1377,7 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4c148b9bbd894478231204db41bf2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPlayer: {fileID: 213473939}
+  _cameraPOV: {fileID: 1658775418}
   groundMask:
     serializedVersion: 2
     m_Bits: 1
@@ -1591,6 +1591,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1835621937}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &1658775417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1658775418}
+  m_Layer: 0
+  m_Name: CameraPOV
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1658775418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658775417}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 26.4, z: 4.83}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1525002021}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1664049168
 GameObject:
   m_ObjectHideFlags: 0
@@ -2226,5 +2257,6 @@ SceneRoots:
   - {fileID: 1835621937}
   - {fileID: 1899114812}
   - {fileID: 2049822429}
+  - {fileID: 213473939}
   - {fileID: 359789579}
   - {fileID: 759326843}

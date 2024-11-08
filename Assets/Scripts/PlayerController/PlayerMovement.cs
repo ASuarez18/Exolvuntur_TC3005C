@@ -65,15 +65,22 @@ namespace PlayerController
         }
 
         //Funcion de movimiento de la camara
-        public void CameraView(Vector2 view, Transform cameraPlayer)
+        public void CameraView(Vector2 view, Transform cameraPlayer, Transform POVPosition)
         {
             //Input y valores de la camara
             cameraLook.x += view.x;
             cameraLook.y = Mathf.Clamp(cameraLook.y + view.y, -90f, 90f);
             //Aplicamos las rotaciones sobre la camara y el jugador
-            cameraPlayer.localRotation = Quaternion.Euler(-cameraLook.y, 0, 0);
+            //cameraPlayer.localPosition = POVPosition.position;
+            //cameraPlayer.localRotation = Quaternion.Euler(-cameraLook.y, cameraLook.x, 0);
             controller.transform.rotation = Quaternion.Euler(0, cameraLook.x, 0);
 
+        }
+
+        public void CameraPosUpdate(Transform cameraPlayer, Transform POVPosition)
+        {
+            cameraPlayer.localPosition = POVPosition.position;
+            cameraPlayer.localRotation = Quaternion.Euler(-cameraLook.y, cameraLook.x, 0);
         }
 
         public bool AreYouOnTheGround(){
