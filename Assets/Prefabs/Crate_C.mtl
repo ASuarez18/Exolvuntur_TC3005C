@@ -1,0 +1,12 @@
+newmtl Wood_B
+map_Kd Wood_B.png
+bump Wood_B_NRM.png
+Kd 1 0.9792452 0.9792452
+d 1
+
+newmtl Wood_C
+map_Kd Wood_C.png
+bump Wood_C_NRM.png
+Kd 0.6452829 0.6075399 0.6075399
+d 1
+

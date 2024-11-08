@@ -1,0 +1,18 @@
+newmtl Metal_A
+map_Kd Metal_A.png
+bump Metal_A_NRM.png
+Kd 1 1 1
+d 1
+
+newmtl Wood_A
+map_Kd Wood_A.png
+bump Wood_A_NRM.png
+Kd 1 1 1
+d 1
+
+newmtl Metal_B
+map_Kd Metal_B.png
+bump Metal_B_NRM.png
+Kd 1 1 1
+d 1
+

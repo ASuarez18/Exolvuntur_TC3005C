@@ -1,0 +1,12 @@
+newmtl Cement_A
+map_Kd Cement_A.png
+bump Cement_A_NRM.png
+Kd 1 1 1
+d 1
+
+newmtl Cement_B
+map_Kd Cement_B.png
+bump Cement_B_NRM.png
+Kd 1 1 1
+d 1
+

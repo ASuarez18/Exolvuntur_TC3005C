@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Decrepit Dungeon LITE/EXAMPLE/Demo_Scene/LightmapSnapshot.asset.meta
+<<<<<<<< HEAD:Assets/TextMesh Pro/Resources/Style Sheets/Default Style Sheet.asset.meta
+guid: 6167501f33fe4ee46bb2296cdaaa74a5
+timeCreated: 1432805430
+========
+guid: a1a21df98c4ce61418b36c0ce6457b52
+timeCreated: 1428018068
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Decrepit Dungeon LITE/EXAMPLE/Demo_Scene/LightmapSnapshot.asset.meta
+=======
+guid: d91e4ebace06fac469a6db95fa8cb706
+timeCreated: 1512177495
+>>>>>>> AlanHernandezA01783347:Assets/DungeonModules/FBX/Materials/ceiling_A.mat.meta
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
