@@ -8,19 +8,10 @@ namespace GamePlay.IA
     //TODO: Para la creacion de enemigos se puede implementar un Object Pool para crear al inicio.
     public class SpawnEnemyManager : MonoBehaviour
     {
-        //Atributos
+        //Atributos de inicializacion
         [SerializeField] private List<Transform> _targetPoints;
-
-        //Atributos de generacion de enemigos
-        [Serializable]
-        public struct EnemyData
-        {
-            public GameObject enemyPrefab;
-            public int spawnAmount;
-        }
-
-        //Creamos una lista de los datos
-        [SerializeField] private List<EnemyData> _enemyDataList;
+        [SerializeField] private EnemiesInterfaceFactory _enemyFactory;
+        [SerializeField] private int Kormos, Skinwalker, Dybbuk;
 
         //Creamos un singleton
         private static SpawnEnemyManager _instance;
@@ -47,33 +38,30 @@ namespace GamePlay.IA
         // Start is called before the first frame update
         void Start()
         {
-            InstantiateEnemy();
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-            
+            SpawnEnemy();
         }
 
         //TODO: refactorizar algormito de creacion
-        //Instanciar enemigo
-        public void InstantiateEnemy()
+        public void SpawnEnemy()
         {
-            //?Metodo1
-            //Recorremos la lista de enemigos
-            foreach (var dataEnemy in _enemyDataList)
+            for (int i = 0; i < Kormos; i++)
             {
-                for(int i = 0; i < dataEnemy.spawnAmount; i++)
-                {
-                    //Generamos un punto aleatorio
-                    int index = UnityEngine.Random.Range(0, _targetPoints.Count-1);
-                    //Instanciamos un enemigo en el punto
-                    GameObject enemy = Instantiate(dataEnemy.enemyPrefab, _targetPoints[index].position, Quaternion.identity);
-                    enemy.transform.parent = this.transform; //Añadimos el enemigo al objeto SpawnEnemyManager para mantenerlo en la escena
-                }
+                //Elegimos un punto aleatorio
+                Transform spawnPoint = _targetPoints[UnityEngine.Random.Range(0, _targetPoints.Count-1)];
+                _enemyFactory.InstantiateEnemies(EnemiesTypes.EnemyClass.Kormos, spawnPoint.position, spawnPoint.rotation);
             }
-
+            for (int i = 0; i < Skinwalker; i++)
+            {
+                //Elegimos un punto aleatorio
+                Transform spawnPoint = _targetPoints[UnityEngine.Random.Range(0, _targetPoints.Count-1)];
+                _enemyFactory.InstantiateEnemies(EnemiesTypes.EnemyClass.Skinwalker, spawnPoint.position, spawnPoint.rotation);
+            }
+            for (int i = 0; i < Dybbuk; i++)
+            {
+                //Elegimos un punto aleatorio
+                Transform spawnPoint = _targetPoints[UnityEngine.Random.Range(0, _targetPoints.Count-1)];
+                _enemyFactory.InstantiateEnemies(EnemiesTypes.EnemyClass.Dybbuk, spawnPoint.position, spawnPoint.rotation);
+            } 
         }
 
     }
