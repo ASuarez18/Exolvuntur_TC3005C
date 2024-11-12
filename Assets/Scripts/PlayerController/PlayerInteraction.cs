@@ -7,7 +7,7 @@ namespace PlayerController
     public class PlayerInteraction : MonoBehaviour
     {
 
-        public Camera mainCamera;
+        private Camera _mainCamera;
         public float rayDistance = 2f;
         public CanvasGroup interactText;
 
@@ -15,6 +15,7 @@ namespace PlayerController
         private void Start()
         {
             interactText.alpha = 0f;
+            _mainCamera = Camera.main;
         }
 
         private void FixedUpdate()
@@ -27,7 +28,7 @@ namespace PlayerController
         /// </summary>
         void CheckRayInteraction()
         {
-            Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            Ray ray = _mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
 
             RaycastHit hit;
 
