@@ -271,7 +271,10 @@ MonoBehaviour:
   agent: {fileID: 135790946}
   enemyMachine: {fileID: 135790948}
   areaAlerta: {fileID: 0}
-  areaAtaque: {fileID: 0}
+  areaAtaque: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
   enemyStats: {fileID: 11400000, guid: 95cc96a44a7fe5b4396a8d219e3ea00e, type: 2}
   waypoints:
   - {fileID: 1964115069}
@@ -1811,7 +1814,7 @@ Transform:
   m_GameObject: {fileID: 1170515343}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.01, y: 0, z: -7.02}
+  m_LocalPosition: {x: 8.01, y: 0, z: -3.54}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children: []

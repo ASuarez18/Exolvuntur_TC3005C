@@ -19,13 +19,11 @@ namespace GamePlay.IA
                     //Primero verificamos si el enemigo se encuntra en Idle
                     if(enemyState.enemyMachine.currentState is KormosCaution CautionState)
                     {
-                        CautionState.playerSound =true;
+                        enemyState.enemyMachine.SoundDetected =true;
                     }
                     else if(enemyState.enemyMachine.currentState is KormosHunt HuntState)
                     {
-                        // Debug.Log(sound.pos + sound.range);
                         HuntState.Hunt(sound);
-
                     }
                 }
             }

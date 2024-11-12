@@ -5,9 +5,13 @@ using Enemy.Manager;
 
 namespace Enemy.Behaviour
 {
+    /// <summary>
+    /// Maquina de estados que hereda de StateManager.
+    /// Agregamos los estados del enemigo Kormos y agregamos la clase del controlador del enemigo.
+    /// </summary>
     public class KormosStateMachine : StateManager<KormosStateMachine.EnemyState>
     {
-        #region Variables
+        #region Estados
         public enum EnemyState
         {
             Idle,
@@ -21,23 +25,32 @@ namespace Enemy.Behaviour
             Stunned,
             Dead
         }
+        #endregion
+
+        #region Variables y Atributos
 
         private EnemyKormosManager manager;
+        public bool PlayerOnAreaClose { get; set; }
+        public bool PlayerOnAreaFar { get; set; }
+        public bool SoundDetected { get; set; }
+        public Vector3 actualTarget { get; set; }
+        public Vector3 PlayerPosition{ get; set; }
+        public float DistanceToPlayer { get; set; }
 
         #endregion
 
         #region Unity Callbacks
         public void Awake()
         {
-            //Conseguimos el manager del enemigo
+            //Conseguimos el manager del enemigo nuestro GameObject
             manager = GetComponent<EnemyKormosManager>();
 
             // Initialize the state machine
-            state.Add(EnemyState.Idle, new KormosIdle(manager));
-            state.Add(EnemyState.Hunt, new KormosHunt(manager));
-            state.Add(EnemyState.Caution, new KormosCaution(manager));
+            state.Add(EnemyState.Idle, new KormosIdle(manager,this));
+            state.Add(EnemyState.Caution, new KormosCaution(manager,this));
+            state.Add(EnemyState.Hunt, new KormosHunt(manager,this));
+            state.Add(EnemyState.Attack, new KormosAttack(manager,this));
             // state.Add(EnemyState.Aggresive);
-            // state.Add(EnemyState.Attack);
             // state.Add(EnemyState.Search);
             // state.Add(EnemyState.Scape);
             // state.Add(EnemyState.Heal);
@@ -67,6 +80,7 @@ namespace Enemy.Behaviour
             TransitionToState(state);
         }
         #endregion
+
     }
 }
 

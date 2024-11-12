@@ -39,14 +39,13 @@ public class PlayerIATest : MonoBehaviour
         //Calculamos la dirección del movimiento
         Vector3 movement = new Vector3(x, 0, y);
         //Si la dirección es diferente de cero, reproducimos el sonido de pasos
-        if (movement!= Vector3.zero)
+        if (movement!= Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
         {
-            footsteps.PlayOneShot();
+            audioSource.Play(0);
             var soundDetector = new SoundGame(transform.position, soundRage);
             soundDetector.soundType = SoundGame.SoundType.Interesting;
             Sounds.MakeSound(soundDetector);
             //Rotamos al jugador según la dirección del movimiento
-            Debug.Log(soundDetector.pos);
         }
         //Si la direecion es cero detenemos el sonido
         else

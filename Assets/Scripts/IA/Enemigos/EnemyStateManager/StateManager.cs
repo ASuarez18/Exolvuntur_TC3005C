@@ -55,7 +55,6 @@ namespace Enemy.Behaviour
 
         public void OnTriggerEnter(Collider other)
         {  
-            Debug.Log("OnTriggerEnter");
             currentState.OnAreaEnter(other);
         }
         public void OnTriggerStay(Collider other)
@@ -66,5 +65,7 @@ namespace Enemy.Behaviour
         {
             currentState.OnAreaExit(other);
         }
+
+       
     }
 }

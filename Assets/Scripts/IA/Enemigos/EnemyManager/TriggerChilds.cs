@@ -16,6 +16,7 @@ namespace Enemy.Behaviour
             if (tag == "AlertaKormos")
             {
                 //Invocamos el evento
+                Debug.Log("Evento de entrada invocado");
                 TriggerEventEnter?.Invoke(other);
             }
             else if (tag == "AtaqueKormos")
@@ -24,33 +25,34 @@ namespace Enemy.Behaviour
             }
         }
 
-    //     void OnTriggerStay(Collider other)
-    //     {
-    //         //Verificamos con que hijo esta colisionando
-    //         if (tag == "AlertaKormos")
-    //         {
-    //             //Invocamos el evento
-    //             TriggerEvent?.Invoke(other);
-    //         }
-    //         else if (tag == "AtaqueKormos")
-    //         {
-    //             TriggerEvent?.Invoke(other);
-    //         }
-    //     }
+        void OnTriggerStay(Collider other)
+        {
+            //Verificamos con que hijo esta colisionando
+            if (tag == "AlertaKormos")
+            {
+                //Invocamos el evento
+                // Debug.Log("Evento de estado invocado");
+                TriggerEventStay?.Invoke(other);
+            }
+            else if (tag == "AtaqueKormos")
+            {
+                TriggerEventStay?.Invoke(other);
+            }
+        }
 
-    //     void OnTriggerExit(Collider other)
-    //     {
-    //         //Verificamos con que hijo esta colisionando
-    //         if (tag == "AlertaKormos")
-    //         {
-    //             //Invocamos el evento
-    //             TriggerEvent?.Invoke(other);
-    //         }
-    //         else if (tag == "AtaqueKormos")
-    //         {
-    //             TriggerEvent?.Invoke(other);
-    //         }
-    //     }
+        void OnTriggerExit(Collider other)
+        {
+            //Verificamos con que hijo esta colisionando
+            if (tag == "AlertaKormos")
+            {
+                Debug.Log("Evento de salida invocado");
+                TriggerEventExit?.Invoke(other);
+            }
+            else if (tag == "AtaqueKormos")
+            {
+                TriggerEventExit?.Invoke(other);
+            }
+        }
     }
 
 }

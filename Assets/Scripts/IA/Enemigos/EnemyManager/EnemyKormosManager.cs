@@ -19,9 +19,10 @@ namespace Enemy.Manager
         [SerializeField] public KormosStateMachine enemyMachine;
 
         //Atrivutos de sensores
-
         public SphereCollider areaAlerta;
-        public SphereCollider areaAtaque;
+        // public bool areaAtaque;
+        // public RaycastHit hit;
+        // public LayerMask layerMask;
 
         //Atrivutos de estadisticas
         [SerializeField] public EnemyScriptableObject enemyStats;
@@ -34,15 +35,15 @@ namespace Enemy.Manager
         {
             //Suscribimos los Trigger al evento principal
             triggerEvent.TriggerEventEnter += enemyMachine.OnTriggerEnter;
-            // triggerEvent.TriggerEvenStay += enemyMachine.OnTriggerStay;
-            // triggerEvent.TriggerEventExit += enemyMachine.OnTriggerExit;
+            triggerEvent.TriggerEventStay += enemyMachine.OnTriggerStay;
+            triggerEvent.TriggerEventExit += enemyMachine.OnTriggerExit;
         }
 
         public void OnDisable()
         {
             triggerEvent.TriggerEventEnter -= enemyMachine.OnTriggerEnter;
-            // triggerEvent.TriggerEventStay -= enemyMachine.OnTriggerStay;
-            // triggerEvent.TriggerEventExit -= enemyMachine.OnTriggerExit;
+            triggerEvent.TriggerEventStay -= enemyMachine.OnTriggerStay;
+            triggerEvent.TriggerEventExit -= enemyMachine.OnTriggerExit;
         }
 
         //Generamos un constructor de la instancia de la clase
@@ -60,15 +61,26 @@ namespace Enemy.Manager
         {
             //Accedemos a los hijos del enemigo (Alerta y Ataque)
             areaAlerta = transform.Find("Alerta").GetComponent<SphereCollider>();
-            areaAtaque = transform.Find("Ataque").GetComponent<SphereCollider>();
-            //Inicializamos el rango de cada uno
             areaAlerta.radius = enemyStats.ViewRange;
-            areaAtaque.radius = enemyStats.AttackRange;
-
 
             //Ejecutamos el primer estado de nuestra maquina de estados
             enemyMachine.SwitchCase(KormosStateMachine.EnemyState.Idle);
         }
+
+        // void Update()
+        // {
+        //     if(Physics.SphereCast(transform.position,enemyStats.AttackRange/2,transform.forward,out hit,0,layerMask))
+        //     {
+        //         Debug.Log(hit.collider.gameObject.name);
+        //     }
+        // }
+
+        // void OnDrawGizmos()
+        // {
+        //     Gizmos.color = Color.red;
+        //     Gizmos.DrawSphere(transform.position,enemyStats.AttackRange/2);
+        // }
+        
 
     }
 }

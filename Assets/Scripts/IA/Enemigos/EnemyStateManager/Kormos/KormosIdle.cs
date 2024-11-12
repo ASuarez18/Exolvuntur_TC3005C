@@ -8,60 +8,56 @@ namespace Enemy.Behaviour
     public class KormosIdle : BaseState<KormosStateMachine.EnemyState>
     {
 
-        //Llamamos a la clase de EnemyKormosManager
+        //Referencia a clase comportamiento y maquina de estados
         private EnemyKormosManager manager;
-        private Transform actualTarget;
-        
+        private KormosStateMachine kormosSM;
 
-        //Banderas del estado
-        public bool playerOnArea = false;
+        //Constructor
 
-       
-
-        public KormosIdle(EnemyKormosManager manager) : base(KormosStateMachine.EnemyState.Idle)
+        public KormosIdle(EnemyKormosManager manager,KormosStateMachine machine) : base(KormosStateMachine.EnemyState.Idle)
         {
             this.manager = manager;
+            this.kormosSM = machine;
         }
-
-
 
         public override void EnterState()
         {
-           
-
-            actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)];
+            //Elegimos un destino aleatorio
+            kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)].position;
+            
         }
 
         public override void UpdateState()
         {
-            //*Actualizacion de la logica del estado
-            manager.agent.SetDestination(actualTarget.position);
+            //Actualizamos la posicion del agente al destino
+            manager.agent.SetDestination(kormosSM.actualTarget);
+
+            //Elegimos un nuevo destino cada ve que se acerca a su destino
             if (manager.agent.remainingDistance <= 0.5f)
             {  
-                // Debug.Log("Entre");
-                actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)];
-                while(actualTarget.position == manager.agent.destination)
+                
+                kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)].position;
+                // Debug.LogWarning($"Nuevo destino {kormosSM.actualTarget}");
+                while(kormosSM.actualTarget == manager.agent.destination)
                 {
-                    actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)];
+                    kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)].position;
                 }
             }
-            // Debug.Log(playerOnArea);
-            //*Revisamos si se activa a otro estado
+        
+            //Revisamos su siguientes estados
             GetNextState();
         }
 
         public override void ExitState()
         {
-            //*Debemos de restablecer las banderas
-            playerOnArea = false;
+            // Debug.Log(kormosSM.PlayerOnAreaFar);
         }
 
         public override KormosStateMachine.EnemyState GetNextState()
         {
             //*Revisamos si la bandera activa otro estado
-            if (playerOnArea)
+            if (kormosSM.PlayerOnAreaFar)
             {
-                Debug.Log("Entrex3");
                 return KormosStateMachine.EnemyState.Caution;
             }
 
@@ -72,33 +68,22 @@ namespace Enemy.Behaviour
 
         public override void OnAreaEnter(Collider other)
         {
-                // Debug.Log("Entre");
                 //Verificamos que el objeto tenga el tag de player
                 if (other.gameObject.tag == "Player")
                 {
-                    Debug.Log("Entrex2");
-                    playerOnArea = true;
+                    kormosSM.PlayerOnAreaFar = true;
                 }
         }
 
         public override void OnAreaStay(Collider other)
         {
-           
-                // //Verificamos que el objeto tenga el tag de player
-                // if (other.gameObject.tag == "Player")
-                // {
-                //     playerOnArea = true;
-                // }
+            //No realizamos nada
         }
 
         public override void OnAreaExit(Collider other)
         {
             
-                //Verificamos que el objeto tenga el tag de player
-                if (other.gameObject.tag == "Player")
-                {
-                    playerOnArea = false;
-                }
+            //No realizamos nada
         }
 
     

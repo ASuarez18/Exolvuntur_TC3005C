@@ -8,83 +8,67 @@ namespace Enemy.Behaviour
     public class KormosCaution : BaseState<KormosStateMachine.EnemyState>
     {
         //Llamamos a la clase de EnemyKormosManager
+        private EnemyKormosManager manager;
+        private KormosStateMachine kormosSM;
 
-            private EnemyKormosManager manager;
+        public KormosCaution(EnemyKormosManager manager, KormosStateMachine machine) : base(KormosStateMachine.EnemyState.Caution)
+        {
+            this.manager = manager;
+            this.kormosSM = machine;
+        }
 
-            //Banderas del estado
-            public bool playerOnArea = true;
+        public override void EnterState()
+        {
+            //Detenemos el movimiento del agente
+            manager.agent.isStopped = true;
+        }
 
-            public bool playerSound = false;
+        public override void UpdateState()
+        {
+            //Revisamos los estados
+            GetNextState();
+        }
 
-            public KormosCaution(EnemyKormosManager manager) : base(KormosStateMachine.EnemyState.Caution)
+        public override void ExitState()
+        {
+            manager.agent.isStopped = false;
+        }
+
+        public override KormosStateMachine.EnemyState GetNextState()
+        {
+            //*Revisamos si la bandera activa otro estado
+            if (!kormosSM.PlayerOnAreaFar)
             {
-                this.manager = manager;
+                
+                return KormosStateMachine.EnemyState.Idle;
             }
-
-            //Creamos el flujo del estado de Idle
-
-            public override void EnterState()
+            else if(kormosSM.SoundDetected)
             {
-                //Detenemos el movimiento del agente
-                manager.agent.isStopped = true;
+                return KormosStateMachine.EnemyState.Hunt;
             }
+            return KormosStateMachine.EnemyState.Caution;
+        }
 
-            public override void UpdateState()
+        //Metodos de cambio de flujo del estado
+
+        public override void OnAreaEnter(Collider other)
+        {
+
+        }
+
+        public override void OnAreaStay(Collider other)
+        {   
+
+        }
+
+        public override void OnAreaExit(Collider other)
+        {       
+            if (other.gameObject.tag == "Player")
             {
-                //*Actualizacion de la logica del estado
-                manager.agent.isStopped = true;
-
-                //*Revisamos si se activa a otro estado
-                GetNextState();
+                Debug.LogError("Jugador salio del area");
+                kormosSM.PlayerOnAreaFar = false;
             }
-
-            public override void ExitState()
-            {
-                //*Debemos de restablecer las banderas
-                playerOnArea = false;
-                manager.agent.isStopped = false;
-            }
-
-            public override KormosStateMachine.EnemyState GetNextState()
-            {
-                //*Revisamos si la bandera activa otro estado
-                if (!playerOnArea)
-                {
-                    return KormosStateMachine.EnemyState.Idle;
-                }
-                else if(playerSound)
-                {
-                    return KormosStateMachine.EnemyState.Hunt;
-                }
-                return KormosStateMachine.EnemyState.Caution;
-            }
-
-            //Metodos de cambio de flujo del estado
-
-            public override void OnAreaEnter(Collider other)
-            {
-                    //Verificamos que el objeto tenga el tag de player
-                    if (other.gameObject.tag == "Player")
-                    {
-                        playerOnArea = true;
-                    }
-            }
-
-            public override void OnAreaStay(Collider other)
-            {   
-                    // if (other.gameObject.tag == "Player")
-                    // {
-                    //     playerOnArea = true;
-                    // }
-            }
-
-            public override void OnAreaExit(Collider other)
-            {       
-                    if (other.gameObject.tag == "Player")
-                    {
-                        playerOnArea = false;
-                    }
-            }
+        }
 
     }
 
