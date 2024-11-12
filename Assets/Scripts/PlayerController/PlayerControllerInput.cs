@@ -36,7 +36,7 @@ namespace PlayerController
             //Desaparecemos el curso de la pantalla
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            character.setPlayerSpeed(30.0f);
+            character.setPlayerSpeed(70.0f);
         }
 
         // Update is called once per frame
