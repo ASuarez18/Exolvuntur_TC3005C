@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace Player.UI
@@ -12,6 +13,8 @@ namespace Player.UI
     {
         [SerializeField] private Slider _sanitySlider;
         [SerializeField] private Image _sanityFillImage;
+        [SerializeField] private Volume _postProcessingVolume;
+        [SerializeField] private Camera _camera;
 
         private void Update()
         {
@@ -43,6 +46,15 @@ namespace Player.UI
             float value = _sanitySlider.value / _sanitySlider.maxValue;
             Color color = Color.Lerp(Color.black, Color.white, value);
             _sanityFillImage.color = color;
+
+            // Update the post processing volume
+            float sanityPercentage = _sanitySlider.value / _sanitySlider.maxValue;
+            _postProcessingVolume.weight = 1 - sanityPercentage;
+
+            // Update the camera rotation in the z axis
+            float maxRotationZ = 30f; // Define el máximo ángulo de rotación en el eje Z
+            float rotationZ = (1 - sanityPercentage) * maxRotationZ;
+            _camera.transform.rotation = Quaternion.Euler(_camera.transform.rotation.eulerAngles.x, _camera.transform.rotation.eulerAngles.y, rotationZ);
         }
     }
 }
