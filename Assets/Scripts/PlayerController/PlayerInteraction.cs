@@ -18,17 +18,18 @@ namespace PlayerController
             _mainCamera = Camera.main;
         }
 
-        private void FixedUpdate()
+        void Update()
         {
             CheckRayInteraction();
-        }
 
+        }
+       
         /// <summary>
         /// Function that verifies and searches for a ray collision with a collider of interactable objectes
         /// </summary>
         void CheckRayInteraction()
         {
-            Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+            Ray ray = _mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 
             RaycastHit hit;
 

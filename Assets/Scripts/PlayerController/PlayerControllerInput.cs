@@ -78,7 +78,7 @@ namespace PlayerController
         private void LateUpdate()
         {
             character.CameraPosUpdate(cameraPlayer, _cameraPOV);
-            _inventoryPOV.rotation = cameraPlayer.rotation;
+            //_inventoryPOV.transform.position = cameraPlayer.rotation;
         }
 
         void OnTriggerEnter(Collider other)
