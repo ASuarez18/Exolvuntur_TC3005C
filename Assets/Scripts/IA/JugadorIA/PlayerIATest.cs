@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GamePlay.IA;
+using Enemy.Manager;
+using Enemy.Behaviour;
 
 public class PlayerIATest : MonoBehaviour
 {
@@ -32,7 +34,38 @@ public class PlayerIATest : MonoBehaviour
         //Llamamos al metodo Move para realizar el movimiento
         Move(horizontal, vertical);
 
+        #region DamageTest
+        Collider[] col = Physics.OverlapSphere(transform.position , 3);
+
+        for(int i=0; i<col.Length; i++)
+        {
+            if(col[i].TryGetComponent(out EnemyKormosManager enemyState))
+            {
+                Debug.LogWarning("Encontro enemigo");
+                if(Input.GetKeyDown(KeyCode.P))
+                {
+                    // Simulacion de ataque para stunnear
+                    enemyState.enemyMachine.ApplyStun();
+                    Debug.Log("Aplico stun");
+                }
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    // Simulacion de ataque para daniar
+                    enemyState.enemyMachine.ApplyDamage(20);
+                    Debug.LogError($"Aplico danio: {enemyState.enemyMachine.currentHealth}");
+                    
+                }
+            }
+        }
+        #endregion
+
     }
+
+    // public void OnDrawGizmos()
+    // {
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawSphere(transform.position, 3);
+    // }
 
     public void Move(float x, float y)
     {

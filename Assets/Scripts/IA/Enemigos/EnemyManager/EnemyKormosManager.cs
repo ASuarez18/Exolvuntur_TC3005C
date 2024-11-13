@@ -20,31 +20,29 @@ namespace Enemy.Manager
 
         //Atrivutos de sensores
         public SphereCollider areaAlerta;
-        // public bool areaAtaque;
-        // public RaycastHit hit;
-        // public LayerMask layerMask;
 
         //Atrivutos de estadisticas
         [SerializeField] public EnemyScriptableObject enemyStats;
         [SerializeField] public List<Transform> waypoints;
 
         //Eventos
-        public TriggerChilds triggerEvent;
+        // public TriggerChilds triggerEvent;
 
-         public void OnEnable()
-        {
-            //Suscribimos los Trigger al evento principal
-            triggerEvent.TriggerEventEnter += enemyMachine.OnTriggerEnter;
-            triggerEvent.TriggerEventStay += enemyMachine.OnTriggerStay;
-            triggerEvent.TriggerEventExit += enemyMachine.OnTriggerExit;
-        }
+        //  public void OnEnable()
+        // {
+        //     //Suscribimos los Trigger al evento principal
+        //     triggerEvent.TriggerEventEnter += enemyMachine.OnTriggerEnter;
+        //     triggerEvent.TriggerEventStay += enemyMachine.OnTriggerStay;
+        //     triggerEvent.TriggerEventExit += enemyMachine.OnTriggerExit;
+        // }
 
-        public void OnDisable()
-        {
-            triggerEvent.TriggerEventEnter -= enemyMachine.OnTriggerEnter;
-            triggerEvent.TriggerEventStay -= enemyMachine.OnTriggerStay;
-            triggerEvent.TriggerEventExit -= enemyMachine.OnTriggerExit;
-        }
+        // public void OnDisable()
+        // {
+        //     //Des
+        //     triggerEvent.TriggerEventEnter -= enemyMachine.OnTriggerEnter;
+        //     triggerEvent.TriggerEventStay -= enemyMachine.OnTriggerStay;
+        //     triggerEvent.TriggerEventExit -= enemyMachine.OnTriggerExit;
+        // }
 
         //Generamos un constructor de la instancia de la clase
         public EnemyKormosManager(NavMeshAgent myAgent,EnemyScriptableObject myEnemyStats, KormosStateMachine myEnemyMachine)
@@ -60,27 +58,12 @@ namespace Enemy.Manager
         void Start()
         {
             //Accedemos a los hijos del enemigo (Alerta y Ataque)
-            areaAlerta = transform.Find("Alerta").GetComponent<SphereCollider>();
+            areaAlerta = GetComponent<SphereCollider>();
             areaAlerta.radius = enemyStats.ViewRange;
 
             //Ejecutamos el primer estado de nuestra maquina de estados
             enemyMachine.SwitchCase(KormosStateMachine.EnemyState.Idle);
-        }
-
-        // void Update()
-        // {
-        //     if(Physics.SphereCast(transform.position,enemyStats.AttackRange/2,transform.forward,out hit,0,layerMask))
-        //     {
-        //         Debug.Log(hit.collider.gameObject.name);
-        //     }
-        // }
-
-        // void OnDrawGizmos()
-        // {
-        //     Gizmos.color = Color.red;
-        //     Gizmos.DrawSphere(transform.position,enemyStats.AttackRange/2);
-        // }
-        
+        }        
 
     }
 }

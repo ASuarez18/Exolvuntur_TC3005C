@@ -6,7 +6,7 @@ using Enemy.Manager;
 
 /// <summary>
 /// El estado de ataque se mantiene siempre y cuando el juagador se encuentre en el area del enemigo.
-/// El estado conecta con : 
+/// El estado conecta con : KormosCaution
 /// </summary>
 
 namespace Enemy.Behaviour
@@ -24,21 +24,24 @@ namespace Enemy.Behaviour
             this.kormosSM = machine;
         }
 
+        //Inicializamos el estado
         public override void EnterState()
         {
             manager.agent.SetDestination(kormosSM.actualTarget);
         }
 
+        //Actualizamos el estado en el Update
         public override void UpdateState()
         {
-            //Verificamos si existe alguna condicion del siguiente estado
             GetNextState();
         }
 
+        //Salimos del estado
         public override void ExitState()
         {
         }
 
+        //Obtenemos el siguiente estado segun las condiciones
         public override KormosStateMachine.EnemyState GetNextState()
         {
             //Si el jugador salio del area cambiamos al estado Idle

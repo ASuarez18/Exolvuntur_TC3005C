@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
 
+/// <summary>
+/// El estado de Idle genera un patrullaje aleatorio.
+/// El enemigo elige un punto de su lista y se dirige hacia alli.
+/// Cuando llega elige un nuevo punto
+/// Estados con los que conecta : KormosCaution
+/// </summary>
+
 namespace Enemy.Behaviour
 {
     public class KormosIdle : BaseState<KormosStateMachine.EnemyState>
@@ -12,21 +19,21 @@ namespace Enemy.Behaviour
         private EnemyKormosManager manager;
         private KormosStateMachine kormosSM;
 
-        //Constructor
-
+        //Constructor del estado (Manager y Machine)
         public KormosIdle(EnemyKormosManager manager,KormosStateMachine machine) : base(KormosStateMachine.EnemyState.Idle)
         {
             this.manager = manager;
             this.kormosSM = machine;
         }
 
+        //Inicializa el estado
         public override void EnterState()
         {
             //Elegimos un destino aleatorio
             kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)].position;
-            
         }
 
+        //Actualiza el estado en el Update del MonoBehaviour
         public override void UpdateState()
         {
             //Actualizamos la posicion del agente al destino
@@ -37,7 +44,7 @@ namespace Enemy.Behaviour
             {  
                 
                 kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)].position;
-                // Debug.LogWarning($"Nuevo destino {kormosSM.actualTarget}");
+               
                 while(kormosSM.actualTarget == manager.agent.destination)
                 {
                     kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)].position;
@@ -50,9 +57,10 @@ namespace Enemy.Behaviour
 
         public override void ExitState()
         {
-            // Debug.Log(kormosSM.PlayerOnAreaFar);
+            //No realizamos nada
         }
 
+        //Funcion que revisa si entra en el flujo de un estado o no
         public override KormosStateMachine.EnemyState GetNextState()
         {
             //*Revisamos si la bandera activa otro estado
@@ -65,7 +73,6 @@ namespace Enemy.Behaviour
         }
 
         //Metodos de cambio de flujo del estado
-
         public override void OnAreaEnter(Collider other)
         {
                 //Verificamos que el objeto tenga el tag de player
