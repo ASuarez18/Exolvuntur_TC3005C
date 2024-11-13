@@ -13,6 +13,8 @@ namespace PlayerController
         //POV De la camara
         [SerializeField] private Transform _cameraPOV;
 
+        [SerializeField] private Transform _inventoryPOV;
+
         //Vector de la vista
         Vector2 CameraView;
         //Vector del movimento
@@ -76,6 +78,7 @@ namespace PlayerController
         private void LateUpdate()
         {
             character.CameraPosUpdate(cameraPlayer, _cameraPOV);
+            _inventoryPOV.rotation = cameraPlayer.rotation;
         }
 
         void OnTriggerEnter(Collider other)
