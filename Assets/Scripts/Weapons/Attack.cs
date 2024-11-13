@@ -7,6 +7,8 @@ namespace PlayerController.Inventory
 {
     public class Attack : MonoBehaviour
     {
+        [SerializeField] private Seguro _seguro;
+
         [SerializeField]
         private UtilityScriptableObject _weaponData;
 
@@ -35,7 +37,7 @@ namespace PlayerController.Inventory
                 enMano = true;
             }
 
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetMouseButtonDown(0) && _seguro.bloqueado == false)
             {
                 switch (_weaponData.weaponType)
                 {

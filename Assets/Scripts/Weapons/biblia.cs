@@ -7,6 +7,7 @@ using PlayerController.Inventory;
 
 public class biblia : MonoBehaviour, IInteraction
 {
+    [SerializeField] private Seguro _Seguro;
     [SerializeField] private float tiempo= 5f;
     [SerializeField] private float radio = 5f;
 
@@ -18,7 +19,7 @@ public class biblia : MonoBehaviour, IInteraction
     private void Update()
     {
 
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButton(0) && !_Seguro.bloqueado)
         {
 
 

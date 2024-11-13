@@ -5,6 +5,7 @@ using Interfaces;
 using PlayerController.Inventory;
 public class crucifijo : MonoBehaviour, IInteraction
 {
+    [SerializeField] private Seguro _Seguro;
     public GameObject cubo;
     public Transform point;
 
@@ -12,7 +13,7 @@ public class crucifijo : MonoBehaviour, IInteraction
 
     void Update()
     {
-        if (Input.GetMouseButton(0) )
+        if (Input.GetMouseButton(0) && !_Seguro.bloqueado)
         {
 
             Collider[] colliders = Physics.OverlapCapsule(point.position, point.position + Camera.main.transform.forward * rango, 2f);

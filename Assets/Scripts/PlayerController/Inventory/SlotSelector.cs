@@ -131,6 +131,7 @@ namespace PlayerController.Inventory
             };
 
             // Emparenta el objeto con el objeto padre
+            currentCollectable.GetComponent<Seguro>().bloqueado = false;
             currentCollectable.transform.SetParent(_utilitiesParent);
             currentCollectable.transform.localPosition = Vector3.zero;
 

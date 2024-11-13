@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 
 public class Sal : MonoBehaviour, IInteraction
 {
+    [SerializeField] private Seguro _Seguro;
     public GameObject cubo;
     public Transform mano;
     public float fuerza;
@@ -25,18 +26,14 @@ public class Sal : MonoBehaviour, IInteraction
     {
         
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonDown(0) && !_Seguro.bloqueado)
         {
-           
-
-           
                 // Cambiar a la dirección de la cámara
                 cubo.GetComponent<Rigidbody>().isKinematic = false;
                 cubo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 Vector3 direccionLanzamiento = Camera.main.transform.forward;
                 cubo.GetComponent<Rigidbody>().AddForce(direccionLanzamiento * fuerza, ForceMode.Impulse);
-          
-            
+
         }
 
         
