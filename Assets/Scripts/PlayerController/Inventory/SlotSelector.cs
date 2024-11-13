@@ -69,10 +69,7 @@ namespace PlayerController.Inventory
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                CollectObject();
-            }
+           
 
             // Change the slot with mouse wheel
             if (Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -107,7 +104,7 @@ namespace PlayerController.Inventory
             }
         }
 
-        private void CollectObject()
+        public void CollectObject(GameObject currentCollectable)
         {
             if (collectables.Length == 0) return;
 
@@ -117,7 +114,7 @@ namespace PlayerController.Inventory
                 return;
             }
 
-            GameObject currentCollectable = collectables[currentCollectableIndex];
+            //GameObject currentCollectable = collectables[currentCollectableIndex];
             SpriteRenderer _spriteRenderer = currentCollectable.GetComponent<SpriteRenderer>();
 
             if (_spriteRenderer == null)
@@ -135,6 +132,7 @@ namespace PlayerController.Inventory
 
             // Emparenta el objeto con el objeto padre
             currentCollectable.transform.SetParent(_utilitiesParent);
+            currentCollectable.transform.localPosition = Vector3.zero;
 
             // Actualiza el índice para el siguiente objeto
             currentCollectableIndex = (currentCollectableIndex + 1) % collectables.Length;

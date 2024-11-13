@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Interfaces;
+using Unity.AI.Navigation;
+using PlayerController.Inventory;
 
 public class biblia : MonoBehaviour, IInteraction
 {
@@ -52,7 +54,7 @@ public class biblia : MonoBehaviour, IInteraction
 
     public void InteractObject()
     {
-        Debug.Log("Interactuando con la biblia");
+        FindObjectOfType<SlotSelector>().CollectObject(this.gameObject);
     }
 
 

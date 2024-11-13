@@ -14,7 +14,13 @@ namespace PlayerController.UI
         [SerializeField] private Slider _sanitySlider;
         [SerializeField] private Image _sanityFillImage;
         [SerializeField] private Volume _postProcessingVolume;
-        [SerializeField] private Camera _camera;
+        private Camera _camera;
+
+        private void Start()
+        {
+            _camera = Camera.main;
+
+        }
 
         private void Update()
         {

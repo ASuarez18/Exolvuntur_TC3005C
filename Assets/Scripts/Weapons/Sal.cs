@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PlayerController.Inventory;
+using Interfaces;
+using Unity.VisualScripting;
 
-public class Sal : MonoBehaviour
+public class Sal : MonoBehaviour, IInteraction
 {
     public GameObject cubo;
     public Transform mano;
@@ -15,40 +18,26 @@ public class Sal : MonoBehaviour
     private void Start()
     {
         escala = cubo.transform.localScale;
+        
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            cubo.transform.SetParent(mano);
-            cubo.transform.position = mano.position;
-            cubo.transform.rotation = mano.rotation;
-            cubo.GetComponent<Rigidbody>().isKinematic = true;
-            enMano = true;
-        }
+        
 
         if(Input.GetMouseButtonDown(0))
         {
-            cubo.transform.SetParent(null);
-            cubo.GetComponent<Rigidbody>().isKinematic = false;
-            cubo.transform.localScale = escala;
+           
 
-            if(enMano == true)
-            {
+           
                 // Cambiar a la dirección de la cámara
                 Vector3 direccionLanzamiento = Camera.main.transform.forward;
                 cubo.GetComponent<Rigidbody>().AddForce(direccionLanzamiento * fuerza, ForceMode.Impulse);
-                enMano = false;
-            }
+                //enMano = false;
+            
         }
 
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            cubo.transform.SetParent(null);
-            cubo.GetComponent<Rigidbody>().isKinematic = false;
-            cubo.transform.localScale = escala;
-        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,4 +55,11 @@ public class Sal : MonoBehaviour
             activo = false;
         }
     }
+
+    public void InteractObject()
+    {
+        FindObjectOfType<SlotSelector>().CollectObject(this.gameObject);
+    }
+
+    
 }

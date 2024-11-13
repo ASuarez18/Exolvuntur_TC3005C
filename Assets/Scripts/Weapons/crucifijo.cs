@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Interfaces;
-
+using PlayerController.Inventory;
 public class crucifijo : MonoBehaviour, IInteraction
 {
     public GameObject cubo;
@@ -30,7 +30,7 @@ public class crucifijo : MonoBehaviour, IInteraction
 
     public void InteractObject()
     {
-        Debug.Log("Interactuando con el crucifijo");
+        FindObjectOfType<SlotSelector>().CollectObject(this.gameObject);
     }
 
 
