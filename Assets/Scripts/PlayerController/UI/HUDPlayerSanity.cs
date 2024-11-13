@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Player.UI
+namespace PlayerController.UI
 {
     /// <summary>
     /// Class in charge of the player sanity UI (Slider)

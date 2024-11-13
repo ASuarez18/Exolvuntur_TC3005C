@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using Player.UI;
+using PlayerController.UI;
 using UnityEngine;
 
-namespace Player.PUN
+namespace PlayerController.PUN
 {   
     /// <summary>
     /// Class in charge of managing the player's sanity through the HUD
