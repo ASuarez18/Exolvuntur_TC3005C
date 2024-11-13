@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using ScriptableObjects;
 
-namespace player.Weapons
+namespace PlayerController.Inventory
 {
     public class Attack : MonoBehaviour
     {

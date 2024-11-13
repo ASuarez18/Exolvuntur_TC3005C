@@ -2,9 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using ScriptableObjects;
 // using Photon.Pun;
 
-namespace Player.Inventory
+namespace PlayerController.Inventory
 {
     /// <summary>
     /// Class in charge of the slot selector in the inventory of the player

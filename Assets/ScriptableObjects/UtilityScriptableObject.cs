@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace player.Weapons
+namespace ScriptableObjects
 {
     [CreateAssetMenu(fileName = "Weapon_", menuName = "ScriptableObjects/UtilityScriptableObject", order = 1)]
     public class UtilityScriptableObject : ScriptableObject
