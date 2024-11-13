@@ -784,6 +784,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &667405012 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5717739804776345434, guid: 0d5868300c0011746acdb396d2c69793,
+    type: 3}
+  m_PrefabInstance: {fileID: 908846513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &716791675
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,16 +999,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5472625230266872257, guid: 0d5868300c0011746acdb396d2c69793,
+    - target: {fileID: 6958415470757013954, guid: 0d5868300c0011746acdb396d2c69793,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12.61
-      objectReference: {fileID: 0}
-    - target: {fileID: 5472625230266872257, guid: 0d5868300c0011746acdb396d2c69793,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.95
-      objectReference: {fileID: 0}
+      propertyPath: _inventoryPOV
+      value: 
+      objectReference: {fileID: 667405012}
     - target: {fileID: 7488244095986218143, guid: 0d5868300c0011746acdb396d2c69793,
         type: 3}
       propertyPath: interactText
