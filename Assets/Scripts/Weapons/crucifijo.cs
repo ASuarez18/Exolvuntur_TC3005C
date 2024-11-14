@@ -11,9 +11,11 @@ public class crucifijo : MonoBehaviour, IInteraction
 
     [SerializeField] private float rango = 2f;
 
+    private float cooldown = 0f;
+
     void Update()
     {
-        if (Input.GetMouseButton(0) && !_Seguro.bloqueado)
+        if (Input.GetMouseButton(0) && !_Seguro.bloqueado && cooldown <= 0f)
         {
 
             Collider[] colliders = Physics.OverlapCapsule(point.position, point.position + Camera.main.transform.forward * rango, 2f);
@@ -25,6 +27,13 @@ public class crucifijo : MonoBehaviour, IInteraction
                     Debug.Log("Atacando");
                 }
             }
+
+            cooldown = 3f;
+        }
+
+        if (cooldown > 0f)
+        {
+            cooldown -= Time.deltaTime;
         }
 
     }

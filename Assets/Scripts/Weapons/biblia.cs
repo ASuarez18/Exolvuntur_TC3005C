@@ -11,6 +11,8 @@ public class biblia : MonoBehaviour, IInteraction
     [SerializeField] private float tiempo= 5f;
     [SerializeField] private float radio = 5f;
 
+    private float cooldown = 0f;
+
     float tiempoActual = 0f;
 
 
@@ -19,25 +21,36 @@ public class biblia : MonoBehaviour, IInteraction
     private void Update()
     {
 
-        if(Input.GetMouseButton(0) && !_Seguro.bloqueado)
+        if(Input.GetMouseButton(0) && !_Seguro.bloqueado && cooldown <= 0f)
         {
-
-
+            //Cuenta regresiva cuando se activa el ataque
             tiempoActual += Time.deltaTime;
             if(tiempoActual >= tiempo)
             {
+                //Ataque y cooldown
                 
                 Ataque();
                 tiempoActual = 0f;
+                cooldown = 3f;
 
             }
+
+            
 
         }
         else
         {
             tiempoActual = 0f;
+            cooldown = 0f;
 
         }
+
+        if(cooldown > 0f)
+        {
+            cooldown -= Time.deltaTime;
+        }
+
+        
         
     }
 

@@ -15,6 +15,7 @@ public class Sal : MonoBehaviour, IInteraction
     private bool activo;
     private bool enMano;
     private Vector3 escala;
+    private float cooldown = 0f;
 
     private void Start()
     {
@@ -26,7 +27,7 @@ public class Sal : MonoBehaviour, IInteraction
     {
         
 
-        if(Input.GetMouseButtonDown(0) && !_Seguro.bloqueado)
+        if(Input.GetMouseButtonDown(0) && !_Seguro.bloqueado && cooldown <= 0f)
         {
                 // Cambiar a la dirección de la cámara
                 cubo.GetComponent<Rigidbody>().isKinematic = false;
@@ -34,6 +35,13 @@ public class Sal : MonoBehaviour, IInteraction
                 Vector3 direccionLanzamiento = Camera.main.transform.forward;
                 cubo.GetComponent<Rigidbody>().AddForce(direccionLanzamiento * fuerza, ForceMode.Impulse);
 
+                cooldown = 3f;
+
+        }
+
+        if(cooldown > 0f)
+        {
+            cooldown -= Time.deltaTime;
         }
 
         
