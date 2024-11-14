@@ -70,9 +70,13 @@ namespace Enemy.Behaviour
         public override KormosStateMachine.EnemyState GetNextState()
         {
             //Si el jugador se encuentra en el segundo rango entra en ataque
-            if(kormosSM.PlayerOnAreaClose)
+            if(kormosSM.IsStunned)
             {
-                return KormosStateMachine.EnemyState.Attack;
+                return KormosStateMachine.EnemyState.Stunned;
+            }
+            else if(kormosSM.PlayerOnAreaClose)
+            {
+                return KormosStateMachine.EnemyState.Chasing;
             }
             //Si el agente llega a su destino cambiamos de estado
             else if(onDestination || !kormosSM.PlayerOnAreaFar)

@@ -18,20 +18,24 @@ public class SphereCastManager : MonoBehaviour
     void Update()
     {
 
-        // 
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-           if(Physics.SphereCast(transform.position,radius,transform.forward,out hit, maxDistance, layerMask))
-           {
-             Debug.Log("Hit object: " + hit.transform.name);
-             // Perform actions on hit object here
-           } 
-        }   
+        // // 
+        // if(Input.GetKeyDown(KeyCode.Space))
+        // {
+        //    if(Physics.SphereCast(transform.position,radius,transform.forward,out hit, maxDistance, layerMask))
+        //    {
+        //      Debug.Log("Hit object: " + hit.transform.name);
+        //      // Perform actions on hit object here
+        //    } 
+        // }   
     }
 
-    void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawSphere(transform.position+transform.forward*maxDistance,radius);
-        }
+    public void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Entre al trigger");
+    }
+
+    public void OnCollisionEnter(Collision other)
+    {
+        Debug.Log("Entre al collision");
+    }
 }

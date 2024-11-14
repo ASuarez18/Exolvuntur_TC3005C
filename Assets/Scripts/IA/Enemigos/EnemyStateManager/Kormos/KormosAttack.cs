@@ -27,29 +27,38 @@ namespace Enemy.Behaviour
         //Inicializamos el estado
         public override void EnterState()
         {
-            manager.agent.SetDestination(kormosSM.actualTarget);
+            Debug.Log("Atacando a la verga");
+            //TODO: Animacion de ataque
+            manager.agent.isStopped = true;
         }
 
         //Actualizamos el estado en el Update
         public override void UpdateState()
         {
+           kormosSM.UpdateAttackTime();
             GetNextState();
         }
 
         //Salimos del estado
         public override void ExitState()
         {
+            manager.agent.isStopped = false;
+            kormosSM.TimeOfAttack = 0f;
         }
 
         //Obtenemos el siguiente estado segun las condiciones
         public override KormosStateMachine.EnemyState GetNextState()
         {
-            //Si el jugador salio del area cambiamos al estado Idle
-            if (!kormosSM.PlayerOnAreaClose)
+            if(kormosSM.IsStunned)
             {
-                return KormosStateMachine.EnemyState.Caution;
+                // ! Fue stuneado
+                return KormosStateMachine.EnemyState.Stunned;
             }
-
+            else if (kormosSM.TimeOfAttack >= 2) //TODO: eliminar constante magica de tiempo de ataque
+            {
+                // ! Se mantiene en ataque hasta que termine la duracion de esta
+                return KormosStateMachine.EnemyState.Chasing;
+            }
             return KormosStateMachine.EnemyState.Attack;
         }
 
@@ -57,25 +66,17 @@ namespace Enemy.Behaviour
 
         public override void OnAreaEnter(Collider other)
         {
-            if(other.CompareTag("Player"))
-            {
-                kormosSM.actualTarget = other.gameObject.transform.position;
-            }
+            
         }
 
         public override void OnAreaStay(Collider other)
         {
-            //Verificamos si alguien esta en el area del enemigo
-            if (other.CompareTag("Player"))
-            {
-
-                kormosSM.actualTarget = other.gameObject.transform.position;
-            }
+            
         }
 
         public override void OnAreaExit(Collider other)
         {
-            kormosSM.PlayerOnAreaClose = false;
+            
         }
 
 

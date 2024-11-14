@@ -47,13 +47,18 @@ namespace Enemy.Behaviour
         public override void ExitState()
         {
             manager.agent.isStopped = false;
+            kormosSM.AgressiveCounter = 0f;
         }
 
         //Revisamos el siguiente estado a partir de las condiciones de la bandera y el contador agresivo
         public override KormosStateMachine.EnemyState GetNextState()
         {
             //Si el jugador sale del area o se encuentra en el area lejano
-            if (!kormosSM.PlayerOnAreaFar)
+            if(kormosSM.IsStunned)
+            {
+                return KormosStateMachine.EnemyState.Stunned;
+            }
+            else if (!kormosSM.PlayerOnAreaFar)
             {  
                 return KormosStateMachine.EnemyState.Idle;
             }
@@ -86,7 +91,6 @@ namespace Enemy.Behaviour
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerOnAreaFar = false;
-                kormosSM.AgressiveCounter = 0f;
             }
         }
 

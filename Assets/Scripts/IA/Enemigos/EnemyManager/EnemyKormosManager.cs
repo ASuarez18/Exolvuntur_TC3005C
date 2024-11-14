@@ -25,25 +25,6 @@ namespace Enemy.Manager
         [SerializeField] public EnemyScriptableObject enemyStats;
         [SerializeField] public List<Transform> waypoints;
 
-        //Eventos
-        // public TriggerChilds triggerEvent;
-
-        //  public void OnEnable()
-        // {
-        //     //Suscribimos los Trigger al evento principal
-        //     triggerEvent.TriggerEventEnter += enemyMachine.OnTriggerEnter;
-        //     triggerEvent.TriggerEventStay += enemyMachine.OnTriggerStay;
-        //     triggerEvent.TriggerEventExit += enemyMachine.OnTriggerExit;
-        // }
-
-        // public void OnDisable()
-        // {
-        //     //Des
-        //     triggerEvent.TriggerEventEnter -= enemyMachine.OnTriggerEnter;
-        //     triggerEvent.TriggerEventStay -= enemyMachine.OnTriggerStay;
-        //     triggerEvent.TriggerEventExit -= enemyMachine.OnTriggerExit;
-        // }
-
         //Generamos un constructor de la instancia de la clase
         public EnemyKormosManager(NavMeshAgent myAgent,EnemyScriptableObject myEnemyStats, KormosStateMachine myEnemyMachine)
         {
@@ -53,12 +34,31 @@ namespace Enemy.Manager
             enemyStats = myEnemyStats;
         }
 
+        //Inicializamos la suscripcion y desuscricion de los eventos
+        [SerializeField] private TriggerSensor sensor;
+
+        void OnEnable()
+        {
+            //Suscribimos los eventos
+            sensor.TriggerEventEnter += enemyMachine.OnTriggerEnter;
+            sensor.TriggerEventStay += enemyMachine.OnTriggerStay;
+            sensor.TriggerEventExit += enemyMachine.OnTriggerExit;
+        }
+
+        void OnDisable()
+        {
+            //Desuscribimos los eventos
+            sensor.TriggerEventEnter -= enemyMachine.OnTriggerEnter;
+            sensor.TriggerEventStay -= enemyMachine.OnTriggerStay;
+            sensor.TriggerEventExit -= enemyMachine.OnTriggerExit;
+        }
+
         //Inicializamos la funcion
 
         void Start()
         {
-            //Accedemos a los hijos del enemigo (Alerta y Ataque)
-            areaAlerta = GetComponent<SphereCollider>();
+            //Accedemos al hijo y obtenemos el componenete de collider
+            areaAlerta = transform.GetChild(0).GetComponent<SphereCollider>();
             areaAlerta.radius = enemyStats.ViewRange;
 
             //Ejecutamos el primer estado de nuestra maquina de estados

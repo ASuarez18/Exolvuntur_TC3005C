@@ -29,26 +29,27 @@ namespace Enemy.Behaviour
         //Inicializa el estado
         public override void EnterState()
         {
-            //Elegimos un destino aleatorio
-            kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)].position;
+            //Elegimos un destino aleatorio de la lista de puntos y lo guardamos
+            kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
+            
         }
 
         //Actualiza el estado en el Update del MonoBehaviour
         public override void UpdateState()
         {
-            //Actualizamos la posicion del agente al destino
-            manager.agent.SetDestination(kormosSM.actualTarget);
-
             //Elegimos un nuevo destino cada ve que se acerca a su destino
-            if (manager.agent.remainingDistance <= 0.5f)
+            if (manager.agent.remainingDistance <= 1f)
             {  
                 
-                kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)].position;
+                kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
                
                 while(kormosSM.actualTarget == manager.agent.destination)
                 {
-                    kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count-1)].position;
+                    kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
                 }
+
+                //Actualizamos la posicion del agente al destino
+                manager.agent.SetDestination(kormosSM.actualTarget);
             }
         
             //Revisamos su siguientes estados
@@ -63,8 +64,13 @@ namespace Enemy.Behaviour
         //Funcion que revisa si entra en el flujo de un estado o no
         public override KormosStateMachine.EnemyState GetNextState()
         {
-            //*Revisamos si la bandera activa otro estado
-            if (kormosSM.PlayerOnAreaFar)
+            //Revisamos si el enemigo esta estuneado
+            if(kormosSM.IsStunned)
+            {
+                return KormosStateMachine.EnemyState.Stunned;
+            }
+            //Revisamos si el jugador esta en el area de alerta
+            else if (kormosSM.PlayerOnAreaFar)
             {
                 return KormosStateMachine.EnemyState.Caution;
             }
@@ -92,7 +98,5 @@ namespace Enemy.Behaviour
             
             //No realizamos nada
         }
-
-    
     }
 }

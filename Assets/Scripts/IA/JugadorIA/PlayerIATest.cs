@@ -41,7 +41,7 @@ public class PlayerIATest : MonoBehaviour
         {
             if(col[i].TryGetComponent(out EnemyKormosManager enemyState))
             {
-                Debug.LogWarning("Encontro enemigo");
+                // Debug.LogWarning("Encontro enemigo");
                 if(Input.GetKeyDown(KeyCode.P))
                 {
                     // Simulacion de ataque para stunnear

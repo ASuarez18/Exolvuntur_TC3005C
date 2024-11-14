@@ -24,7 +24,7 @@ namespace Enemy.Behaviour
 
             //Incrementamos las estadisticas del enemigo en la maquina de estados un 20%
             kormosSM.currentSpeed += kormosSM.currentRunningSpeed;
-            kormosSM.currentAcceleration += (kormosSM.currentAcceleration * .20f);
+            kormosSM.currentAcceleration += kormosSM.currentAcceleration;
             kormosSM.currentAttackRange += (kormosSM.currentAttackRange * .20f);
             kormosSM.currentHealth += (kormosSM.currentHealth * .20f);
 
@@ -41,6 +41,7 @@ namespace Enemy.Behaviour
         {
             //Obtenemos la funcion de Update Aggresive Counter
             kormosSM.UpdateAggressiveDuration();
+            // Debug.LogWarning(kormosSM.AggresiveDuration);
         }
 
         public override void ExitState()
@@ -54,7 +55,7 @@ namespace Enemy.Behaviour
         {
             if(kormosSM.AggresiveDuration >= manager.enemyStats.AggroDuration)
             {
-                return KormosStateMachine.EnemyState.Attack;
+                return KormosStateMachine.EnemyState.Chasing;
             }
             return KormosStateMachine.EnemyState.Aggresive;
             
@@ -72,7 +73,10 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
-
+            if (other.gameObject.tag == "Player")
+            {
+                kormosSM.PlayerOnAreaFar = false;
+            }
         }
     }
 }

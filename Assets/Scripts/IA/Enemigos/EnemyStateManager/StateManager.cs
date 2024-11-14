@@ -66,6 +66,5 @@ namespace Enemy.Behaviour
             currentState.OnAreaExit(other);
         }
 
-       
     }
 }
