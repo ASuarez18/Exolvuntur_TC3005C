@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Interfaces;
 using PlayerController.Inventory;
+using Enemy.Manager;
+using Enemy.Behaviour;
 public class crucifijo : MonoBehaviour, IInteraction
 {
     [SerializeField] private Seguro _Seguro;
@@ -22,9 +24,10 @@ public class crucifijo : MonoBehaviour, IInteraction
 
             foreach (Collider collider in colliders)
             {
-                if (collider.CompareTag("Enemy"))
-                {
-                    Debug.Log("Atacando");
+                if (collider.TryGetComponent(out EnemyKormosManager enemyState))
+                { 
+                    enemyState.enemyMachine.ApplyDamage(10);
+                    Debug.Log("enemyattack");
                 }
             }
 
@@ -35,6 +38,10 @@ public class crucifijo : MonoBehaviour, IInteraction
         {
             cooldown -= Time.deltaTime;
         }
+
+        if(cooldown < 0f)
+        { cooldown = 0f; }
+        
 
     }
 

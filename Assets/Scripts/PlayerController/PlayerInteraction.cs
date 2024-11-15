@@ -17,7 +17,7 @@ namespace PlayerController
             interactText.alpha = 0f;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             CheckRayInteraction();
         }

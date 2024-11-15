@@ -4,6 +4,7 @@ using UnityEngine;
 using Interfaces;
 using Unity.AI.Navigation;
 using PlayerController.Inventory;
+using Enemy.Manager;
 
 public class biblia : MonoBehaviour, IInteraction
 {
@@ -20,7 +21,6 @@ public class biblia : MonoBehaviour, IInteraction
     
     private void Update()
     {
-
         if(Input.GetMouseButton(0) && !_Seguro.bloqueado && cooldown <= 0f)
         {
             //Cuenta regresiva cuando se activa el ataque
@@ -28,25 +28,22 @@ public class biblia : MonoBehaviour, IInteraction
             if(tiempoActual >= tiempo)
             {
                 //Ataque y cooldown
-                
+                cooldown = 10f;
                 Ataque();
                 tiempoActual = 0f;
-                cooldown = 3f;
-
+                
             }
-
-            
 
         }
         else
-        {
+        { 
             tiempoActual = 0f;
-            cooldown = 0f;
-
+            
         }
 
         if(cooldown > 0f)
         {
+            Debug.Log("Enfriando");
             cooldown -= Time.deltaTime;
         }
 
@@ -59,9 +56,10 @@ public class biblia : MonoBehaviour, IInteraction
         Collider[] colliders = Physics.OverlapSphere(transform.position, radio);
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Enemy"))
+            if (collider.TryGetComponent(out EnemyKormosManager enemyState))
             {
-                Debug.Log("Atacando");
+                enemyState.enemyMachine.ApplyDamage(50);
+                Debug.Log("enemyattack");
             }
         }
     }
