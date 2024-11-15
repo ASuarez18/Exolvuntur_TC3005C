@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using PlayerController.PUN;
 
 namespace Enemy.Behaviour
 {
@@ -102,11 +103,13 @@ namespace Enemy.Behaviour
             }
             public void OnCollisionEnter(Collision other)
             {  
+                Debug.LogError(other.ToString());
                 if(currentState.StateKey == EnemyState.Chasing)
                 {
                     if(other.gameObject.tag == "Player")
                     {
                         Attacking = true;
+                    other.gameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
                     }
                 }
             }
@@ -158,10 +161,17 @@ namespace Enemy.Behaviour
         {
             if (IsStunned)
             {
+                Debug.LogWarning($"Aplico {damage} a enemigo");
                 currentHealth -= damage;
             }
         }
         #endregion
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(manager.transform.position, currentAttackRange);
+        }
 
     }
 }

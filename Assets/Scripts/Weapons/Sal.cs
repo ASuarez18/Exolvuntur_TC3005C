@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayerController.Inventory;
 using Interfaces;
-using Unity.VisualScripting;
+using Enemy.Manager;
 
 public class Sal : MonoBehaviour, IInteraction
 {
@@ -47,19 +47,11 @@ public class Sal : MonoBehaviour, IInteraction
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnCollisionEnter(Collision collision)
     {
-        if(other.tag == "Player")
+        if(collision.collider.CompareTag("Enemy"))
         {
-            activo = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Player")
-        {
-            activo = false;
+            collision.collider.GetComponent<EnemyKormosManager>().enemyMachine.ApplyStun();
         }
     }
 

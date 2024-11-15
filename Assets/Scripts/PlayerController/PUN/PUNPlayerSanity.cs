@@ -42,6 +42,7 @@ namespace PlayerController.PUN
         public void TakeDamage(int damage, string enemyName)
         {
             Sanity -= damage;
+            _hudPlayerSanity.SetSliderValue(Sanity);
 
             // Update the player's sanity on the HUD
             // if (photonView.IsMine)

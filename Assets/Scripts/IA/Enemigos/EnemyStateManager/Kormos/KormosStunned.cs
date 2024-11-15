@@ -52,7 +52,7 @@ namespace Enemy.Behaviour
                 // ! Manda a estado de Muerte
                 return KormosStateMachine.EnemyState.Dead;
             }
-            else if (kormosSM.TimeStunned >= 5) // TODO: Definir constante en propiedades o en codigo del tiempo de duracion de stun
+            else if (kormosSM.TimeStunned >= 10) // TODO: Definir constante en propiedades o en codigo del tiempo de duracion de stun
             {
                 if (kormosSM.currentHealth <= 30 && kormosSM.currentHealth > 0) // TODO: Definir en propiedades del enemigo la vida en la que ya cambiar a estado de huida
                 {
