@@ -9,18 +9,24 @@ namespace PlayerController
 
         private Camera _mainCamera;
         public float rayDistance = 2f;
-        public CanvasGroup interactText;
+        private CanvasGroup interactText;
 
 
         private void Start()
         {
             interactText.alpha = 0f;
             _mainCamera = Camera.main;
+            interactText = GameObject.Find("HUD_Interaction").GetComponent<CanvasGroup>();
+            Debug.LogError(interactText);
         }
 
         void Update()
         {
-            CheckRayInteraction();
+            if(interactText != null)
+            {
+                CheckRayInteraction();
+            }
+            
 
         }
        
