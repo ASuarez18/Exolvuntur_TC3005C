@@ -177,6 +177,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3140277251223104369, guid: cf440685c70ae794fa6889f501a4999d,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140277251223104369, guid: cf440685c70ae794fa6889f501a4999d,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140277251223104369, guid: cf440685c70ae794fa6889f501a4999d,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140277251223104369, guid: cf440685c70ae794fa6889f501a4999d,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -540,9 +555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5fae2d1e9b16f43bb149bc600c5489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 1447838672}
-  rayDistance: 16
-  interactText: {fileID: 816739761}
 --- !u!114 &202368084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,7 +567,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed4c148b9bbd894478231204db41bf2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraPlayer: {fileID: 1447838675}
+  _cameraPOV: {fileID: 0}
+  _inventoryPOV: {fileID: 0}
   groundMask:
     serializedVersion: 2
     m_Bits: 1
