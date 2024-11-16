@@ -35,6 +35,8 @@ namespace Enemy.Behaviour
             //Incrementamos las veces que puede entrar en este modo
             kormosSM.AggresiveMode++;
 
+            manager.animator.SetTrigger("agresividad");
+
         }
 
         public override void UpdateState()

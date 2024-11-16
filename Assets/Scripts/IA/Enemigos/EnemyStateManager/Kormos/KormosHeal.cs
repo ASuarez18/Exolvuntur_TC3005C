@@ -27,8 +27,8 @@ namespace Enemy.Behaviour
 
             //Inicializamos la animacion de curacion
             //Debug.Log("heal");
-            //    manager.animator.SetFloat("forward", 0);
-            }
+            manager.animator.SetFloat("forward", 0);
+        }
 
             //Actualiza el estado en el Update del MonoBehaviour
             public override void UpdateState()
