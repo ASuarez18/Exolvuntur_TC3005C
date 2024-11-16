@@ -17,7 +17,7 @@ namespace PlayerController
             interactText.alpha = 0f;
         }
 
-        private void FixedUpdate()
+        private void Update()
         {
             CheckRayInteraction();
         }
@@ -27,11 +27,11 @@ namespace PlayerController
         /// </summary>
         void CheckRayInteraction()
         {
-            Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+            Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 
             RaycastHit hit;
 
-            Debug.DrawRay(ray.origin, ray.direction, Color.red);
+            Debug.DrawRay(ray.origin, ray.direction * rayDistance, Color.red);
 
             if (Physics.Raycast(ray, out hit, rayDistance))
             {

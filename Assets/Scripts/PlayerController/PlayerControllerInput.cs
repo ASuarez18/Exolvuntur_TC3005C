@@ -1,5 +1,6 @@
 using UnityEngine;
 using Interfaces;
+using GamePlay.IA;
 
 namespace PlayerController
 {
@@ -17,6 +18,7 @@ namespace PlayerController
         public LayerMask groundMask;
         //Creamos un objeto de tipo interfaz
         private IMovement character;
+        [SerializeField] private float soundRage = 10.0f; //Distancia en metros en la que el jugador escucha el sonido de pasos
         //Controlador de audio
         //private AudioController audioController ;
 
@@ -36,7 +38,7 @@ namespace PlayerController
             //Desaparecemos el curso de la pantalla
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            character.setPlayerSpeed(30.0f);
+            character.setPlayerSpeed(70.0f);
         }
 
         // Update is called once per frame
@@ -61,6 +63,14 @@ namespace PlayerController
             else if (Input.GetKeyUp(KeyCode.LeftShift))
             {
                 character.setPlayerSpeed(30f);
+
+            }
+            else if (movementDirection != Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
+            {
+                var soundDetector = new SoundGame(transform.position, soundRage);
+                soundDetector.soundType = SoundGame.SoundType.Interesting;
+                Sounds.MakeSound(soundDetector);
+                //Rotamos al jugador según la dirección del movimiento
             }
 
             // Ground character
