@@ -20,7 +20,6 @@ namespace Enemy.Behaviour
                 Aggresive,
                 Attack,
                 Chasing,
-                Search,
                 Scape,
                 Heal,
                 Stunned,
