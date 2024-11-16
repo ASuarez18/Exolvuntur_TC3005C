@@ -236,9 +236,11 @@ GameObject:
   - component: {fileID: 326336349613610235}
   - component: {fileID: 836779058595798971}
   - component: {fileID: 8081455982333540373}
+  - component: {fileID: 1127392899704858305}
+  - component: {fileID: 1157057577169070846}
   m_Layer: 0
   m_Name: PlayerMateo
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -258,6 +260,7 @@ Transform:
   m_Children:
   - {fileID: 4650236258248385493}
   - {fileID: 39047845278422298}
+  - {fileID: 4487842176282902967}
   - {fileID: 257704376888294788}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -295,7 +298,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cameraPOV: {fileID: 39047845278422298}
-  _inventoryPOV: {fileID: 0}
+  _inventoryPOV: {fileID: 4487842176282902967}
   groundMask:
     serializedVersion: 2
     m_Bits: 1
@@ -311,8 +314,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff5fae2d1e9b16f43bb149bc600c5489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rayDistance: 2
-  interactText: {fileID: 0}
 --- !u!143 &8081455982333540373
 CharacterController:
   m_ObjectHideFlags: 0
@@ -339,6 +340,39 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.53, z: -2.33}
+--- !u!114 &1127392899704858305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486079440831292792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 007b44088df34b647a4490e0cc95d02b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashLight: {fileID: 272661769245837921}
+--- !u!114 &1157057577169070846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486079440831292792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 918cc4569d847aa44a4ace83712458a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _utilityData: []
+  _utilities: []
+  _utilitiesParent: {fileID: 4487842176282902967}
+  _currentSlotIndex: 0
+  hudSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &4099948579073177576
 GameObject:
   m_ObjectHideFlags: 0
@@ -371,6 +405,37 @@ Transform:
   - {fileID: 3607438313045970610}
   m_Father: {fileID: 2427061511132277331}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8205594566393336600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4487842176282902967}
+  m_Layer: 0
+  m_Name: InventoryManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4487842176282902967
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8205594566393336600}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.4735789, y: -0.5280841, z: 0.523466, w: -0.47205254}
+  m_LocalPosition: {x: 2.96, y: 11.11, z: 3.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4888926147840241203}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8460057914309263719
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +461,7 @@ Transform:
   m_GameObject: {fileID: 8460057914309263719}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11042786, y: 16.2, z: 3.5}
+  m_LocalPosition: {x: 0.11042786, y: 16.2, z: -1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -463,7 +528,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: b1c5cee4548088547ae7ef60327738d5,
         type: 3}
       propertyPath: m_Name
-      value: lamp_LP2 (1)
+      value: lamp_LP2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
