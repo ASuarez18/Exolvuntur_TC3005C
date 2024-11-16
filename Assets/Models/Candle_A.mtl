@@ -1,0 +1,10 @@
+newmtl Wax_A
+map_Kd Wax_A.png
+bump Wax_A_NRM.png
+Kd 1 1 1
+d 1
+
+newmtl M_Black
+Kd 0.1196612 0.1196612 0.1196612
+d 1
+

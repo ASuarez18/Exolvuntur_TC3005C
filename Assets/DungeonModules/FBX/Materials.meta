@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Decrepit Dungeon LITE/Meshes.meta
+<<<<<<<< HEAD:Assets/Prefabs/Puzzles/CandlePuzzle/Laterns and candles/Prefabs.meta
+guid: 18004e86ebf551d458bcddfb2e424d16
+folderAsset: yes
+timeCreated: 1495320585
+========
+guid: 9d990eaac7ce1a74ea3ecacc100b2dcf
+folderAsset: yes
+timeCreated: 1428015128
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Decrepit Dungeon LITE/Meshes.meta
+=======
+guid: 8f731f8ef1bea85429f592a6f5179c58
+folderAsset: yes
+timeCreated: 1511990907
+>>>>>>> AlanHernandezA01783347:Assets/DungeonModules/FBX/Materials.meta
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
