@@ -36,7 +36,10 @@ namespace Enemy.Behaviour
                         kormosSM.actualTarget = waypoint.position;
                     }
                 }
-            }
+
+                //Inicializamos la animacion de escape
+                manager.animator.SetFloat("forward", 3f);
+             }
 
             //Actualiza el estado en el Update del MonoBehaviour
             public override void UpdateState()

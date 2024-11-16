@@ -17,6 +17,7 @@ namespace Enemy.Manager
         //Atributos de AI
         [SerializeField] public NavMeshAgent agent;
         [SerializeField] public KormosStateMachine enemyMachine;
+        [SerializeField] public Animator animator;
 
         //Atrivutos de sensores
         public SphereCollider areaAlerta;
@@ -26,12 +27,13 @@ namespace Enemy.Manager
         [SerializeField] public List<Transform> waypoints;
 
         //Generamos un constructor de la instancia de la clase
-        public EnemyKormosManager(NavMeshAgent myAgent,EnemyScriptableObject myEnemyStats, KormosStateMachine myEnemyMachine)
+        public EnemyKormosManager(NavMeshAgent myAgent,EnemyScriptableObject myEnemyStats, KormosStateMachine myEnemyMachine, Animator myEnemyAnimation)
         {
             //Asignamos los valores a los atributos
             agent = myAgent;
             enemyMachine = myEnemyMachine;
             enemyStats = myEnemyStats;
+            animator = myEnemyAnimation;
         }
 
         //Inicializamos la suscripcion y desuscricion de los eventos

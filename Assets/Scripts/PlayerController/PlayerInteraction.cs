@@ -7,27 +7,43 @@ namespace PlayerController
     public class PlayerInteraction : MonoBehaviour
     {
 
-        public Camera mainCamera;
-        public float rayDistance = 2f;
-        public CanvasGroup interactText;
+        private Camera _mainCamera;
+        private float rayDistance;
+        private CanvasGroup interactText;
 
 
-        private void Start()
+       
+        private void OnEnable()
         {
+            rayDistance = 20f;
+            _mainCamera = Camera.main;
+            interactText = GameObject.Find("HUD_Interaction").GetComponent<CanvasGroup>();
             interactText.alpha = 0f;
+            Debug.LogError(interactText);
         }
 
         private void Update()
         {
-            CheckRayInteraction();
-        }
+            if(interactText != null)
+            {
+                CheckRayInteraction();
+            }
+            else
+            {
+                _mainCamera = Camera.main;
+                interactText = GameObject.Find("HUD_Interaction").GetComponent<CanvasGroup>();
+                Debug.LogError(interactText);
+            }
+            
 
+        }
+       
         /// <summary>
         /// Function that verifies and searches for a ray collision with a collider of interactable objectes
         /// </summary>
         void CheckRayInteraction()
         {
-            Ray ray = mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
+            Ray ray = _mainCamera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
 
             RaycastHit hit;
 

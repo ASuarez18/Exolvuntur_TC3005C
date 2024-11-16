@@ -22,6 +22,9 @@ namespace Enemy.Behaviour
         public override void EnterState()
         {
             manager.agent.SetDestination(kormosSM.actualTarget);
+
+            //Inicializamos la animacion de persecucion
+            manager.animator.SetFloat("forward", 2f);
         }
 
         //Actualizamos el estado en el Update

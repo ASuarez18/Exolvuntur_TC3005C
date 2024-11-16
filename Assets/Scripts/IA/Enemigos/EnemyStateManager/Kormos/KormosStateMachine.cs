@@ -44,6 +44,7 @@ namespace Enemy.Behaviour
             public float TimeStunned { get; set; }
             public bool Attacking { get; set; }
             public float TimeOfAttack { get; set; }
+          
         #endregion
 
         #region Estadisticas
@@ -53,10 +54,10 @@ namespace Enemy.Behaviour
             public float currentAttackRange;
             public float currentHealth;
         #endregion
-    
-    
+
+
         #region Unity Callbacks
-            public void Awake()
+        public void Awake()
             {
                 //Conseguimos el manager del enemigo nuestro GameObject
                 manager = GetComponent<EnemyKormosManager>();
@@ -86,10 +87,14 @@ namespace Enemy.Behaviour
                 manager.agent.speed = currentSpeed;
                 manager.agent.acceleration = currentAcceleration;
 
+           
+
             }
 
-            //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
-            public void OnTriggerEnter(Collider other)
+
+
+        //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
+        public void OnTriggerEnter(Collider other)
             {
                 base.OnTriggerEnter(other);
             }
@@ -167,11 +172,11 @@ namespace Enemy.Behaviour
         }
         #endregion
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(manager.transform.position, currentAttackRange);
-        }
+        //private void OnDrawGizmos()
+        //{
+        //    Gizmos.color = Color.yellow;
+        //    Gizmos.DrawSphere(manager.transform.position, currentAttackRange);
+        //}
 
     }
 }

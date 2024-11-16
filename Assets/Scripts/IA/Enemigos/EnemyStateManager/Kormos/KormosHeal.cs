@@ -24,8 +24,11 @@ namespace Enemy.Behaviour
             {
                 //Detenemos el movimiento del agente dado que esta en stunneado
                 manager.agent.isStopped = true;
-                // TODO: Settear animacion de curacion
-            }
+
+            //Inicializamos la animacion de curacion
+            //Debug.Log("heal");
+            manager.animator.SetFloat("forward", 0);
+        }
 
             //Actualiza el estado en el Update del MonoBehaviour
             public override void UpdateState()

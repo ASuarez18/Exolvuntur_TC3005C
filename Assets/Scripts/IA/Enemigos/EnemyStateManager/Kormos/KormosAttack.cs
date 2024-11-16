@@ -30,6 +30,7 @@ namespace Enemy.Behaviour
             Debug.Log("Atacando a la verga");
             //TODO: Animacion de ataque
             manager.agent.isStopped = true;
+            manager.animator.SetTrigger("ataque");
         }
 
         //Actualizamos el estado en el Update

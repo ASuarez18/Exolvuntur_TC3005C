@@ -1,5 +1,6 @@
 using UnityEngine;
 using Interfaces;
+using UnityEditor.Animations;
 
 namespace PlayerController
 {
@@ -12,7 +13,7 @@ namespace PlayerController
         private bool groundedPlayer;
         private Vector3 velocity;
         private Vector2 cameraLook;
-        //private readonly AnimatorController _animator;
+        private Animator _animator;
 
         //nombre de los parametros de la animacion
         private const string FrontWalkAnimation = "Forward";
@@ -31,7 +32,7 @@ namespace PlayerController
                 groundMask = groundLayerMask;
 
                 //Nuevo animador
-                //_animator = new AnimatorController();
+                _animator = controller.GetComponent<Animator>();
                 //_animator.Animator = controller.GetComponentInChildren<Animator>();
             }
 
@@ -60,20 +61,27 @@ namespace PlayerController
             controller.Move(localDirection * Time.deltaTime * speed + velocity * Time.deltaTime);
 
             // Actualizar animaciones
-            //_animator.SetFloat(FrontWalkAnimation, direction.z);
-            //_animator.SetFloat(SideWalkAnimation, direction.x);
+            _animator.SetFloat("Forward", direction.z);
+            _animator.SetFloat("Side", direction.x);
         }
 
         //Funcion de movimiento de la camara
-        public void CameraView(Vector2 view, Transform cameraPlayer)
+        public void CameraView(Vector2 view, Transform cameraPlayer, Transform POVPosition)
         {
             //Input y valores de la camara
             cameraLook.x += view.x;
             cameraLook.y = Mathf.Clamp(cameraLook.y + view.y, -90f, 90f);
             //Aplicamos las rotaciones sobre la camara y el jugador
-            cameraPlayer.localRotation = Quaternion.Euler(-cameraLook.y, 0, 0);
+            //cameraPlayer.localPosition = POVPosition.position;
+            //cameraPlayer.localRotation = Quaternion.Euler(-cameraLook.y, cameraLook.x, 0);
             controller.transform.rotation = Quaternion.Euler(0, cameraLook.x, 0);
 
+        }
+
+        public void CameraPosUpdate(Transform cameraPlayer, Transform POVPosition)
+        {
+            cameraPlayer.localPosition = POVPosition.position;
+            cameraPlayer.localRotation = Quaternion.Euler(-cameraLook.y, cameraLook.x, 0);
         }
 
         public bool AreYouOnTheGround(){

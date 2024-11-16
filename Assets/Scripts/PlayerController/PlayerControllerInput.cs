@@ -9,7 +9,13 @@ namespace PlayerController
 
         //Atributos
         //Transform de la camara del jugador
-        [SerializeField] Transform cameraPlayer;
+        private Transform cameraPlayer;
+
+        //POV De la camara
+        [SerializeField] private Transform _cameraPOV;
+
+        [SerializeField] private Transform _inventoryPOV;
+
         //Vector de la vista
         Vector2 CameraView;
         //Vector del movimento
@@ -38,7 +44,9 @@ namespace PlayerController
             //Desaparecemos el curso de la pantalla
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            character.setPlayerSpeed(70.0f);
+            character.setPlayerSpeed(30.0f);
+            cameraPlayer = Camera.main.transform;
+
         }
 
         // Update is called once per frame
@@ -50,7 +58,7 @@ namespace PlayerController
             Vector2 cameraView = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
             //Movimiento y vista del personaje
 
-            character.CameraView(cameraView,cameraPlayer);
+            character.CameraView(cameraView,cameraPlayer, _cameraPOV);
             if (movementDirection != Vector3.zero)
             {
                 character.Move(movementDirection);
@@ -75,6 +83,12 @@ namespace PlayerController
 
             // Ground character
             character.AreYouOnTheGround();
+        }
+
+        private void LateUpdate()
+        {
+            character.CameraPosUpdate(cameraPlayer, _cameraPOV);
+            //_inventoryPOV.transform.position = cameraPlayer.rotation;
         }
 
         void OnTriggerEnter(Collider other)
