@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using PlayerController.PUN;
 
 namespace Enemy.Behaviour
 {
@@ -42,6 +43,7 @@ namespace Enemy.Behaviour
             public float TimeStunned { get; set; }
             public bool Attacking { get; set; }
             public float TimeOfAttack { get; set; }
+          
         #endregion
 
         #region Estadisticas
@@ -51,10 +53,10 @@ namespace Enemy.Behaviour
             public float currentAttackRange;
             public float currentHealth;
         #endregion
-    
-    
+
+
         #region Unity Callbacks
-            public void Awake()
+        public void Awake()
             {
                 //Conseguimos el manager del enemigo nuestro GameObject
                 manager = GetComponent<EnemyKormosManager>();
@@ -84,10 +86,14 @@ namespace Enemy.Behaviour
                 manager.agent.speed = currentSpeed;
                 manager.agent.acceleration = currentAcceleration;
 
+           
+
             }
 
-            //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
-            public void OnTriggerEnter(Collider other)
+
+
+        //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
+        public void OnTriggerEnter(Collider other)
             {
                 base.OnTriggerEnter(other);
             }
@@ -101,11 +107,13 @@ namespace Enemy.Behaviour
             }
             public void OnCollisionEnter(Collision other)
             {  
+                Debug.LogError(other.ToString());
                 if(currentState.StateKey == EnemyState.Chasing)
                 {
                     if(other.gameObject.tag == "Player")
                     {
                         Attacking = true;
+                    other.gameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
                     }
                 }
             }
@@ -157,10 +165,17 @@ namespace Enemy.Behaviour
         {
             if (IsStunned)
             {
+                Debug.LogWarning($"Aplico {damage} a enemigo");
                 currentHealth -= damage;
             }
         }
         #endregion
+
+        //private void OnDrawGizmos()
+        //{
+        //    Gizmos.color = Color.yellow;
+        //    Gizmos.DrawSphere(manager.transform.position, currentAttackRange);
+        //}
 
     }
 }

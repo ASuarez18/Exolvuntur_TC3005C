@@ -29,6 +29,7 @@ namespace Enemy.Behaviour
         {
             //Detenemos el movimiento del agente
             manager.agent.isStopped = true;
+            manager.animator.SetTrigger("alerta");
         }
 
         //Actualizamos el estado en el Update del Monobehaviour

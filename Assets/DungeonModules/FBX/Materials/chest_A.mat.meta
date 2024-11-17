@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Decrepit Dungeon LITE/Prefabs/Props/Chain_D.prefab.meta
+<<<<<<<< HEAD:Assets/Prefabs/Puzzles/CandlePuzzle/Laterns and candles/Sprites/New Animation.anim.meta
+guid: 622f0eb296862e7489f47ca64c75abd6
+timeCreated: 1497359904
+========
+guid: 065afdc0580dbbe498b318b35d182112
+timeCreated: 1431631809
+>>>>>>>> origin/AlanHernandezA01783347:Assets/Decrepit Dungeon LITE/Prefabs/Props/Chain_D.prefab.meta
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 7400000
+=======
+guid: 5c233f8c85e63644d96003b50676560a
+timeCreated: 1514203138
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+>>>>>>> AlanHernandezA01783347:Assets/DungeonModules/FBX/Materials/chest_A.mat.meta
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
