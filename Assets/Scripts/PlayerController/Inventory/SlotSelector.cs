@@ -63,9 +63,22 @@ namespace PlayerController.Inventory
 
             // Change the weapon in all clients
             //photonView.RPC(nameof(PUNChangeUtility), RpcTarget.All, _currentSlotIndex);
-
+            hudSlots = new Image[MAX_SLOTS];
             collectables = GameObject.FindGameObjectsWithTag("Collectable");
+            GameObject HUDReference = GameObject.Find("Canvas_HUDobjs");
+            Image[] childImages = HUDReference.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponentsInChildren<Image>();
+            Debug.LogError("Numero de childs con image" + childImages.Length);
+            for (int i=0;i<=childImages.Length;i++)
+            {
+                if (i != 0)
+                {
+                    hudSlots[i-1] = childImages[i];
+                }
+                
+            }
+            Debug.LogError("Numero de childs con image" + hudSlots.Length);
         }
+        
 
         private void Update()
         {

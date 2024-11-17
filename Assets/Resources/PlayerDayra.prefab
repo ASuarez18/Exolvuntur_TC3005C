@@ -291,6 +291,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
+  soundRage: 10
 --- !u!114 &7488244095986218143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -358,10 +359,7 @@ MonoBehaviour:
   _utilities: []
   _utilitiesParent: {fileID: 5717739804776345434}
   _currentSlotIndex: 0
-  hudSlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  hudSlots: []
 --- !u!1001 &2615094972876966354
 PrefabInstance:
   m_ObjectHideFlags: 0
