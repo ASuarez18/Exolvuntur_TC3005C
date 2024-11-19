@@ -14,11 +14,9 @@ public class Sal : MonoBehaviour, IInteraction
 {
     [SerializeField] private Seguro _Seguro;
     public GameObject cubo;
-    public Transform mano;
     public float fuerza;
 
-    private bool activo;
-    private bool enMano;
+    
     private Vector3 escala;
     private float cooldown = 0f;
 
