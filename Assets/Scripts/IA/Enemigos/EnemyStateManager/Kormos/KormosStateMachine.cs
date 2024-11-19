@@ -93,15 +93,15 @@ namespace Enemy.Behaviour
 
 
         //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
-        public void OnTriggerEnter(Collider other)
+            public override void OnTriggerEnter(Collider other)
             {
                 base.OnTriggerEnter(other);
             }
-            public void OnTriggerStay(Collider other)
+            public override void OnTriggerStay(Collider other)
             {
                 base.OnTriggerStay(other);
             }
-            public void OnTriggerExit(Collider other)
+            public override void OnTriggerExit(Collider other)
             {
                 base.OnTriggerExit(other);
             }

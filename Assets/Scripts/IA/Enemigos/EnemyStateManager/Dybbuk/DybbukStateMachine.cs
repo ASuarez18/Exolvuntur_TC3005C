@@ -30,6 +30,13 @@ namespace Enemy.Behaviour
         public Vector3 actualTarget { get; set; }
         public bool PlayerOnAreaClose { get; set; }
         public bool OnView { get; set; }
+        public bool Attacking { get; set; }
+        public float TimeOfAttack { get; set; }
+        public float AgressiveCounter { get; set; }
+        public float AggresiveDuration { get; set; }
+        public int AggresiveMode { get; set; }
+        public bool IsStunned { get; set; }
+        public float TimeStunned { get; set; }
 
         #endregion
 
@@ -53,14 +60,13 @@ namespace Enemy.Behaviour
                 // Initialize the state machine
                 state.Add(EnemyState.Idle, new DybbukIdle(manager,this));
                 state.Add(EnemyState.Still, new DybbukStill(manager,this));
-                // state.Add(EnemyState.Hunt, new KormosHunt(manager,this));
-                // state.Add(EnemyState.Chasing, new KormosChasing(manager, this));
-                // state.Add(EnemyState.Attack, new KormosAttack(manager,this));
-                // state.Add(EnemyState.Aggresive, new KormosAgressive(manager,this));
-                // state.Add(EnemyState.Scape, new KormosScape(manager,this));
-                // state.Add(EnemyState.Heal, new KormosHeal(manager,this));
-                // state.Add(EnemyState.Stunned, new KormosStunned(manager,this));
-                // state.Add(EnemyState.Dead, new KormosDead(manager,this));
+                state.Add(EnemyState.Chasing, new DybbukChasing(manager,this));
+                state.Add(EnemyState.Attack, new DybbukAttack(manager,this));
+                state.Add(EnemyState.Aggresive, new DybbukAgressive(manager,this));
+                state.Add(EnemyState.Scape, new DybbukScape(manager,this));
+                state.Add(EnemyState.Dissappear, new DybbukDissapear(manager,this));
+                state.Add(EnemyState.Stunned, new DybbukStunned(manager,this));
+                state.Add(EnemyState.Dead, new DybbukDead(manager,this));
 
                 currentState = state[EnemyState.Idle];
 
@@ -80,27 +86,27 @@ namespace Enemy.Behaviour
             }
 
             //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
-            public void OnTriggerEnter(Collider other)
+            public override void OnTriggerEnter(Collider other)
             {
                 base.OnTriggerEnter(other);
             }
-            public void OnTriggerStay(Collider other)
+            public override void OnTriggerStay(Collider other)
             {
                 base.OnTriggerStay(other);
             }
-            public void OnTriggerExit(Collider other)
+            public override void OnTriggerExit(Collider other)
             {
                 base.OnTriggerExit(other);
             }
             public void OnCollisionEnter(Collision other)
             {  
-                // if(currentState.StateKey == EnemyState.Chasing)
-                // {
-                //     if(other.gameObject.tag == "Player")
-                //     {
-                //         Attacking = true;
-                //     }
-                // }
+                if(currentState.StateKey == EnemyState.Chasing || currentState.StateKey == EnemyState.Aggresive)
+                {
+                    if(other.gameObject.tag == "Player")
+                    {
+                        Attacking = true;
+                    }
+                }
             }
 
         #endregion
@@ -110,6 +116,50 @@ namespace Enemy.Behaviour
             internal void SwitchCase(EnemyState state)
             {
                 TransitionToState(state);
+            }
+        #endregion
+
+        #region Update Timer Functions
+            public void UpdateAttackTime()
+            {
+                TimeOfAttack += Time.deltaTime;
+            }
+            public void UpdateAgressiveCounter()
+            {
+                AgressiveCounter += Time.deltaTime;
+            }
+            public void UpdateAggressiveDuration()
+            {
+                AggresiveDuration += Time.deltaTime; 
+            }
+            public void UpdateStunTime()
+            {
+                TimeStunned += Time.deltaTime;
+            }
+        #endregion
+
+        #region Global Behavioir Functions
+             public void HealOverTime()
+            {
+                Debug.Log("Me estoy curando" + currentHealth);
+                currentHealth += 5 * Time.deltaTime; 
+                currentHealth = Mathf.Clamp(currentHealth, 0, manager.enemyStats.Health);
+            }
+            public void ApplyStun()
+            {
+                IsStunned = true;
+            }
+            public void ApplyDamage(int damage)
+            {
+                if (IsStunned)
+                {
+                    Debug.LogWarning($"Aplico {damage} a enemigo");
+                    currentHealth -= damage;
+                }
+            }
+            public void EnemyDead()
+            {
+                Destroy(manager.gameObject);
             }
         #endregion
     }

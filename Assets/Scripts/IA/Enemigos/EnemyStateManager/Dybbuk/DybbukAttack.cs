@@ -4,20 +4,21 @@ using UnityEngine;
 using Enemy.Manager;
 
 /// <summary>
-/// Estado de Patrullaje: Aqui el estado del enemigo Dybbuk , se encarga de patrullar diferentes puntos.
-/// Cuando llega a un punto elige otro de manera aleatoria.
+/// Estado de ataque se activa cuando el enemigo detecta una colision con el jugador.
+/// Se ejecuta cada ve que entra en colision con el jugador.
+/// Estados con los que conecta: Chasing, Stunned.
 /// </summary>
 
 namespace Enemy.Behaviour
 {
-    public class DybbukStill : BaseState<DybbukStateMachine.EnemyState>
+    public class DybbukAttack : BaseState<DybbukStateMachine.EnemyState>
     {
         //Referencia a clase comportamiento y maquina de estados
         private EnemyDybbukManager manager;
         private DybbukStateMachine dybbukSM;
 
         //Constructor del estado (Manager y Machine)
-        public DybbukStill(EnemyDybbukManager manager,DybbukStateMachine machine) : base(DybbukStateMachine.EnemyState.Still)
+        public DybbukAttack(EnemyDybbukManager manager,DybbukStateMachine machine) : base(DybbukStateMachine.EnemyState.Attack)
         {
             this.manager = manager;
             this.dybbukSM = machine;
@@ -26,22 +27,24 @@ namespace Enemy.Behaviour
          //Inicializa el estado
         public override void EnterState()
         {
-            //Detenemos el movimeinto del agente
+            //Detenemos el movimiento del agente y activamos sus animaciones
             manager.agent.isStopped = true;
         }
 
         //Actualiza el estado en el Update del MonoBehaviour
         public override void UpdateState()
         {
-            dybbukSM.UpdateAgressiveCounter();
+            //Revisamos el contador de tiempo en que ejecuta el ataque
+            dybbukSM.UpdateAttackTime();
+
         }
 
         public override void ExitState()
         { 
             //Reanudamos el movimiento del agente
             manager.agent.isStopped = false;
-            dybbukSM.AgressiveCounter = 0f;
-
+            dybbukSM.TimeOfAttack = 0f;
+            dybbukSM.Attacking = false;
         }
 
          //Funcion que revisa si entra en el flujo de un estado o no
@@ -52,15 +55,11 @@ namespace Enemy.Behaviour
             {
                 return DybbukStateMachine.EnemyState.Stunned;
             }
-            else if(!dybbukSM.OnView)
+            else if(dybbukSM.TimeOfAttack >= 2f)
             {
-                return DybbukStateMachine.EnemyState.Idle;
+                return DybbukStateMachine.EnemyState.Chasing;
             }
-            else if(dybbukSM.AgressiveCounter >= dybbukSM.AgroTime && dybbukSM.AggresiveMode <= 2)
-            {
-                return DybbukStateMachine.EnemyState.Aggresive;
-            }
-            return DybbukStateMachine.EnemyState.Still;
+            return DybbukStateMachine.EnemyState.Attack;
         }
 
         //Metodos de cambio de flujo del estado
@@ -79,11 +78,10 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
-            
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = false;
             }
-        }
+        }   
     }
 }

@@ -36,10 +36,28 @@ namespace Enemy.Manager
             enemyStats = myEnemyStats;
         }
 
+        [SerializeField] private TriggerSensor sensor;
+
+        void OnEnable()
+        {
+            //Suscribimos los eventos
+            sensor.TriggerEventEnter += enemyMachine.OnTriggerEnter;
+            sensor.TriggerEventStay += enemyMachine.OnTriggerStay;
+            sensor.TriggerEventExit += enemyMachine.OnTriggerExit;
+        }
+
+        void OnDisable()
+        {
+            //Desuscribimos los eventos
+            sensor.TriggerEventEnter -= enemyMachine.OnTriggerEnter;
+            sensor.TriggerEventStay -= enemyMachine.OnTriggerStay;
+            sensor.TriggerEventExit -= enemyMachine.OnTriggerExit;
+        }
+
          void Start()
         {
             //Accedemos al hijo y obtenemos el componenete de collider
-            areaAlerta = gameObject.GetComponent<SphereCollider>();
+            areaAlerta = transform.GetChild(0).GetComponent<SphereCollider>();
             areaAlerta.radius = enemyStats.ViewRange;
 
             //Ejecutamos el primer estado de nuestra maquina de estados

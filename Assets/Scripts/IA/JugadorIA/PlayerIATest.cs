@@ -23,6 +23,8 @@ public class PlayerIATest : MonoBehaviour
         {
             gameObject.AddComponent<Rigidbody>();
         }
+
+        //Creamos una seria de raycast que ocupan el frustum de la camar
     }
 
     // Update is called once per frame
@@ -39,20 +41,38 @@ public class PlayerIATest : MonoBehaviour
 
         for(int i=0; i<col.Length; i++)
         {
-            if(col[i].TryGetComponent(out EnemyKormosManager enemyState))
+            if(col[i].TryGetComponent(out EnemyKormosManager enemyStateKormos))
             {
                 // Debug.LogWarning("Encontro enemigo");
                 if(Input.GetKeyDown(KeyCode.P))
                 {
                     // Simulacion de ataque para stunnear
-                    enemyState.enemyMachine.ApplyStun();
+                    enemyStateKormos.enemyMachine.ApplyStun();
                     Debug.Log("Aplico stun");
                 }
                 if (Input.GetKeyDown(KeyCode.O))
                 {
                     // Simulacion de ataque para daniar
-                    enemyState.enemyMachine.ApplyDamage(20);
-                    Debug.LogError($"Aplico danio: {enemyState.enemyMachine.currentHealth}");
+                    enemyStateKormos.enemyMachine.ApplyDamage(20);
+                    Debug.LogError($"Aplico danio: {enemyStateKormos.enemyMachine.currentHealth}");
+                    
+                }
+            }
+
+            if(col[i].TryGetComponent(out EnemyDybbukManager enemyStateDybbuk))
+            {
+                // Debug.LogWarning("Encontro enemigo");
+                if(Input.GetKeyDown(KeyCode.P))
+                {
+                    // Simulacion de ataque para stunnear
+                    enemyStateDybbuk.enemyMachine.ApplyStun();
+                    Debug.Log("Aplico stun");
+                }
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    // Simulacion de ataque para daniar
+                    enemyStateDybbuk.enemyMachine.ApplyDamage(20);
+                    Debug.LogError($"Aplico danio: {enemyStateDybbuk.enemyMachine.currentHealth}");
                     
                 }
             }
@@ -69,8 +89,9 @@ public class PlayerIATest : MonoBehaviour
 
     public void Move(float x, float y)
     {
-        //Calculamos la dirección del movimiento
+        //Calculamos la dirección del movimiento en posicion local
         Vector3 movement = new Vector3(x, 0, y);
+        movement = transform.TransformDirection(movement);
         //Si la dirección es diferente de cero, reproducimos el sonido de pasos
         if (movement!= Vector3.zero && !Input.GetKey(KeyCode.LeftShift))
         {
@@ -85,7 +106,7 @@ public class PlayerIATest : MonoBehaviour
         {
             audioSource.Stop();
         }
-        //Aplicamos la fuerza de movimiento al rigidbody
+        //Aplicamos la fuerza de movimiento al rigidbody y con rotacion en espacio local
         transform.position += Vector3.Normalize(movement) * speed * Time.deltaTime;
     }
 }
