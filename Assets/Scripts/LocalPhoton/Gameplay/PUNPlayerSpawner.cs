@@ -52,11 +52,13 @@ namespace LocalPhoton.Gameplay
                 return;
             }
 
-            //Transform spawnPoint = SpawnManager.Instance.GetSpawnPoint();
+            Transform spawnPoint = SpawnManager.Instance.GetSpawnPoint(1);
+            //Debug.LogError($"Char index {PUNCharacterSelector.SelectedCharacterIndex}");
+            //Debug.LogError($"List size{_playerPrefabs.Count }");
             //// Spawn the player in the scene using Photon
-            //_localPlayer = PhotonNetwork.Instantiate(_playerPrefabs[PUNCharacterSelector.SelectedCharacterIndex].name, spawnPoint.position, spawnPoint.rotation);
-
-            Debug.LogFormat($"*** PUNPlayerSpawn: Spawning the player...");
+            _localPlayer = PhotonNetwork.Instantiate(_playerPrefabs[PUNCharacterSelector.SelectedCharacterIndex].name, spawnPoint.position, spawnPoint.rotation);
+            _localPlayer.SetActive(true);
+            Debug.LogWarning($"*** PUNPlayerSpawn: Spawning the player...");
         }
 
         /// <summary>

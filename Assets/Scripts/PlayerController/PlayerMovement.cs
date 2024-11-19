@@ -1,6 +1,5 @@
 using UnityEngine;
 using Interfaces;
-using UnityEditor.Animations;
 
 namespace PlayerController
 {
