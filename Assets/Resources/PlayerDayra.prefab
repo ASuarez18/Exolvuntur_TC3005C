@@ -196,6 +196,8 @@ GameObject:
   - component: {fileID: 6793505526651404475}
   - component: {fileID: 8205697020751874933}
   - component: {fileID: 5061656111908160863}
+  - component: {fileID: 7087227295075263807}
+  - component: {fileID: 6350303209052020714}
   m_Layer: 0
   m_Name: PlayerDayra
   m_TagString: Player
@@ -216,8 +218,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 15436585232535762}
   - {fileID: 2576083694703914553}
+  - {fileID: 15436585232535762}
   - {fileID: 5805853484642151589}
   - {fileID: 5472625230266872257}
   m_Father: {fileID: 0}
@@ -329,6 +331,45 @@ MonoBehaviour:
   _utilitiesParent: {fileID: 7577500582925204074}
   _currentSlotIndex: 0
   hudSlots: []
+--- !u!114 &7087227295075263807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017930303069640840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 6350303209052020714}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &6350303209052020714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017930303069640840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1001 &2615094972876966354
 PrefabInstance:
   m_ObjectHideFlags: 0
