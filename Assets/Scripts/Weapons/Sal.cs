@@ -5,6 +5,11 @@ using PlayerController.Inventory;
 using Interfaces;
 using Enemy.Manager;
 
+/// <summary>
+/// this class is responsible for the logic of the salt weapon
+/// only used when the lock is not active and the cooldown is 0
+/// </summary>
+
 public class Sal : MonoBehaviour, IInteraction
 {
     [SerializeField] private Seguro _Seguro;
@@ -29,11 +34,13 @@ public class Sal : MonoBehaviour, IInteraction
 
         if(Input.GetMouseButtonDown(0) && !_Seguro.bloqueado && cooldown <= 0f)
         {
-                // Cambiar a la dirección de la cámara
                 cubo.GetComponent<Rigidbody>().isKinematic = false;
                 cubo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 Vector3 direccionLanzamiento = Camera.main.transform.forward;
                 cubo.GetComponent<Rigidbody>().AddForce(direccionLanzamiento * fuerza, ForceMode.Impulse);
+
+                cubo.transform.parent = null;
+                cubo.transform.localScale = escala;
 
                 cooldown = 3f;
 
