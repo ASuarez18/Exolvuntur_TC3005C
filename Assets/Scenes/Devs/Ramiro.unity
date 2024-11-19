@@ -9341,23 +9341,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 827826507344038504, guid: 0d5868300c0011746acdb396d2c69793,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2921647397722453123, guid: 0d5868300c0011746acdb396d2c69793,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8017930303069640840, guid: 0d5868300c0011746acdb396d2c69793,
         type: 3}
       propertyPath: m_Name
       value: PlayerDayra
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6257465442360183464, guid: 0d5868300c0011746acdb396d2c69793, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
