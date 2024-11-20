@@ -389,7 +389,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 754188470}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99951804
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5132,7 +5132,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.08263766}
+  m_AnchoredPosition: {x: -0.000017642975, y: 0.000044530636}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &815452890
@@ -6241,8 +6241,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: NOMBRE DE USUARIO
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e690f40f3a61cb46a0755d80444db45, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e690f40f3a61cb46a0755d80444db45, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -8857,8 +8857,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e690f40f3a61cb46a0755d80444db45, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e690f40f3a61cb46a0755d80444db45, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10002,12 +10002,12 @@ MonoBehaviour:
   _prevCharacter: {fileID: 693648555}
   _selectCharacter: {fileID: 1536090584}
   _characterImgContainer: {fileID: 426768105}
-  _charIndex: 0
   _characterSprites:
   - {fileID: 256068699, guid: 0777d4e76cde51646b5d7598fd5dea07, type: 3}
   - {fileID: -1809611978, guid: 0777d4e76cde51646b5d7598fd5dea07, type: 3}
   - {fileID: 38127221, guid: 0777d4e76cde51646b5d7598fd5dea07, type: 3}
   - {fileID: -992076557, guid: 0777d4e76cde51646b5d7598fd5dea07, type: 3}
+  _characterSelection: 
   _previousSelection: 0
 --- !u!4 &1363240478
 Transform:
@@ -13068,8 +13068,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u200B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e690f40f3a61cb46a0755d80444db45, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e690f40f3a61cb46a0755d80444db45, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -13697,8 +13697,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: ID SALA...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2e690f40f3a61cb46a0755d80444db45, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 2e690f40f3a61cb46a0755d80444db45, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

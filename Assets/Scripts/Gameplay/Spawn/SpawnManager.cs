@@ -33,7 +33,7 @@ namespace Gameplay.Spawn
         /// <returns></returns>
         public Transform GetSpawnPoint(int charIndex)
         {
-            return _spawnPoints[PUNMatchManager.Instance.playersInGame[0].actor]; // TODO: Get index of playersInGame
+            return _spawnPoints[charIndex];
         }
 
         private void Start()
