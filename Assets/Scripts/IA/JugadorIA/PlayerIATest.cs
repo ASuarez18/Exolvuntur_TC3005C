@@ -76,6 +76,24 @@ public class PlayerIATest : MonoBehaviour
                     
                 }
             }
+
+            if(col[i].TryGetComponent(out EnemySkinWalkerManager enemyStateSkinWalker))
+            {
+                // Debug.LogWarning("Encontro enemigo");
+                if(Input.GetKeyDown(KeyCode.P))
+                {
+                    // Simulacion de ataque para stunnear
+                    enemyStateSkinWalker.enemyMachine.ApplyStun();
+                    Debug.Log("Aplico stun");
+                }
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    // Simulacion de ataque para daniar
+                    enemyStateSkinWalker.enemyMachine.ApplyDamage(20);
+                    Debug.LogError($"Aplico danio: {enemyStateSkinWalker.enemyMachine.currentHealth}");
+                    
+                }
+            }
         }
         #endregion
 

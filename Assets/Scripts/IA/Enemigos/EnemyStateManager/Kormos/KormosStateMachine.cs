@@ -107,7 +107,6 @@ namespace Enemy.Behaviour
             }
             public void OnCollisionEnter(Collision other)
             {  
-                Debug.LogError(other.ToString());
                 if(currentState.StateKey == EnemyState.Chasing)
                 {
                     if(other.gameObject.tag == "Player")
@@ -170,13 +169,6 @@ namespace Enemy.Behaviour
             }
         }
         #endregion
-
-        //private void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.yellow;
-        //    Gizmos.DrawSphere(manager.transform.position, currentAttackRange);
-        //}
-
     }
 }
 
