@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 7087227295075263807}
   - component: {fileID: 6350303209052020714}
   - component: {fileID: 4792163142245813935}
+  - component: {fileID: -3470050031304507990}
   m_Layer: 0
   m_Name: PlayerDayra
   m_TagString: Player
@@ -352,6 +353,7 @@ MonoBehaviour:
   observableSearch: 0
   ObservedComponents:
   - {fileID: 6350303209052020714}
+  - {fileID: -3470050031304507990}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -383,6 +385,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 126494ae2a10a34499272ed97a6c9f5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-3470050031304507990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017930303069640840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters: []
+  m_SynchronizeLayers: []
 --- !u!1001 &2615094972876966354
 PrefabInstance:
   m_ObjectHideFlags: 0
