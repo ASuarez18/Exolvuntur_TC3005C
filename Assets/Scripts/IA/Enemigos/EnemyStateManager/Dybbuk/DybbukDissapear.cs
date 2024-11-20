@@ -22,7 +22,7 @@ namespace Enemy.Behaviour
         public override void EnterState()
         {
             //Desactivamos el render o modelo del enemigo
-            manager.gameObject.GetComponent<MeshRenderer>().enabled  = false;
+            manager.enemyRender.enabled  = false;
         }
 
         //Actualiza el estado en el Update del MonoBehaviour

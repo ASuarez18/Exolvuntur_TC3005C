@@ -8,15 +8,11 @@ public class PlayerIAViewTest : MonoBehaviour
     // Atributos
     public Camera cam;
     public LayerMask layerMask;
-    public float viewRange = 15f;
+    public float viewRange = 500f;
 
     // Start is called before the first frame update
     void Start()
     {
-        // Inicializamos el cursor en el centro de la pantalla
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
         // Encontramos la cámara principal
         cam = Camera.main;
     }
@@ -26,16 +22,6 @@ public class PlayerIAViewTest : MonoBehaviour
     {
         // Llamamos al método de raycasting
         EnemyOnView();
-
-        // Obtenemos el movimiento del mouse en el eje X y Y
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * 100f;
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * 100f;
-
-        // Actualizamos la rotación del jugador en el eje Y
-        transform.Rotate(Vector3.up * mouseX);
-
-        // Actualizamos la rotación de la cámara en el eje X
-        cam.transform.Rotate(Vector3.left * mouseY);
     }
 
     private bool EnemyOnView()
@@ -56,7 +42,7 @@ public class PlayerIAViewTest : MonoBehaviour
                 // Validamos si está dentro del rango del viewport y al frente de la cámara
                 if (enemyPos.x > 0f && enemyPos.x < 1f && enemyPos.y > 0f && enemyPos.y < 1f && enemyPos.z > 0f)
                 {
-                    // Creamos un rayo hacia el enemigo
+                    
                     Vector3 enemyDir = enemy.transform.position - cam.transform.position;
                     Ray ray = new Ray(cam.transform.position, enemyDir);
 
