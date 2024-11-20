@@ -27,6 +27,7 @@ namespace Enemy.Behaviour
          //Inicializa el estado
         public override void EnterState()
         {
+            manager.animator.SetFloat("States",2);
            
         }
 

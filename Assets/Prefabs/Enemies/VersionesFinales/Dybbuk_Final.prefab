@@ -76,6 +76,7 @@ MonoBehaviour:
   agent: {fileID: 1194017458878617918}
   enemyMachine: {fileID: 6308685107896382304}
   enemyRender: {fileID: 4531579636406564397}
+  animator: {fileID: 4531579636402473199}
   areaAlerta: {fileID: 1752691053492096132}
   enemyStats: {fileID: 11400000, guid: 3f0494afaa0c9884f9e24ee33996dbbd, type: 2}
   waypoints:
@@ -320,6 +321,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6f4d03eac92625443ac474b23f955d84, type: 3}
+--- !u!95 &4531579636402473199 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 707587139164313196, guid: 6f4d03eac92625443ac474b23f955d84,
+    type: 3}
+  m_PrefabInstance: {fileID: 3977449686279642755}
+  m_PrefabAsset: {fileID: 0}
 --- !u!137 &4531579636406564397 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: 707587139168626862, guid: 6f4d03eac92625443ac474b23f955d84,

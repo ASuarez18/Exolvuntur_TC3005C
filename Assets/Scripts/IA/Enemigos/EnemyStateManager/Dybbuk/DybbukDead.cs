@@ -23,6 +23,7 @@ namespace Enemy.Behaviour
         {
             // ? Detenemos el movimiento del agente dado que esta muerto
             manager.agent.isStopped = true;
+            manager.animator.SetTrigger("Dead");
             dybbukSM.EnemyDead();
         }
 

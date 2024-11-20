@@ -28,6 +28,7 @@ namespace Enemy.Behaviour
         {
             //Elegimos un destino aleatorio de la lista de puntos y lo guardamos
             dybbukSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
+            manager.animator.SetFloat("States",1);
             
         }
 

@@ -19,6 +19,7 @@ namespace Enemy.Manager
         [SerializeField] public NavMeshAgent agent;
         [SerializeField] public DybbukStateMachine enemyMachine;
         [SerializeField] public Renderer enemyRender;
+        [SerializeField] public Animator animator;
 
         //Atrivutos de sensores
         public SphereCollider areaAlerta;
@@ -28,12 +29,13 @@ namespace Enemy.Manager
         [SerializeField] public List<Transform> waypoints;
 
         //Generamos un constructor de la instancia de la clase
-        public EnemyDybbukManager(NavMeshAgent myAgent,EnemyScriptableObject myEnemyStats, DybbukStateMachine myEnemyMachine)
+        public EnemyDybbukManager(NavMeshAgent myAgent,EnemyScriptableObject myEnemyStats, DybbukStateMachine myEnemyMachine, Animator myEnemyAnimation)
         {
             //Asignamos los valores a los atributos
             agent = myAgent;
             enemyMachine = myEnemyMachine;
             enemyStats = myEnemyStats;
+            animator = myEnemyAnimation;
         }
 
         [SerializeField] private TriggerSensor sensor;

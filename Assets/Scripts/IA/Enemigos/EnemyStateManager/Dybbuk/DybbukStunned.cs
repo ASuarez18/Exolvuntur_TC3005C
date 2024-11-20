@@ -28,6 +28,8 @@ namespace Enemy.Behaviour
         {
             //Detenemos el movimeinto del agente
             manager.agent.isStopped = true;
+            manager.animator.SetTrigger("Stunning");
+            manager.animator.SetBool("Stun",true);
         }
 
         //Actualiza el estado en el Update del MonoBehaviour
@@ -42,6 +44,7 @@ namespace Enemy.Behaviour
             manager.agent.isStopped = false;
             dybbukSM.IsStunned = false;
             dybbukSM.TimeStunned = 0f;
+            manager.animator.SetBool("Stun",false);
 
         }
 

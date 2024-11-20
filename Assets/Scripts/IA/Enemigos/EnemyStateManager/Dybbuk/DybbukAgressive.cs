@@ -46,6 +46,8 @@ namespace Enemy.Behaviour
 
             //Buscamos el jugadro mas cercano y lo perseguimos
             manager.agent.SetDestination(dybbukSM.actualTarget);
+
+            manager.animator.SetFloat("States",3);
         }
 
         //Actualiza el estado en el Update del MonoBehaviour

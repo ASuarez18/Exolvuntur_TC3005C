@@ -29,6 +29,7 @@ namespace Enemy.Behaviour
         {
             //Detenemos el movimiento del agente y activamos sus animaciones
             manager.agent.isStopped = true;
+            manager.animator.SetTrigger("Attack");
         }
 
         //Actualiza el estado en el Update del MonoBehaviour
