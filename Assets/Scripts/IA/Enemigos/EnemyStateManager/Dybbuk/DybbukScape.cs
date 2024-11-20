@@ -60,7 +60,7 @@ namespace Enemy.Behaviour
             public override void ExitState()
             {
                 //Activamos el mesh renderer del enemigo
-                manager.gameObject.GetComponent<MeshRenderer>().enabled = true;
+                manager.enemyRender.enabled = true;
             }
 
             //Funcion que revisa si entra en el flujo de un estado o no
