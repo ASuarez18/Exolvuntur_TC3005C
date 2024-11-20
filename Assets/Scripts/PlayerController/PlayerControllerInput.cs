@@ -37,21 +37,22 @@ namespace PlayerController
             if (enabled)
             {
                 /*_playerModel.SetActive(false)*/;
-                //Instanciamos un nuevo objeto de tipo Player y su constructor
-                character = new PlayerMovement(GetComponent<CharacterController>(), groundMask);
-                // Obtén el primer hijo y su componente AudioController
-                // Verificar si el objeto tiene al menos un hijo
-                // Verificar si el objeto tiene al menos un 
-
-                // Intentar obtener el componente AudioController
-                //audioController = GetComponentInChildren<AudioController>();
-
-                //Desaparecemos el curso de la pantalla
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                character.setPlayerSpeed(30.0f);
-                cameraPlayer = Camera.main.transform;
+               
             }
+            //Instanciamos un nuevo objeto de tipo Player y su constructor
+            character = new PlayerMovement(GetComponent<CharacterController>(), groundMask);
+            // Obtén el primer hijo y su componente AudioController
+            // Verificar si el objeto tiene al menos un hijo
+            // Verificar si el objeto tiene al menos un 
+
+            // Intentar obtener el componente AudioController
+            //audioController = GetComponentInChildren<AudioController>();
+
+            //Desaparecemos el curso de la pantalla
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            character.setPlayerSpeed(30.0f);
+            cameraPlayer = Camera.main.transform;
         }
 
         // Update is called once per frame
