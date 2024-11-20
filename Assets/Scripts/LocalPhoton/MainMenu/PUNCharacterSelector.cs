@@ -111,7 +111,9 @@ namespace LocalPhoton.MainMenu
             _playerProperties[SELECTED_CHARACTER] = _charIndex;
             _characterSelection[_charIndex] = true;
             _previousSelection = _charIndex;
-            //
+
+            SelectedCharacterIndex = _charIndex;
+
             _selectCharacter.GetComponent<Button>().interactable = false;
             _characterImgContainer.GetComponent<Button>().image.color *= .5f;
 
