@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4344993783120565651}
   - component: {fileID: 8397244392788893755}
+  - component: {fileID: 1394979400610278189}
+  - component: {fileID: 1393859173135531400}
+  - component: {fileID: 7560553623615258535}
   m_Layer: 0
   m_Name: crucifijo
   m_TagString: Untagged
@@ -45,9 +48,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bad41f7951a4a14789bdadd67518e7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _Seguro: {fileID: 1394979400610278189}
   cubo: {fileID: 1349561932665832598}
   point: {fileID: 0}
   rango: 12
+--- !u!114 &1394979400610278189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349561932665832598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980fdeebd93bb0b4a916b157a5476d92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloqueado: 1
+--- !u!114 &1393859173135531400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349561932665832598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 7560553623615258535}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &7560553623615258535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1349561932665832598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 0
+  m_SynchronizeScale: 1
+  m_UseLocal: 1
 --- !u!1001 &4153766395997954238
 PrefabInstance:
   m_ObjectHideFlags: 0
