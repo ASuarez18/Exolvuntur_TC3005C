@@ -14,8 +14,14 @@ public class PlayerFlash : MonoBehaviourPunCallbacks
 
         if (Input.GetKeyDown(KeyCode.F))
         {
-            flashLight.SetActive(!flashLight.activeSelf);
+            photonView.RPC(nameof(SetFlashActive), RpcTarget.AllBuffered, !flashLight.activeSelf);
         }
-        
+
+    }
+
+    [PunRPC]
+    private void SetFlashActive(bool active)
+    {
+        flashLight.SetActive(active);
     }
 }
