@@ -372,10 +372,10 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: Forward
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Side
   - Type: 3
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: task
   m_SynchronizeLayers:
   - SynchronizeType: 0
