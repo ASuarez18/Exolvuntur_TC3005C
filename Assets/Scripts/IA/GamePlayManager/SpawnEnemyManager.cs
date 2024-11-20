@@ -9,8 +9,7 @@ namespace GamePlay.IA
     public class SpawnEnemyManager : MonoBehaviour
     {
         //Atributos de inicializacion
-        [SerializeField] private List<Transform> _targetPoints;
-        [SerializeField] private EnemiesInterfaceFactory _enemyFactory;
+        [SerializeField] private List<Transform> _spawnPoints;
         [SerializeField] private int Kormos, Skinwalker, Dybbuk;
 
         //Creamos un singleton
@@ -41,27 +40,46 @@ namespace GamePlay.IA
             SpawnEnemy();
         }
 
-        //TODO: refactorizar algormito de creacion
-        public void SpawnEnemy()
+        public void SpawnEnemy(string nameEnemy = null)
         {
-            for (int i = 0; i < Kormos; i++)
+            //Si observamos que el parametro manuel (nameEnemy) esta nulo creamos los enemigos al inicio
+            if(nameEnemy == null)
             {
-                //Elegimos un punto aleatorio
-                Transform spawnPoint = _targetPoints[UnityEngine.Random.Range(0, _targetPoints.Count-1)];
-                _enemyFactory.InstantiateEnemies(EnemiesTypes.EnemyClass.Kormos, spawnPoint.position, spawnPoint.rotation);
+                //TODO: Refactorizar , se repite el mismo codigo varias veces
+                for (int i = 0; i < Kormos; i++)
+                {
+                    //Elegimos un punto aleatorio
+                    Transform spawnPoint = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
+                    GameObject enemy = EnemiesPools.Instance.GetEnemy("EnemyKormos");
+                    enemy.transform.position = spawnPoint.position;
+                    enemy.transform.rotation = spawnPoint.rotation;
+                }
+                for (int i = 0; i < Skinwalker; i++)
+                {
+                    //Elegimos un punto aleatorio
+                    Transform spawnPoint = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
+                    GameObject enemy = EnemiesPools.Instance.GetEnemy("EnemySkinwalker");
+                    enemy.transform.position = spawnPoint.position;
+                    enemy.transform.rotation = spawnPoint.rotation;
+                }
+                for (int i = 0; i < Dybbuk; i++)
+                {
+                    //Elegimos un punto aleatorio
+                    Transform spawnPoint = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
+                    GameObject enemy = EnemiesPools.Instance.GetEnemy("EnemyDybbuk");
+                    enemy.transform.position = spawnPoint.position;
+                    enemy.transform.rotation = spawnPoint.rotation;
+                }
             }
-            for (int i = 0; i < Skinwalker; i++)
+            //Si observamos que el parametro manuel (nameEnemy) no esta nulo creamos el enemigo especificado
+            else
             {
-                //Elegimos un punto aleatorio
-                Transform spawnPoint = _targetPoints[UnityEngine.Random.Range(0, _targetPoints.Count-1)];
-                _enemyFactory.InstantiateEnemies(EnemiesTypes.EnemyClass.Skinwalker, spawnPoint.position, spawnPoint.rotation);
+                //Creamos el enemigo segun el nombre recibido
+                Transform spawnPoint = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
+                GameObject enemy = EnemiesPools.Instance.GetEnemy(nameEnemy);
+                enemy.transform.position = spawnPoint.position;
+                enemy.transform.rotation = spawnPoint.rotation;   
             }
-            for (int i = 0; i < Dybbuk; i++)
-            {
-                //Elegimos un punto aleatorio
-                Transform spawnPoint = _targetPoints[UnityEngine.Random.Range(0, _targetPoints.Count-1)];
-                _enemyFactory.InstantiateEnemies(EnemiesTypes.EnemyClass.Dybbuk, spawnPoint.position, spawnPoint.rotation);
-            } 
         }
 
     }

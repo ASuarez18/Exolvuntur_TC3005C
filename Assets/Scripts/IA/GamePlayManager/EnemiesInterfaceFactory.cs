@@ -29,22 +29,19 @@ public class EnemiesInterfaceFactory : MonoBehaviour
    }
 
    //We create a method to instantiate the enmies based on their type
-   public void InstantiateEnemies(EnemiesTypes.EnemyClass _enemyClass,Vector3 enemies, Quaternion rotation)
+   public GameObject InstantiateEnemies(EnemiesTypes.EnemyClass _enemyClass,Vector3 enemies, Quaternion rotation)
    {
       switch(_enemyClass)
       {
          case EnemiesTypes.EnemyClass.Kormos:
-            Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
-            break;
+            return Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
          case EnemiesTypes.EnemyClass.Skinwalker:
-            Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
-            break;
+            return Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
          case EnemiesTypes.EnemyClass.Dybbuk:
-            Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
-            break;
+            return Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
          default:
             Debug.LogError("Enemy class not found");
-            break;  //In case the enemy type is not defined in the enum, we log an error and break the switch case.
+            return null;
       }
    }
 }
