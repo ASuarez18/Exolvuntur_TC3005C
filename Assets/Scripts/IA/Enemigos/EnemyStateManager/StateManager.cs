@@ -53,15 +53,15 @@ namespace Enemy.Behaviour
             IsTransitionState = false;
         }
 
-        public void OnTriggerEnter(Collider other)
+        public virtual void OnTriggerEnter(Collider other)
         {  
             currentState.OnAreaEnter(other);
         }
-        public void OnTriggerStay(Collider other)
+        public virtual void OnTriggerStay(Collider other)
         {
             currentState.OnAreaStay(other);
         }
-        public void OnTriggerExit(Collider other)
+        public virtual void OnTriggerExit(Collider other)
         {
             currentState.OnAreaExit(other);
         }

@@ -5,20 +5,20 @@ using UnityEngine.AI;
 using Enemy.Behaviour;
 using Enemy.Stats;
 
+/// <summary>
+/// El enemigo Skinwalker es administrado y configurado por este script.
+/// El enemigo Skinwalker es un enemigo que se transforma en un modelo de cualquiera de nuestros personajes principales.
+/// </summary>
+
 namespace Enemy.Manager
 {
-
-    /// <summary>
-    /// El enemigo es el Dybbuk (Acechador).
-    /// Define su propia maquina de estados mientras utiliza metodos abstractos de la interfaz.
-    /// </summary>
-    
-    public class EnemyDybbukManager : MonoBehaviour
+        
+    public class EnemySkinWalkerManager : MonoBehaviour
     {
         //Atributos de AI
         [SerializeField] public NavMeshAgent agent;
-        [SerializeField] public DybbukStateMachine enemyMachine;
-        [SerializeField] public Renderer enemyRender;
+        [SerializeField] public SkinwalkerStateMachine enemyMachine;
+        [SerializeField] public Renderer enemyRealModel;
 
         //Atrivutos de sensores
         public SphereCollider areaAlerta;
@@ -27,10 +27,10 @@ namespace Enemy.Manager
         [SerializeField] public EnemyScriptableObject enemyStats;
         [SerializeField] public List<Transform> waypoints;
 
-        //Generamos un constructor de la instancia de la clase
-        public EnemyDybbukManager(NavMeshAgent myAgent,EnemyScriptableObject myEnemyStats, DybbukStateMachine myEnemyMachine)
+        //Crear un constructor
+        public EnemySkinWalkerManager(NavMeshAgent myAgent, EnemyScriptableObject myEnemyStats, SkinwalkerStateMachine myEnemyMachine)
         {
-            //Asignamos los valores a los atributos
+            //Asignar valores a los atributos
             agent = myAgent;
             enemyMachine = myEnemyMachine;
             enemyStats = myEnemyStats;
@@ -61,8 +61,7 @@ namespace Enemy.Manager
             areaAlerta.radius = enemyStats.ViewRange;
 
             //Ejecutamos el primer estado de nuestra maquina de estados
-            enemyMachine.SwitchCase(DybbukStateMachine.EnemyState.Idle);
+            enemyMachine.SwitchCase(SkinwalkerStateMachine.EnemyState.Idle);
         }     
     }
 }
-
