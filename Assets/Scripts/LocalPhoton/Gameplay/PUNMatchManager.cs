@@ -29,6 +29,10 @@ namespace LocalPhoton.Gameplay
         // Used to keep track of the players in the match
         public List<PUNPlayerInfo> playersInGame = new();
 
+        public int TotalObjects { get; set; }
+        public int PlayersDead { get; set; }
+        private bool _winners;
+
         //public HUDPlayerScore _hudPlayerScore;
 
         // Singletoning the PUNMatchManager
@@ -494,20 +498,18 @@ namespace LocalPhoton.Gameplay
 
         private void ScoreCheck()
         {
-            bool winner = false;
-            foreach (var player in playersInGame)
+            if (TotalObjects >= 4)
             {
-                if (player.kills >= ITEMS_TO_WIN)
-                {
-                    gameState = PUNEventCodes.GameStates.Ending;
-                    winner = true;
-                    break;
-                }
+                gameState = PUNEventCodes.GameStates.Ending;
+                _winners = true;
+            }
+            if (PlayersDead >= 4)
+            {
+                gameState = PUNEventCodes.GameStates.Ending;
+                _winners = false;
             }
 
-            Debug.LogFormat($"*** PUNMatchManager: Score check - Winner {winner}");
-
-            if (winner)
+            if (_winners)
             {
                 // Notify players the game has ended
                 if (PhotonNetwork.IsMasterClient)
