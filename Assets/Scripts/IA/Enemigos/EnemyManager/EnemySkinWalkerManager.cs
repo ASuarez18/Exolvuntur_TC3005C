@@ -18,7 +18,8 @@ namespace Enemy.Manager
         //Atributos de AI
         [SerializeField] public NavMeshAgent agent;
         [SerializeField] public SkinwalkerStateMachine enemyMachine;
-        [SerializeField] public Renderer enemyRealModel;
+        [SerializeField] public GameObject enemyRealModel;
+        [SerializeField] public GameObject enemyFakeModel;
 
         //Atrivutos de sensores
         public SphereCollider areaAlerta;

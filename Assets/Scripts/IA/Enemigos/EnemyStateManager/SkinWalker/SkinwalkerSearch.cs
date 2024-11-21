@@ -17,6 +17,7 @@ namespace Enemy.Behaviour
         //Referencia hacia el manager y la maquina de estados del enemigo
         private EnemySkinWalkerManager manager;
         private SkinwalkerStateMachine skinwalkerSM;
+        private bool OnDestination = false;
 
         //Constructor del estado (Manager y Machine)
         public SkinwalkerSearch(EnemySkinWalkerManager manager, SkinwalkerStateMachine machine) : base(SkinwalkerStateMachine.EnemyState.Search)
@@ -35,11 +36,18 @@ namespace Enemy.Behaviour
 
         public override void UpdateState()
         {
+            //Verificamos que el enemigoi llego a la posicion del jugador
+            if (manager.agent.remainingDistance <= 0.5f)
+            {
+                OnDestination = true;
+            }
+
             //Si el enemigo no esta transformado y el jugador esta cerca pasamos a transform
             if(!skinwalkerSM.IsTransformed)
             {
                 //Actualizamos el area del enemigo hacia el jugador (DistanceToPlayer)
                 skinwalkerSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,skinwalkerSM.PlayerPosition);
+                Debug.Log(skinwalkerSM.DistanceToPlayer + " Search");
                 //Verificamos si esta muy cerca el jugador
                 if(skinwalkerSM.DistanceToPlayer <= skinwalkerSM.currentAttackRange)
                 {
@@ -56,14 +64,18 @@ namespace Enemy.Behaviour
 
         public override void ExitState()
         {
-
+            OnDestination = false;
         }
 
         //Función para cambiar de estados
         public override SkinwalkerStateMachine.EnemyState GetNextState()
         {
             //Verificamos si esta estuneado
-            if(skinwalkerSM.IsStunned)
+            if(OnDestination)
+            {
+                return SkinwalkerStateMachine.EnemyState.Idle;
+            }
+            else if(skinwalkerSM.IsStunned)
             {
                 return SkinwalkerStateMachine.EnemyState.Stunned;
             }

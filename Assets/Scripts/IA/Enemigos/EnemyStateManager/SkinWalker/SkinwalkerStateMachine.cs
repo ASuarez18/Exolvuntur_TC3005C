@@ -148,9 +148,9 @@ namespace Enemy.Behaviour
                 TimeTransformed = 0f;
                 IsTransformed = false;
                 //Activamos el modelo del enemigo y desactivamos su verdadero
-                manager.enemyRealModel.enabled = false;
+                manager.enemyRealModel.SetActive(false);
                 //Desactivamos el gameObject que contiene el modelo fantasma del enemigo
-                manager.gameObject.GetComponent<Renderer>().enabled = true;
+                manager.enemyFakeModel.SetActive(true);
             }
         }
         public void EnemyDead()
@@ -174,11 +174,11 @@ namespace Enemy.Behaviour
         }
         #endregion
 
-        //Llamamos a la funcion de OnDrwaGizmos
+        // Llamamos a la funcion de OnDrwaGizmos
         // private void OnDrawGizmos()
         // {
         //     Gizmos.color = Color.red;
-        //     Gizmos.DrawSphere(transform.position, manager.enemyStats.ViewRange/2);
+        //     Gizmos.DrawSphere(manager.enemyRealModel.transform.position, manager.enemyStats.AttackRange);
         // }
 
     }

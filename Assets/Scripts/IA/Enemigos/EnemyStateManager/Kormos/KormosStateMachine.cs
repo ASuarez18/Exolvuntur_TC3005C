@@ -169,6 +169,11 @@ namespace Enemy.Behaviour
             }
         }
         #endregion
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(manager.transform.position, manager.enemyStats.AttackRange);
+        }
     }
 }
 

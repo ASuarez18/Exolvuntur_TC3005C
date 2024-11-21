@@ -56,7 +56,10 @@ namespace Enemy.Behaviour
             {
                 //Actualizamos el area del enemigo hacia el jugador (DistanceToPlayer)
                 skinwalkerSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,skinwalkerSM.PlayerPosition);
+                // Debug.Log(skinwalkerSM.DistanceToPlayer + " Idle");
+                Debug.Log(manager.transform.name + " " + skinwalkerSM.PlayerPosition);
                 //Verificamos si esta muy cerca el jugador
+
                 if(skinwalkerSM.DistanceToPlayer <= skinwalkerSM.currentAttackRange)
                 {
                     skinwalkerSM.PlayerOnAreaClose = true;
@@ -85,7 +88,7 @@ namespace Enemy.Behaviour
                 return SkinwalkerStateMachine.EnemyState.Stunned;
             }
             //Verificamos si ya el contador llego a 100 segundos
-            else if(skinwalkerSM.SearchCounter >= 20)
+            else if(skinwalkerSM.SearchCounter >= 50)
             {
                 return SkinwalkerStateMachine.EnemyState.Search;
             }
@@ -114,6 +117,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaStay(Collider other)
         {
+            skinwalkerSM.PlayerPosition = other.transform.position;
         }
 
         public override void OnAreaExit(Collider other)

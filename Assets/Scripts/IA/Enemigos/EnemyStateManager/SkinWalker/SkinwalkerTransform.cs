@@ -28,9 +28,9 @@ namespace Enemy.Behaviour
         public override void EnterState()
         {
             //Activamos el gameObject que contiene el modelo real del enemigo
-            manager.enemyRealModel.enabled = true;
+            manager.enemyRealModel.SetActive(true);
             //Desactivamos el gameObject que contiene el modelo fantasma del enemigo
-            manager.gameObject.GetComponent<Renderer>().enabled = false;
+            manager.enemyFakeModel.SetActive(false);
         }
 
         public override void UpdateState()
