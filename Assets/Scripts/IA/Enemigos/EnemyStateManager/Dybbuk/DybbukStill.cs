@@ -28,6 +28,7 @@ namespace Enemy.Behaviour
         {
             //Detenemos el movimeinto del agente
             manager.agent.isStopped = true;
+            manager.animator.SetFloat("States", 0f);
         }
 
         //Actualiza el estado en el Update del MonoBehaviour
