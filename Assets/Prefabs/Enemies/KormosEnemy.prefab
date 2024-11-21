@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 638098351382781087}
   m_Layer: 6
   m_Name: KormosEnemy
-  m_TagString: Untagged
+  m_TagString: EnemyKormos
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,6 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 5376048706280419454}
   enemyMachine: {fileID: 4155899924869490365}
+  animator: {fileID: 0}
   areaAlerta: {fileID: 0}
   enemyStats: {fileID: 11400000, guid: 95cc96a44a7fe5b4396a8d219e3ea00e, type: 2}
   waypoints:

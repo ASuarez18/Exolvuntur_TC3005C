@@ -21,7 +21,6 @@ namespace Enemy.Behaviour
                 Aggresive,
                 Attack,
                 Chasing,
-                Search,
                 Scape,
                 Heal,
                 Stunned,
@@ -94,21 +93,20 @@ namespace Enemy.Behaviour
 
 
         //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
-        public void OnTriggerEnter(Collider other)
+            public override void OnTriggerEnter(Collider other)
             {
                 base.OnTriggerEnter(other);
             }
-            public void OnTriggerStay(Collider other)
+            public override void OnTriggerStay(Collider other)
             {
                 base.OnTriggerStay(other);
             }
-            public void OnTriggerExit(Collider other)
+            public override void OnTriggerExit(Collider other)
             {
                 base.OnTriggerExit(other);
             }
             public void OnCollisionEnter(Collision other)
             {  
-                Debug.LogError(other.ToString());
                 if(currentState.StateKey == EnemyState.Chasing)
                 {
                     if(other.gameObject.tag == "Player")
@@ -171,13 +169,11 @@ namespace Enemy.Behaviour
             }
         }
         #endregion
-
-        //private void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.yellow;
-        //    Gizmos.DrawSphere(manager.transform.position, currentAttackRange);
-        //}
-
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(manager.transform.position, manager.enemyStats.AttackRange);
+        }
     }
 }
 

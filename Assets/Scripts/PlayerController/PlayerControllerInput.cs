@@ -1,10 +1,11 @@
 using UnityEngine;
 using Interfaces;
 using GamePlay.IA;
+using Photon.Pun;
 
 namespace PlayerController
 {
-    public class PlayerControllerInput : MonoBehaviour
+    public class PlayerControllerInput : MonoBehaviourPunCallbacks
     {
 
         //Atributos
@@ -24,34 +25,40 @@ namespace PlayerController
         public LayerMask groundMask;
         //Creamos un objeto de tipo interfaz
         private IMovement character;
-        [SerializeField] private float soundRage = 10.0f; //Distancia en metros en la que el jugador escucha el sonido de pasos
+        [SerializeField] private float soundRage = 200.0f; //Distancia en metros en la que el jugador escucha el sonido de pasos
         //Controlador de audio
         //private AudioController audioController ;
 
         void Start()
         {
+
+            enabled = photonView.IsMine;
+
+            if (enabled)
+            {
+                /*_playerModel.SetActive(false)*/;
+               
+            }
             //Instanciamos un nuevo objeto de tipo Player y su constructor
             character = new PlayerMovement(GetComponent<CharacterController>(), groundMask);
             // Obtén el primer hijo y su componente AudioController
             // Verificar si el objeto tiene al menos un hijo
-             // Verificar si el objeto tiene al menos un hijo
-        
-                
+            // Verificar si el objeto tiene al menos un 
+
             // Intentar obtener el componente AudioController
             //audioController = GetComponentInChildren<AudioController>();
 
-        
             //Desaparecemos el curso de la pantalla
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             character.setPlayerSpeed(30.0f);
             cameraPlayer = Camera.main.transform;
-
         }
 
         // Update is called once per frame
         void Update()
         {
+            
             //Input que regresa la posicion que se debe mover
             movementDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
             //Input que regresa la posicion que se debe rotar la camara
@@ -78,6 +85,7 @@ namespace PlayerController
                 var soundDetector = new SoundGame(transform.position, soundRage);
                 soundDetector.soundType = SoundGame.SoundType.Interesting;
                 Sounds.MakeSound(soundDetector);
+                Debug.Log("Haciendo ruido");
                 //Rotamos al jugador según la dirección del movimiento
             }
 

@@ -27,8 +27,6 @@ namespace Enemy.Behaviour
         //Inicializamos el estado
         public override void EnterState()
         {
-            Debug.Log("Atacando a la verga");
-            //TODO: Animacion de ataque
             manager.agent.isStopped = true;
             manager.animator.SetTrigger("ataque");
         }
@@ -52,12 +50,10 @@ namespace Enemy.Behaviour
         {
             if(kormosSM.IsStunned)
             {
-                // ! Fue stuneado
                 return KormosStateMachine.EnemyState.Stunned;
             }
-            else if (kormosSM.TimeOfAttack >= 2) //TODO: eliminar constante magica de tiempo de ataque
+            else if (kormosSM.TimeOfAttack >= 2)
             {
-                // ! Se mantiene en ataque hasta que termine la duracion de esta
                 return KormosStateMachine.EnemyState.Chasing;
             }
             return KormosStateMachine.EnemyState.Attack;
