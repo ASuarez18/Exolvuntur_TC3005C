@@ -2,6 +2,8 @@ using UnityEngine;
 using Interfaces;
 using GamePlay.IA;
 using Photon.Pun;
+using Unity.VisualScripting;
+
 
 namespace PlayerController
 {
@@ -112,6 +114,15 @@ namespace PlayerController
                  //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
+        }
+
+        void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+             InterfaceAttacking enemy = hit.transform.GetComponent<InterfaceAttacking>();
+             if(enemy != null)
+             {
+                 enemy.Attack(gameObject);
+             }
         }
 
     }
