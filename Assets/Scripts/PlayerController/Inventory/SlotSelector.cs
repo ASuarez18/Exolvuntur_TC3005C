@@ -69,8 +69,6 @@ namespace PlayerController.Inventory
 
         private void Update()
         {
-           
-
             // Change the slot with mouse wheel
             if (Input.GetAxis("Mouse ScrollWheel") > 0f)
             {
@@ -117,10 +115,22 @@ namespace PlayerController.Inventory
             //GameObject currentCollectable = collectables[currentCollectableIndex];
             SpriteRenderer _spriteRenderer = currentCollectable.GetComponent<SpriteRenderer>();
 
+            // Si no hay un objeto en el slot 
             if (_spriteRenderer == null)
             {
                 Debug.LogError($"No SpriteRenderer found on {currentCollectable.name}");
                 return;
+            }
+
+            // Check if there is a void slot
+            for (int i = 0; i < _utilities.Length; i++)
+            {
+                if (_utilities[i].utilityInstance == null)
+                {
+                    // Delete the sprite from the slot
+                    _utilities[i].utilitySprite = null;
+                    Debug.Log($"Slot {i} is empty. Sprite removed.");
+                }
             }
 
             Array.Resize(ref _utilities, _utilities.Length + 1);
