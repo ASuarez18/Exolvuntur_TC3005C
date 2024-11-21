@@ -698,6 +698,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2181304557634940067, guid: 37adc6de9bd102d40a037a3248987483,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2642206070647024835, guid: 37adc6de9bd102d40a037a3248987483,
         type: 3}
       propertyPath: m_Name
@@ -982,6 +987,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Collectable
       objectReference: {fileID: 0}
+    - target: {fileID: 1393859173135531400, guid: 84400142d311d56459839342f1dea348,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4344993783120565651, guid: 84400142d311d56459839342f1dea348,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1159,6 +1169,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 377021610410912946, guid: 371666c59ed3bee47a8eab78b2a92966,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2979364550550058844, guid: 371666c59ed3bee47a8eab78b2a92966,
         type: 3}
       propertyPath: mano
