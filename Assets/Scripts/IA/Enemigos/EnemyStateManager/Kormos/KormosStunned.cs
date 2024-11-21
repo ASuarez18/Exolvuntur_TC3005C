@@ -24,6 +24,8 @@ namespace Enemy.Behaviour
             //Detenemos el movimiento del agente dado que esta en stunneado
             manager.agent.isStopped = true;
             // TODO: Settear animacion de aturdimiento
+            manager.animator.SetTrigger("Stunning");
+            manager.animator.SetBool("Stun",true);
         }
 
         //Actualiza el estado en el Update del MonoBehaviour
@@ -41,6 +43,7 @@ namespace Enemy.Behaviour
             //Reiniciamos la bandera de aturdimiento
             kormosSM.IsStunned = false;
             kormosSM.TimeStunned = 0f;
+            manager.animator.SetBool("Stun",false);
         }
 
         //Funcion que revisa si entra en el flujo de un estado o no

@@ -33,7 +33,6 @@ namespace Enemy.Behaviour
             kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
 
             //Ejecutamos la animacion de patrullaje
-            Debug.Log("patrullaje");
             manager.animator.SetFloat("forward", 1f);
             
         }
