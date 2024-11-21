@@ -53,6 +53,7 @@ namespace GamePlay.IA
                     GameObject enemy = EnemiesPools.Instance.GetEnemy("EnemyKormos");
                     enemy.transform.position = spawnPoint.position;
                     enemy.transform.rotation = spawnPoint.rotation;
+                    enemy.GetComponent<EnemyKormosManager>().waypoints = _spawnPoints;
                 }
                 for (int i = 0; i < Skinwalker; i++)
                 {
@@ -61,6 +62,7 @@ namespace GamePlay.IA
                     GameObject enemy = EnemiesPools.Instance.GetEnemy("EnemySkinwalker");
                     enemy.transform.position = spawnPoint.position;
                     enemy.transform.rotation = spawnPoint.rotation;
+                    enemy.GetComponent<EnemyKormosManager>().waypoints = _spawnPoints;
                 }
                 for (int i = 0; i < Dybbuk; i++)
                 {
@@ -69,6 +71,7 @@ namespace GamePlay.IA
                     GameObject enemy = EnemiesPools.Instance.GetEnemy("EnemyDybbuk");
                     enemy.transform.position = spawnPoint.position;
                     enemy.transform.rotation = spawnPoint.rotation;
+                    enemy.GetComponent<EnemyKormosManager>().waypoints = _spawnPoints;
                 }
             }
             //Si observamos que el parametro manuel (nameEnemy) no esta nulo creamos el enemigo especificado
