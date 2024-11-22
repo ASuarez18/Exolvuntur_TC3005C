@@ -30,6 +30,16 @@ public class crucifijo : MonoBehaviour, IInteraction
                     enemyState.enemyMachine.ApplyDamage(10);
                     Debug.Log("enemyattack");
                 }
+                if (collider.TryGetComponent(out EnemyDybbukManager enemyState2))
+                {
+                    enemyState2.enemyMachine.ApplyDamage(10);
+                    Debug.Log("enemyattack");
+                }
+                if (collider.TryGetComponent(out EnemySkinWalkerManager enemyState3))
+                {
+                    enemyState3.enemyMachine.ApplyDamage(10);
+                    Debug.Log("enemyattack");
+                }
             }
 
             cooldown = 3f;

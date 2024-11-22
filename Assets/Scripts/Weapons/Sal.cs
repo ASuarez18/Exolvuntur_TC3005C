@@ -35,9 +35,7 @@ public class Sal : MonoBehaviour, IInteraction
                 cubo.GetComponent<Rigidbody>().isKinematic = false;
                 cubo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 Vector3 direccionLanzamiento = Camera.main.transform.forward;
-                Debug.Log("ANIMACION SAL entrada");
                 _seguro.anim.SetTrigger("sal");
-                Debug.Log("ANIMACION SAL salida");
 
                 cubo.GetComponent<Rigidbody>().AddForce(direccionLanzamiento * fuerza, ForceMode.Impulse);
 
@@ -58,10 +56,19 @@ public class Sal : MonoBehaviour, IInteraction
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("Enemy"))
+        if(collision.collider.CompareTag("EnemyKormos"))
         {
             collision.collider.GetComponent<EnemyKormosManager>().enemyMachine.ApplyStun();
         }
+        if(collision.collider.CompareTag("EnemyDybbuk"))
+        {
+            collision.collider.GetComponent<EnemyDybbukManager>().enemyMachine.ApplyStun();
+        }
+        if(collision.collider.CompareTag("EnemySkinwalker"))
+        {
+            collision.collider.GetComponent<EnemySkinWalkerManager>().enemyMachine.ApplyStun();
+        }
+
     }
 
     public void InteractObject()
