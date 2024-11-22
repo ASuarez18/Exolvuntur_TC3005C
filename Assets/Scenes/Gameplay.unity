@@ -2995,6 +2995,11 @@ PrefabInstance:
     - target: {fileID: 5028084269882181368, guid: f04476fbe4ff10f41a880e4b8b95b9b9,
         type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8114540799442549970, guid: f04476fbe4ff10f41a880e4b8b95b9b9,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8279794474452814369, guid: f04476fbe4ff10f41a880e4b8b95b9b9,
@@ -5170,7 +5175,7 @@ PrefabInstance:
     - target: {fileID: 6658961073227572184, guid: 27a568ac15500844196cd591fd4aa5a0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6822036946613130262, guid: 27a568ac15500844196cd591fd4aa5a0,
         type: 3}
@@ -5220,6 +5225,11 @@ PrefabInstance:
     - target: {fileID: 6822036946613130262, guid: 27a568ac15500844196cd591fd4aa5a0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7967462368003980181, guid: 27a568ac15500844196cd591fd4aa5a0,
+        type: 3}
+      propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7883,7 +7893,7 @@ PrefabInstance:
     - target: {fileID: 1416712234999444817, guid: 7be42126ed7188948ae238900250f2dc,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2841221439785225815, guid: 7be42126ed7188948ae238900250f2dc,
         type: 3}
