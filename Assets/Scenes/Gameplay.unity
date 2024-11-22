@@ -122,6 +122,75 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &26530589 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4166212121269095873, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &26530593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26530589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 0.1
+  velocidadSacudida: 10
+  intensidadMinima: 900
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 2
+--- !u!1 &29833657 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 27686592634446125, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &29833661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29833657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
+--- !u!1 &60969182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7691403395496952877, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &60969186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 60969182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &90137537 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6354792183205462925, guid: 371666c59ed3bee47a8eab78b2a92966,
@@ -2540,8 +2609,143 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 4513499446275762157, guid: 442652a8dd9b2bc49b236620a38bbf00, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 918672765291767360, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 339115495}
+    - targetCorrespondingSourceObject: {fileID: 620130158846557713, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 478088615}
+    - targetCorrespondingSourceObject: {fileID: 7523220326286687564, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1332513694}
+    - targetCorrespondingSourceObject: {fileID: 741178561787098815, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 641249805}
+    - targetCorrespondingSourceObject: {fileID: 2609125116082894280, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1709534743}
+    - targetCorrespondingSourceObject: {fileID: 1110169152929483879, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 795709036}
+    - targetCorrespondingSourceObject: {fileID: 6366286157230216348, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 356666419}
+    - targetCorrespondingSourceObject: {fileID: 2594489122896813325, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1444487298}
+    - targetCorrespondingSourceObject: {fileID: 4140947600392049059, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1662870581}
+    - targetCorrespondingSourceObject: {fileID: 8507611739161069959, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 460295081}
+    - targetCorrespondingSourceObject: {fileID: 2332436101447641726, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2018648763}
+    - targetCorrespondingSourceObject: {fileID: 3861849801838858545, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1785931467}
+    - targetCorrespondingSourceObject: {fileID: 97902192082897439, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 182655496}
+    - targetCorrespondingSourceObject: {fileID: 7691403395496952877, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 60969186}
+    - targetCorrespondingSourceObject: {fileID: 6759012343107089947, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1416047572}
+    - targetCorrespondingSourceObject: {fileID: 6624438586808105210, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 757108614}
+    - targetCorrespondingSourceObject: {fileID: 8311716494612690861, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2068820137}
+    - targetCorrespondingSourceObject: {fileID: 5582278532532175080, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1558481955}
+    - targetCorrespondingSourceObject: {fileID: 3248420863935471586, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1468389229}
+    - targetCorrespondingSourceObject: {fileID: 6366402767627709586, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1874272731}
+    - targetCorrespondingSourceObject: {fileID: 4166212121269095873, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 26530593}
+    - targetCorrespondingSourceObject: {fileID: 6554869011423892913, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 905434049}
+    - targetCorrespondingSourceObject: {fileID: 27686592634446125, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 29833661}
+    - targetCorrespondingSourceObject: {fileID: 3371850081962096810, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1383565131}
+    - targetCorrespondingSourceObject: {fileID: 7757889910048788167, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 278429563}
+    - targetCorrespondingSourceObject: {fileID: 4527838087554630009, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1779383884}
+    - targetCorrespondingSourceObject: {fileID: 6428383224235305340, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 806681997}
+    - targetCorrespondingSourceObject: {fileID: 6631688527008878454, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1036211921}
   m_SourcePrefab: {fileID: 100100000, guid: 442652a8dd9b2bc49b236620a38bbf00, type: 3}
+--- !u!1 &182655492 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 97902192082897439, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &182655496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 182655492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &189956306
 GameObject:
   m_ObjectHideFlags: 0
@@ -2692,6 +2896,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &278429559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7757889910048788167, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &278429563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 278429559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1001 &284954073
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2810,12 +3037,58 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f04476fbe4ff10f41a880e4b8b95b9b9, type: 3}
+--- !u!1 &339115491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 918672765291767360, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &339115495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339115491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!4 &350428274 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3806525393767604590, guid: 0d5868300c0011746acdb396d2c69793,
     type: 3}
   m_PrefabInstance: {fileID: 2082258596}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &356666415 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6366286157230216348, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &356666419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356666415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1001 &425377974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2921,6 +3194,52 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 90137539}
   m_SourcePrefab: {fileID: 100100000, guid: 371666c59ed3bee47a8eab78b2a92966, type: 3}
+--- !u!1 &460295077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8507611739161069959, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &460295081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 460295077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
+--- !u!1 &478088611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 620130158846557713, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &478088615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 478088611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &521036084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,6 +3752,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635695421}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &641249801 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 741178561787098815, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &641249805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 641249801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &645218766
 GameObject:
   m_ObjectHideFlags: 0
@@ -3592,6 +3934,29 @@ Transform:
   - {fileID: 2045628525}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &757108610 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6624438586808105210, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &757108614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 757108610}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &757802946
 GameObject:
   m_ObjectHideFlags: 0
@@ -3995,6 +4360,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4390770109378622945, guid: 37adc6de9bd102d40a037a3248987483,
         type: 3}
+      propertyPath: radio
+      value: 20.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390770109378622945, guid: 37adc6de9bd102d40a037a3248987483,
+        type: 3}
+      propertyPath: tiempo
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390770109378622945, guid: 37adc6de9bd102d40a037a3248987483,
+        type: 3}
       propertyPath: _Seguro
       value: 
       objectReference: {fileID: 0}
@@ -4016,6 +4391,52 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1507614994}
   m_SourcePrefab: {fileID: 100100000, guid: 37adc6de9bd102d40a037a3248987483, type: 3}
+--- !u!1 &795709032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1110169152929483879, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &795709036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 795709032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
+--- !u!1 &806681993 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6428383224235305340, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &806681997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806681993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &834269259
 GameObject:
   m_ObjectHideFlags: 0
@@ -4190,6 +4611,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &905434045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6554869011423892913, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &905434049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 905434045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 0.1
+  velocidadSacudida: 10
+  intensidadMinima: 900
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 2
 --- !u!1001 &914941211
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4471,6 +4915,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027734213}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1036211917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6631688527008878454, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1036211921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036211917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1001 &1060108152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4483,6 +4950,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: padre
+      objectReference: {fileID: 0}
+    - target: {fileID: 7147554378834610366, guid: b9ccfaf8c6484c644b0d663898babe20,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8214322781317017863, guid: b9ccfaf8c6484c644b0d663898babe20,
         type: 3}
@@ -4695,6 +5167,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkinwalkerEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 6658961073227572184, guid: 27a568ac15500844196cd591fd4aa5a0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6822036946613130262, guid: 27a568ac15500844196cd591fd4aa5a0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4750,6 +5227,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 27a568ac15500844196cd591fd4aa5a0, type: 3}
+--- !u!1 &1332513690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7523220326286687564, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1332513694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1332513690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
+--- !u!1 &1383565127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3371850081962096810, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1383565131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1383565127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &1400510341
 GameObject:
   m_ObjectHideFlags: 0
@@ -4781,6 +5304,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1416047568 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6759012343107089947, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1416047572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1416047568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1001 &1425570144
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4899,6 +5445,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bcfee31209f30a419f3f7e94f9457d3, type: 3}
+--- !u!1 &1444487294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2594489122896813325, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1444487298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444487294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
+--- !u!1 &1468389225 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3248420863935471586, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1468389229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1468389225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &1470643015
 GameObject:
   m_ObjectHideFlags: 0
@@ -5170,6 +5762,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1558481951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5582278532532175080, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1558481955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558481951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &1572066980
 GameObject:
   m_ObjectHideFlags: 0
@@ -5275,6 +5890,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1572066980}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1662870577 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4140947600392049059, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1662870581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662870577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &1708891660
 GameObject:
   m_ObjectHideFlags: 0
@@ -5306,6 +5944,29 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1709534739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2609125116082894280, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1709534743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1709534739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &1721183203
 GameObject:
   m_ObjectHideFlags: 0
@@ -5559,6 +6220,52 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38d61d74adcd37b47ab1e80928a68fdf, type: 3}
+--- !u!1 &1779383880 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4527838087554630009, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1779383884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779383880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
+--- !u!1 &1785931463 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3861849801838858545, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1785931467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1785931463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &1820996907 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1349561932665832598, guid: 84400142d311d56459839342f1dea348,
@@ -5776,6 +6483,29 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf440685c70ae794fa6889f501a4999d, type: 3}
+--- !u!1 &1874272727 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6366402767627709586, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1874272731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1874272727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 0.1
+  velocidadSacudida: 10
+  intensidadMinima: 900
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 2
 --- !u!1 &1876984966
 GameObject:
   m_ObjectHideFlags: 0
@@ -6884,6 +7614,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vampire_Legacy
       objectReference: {fileID: 0}
+    - target: {fileID: 707587139157058990, guid: 6f4d03eac92625443ac474b23f955d84,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 707587139164313196, guid: 6f4d03eac92625443ac474b23f955d84,
         type: 3}
       propertyPath: m_Controller
@@ -7004,6 +7739,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911483138}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2018648759 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2332436101447641726, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2018648763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2018648759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1 &2045628524
 GameObject:
   m_ObjectHideFlags: 0
@@ -7307,6 +8065,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057840363}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2068820133 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8311716494612690861, guid: 442652a8dd9b2bc49b236620a38bbf00,
+    type: 3}
+  m_PrefabInstance: {fileID: 178768370}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2068820137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2068820133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7098ff3aaf0b3342a39f13b3ee24c64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cantidadSacudida: 1.59
+  velocidadSacudida: 1
+  intensidadMinima: 313
+  intensidadMaxima: 1000
+  velocidadOscilacionIntensidad: 5.12
 --- !u!1001 &2082258596
 PrefabInstance:
   m_ObjectHideFlags: 0
