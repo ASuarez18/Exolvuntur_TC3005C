@@ -20,6 +20,8 @@ namespace Enemy.Manager
         [SerializeField] public SkinwalkerStateMachine enemyMachine;
         [SerializeField] public GameObject enemyRealModel;
         [SerializeField] public GameObject enemyFakeModel;
+       
+        [SerializeField] public Animator animator; 
 
         //Atrivutos de sensores
         public SphereCollider areaAlerta;
@@ -29,12 +31,13 @@ namespace Enemy.Manager
         [SerializeField] public List<Transform> waypoints;
 
         //Crear un constructor
-        public EnemySkinWalkerManager(NavMeshAgent myAgent, EnemyScriptableObject myEnemyStats, SkinwalkerStateMachine myEnemyMachine)
+        public EnemySkinWalkerManager(NavMeshAgent myAgent, EnemyScriptableObject myEnemyStats, SkinwalkerStateMachine myEnemyMachine, Animator myAnimator)
         {
             //Asignar valores a los atributos
             agent = myAgent;
             enemyMachine = myEnemyMachine;
             enemyStats = myEnemyStats;
+            animator = myAnimator;
         }
 
         [SerializeField] private TriggerSensor sensor;

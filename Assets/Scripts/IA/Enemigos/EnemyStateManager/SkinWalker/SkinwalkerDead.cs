@@ -28,6 +28,7 @@ namespace Enemy.Behaviour
         public override void EnterState()
         {
             manager.agent.isStopped = true;
+            manager.animator.SetTrigger("Dead");
             skinwalkerSM.EnemyDead();
         }
 

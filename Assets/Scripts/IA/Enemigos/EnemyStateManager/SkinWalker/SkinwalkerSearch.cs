@@ -32,6 +32,8 @@ namespace Enemy.Behaviour
             skinwalkerSM.actualTarget = GameObject.FindGameObjectWithTag("Player").transform.position;
             //Actualizamos la posicion del agente al destino
             manager.agent.SetDestination(skinwalkerSM.actualTarget);
+
+            manager.animator.SetTrigger("Search");
         }
 
         public override void UpdateState()

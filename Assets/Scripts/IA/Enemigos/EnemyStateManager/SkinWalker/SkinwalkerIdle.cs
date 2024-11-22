@@ -29,6 +29,7 @@ namespace Enemy.Behaviour
         {
             //Elegimos un destino al azar
             skinwalkerSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
+            manager.animator.SetFloat("Move",1f);
         }
 
         public override void UpdateState()

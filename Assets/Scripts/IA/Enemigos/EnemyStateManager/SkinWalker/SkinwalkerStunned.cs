@@ -29,6 +29,8 @@ namespace Enemy.Behaviour
         {
             //Detenemos el movimiento del enemigo
             manager.agent.isStopped = true;
+            manager.animator.SetTrigger("Stunning");
+            manager.animator.SetBool("Stun", true);
         }
 
         public override void UpdateState()
@@ -44,6 +46,7 @@ namespace Enemy.Behaviour
         public override void ExitState()
         {
             //Detenemos el movimiento del enemigo
+            manager.animator.SetBool("Stun", false);
             manager.agent.isStopped = false;
             skinwalkerSM.IsStunned = false;
             skinwalkerSM.TimeStunned = 0f;

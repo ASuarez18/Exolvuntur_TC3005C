@@ -218,6 +218,7 @@ MonoBehaviour:
   enemyMachine: {fileID: 5447664679326344670}
   enemyRealModel: {fileID: 3691228448101432149}
   enemyFakeModel: {fileID: 3631865863351082041}
+  animator: {fileID: 7967462368003980181}
   areaAlerta: {fileID: 2233782502772174064}
   enemyStats: {fileID: 11400000, guid: a2a496c757472bc4daf050c0a9650fa8, type: 2}
   waypoints:
@@ -468,6 +469,12 @@ GameObject:
 --- !u!4 &4067366309939552751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e414069458696c4d838aa9db67975bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 4609585292308628996}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &7967462368003980181 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0e414069458696c4d838aa9db67975bc,
     type: 3}
   m_PrefabInstance: {fileID: 4609585292308628996}
   m_PrefabAsset: {fileID: 0}
