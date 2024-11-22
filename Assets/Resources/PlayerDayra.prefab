@@ -243,8 +243,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2576083694703914553}
   - {fileID: 15436585232535762}
+  - {fileID: 2576083694703914553}
   - {fileID: 5805853484642151589}
   - {fileID: 5472625230266872257}
   m_Father: {fileID: 0}
@@ -351,6 +351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918cc4569d847aa44a4ace83712458a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
   _utilityData: []
   _utilities: []
   _utilitiesParent: {fileID: 7577500582925204074}
@@ -654,7 +655,7 @@ PrefabInstance:
     - target: {fileID: 6088057706218606903, guid: 6508b6ed1e03c854ca95040080b86173,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6860935612829862797, guid: 6508b6ed1e03c854ca95040080b86173,
         type: 3}

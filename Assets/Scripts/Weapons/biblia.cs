@@ -8,9 +8,10 @@ using Enemy.Manager;
 
 public class biblia : MonoBehaviour, IInteraction
 {
-    [SerializeField] private Seguro _Seguro;
+    [SerializeField] private Seguro _seguro;
     [SerializeField] private float tiempo= 5f;
     [SerializeField] private float radio = 5f;
+
 
     private float cooldown = 0f;
 
@@ -21,8 +22,9 @@ public class biblia : MonoBehaviour, IInteraction
     
     private void Update()
     {
-        if(Input.GetMouseButton(0) && !_Seguro.bloqueado && cooldown <= 0f)
+        if(Input.GetMouseButton(0) && !_seguro.bloqueado && cooldown <= 0f)
         {
+            _seguro.anim.SetTrigger("biblia");
             //Cuenta regresiva cuando se activa el ataque
             tiempoActual += Time.deltaTime;
             if(tiempoActual >= tiempo)
