@@ -13,6 +13,7 @@ namespace GamePlay.IA
         [SerializeField] private List<Transform> _patrolPoints;
         [SerializeField] private int Kormos, Skinwalker, Dybbuk;
         private UnityEngine.AI.NavMeshTriangulation triangulation;
+        public List<Transform> spawnPoints;
 
         //Creamos un singleton
         private static SpawnEnemyManager _instance;
@@ -102,7 +103,7 @@ namespace GamePlay.IA
             int VerticesIndex = UnityEngine.Random.Range(0, triangulation.vertices.Length);
 
             //Obtenemos un punto aleatorio en la malla de navegacion
-            if(UnityEngine.AI.NavMesh.SamplePosition(triangulation.vertices[VerticesIndex], out Hit, 2.0f, UnityEngine.AI.NavMesh.AllAreas))
+            if (UnityEngine.AI.NavMesh.SamplePosition(spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Count)].position, out Hit, 2.0f, UnityEngine.AI.NavMesh.AllAreas))
             {
                 //Asignamos la posicion al NavMeshAgent
                 enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(Hit.position);
