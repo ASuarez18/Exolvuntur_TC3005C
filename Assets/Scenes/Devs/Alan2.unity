@@ -1211,6 +1211,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: DybbukEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1416712234999444817, guid: 7be42126ed7188948ae238900250f2dc,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752691053492096132, guid: 7be42126ed7188948ae238900250f2dc,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2841221439785225815, guid: 7be42126ed7188948ae238900250f2dc,
         type: 3}
       propertyPath: waypoints.Array.data[0]
