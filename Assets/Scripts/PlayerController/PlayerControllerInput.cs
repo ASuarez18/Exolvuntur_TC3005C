@@ -2,6 +2,8 @@ using UnityEngine;
 using Interfaces;
 using GamePlay.IA;
 using Photon.Pun;
+using Unity.VisualScripting;
+
 
 namespace PlayerController
 {
@@ -26,7 +28,7 @@ namespace PlayerController
         public LayerMask groundMask;
         //Creamos un objeto de tipo interfaz
         private IMovement character;
-        [SerializeField] private float soundRage = 10.0f; //Distancia en metros en la que el jugador escucha el sonido de pasos
+        [SerializeField] private float soundRage = 200.0f; //Distancia en metros en la que el jugador escucha el sonido de pasos
         //Controlador de audio
         //private AudioController audioController ;
 
@@ -87,6 +89,7 @@ namespace PlayerController
                 var soundDetector = new SoundGame(transform.position, soundRage);
                 soundDetector.soundType = SoundGame.SoundType.Interesting;
                 Sounds.MakeSound(soundDetector);
+                Debug.Log("Haciendo ruido");
                 //Rotamos al jugador según la dirección del movimiento
             }
 
@@ -113,6 +116,15 @@ namespace PlayerController
                  //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
+        }
+
+        void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+             InterfaceAttacking enemy = hit.transform.GetComponent<InterfaceAttacking>();
+             if(enemy != null)
+             {
+                 enemy.Attack(gameObject);
+             }
         }
 
     }

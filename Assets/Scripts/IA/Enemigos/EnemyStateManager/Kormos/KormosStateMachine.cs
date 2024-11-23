@@ -10,7 +10,7 @@ namespace Enemy.Behaviour
     /// Maquina de estados que hereda de StateManager.
     /// Agregamos los estados del enemigo Kormos y agregamos la clase del controlador del enemigo.
     /// </summary>
-    public class KormosStateMachine : StateManager<KormosStateMachine.EnemyState>
+    public class KormosStateMachine : StateManager<KormosStateMachine.EnemyState> , InterfaceAttacking
     {
         #region Estados
             public enum EnemyState
@@ -21,7 +21,6 @@ namespace Enemy.Behaviour
                 Aggresive,
                 Attack,
                 Chasing,
-                Search,
                 Scape,
                 Heal,
                 Stunned,
@@ -94,30 +93,37 @@ namespace Enemy.Behaviour
 
 
         //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
-        public void OnTriggerEnter(Collider other)
+            public override void OnTriggerEnter(Collider other)
             {
+                
                 base.OnTriggerEnter(other);
             }
-            public void OnTriggerStay(Collider other)
+            public override void OnTriggerStay(Collider other)
             {
                 base.OnTriggerStay(other);
             }
-            public void OnTriggerExit(Collider other)
+            public override void OnTriggerExit(Collider other)
             {
                 base.OnTriggerExit(other);
             }
-            public void OnCollisionEnter(Collision other)
-            {  
-                Debug.LogError(other.ToString());
-                if(currentState.StateKey == EnemyState.Chasing)
-                {
-                    if(other.gameObject.tag == "Player")
-                    {
-                        Attacking = true;
-                    other.gameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
-                    }
-                }
+
+            void InterfaceAttacking.Attack(GameObject target)
+            {
+                Attacking = true;
+                target.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
             }
+
+            // public void OnCollisionEnter(Collision other)
+            // {  
+            //     Debug.Log("Colisiono");
+            //     if(currentState.StateKey == EnemyState.Chasing)
+            //     {
+            //         if(other.gameObject.tag == "Player")
+            //         {
+                       
+            //         }
+            //     }
+            // }
 
         #endregion
 
@@ -170,14 +176,14 @@ namespace Enemy.Behaviour
                 currentHealth -= damage;
             }
         }
+
+        
         #endregion
-
-        //private void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.yellow;
-        //    Gizmos.DrawSphere(manager.transform.position, currentAttackRange);
-        //}
-
+        // private void OnDrawGizmos()
+        // {
+        //     Gizmos.color = Color.yellow;
+        //     Gizmos.DrawSphere(manager.transform.position, manager.enemyStats.AttackRange);
+        // }
     }
 }
 

@@ -6,4 +6,6 @@ public class Seguro : MonoBehaviour
 {
     public bool bloqueado = true;
 
+    public Animator anim;
+
 }

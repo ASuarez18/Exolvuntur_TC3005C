@@ -52,7 +52,7 @@ namespace LocalPhoton.Gameplay
                 return;
             }
 
-            Transform spawnPoint = SpawnManager.Instance.GetSpawnPoint(1);
+            Transform spawnPoint = SpawnManager.Instance.GetSpawnPoint(PUNCharacterSelector.SelectedCharacterIndex);
             //Debug.LogError($"Char index {PUNCharacterSelector.SelectedCharacterIndex}");
             //Debug.LogError($"List size{_playerPrefabs.Count }");
             //// Spawn the player in the scene using Photon

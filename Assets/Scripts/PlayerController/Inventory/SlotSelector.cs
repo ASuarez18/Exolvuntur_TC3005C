@@ -12,6 +12,7 @@ namespace PlayerController.Inventory
     /// </summary>
     public class SlotSelector : MonoBehaviour //PunCallbacks
     {
+        [SerializeField] private Animator _animator;
         // Slot data structure to store the object model
         [Serializable]
         public struct UtilityData
@@ -145,6 +146,7 @@ namespace PlayerController.Inventory
 
             // Emparenta el objeto con el objeto padre
             currentCollectable.GetComponent<Seguro>().bloqueado = false;
+            currentCollectable.GetComponent<Seguro>().anim = _animator;
             currentCollectable.transform.SetParent(_utilitiesParent);
             currentCollectable.transform.localPosition = Vector3.zero;
 

@@ -12,7 +12,7 @@ using Enemy.Manager;
 
 public class Sal : MonoBehaviour, IInteraction
 {
-    [SerializeField] private Seguro _Seguro;
+    [SerializeField] private Seguro _seguro;
     public GameObject cubo;
     public float fuerza;
 
@@ -30,11 +30,13 @@ public class Sal : MonoBehaviour, IInteraction
     {
         
 
-        if(Input.GetMouseButtonDown(0) && !_Seguro.bloqueado && cooldown <= 0f)
+        if(Input.GetMouseButtonDown(0) && !_seguro.bloqueado && cooldown <= 0f)
         {
                 cubo.GetComponent<Rigidbody>().isKinematic = false;
                 cubo.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 Vector3 direccionLanzamiento = Camera.main.transform.forward;
+                _seguro.anim.SetTrigger("sal");
+
                 cubo.GetComponent<Rigidbody>().AddForce(direccionLanzamiento * fuerza, ForceMode.Impulse);
 
                 cubo.transform.parent = null;
@@ -54,10 +56,19 @@ public class Sal : MonoBehaviour, IInteraction
 
     public void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.CompareTag("Enemy"))
+        if(collision.collider.CompareTag("EnemyKormos"))
         {
             collision.collider.GetComponent<EnemyKormosManager>().enemyMachine.ApplyStun();
         }
+        if(collision.collider.CompareTag("EnemyDybbuk"))
+        {
+            collision.collider.GetComponent<EnemyDybbukManager>().enemyMachine.ApplyStun();
+        }
+        if(collision.collider.CompareTag("EnemySkinwalker"))
+        {
+            collision.collider.GetComponent<EnemySkinWalkerManager>().enemyMachine.ApplyStun();
+        }
+
     }
 
     public void InteractObject()

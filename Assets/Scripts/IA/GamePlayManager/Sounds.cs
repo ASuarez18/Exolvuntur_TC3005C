@@ -17,8 +17,10 @@ namespace GamePlay.IA
                 if(col[i].TryGetComponent(out EnemyKormosManager enemyState))
                 {
                     //Primero verificamos si el enemigo se encuntra en Idle
+                    Debug.Log("Enemigo encontrado");
                     if(enemyState.enemyMachine.currentState is KormosCaution CautionState)
-                    {
+                    { 
+                        Debug.Log("Atrape sonido");
                         enemyState.enemyMachine.SoundDetected =true;
                     }
                     else if(enemyState.enemyMachine.currentState is KormosHunt HuntState)
