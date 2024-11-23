@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Enemy.Manager;
 
 namespace GamePlay.IA
 {
@@ -9,8 +10,9 @@ namespace GamePlay.IA
     public class SpawnEnemyManager : MonoBehaviour
     {
         //Atributos de inicializacion
-        [SerializeField] private List<Transform> _spawnPoints;
+        [SerializeField] private List<Transform> _patrolPoints;
         [SerializeField] private int Kormos, Skinwalker, Dybbuk;
+        private UnityEngine.AI.NavMeshTriangulation triangulation;
 
         //Creamos un singleton
         private static SpawnEnemyManager _instance;
@@ -37,6 +39,7 @@ namespace GamePlay.IA
         // Start is called before the first frame update
         void Start()
         {
+            triangulation = UnityEngine.AI.NavMesh.CalculateTriangulation();
             SpawnEnemy();
         }
 
@@ -49,39 +52,61 @@ namespace GamePlay.IA
                 for (int i = 0; i < Kormos; i++)
                 {
                     //Elegimos un punto aleatorio
-                    Transform spawnPoint = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
+                    Transform spawnPoint = _patrolPoints[UnityEngine.Random.Range(0, _patrolPoints.Count)];
                     GameObject enemy = EnemiesPools.Instance.GetEnemy("EnemyKormos");
-                    enemy.transform.position = spawnPoint.position;
-                    enemy.transform.rotation = spawnPoint.rotation;
-                    enemy.GetComponent<EnemyKormosManager>().waypoints = _spawnPoints;
+                    DoSpawnNavMeshAgent(enemy);
+                    enemy.GetComponent<EnemyKormosManager>().waypoints = _patrolPoints;
                 }
                 for (int i = 0; i < Skinwalker; i++)
                 {
                     //Elegimos un punto aleatorio
-                    Transform spawnPoint = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
+                    Transform spawnPoint = _patrolPoints[UnityEngine.Random.Range(0, _patrolPoints.Count)];
                     GameObject enemy = EnemiesPools.Instance.GetEnemy("EnemySkinwalker");
-                    enemy.transform.position = spawnPoint.position;
-                    enemy.transform.rotation = spawnPoint.rotation;
-                    enemy.GetComponent<EnemyKormosManager>().waypoints = _spawnPoints;
+                    DoSpawnNavMeshAgent(enemy);
+                    enemy.GetComponent<EnemySkinWalkerManager>().waypoints = _patrolPoints;
                 }
                 for (int i = 0; i < Dybbuk; i++)
                 {
                     //Elegimos un punto aleatorio
-                    Transform spawnPoint = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
+                    Transform spawnPoint = _patrolPoints[UnityEngine.Random.Range(0, _patrolPoints.Count)];
                     GameObject enemy = EnemiesPools.Instance.GetEnemy("EnemyDybbuk");
-                    enemy.transform.position = spawnPoint.position;
-                    enemy.transform.rotation = spawnPoint.rotation;
-                    enemy.GetComponent<EnemyKormosManager>().waypoints = _spawnPoints;
+                    DoSpawnNavMeshAgent(enemy);
+                    enemy.GetComponent<EnemyDybbukManager>().waypoints = _patrolPoints;
                 }
             }
             //Si observamos que el parametro manuel (nameEnemy) no esta nulo creamos el enemigo especificado
             else
             {
                 //Creamos el enemigo segun el nombre recibido
-                Transform spawnPoint = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Count)];
+                Transform spawnPoint = _patrolPoints[UnityEngine.Random.Range(0, _patrolPoints.Count)];
                 GameObject enemy = EnemiesPools.Instance.GetEnemy(nameEnemy);
-                enemy.transform.position = spawnPoint.position;
-                enemy.transform.rotation = spawnPoint.rotation;   
+                DoSpawnNavMeshAgent(enemy);
+                switch(nameEnemy)
+                {
+                    case "EnemyKormos":
+                        enemy.GetComponent<EnemyKormosManager>().waypoints = _patrolPoints;
+                        break;
+                    case "EnemySkinwalker":
+                        enemy.GetComponent<EnemySkinWalkerManager>().waypoints = _patrolPoints;
+                        break;
+                    case "EnemyDybbuk":
+                        enemy.GetComponent<EnemyDybbukManager>().waypoints = _patrolPoints;
+                        break;
+                }
+            }
+        }
+
+        private void DoSpawnNavMeshAgent(GameObject enemy)
+        {
+            UnityEngine.AI.NavMeshHit Hit;
+            int VerticesIndex = UnityEngine.Random.Range(0, triangulation.vertices.Length);
+
+            //Obtenemos un punto aleatorio en la malla de navegacion
+            if(UnityEngine.AI.NavMesh.SamplePosition(triangulation.vertices[VerticesIndex], out Hit, 2.0f, UnityEngine.AI.NavMesh.AllAreas))
+            {
+                //Asignamos la posicion al NavMeshAgent
+                enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(Hit.position);
+                enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
             }
         }
 
