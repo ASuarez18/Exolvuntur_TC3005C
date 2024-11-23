@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Audio.SoundFX;
 using PlayerController.UI;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace PlayerController.PUN
-{   
+{
     /// <summary>
     /// Class in charge of managing the player's sanity through the HUD
     /// </summary>
