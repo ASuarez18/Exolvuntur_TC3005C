@@ -370,6 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 918cc4569d847aa44a4ace83712458a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
   _utilityData: []
   _utilities: []
   _utilitiesParent: {fileID: 4487842176282902967}
