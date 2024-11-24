@@ -14,6 +14,9 @@ namespace GamePlay.IA
         public List<Transform> spawnPoints;
         [SerializeField] private PUNEnemiesPools _enemiesPunPools;
 
+        //Pool de objetos para los enemigos
+        private PhotonView photonView;
+
         // Singleton
         private static PUNSpawnEnemyManager _instance;
         public static PUNSpawnEnemyManager Instance
@@ -38,19 +41,23 @@ namespace GamePlay.IA
             // Obtenemos el triangulado de la malla de navegación
             triangulation = UnityEngine.AI.NavMesh.CalculateTriangulation();
 
+            photonView = GetComponent<PhotonView>();
+
             // Buscamos el componente PUNEnemiesPools en la escena
             _enemiesPunPools = FindObjectOfType<PUNEnemiesPools>();
 
             // Solo el MasterClient inicializa el spawn de enemigos
             if (PhotonNetwork.IsMasterClient)
             {
-                SpawnEnemies();
+                photonView.RPC(nameof(SpawnEnemies), RpcTarget.AllBuffered);
+                //SpawnEnemies();
             }
         }
 
         /// <summary>
         /// Spawnea enemigos al inicio según las configuraciones.
         /// </summary>
+        [PunRPC]
         public void SpawnEnemies()
         {
             SpawnEnemyBatch(Kormos, EnemiesTypes.EnemyClass.Kormos);
