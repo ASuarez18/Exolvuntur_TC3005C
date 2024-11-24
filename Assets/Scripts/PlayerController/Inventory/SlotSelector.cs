@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using ScriptableObjects;
+using Photon.Pun;
 // using Photon.Pun;
 
 namespace PlayerController.Inventory
@@ -10,7 +11,7 @@ namespace PlayerController.Inventory
     /// <summary>
     /// Class in charge of the slot selector in the inventory of the player
     /// </summary>
-    public class SlotSelector : MonoBehaviour //PunCallbacks
+    public class SlotSelector : MonoBehaviourPunCallbacks
     {
         [SerializeField] private Animator _animator;
         // Slot data structure to store the object model
@@ -39,6 +40,8 @@ namespace PlayerController.Inventory
 
         private GameObject[] collectables;
         private int currentCollectableIndex = 0;
+
+        private GameObject currentObjectInteracted;
         // Current slot index
         public int _currentSlotIndex;
 
@@ -61,10 +64,11 @@ namespace PlayerController.Inventory
         private void Start()
         {
             // Enables or disables this component based on the player's ownership
-            //enabled = photonView.IsMine;
+            enabled = photonView.IsMine;
 
             // Change the weapon in all clients
             //photonView.RPC(nameof(PUNChangeUtility), RpcTarget.All, _currentSlotIndex);
+            
             hudSlots = new Image[MAX_SLOTS];
             collectables = GameObject.FindGameObjectsWithTag("Collectable");
             GameObject HUDReference = GameObject.Find("Canvas_HUDobjs");
@@ -87,6 +91,7 @@ namespace PlayerController.Inventory
         private void Update()
         {
            
+            if(!enabled) return;
 
             // Change the slot with mouse wheel
             if (Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -123,6 +128,10 @@ namespace PlayerController.Inventory
 
         public void CollectObject(GameObject currentCollectable)
         {
+            if (!enabled) return;
+
+            //currentObjectInteracted = currentCollectable;
+
             if (collectables.Length == 0) return;
 
             if (_utilities.Length >= MAX_SLOTS)
@@ -148,10 +157,15 @@ namespace PlayerController.Inventory
             };
 
             // Emparenta el objeto con el objeto padre
-            currentCollectable.GetComponent<Seguro>().bloqueado = false;
-            currentCollectable.GetComponent<Seguro>().anim = _animator;
-            currentCollectable.transform.SetParent(_inventoryOwnPoint);
-            currentCollectable.transform.localPosition = Vector3.zero;
+            if(currentCollectable.TryGetComponent<Seguro>(out Seguro seguro))
+            {
+                seguro.bloqueado = false;
+                seguro.anim = _animator;
+
+            }
+
+            photonView.RPC(nameof(ParentObjet),RpcTarget.All, currentCollectable.name);
+            
 
             // Actualiza el índice para el siguiente objeto
             currentCollectableIndex = (currentCollectableIndex + 1) % collectables.Length;
@@ -159,11 +173,24 @@ namespace PlayerController.Inventory
             UpdateHUD();
         }
 
+        [PunRPC]
+        public void ParentObjet(string objectName)
+        {
+            Debug.LogWarning("Nombre: " + objectName);
+            GameObject collectableObject = GameObject.Find(objectName);
+            //Debug.LogWarning("Previo a emparentado: " + collectableObject.transform.parent.name);
+            collectableObject.transform.SetParent(_inventoryOwnPoint);
+            Debug.LogWarning("Posterior a emparentado: " + collectableObject.transform.parent.name);
+
+            collectableObject.transform.localPosition = Vector3.zero;
+        } 
+
         /// <summary>
         /// Method to change the slot of the inventory
         /// </summary>
         private void ChangeSlot()
         {
+            if (!enabled) return;
             if (_utilities.Length == 0) return;
 
             if (_currentSlotIndex < 0)

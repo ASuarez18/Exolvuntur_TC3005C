@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2891816891147515072}
   - component: {fileID: 6179471600525491980}
   - component: {fileID: 1587824365871204268}
+  - component: {fileID: 4798172731217294145}
   m_Layer: 0
   m_Name: ObjectoMaldito2
   m_TagString: Collectable
@@ -148,6 +149,18 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &4798172731217294145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6674536571372942642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d67bf65829025b4cbb8076ee97e9c25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1722242271716371096
 PrefabInstance:
   m_ObjectHideFlags: 0

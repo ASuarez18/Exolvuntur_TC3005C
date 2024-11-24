@@ -36,5 +36,10 @@ namespace Puzzles.CandlePuzzle
             //gameObject.transform.GetComponentInParent<CandleManager>().candles.Add(gameObject.transform.GetChild(0).gameObject); //A�adimos esta flama como gameObject a un arreglo dentro del controlador del puzzle de velas para verificar si el jugador realiza el encendido de las velas por completo
 
         }
+
+        public void InteractObject(GameObject player)
+        {
+            
+        }
     }
 }
