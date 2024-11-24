@@ -34,10 +34,13 @@ public class EnemiesInterfaceFactory : MonoBehaviour
       switch(_enemyClass)
       {
          case EnemiesTypes.EnemyClass.Kormos:
+            Debug.Log("Kormos" + enemies.ToString());
             return Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
          case EnemiesTypes.EnemyClass.Skinwalker:
+            Debug.Log("Skin" + enemies.ToString());
             return Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
          case EnemiesTypes.EnemyClass.Dybbuk:
+            Debug.Log("Dybbuk" + enemies.ToString());
             return Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
          default:
             Debug.LogError("Enemy class not found");

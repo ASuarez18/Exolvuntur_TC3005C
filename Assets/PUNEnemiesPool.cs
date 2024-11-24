@@ -56,11 +56,8 @@ namespace GamePlay.IA
             }
         }
 
-        // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
-
-
             //Incializamos el diccionario
             _enemiesFactoryInstance = new Dictionary<EnemiesTypes.EnemyClass, Func<GameObject>>()
             {
@@ -89,16 +86,11 @@ namespace GamePlay.IA
         //Creamos una funcion para iniicializar el pool generico de enemigos (RPC)
         private ObjectPool<GameObject> InitializePool(EnemiesTypes.EnemyClass enemyClass, int size)
         {
+            Debug.Log(enemyClass + " pool " + size );
             //Inicializamos el pool de objetos
             return new ObjectPool<GameObject>(
                 //Funcion para crear un nuevo objeto
-                createFunc: () => 
-                {
-                    GameObject enemy = _enemiesFactoryInstance[enemyClass]();
-                    enemy.SetActive(false);
-                    enemy.transform.parent = this.transform;
-                    return enemy;
-                },
+                createFunc: () => _enemiesFactoryInstance[enemyClass](),
                 //Funcion para activar un objeto
                 actionOnGet: enemy => enemy.SetActive(true),
                 //Funcion para desactivar un objeto
@@ -111,6 +103,7 @@ namespace GamePlay.IA
                 actionOnDestroy: enemy => Destroy(enemy),
                 //Tamaño maximo del pool
                 maxSize: size
+                
                 );
         }
 
@@ -131,11 +124,17 @@ namespace GamePlay.IA
             switch (enemyClass)
             {
                 case EnemiesTypes.EnemyClass.Kormos:
-                    return KormosPool.Get();;
+                    GameObject kormos = KormosPool.Get();
+                    kormos.transform.SetParent(transform);
+                    return kormos;
                 case EnemiesTypes.EnemyClass.Skinwalker:
-                    return SkinwalkerPool.Get();
+                    GameObject skinwalker = SkinwalkerPool.Get();
+                    skinwalker.transform.SetParent(transform);
+                    return skinwalker;
                 case EnemiesTypes.EnemyClass.Dybbuk:
-                    return DybbukPool.Get();
+                    GameObject dybbuk = DybbukPool.Get();
+                    dybbuk.transform.SetParent(transform);
+                    return dybbuk;
                 default:
                     return null;
             }
