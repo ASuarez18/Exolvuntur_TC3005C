@@ -30,7 +30,8 @@ namespace PlayerController.Inventory
         [SerializeField] private UtilityData[] _utilities = new UtilityData[0];
 
         // Parent object to store the utilities
-        public Transform _utilitiesParent;
+        public Transform _inventoryOwnPoint;
+        public Transform _inventoryNetworkPoint;
 
         // Delegate for the slot change event
         public delegate void OnSlotChanged(UtilityScriptableObject utility);
@@ -78,6 +79,8 @@ namespace PlayerController.Inventory
                 
             }
             Debug.LogError("Numero de childs con image" + hudSlots.Length);
+
+            
         }
         
 
@@ -147,7 +150,7 @@ namespace PlayerController.Inventory
             // Emparenta el objeto con el objeto padre
             currentCollectable.GetComponent<Seguro>().bloqueado = false;
             currentCollectable.GetComponent<Seguro>().anim = _animator;
-            currentCollectable.transform.SetParent(_utilitiesParent);
+            currentCollectable.transform.SetParent(_inventoryOwnPoint);
             currentCollectable.transform.localPosition = Vector3.zero;
 
             // Actualiza el índice para el siguiente objeto
