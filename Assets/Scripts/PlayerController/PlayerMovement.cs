@@ -1,5 +1,6 @@
 using UnityEngine;
 using Interfaces;
+using Photon.Pun.Demo.Cockpit;
 
 namespace PlayerController
 {
@@ -31,6 +32,8 @@ namespace PlayerController
                 groundMask = groundLayerMask;
 
                 //Nuevo animador
+
+                
                 _animator = controller.GetComponent<Animator>();
                 //_animator.Animator = controller.GetComponentInChildren<Animator>();
             }

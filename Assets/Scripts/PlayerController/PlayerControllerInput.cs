@@ -19,6 +19,7 @@ namespace PlayerController
 
         [SerializeField] private Transform _inventoryPOV;
 
+
         //Vector de la vista
         Vector2 CameraView;
         //Vector del movimento
@@ -35,6 +36,7 @@ namespace PlayerController
         {
 
             enabled = photonView.IsMine;
+            
 
             if (enabled)
             {
