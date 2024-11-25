@@ -1101,6 +1101,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2447440660291098512, guid: 442652a8dd9b2bc49b236620a38bbf00,
+        type: 3}
+      propertyPath: MaxDistance
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 2456422669065770751, guid: 442652a8dd9b2bc49b236620a38bbf00,
         type: 3}
       propertyPath: m_Layer
