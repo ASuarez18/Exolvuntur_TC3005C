@@ -71,13 +71,8 @@ namespace GamePlay.IA
             //El master Cliente inicializa cada uno de los pool de enemigos con el pool generico
             if(PhotonNetwork.IsMasterClient)
             {
-                //Inicializamos el pool de enemigos
-                KormosPool = InitializePool(EnemiesTypes.EnemyClass.Kormos, KormosEnemies);
-                SkinwalkerPool = InitializePool(EnemiesTypes.EnemyClass.Skinwalker, SkinwalkerEnemies);
-                DybbukPool = InitializePool(EnemiesTypes.EnemyClass.Dybbuk, DybbukEnemies);
-
                 //Sincronizamos los pool de enemigos en la red
-                photonView.RPC(nameof(SyncronizedPools), RpcTarget.OthersBuffered);
+                photonView.RPC(nameof(InitializeSyncronizedPools), RpcTarget.AllBuffered);
 
             }
         }
@@ -94,11 +89,7 @@ namespace GamePlay.IA
                 //Funcion para activar un objeto
                 actionOnGet: enemy => enemy.SetActive(true),
                 //Funcion para desactivar un objeto
-                actionOnRelease: enemy => 
-                {
-                    enemy.SetActive(false);
-                    enemy.transform.position = this.transform.position;
-                },
+                actionOnRelease: enemy => enemy.SetActive(false),
                 //Funcion para destruir un objeto
                 actionOnDestroy: enemy => Destroy(enemy),
                 //Tamaño maximo del pool
@@ -109,7 +100,7 @@ namespace GamePlay.IA
 
         [PunRPC]
         //Creamos una funcion para sincronizar la creacion de enemigos en la red (RPC)
-        public void SyncronizedPools()
+        public void InitializeSyncronizedPools()
         {
             //Inicializamos el pool de enemigos
             KormosPool = InitializePool(EnemiesTypes.EnemyClass.Kormos, KormosEnemies);

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
+
 
 namespace Enemy.Behaviour 
 {
@@ -22,6 +24,7 @@ namespace Enemy.Behaviour
             //Inicializa el estado
             public override void EnterState()
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 // ! Aumentar la velocidad al doble
                 kormosSM.currentSpeed += kormosSM.currentSpeed;
                 kormosSM.currentRunningSpeed += kormosSM.currentRunningSpeed;
@@ -44,6 +47,7 @@ namespace Enemy.Behaviour
             //Actualiza el estado en el Update del MonoBehaviour
             public override void UpdateState()
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 //Actualizamos la posicion del agente al destino
                 manager.agent.SetDestination(kormosSM.actualTarget);
                 // Debug.Log(manager.agent.remainingDistance);
@@ -55,7 +59,7 @@ namespace Enemy.Behaviour
                 }
             
                 //Revisamos su siguientes estados
-                GetNextState();
+                //GetNextState();
             }
 
             public override void ExitState()
@@ -66,6 +70,7 @@ namespace Enemy.Behaviour
             //Funcion que revisa si entra en el flujo de un estado o no
             public override KormosStateMachine.EnemyState GetNextState()
             {
+                if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Scape;
                 if(kormosSM.IsStunned)
                 {
                     // ! Manda a estado de stunneado
@@ -94,6 +99,7 @@ namespace Enemy.Behaviour
 
             public override void OnAreaExit(Collider other)
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 if (other.gameObject.tag == "Player")
                 {
                     kormosSM.PlayerOnAreaFar = false;

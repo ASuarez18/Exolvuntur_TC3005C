@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 namespace Enemy.Behaviour
 {
@@ -69,6 +70,8 @@ namespace Enemy.Behaviour
                 state.Add(EnemyState.Dead, new DybbukDead(manager,this));
 
                 currentState = state[EnemyState.Idle];
+
+                photonView = GetComponent<PhotonView>();
 
                 //Inicializamos las estadisticas
                 currentSpeed = manager.enemyStats.Speed;

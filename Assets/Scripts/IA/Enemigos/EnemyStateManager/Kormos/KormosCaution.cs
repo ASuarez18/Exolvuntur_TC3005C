@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 /// <summary>
 /// El estado de alerta detiene el movimiento del enemigo.
@@ -27,6 +28,7 @@ namespace Enemy.Behaviour
         //Inicializamos el estado
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Detenemos el movimiento del agente
             manager.agent.isStopped = true;
             manager.animator.SetTrigger("alerta");
@@ -35,18 +37,15 @@ namespace Enemy.Behaviour
         //Actualizamos el estado en el Update del Monobehaviour
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             // Update aggressivenes time counter
             kormosSM.UpdateAgressiveCounter();
-
-            // Debug.LogWarning(kormosSM.AgressiveCounter);
-
-            //Revisamos los estados
-            GetNextState();
         }
 
         //Salimos del estado
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             manager.agent.isStopped = false;
             kormosSM.AgressiveCounter = 0f;
         }
@@ -54,6 +53,7 @@ namespace Enemy.Behaviour
         //Revisamos el siguiente estado a partir de las condiciones de la bandera y el contador agresivo
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Caution;
             //Si el jugador sale del area o se encuentra en el area lejano
             if(kormosSM.IsStunned)
             {
@@ -88,7 +88,8 @@ namespace Enemy.Behaviour
         }
 
         public override void OnAreaExit(Collider other)
-        {       
+        {   
+            if(!PhotonNetwork.IsMasterClient) return;    
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerOnAreaFar = false;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Photon.Pun;
 
 /// <summary>
 /// Creamos una interfaz que permita crear distintas clases de enemigos.
@@ -35,13 +36,13 @@ public class EnemiesInterfaceFactory : MonoBehaviour
       {
          case EnemiesTypes.EnemyClass.Kormos:
             Debug.Log("Kormos" + enemies.ToString());
-            return Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
+            return PhotonNetwork.Instantiate(_enemyPrefabs[_enemyClass].name, enemies, rotation);
          case EnemiesTypes.EnemyClass.Skinwalker:
             Debug.Log("Skin" + enemies.ToString());
-            return Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
+            return PhotonNetwork.Instantiate(_enemyPrefabs[_enemyClass].name, enemies, rotation);
          case EnemiesTypes.EnemyClass.Dybbuk:
             Debug.Log("Dybbuk" + enemies.ToString());
-            return Instantiate(_enemyPrefabs[_enemyClass], enemies, rotation);
+            return PhotonNetwork.Instantiate(_enemyPrefabs[_enemyClass].name, enemies, rotation);
          default:
             Debug.LogError("Enemy class not found");
             return null;

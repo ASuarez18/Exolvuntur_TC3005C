@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
+
 
 namespace Enemy.Behaviour 
 {
@@ -22,24 +24,26 @@ namespace Enemy.Behaviour
             //Inicializa el estado
             public override void EnterState()
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 //Detenemos el movimiento del agente dado que esta en stunneado
                 manager.agent.isStopped = true;
 
-            //Inicializamos la animacion de curacion
-            //Debug.Log("heal");
-            manager.animator.SetFloat("forward", 0);
+                //Inicializamos la animacion de curacion
+                //Debug.Log("heal");
+                manager.animator.SetFloat("forward", 0);
         }
 
             //Actualiza el estado en el Update del MonoBehaviour
             public override void UpdateState()
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 kormosSM.HealOverTime();
-                //Revisamos su siguientes estados
-                GetNextState();
+
             }
 
             public override void ExitState()
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 // Se permite que el enemigo vuelva a moverse al terminarse el estado de aturdimiento
                 manager.agent.isStopped = false;
             }
@@ -47,14 +51,11 @@ namespace Enemy.Behaviour
             //Funcion que revisa si entra en el flujo de un estado o no
             public override KormosStateMachine.EnemyState GetNextState()
             {
-                // if (kormosSM.IsStunned)
-                // {
-                //     return KormosStateMachine.EnemyState.Stunned;
-                // }
-                //*Revisamos si la bandera activa otro estado
+        
+                if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Heal;
+
                 if (kormosSM.currentHealth >= manager.enemyStats.Health)
                 {
-                    // ! Termina de curarse, manda a estado de idle
                     return KormosStateMachine.EnemyState.Idle;
                 }
                 return KormosStateMachine.EnemyState.Heal;
@@ -74,6 +75,8 @@ namespace Enemy.Behaviour
 
             public override void OnAreaExit(Collider other)
             {
+                if(!PhotonNetwork.IsMasterClient) return;
+
                 if (other.gameObject.tag == "Player")
                 {
                     kormosSM.PlayerOnAreaFar = false;

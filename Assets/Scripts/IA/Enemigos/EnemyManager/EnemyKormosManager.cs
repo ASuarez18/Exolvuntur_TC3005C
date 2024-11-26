@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Enemy.Behaviour;
 using Enemy.Stats;
+using Photon.Pun;
 
 namespace Enemy.Manager
 {
@@ -13,7 +14,7 @@ namespace Enemy.Manager
     /// </summary>
     public class EnemyKormosManager : MonoBehaviour
     {
-        
+
         //Atributos de AI
         [SerializeField] public NavMeshAgent agent;
         [SerializeField] public KormosStateMachine enemyMachine;
@@ -21,6 +22,9 @@ namespace Enemy.Manager
 
         //Atrivutos de sensores
         public SphereCollider areaAlerta;
+
+        //Atributos de sincronizacion en red
+        public PhotonView photonView;
 
         //Atrivutos de estadisticas
         [SerializeField] public EnemyScriptableObject enemyStats;
@@ -59,13 +63,35 @@ namespace Enemy.Manager
 
         void Start()
         {
+            
             //Accedemos al hijo y obtenemos el componenete de collider
             areaAlerta = transform.GetChild(0).GetComponent<SphereCollider>();
             areaAlerta.radius = enemyStats.ViewRange;
 
+            //Inicializamos su photon view
+            photonView = GetComponent<PhotonView>();
+
             //Ejecutamos el primer estado de nuestra maquina de estados
             enemyMachine.SwitchCase(KormosStateMachine.EnemyState.Idle);
-        }        
+
+            // if(PhotonNetwork.IsMasterClient)
+            // {
+            //     //Lanzamos el evento para que todos los clientes se sincronizen con el estado inicial
+            //     PhotonNetwork.RPC(PhotonTargets.AllBuffered,nameof(SyncEnemyState), enemyMachine.currentState);
+            // }
+            // else
+            // {
+            //     //Desactivamos el componente de NavMeshAgent
+            //     agent.enabled = false;
+            // }
+        }
+
+        //Creamos un RPC para que el master sincronice la maquina de estados del enemigo con los demas clientes
+        // [PunRPC]
+        // public void SyncEnemyState(KormosStateMachine.EnemyState state)
+        // {
+        //     enemyMachine.SwitchCase(state);
+        // }        
 
     }
 }

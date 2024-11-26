@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
 using PlayerController.PUN;
+using Photon.Pun;
 
 namespace Enemy.Behaviour
 {
@@ -72,6 +73,8 @@ namespace Enemy.Behaviour
             state.Add(EnemyState.Dead, new SkinwalkerDead(manager,this));
 
             currentState = state[EnemyState.Idle];
+
+            photonView = GetComponent<PhotonView>();
 
             //Inicializamos las estadisticas
             currentSpeed = manager.enemyStats.Speed;

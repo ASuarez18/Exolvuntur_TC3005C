@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
+
 
 namespace Enemy.Behaviour
 {
@@ -19,6 +21,7 @@ namespace Enemy.Behaviour
 
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Detenemos el movimiento del agente
             manager.agent.isStopped = true;
 
@@ -41,6 +44,7 @@ namespace Enemy.Behaviour
 
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Obtenemos la funcion de Update Aggresive Counter
             kormosSM.UpdateAggressiveDuration();
             // Debug.LogWarning(kormosSM.AggresiveDuration);
@@ -48,6 +52,7 @@ namespace Enemy.Behaviour
 
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             kormosSM.AgressiveCounter = 0f;
             kormosSM.AggresiveDuration = 0f;
             manager.agent.isStopped = false;
@@ -55,6 +60,7 @@ namespace Enemy.Behaviour
 
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Aggresive;
             if(kormosSM.AggresiveDuration >= manager.enemyStats.AggroDuration)
             {
                 return KormosStateMachine.EnemyState.Chasing;
@@ -75,6 +81,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerOnAreaFar = false;

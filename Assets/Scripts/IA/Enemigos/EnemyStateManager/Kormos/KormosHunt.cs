@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
 using GamePlay.IA;
+using Photon.Pun;
 
 ///<summary>
 ///El estado de caza se activa con reaccion al sonido.
@@ -30,12 +31,14 @@ namespace Enemy.Behaviour
         //Inicializmos el estado
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             
         }
 
         //Actualizamos el estado en el Update
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Asiganmos el destino a la posicion del sonido
             manager.agent.SetDestination(kormosSM.actualTarget);
             
@@ -56,12 +59,13 @@ namespace Enemy.Behaviour
             }
 
             //Verificamos si entra a otro estados
-            GetNextState();
+            //GetNextState();
         }
 
         //Salimos del estado
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             onDestination = false;
             kormosSM.SoundDetected = false;
         }
@@ -69,6 +73,7 @@ namespace Enemy.Behaviour
         //Funcion que conecta con otros estados
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Hunt;
             //Si el jugador se encuentra en el segundo rango entra en ataque
             if(kormosSM.IsStunned)
             {
@@ -91,6 +96,7 @@ namespace Enemy.Behaviour
         //Metodos de cambio de flujo del estado
         public void Hunt(SoundGame sound)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Actualizamos la posicion del sonido
             kormosSM.actualTarget = sound.pos;
         }
@@ -102,7 +108,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaStay(Collider other)
         {  
-            
+            if(!PhotonNetwork.IsMasterClient) return;
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerPosition = other.transform.position;
@@ -111,6 +117,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {  
+            if(!PhotonNetwork.IsMasterClient) return;
             //Verificamos que el objeto tenga el tag de player
             if (other.gameObject.tag == "Player")
             {
