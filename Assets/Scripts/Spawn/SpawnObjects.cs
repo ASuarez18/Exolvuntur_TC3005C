@@ -13,6 +13,7 @@ public class SpawnObjects : MonoBehaviourPunCallbacks
     /// </summary>
     void Start()
     {
+        if (!PhotonNetwork.IsMasterClient) return;
         //list of available
         List<Transform> availableSpawnPoints = new List<Transform>(spawnPoints);
 
@@ -34,7 +35,7 @@ public class SpawnObjects : MonoBehaviourPunCallbacks
             //remove the spawn point from the list
             availableSpawnPoints.RemoveAt(randomIndex);
         }
-
+        /*
         while (availableSpawnPoints.Count > 0)
         {
             //choose a random spawn point
@@ -48,7 +49,7 @@ public class SpawnObjects : MonoBehaviourPunCallbacks
             //remove the spawn point from the list
             availableSpawnPoints.RemoveAt(randomIndex);
         }
-   
+   */
     }
 
 }

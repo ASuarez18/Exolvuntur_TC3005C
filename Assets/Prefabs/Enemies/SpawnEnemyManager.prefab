@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4360090390333801655}
   - component: {fileID: 2919391882570963360}
+  - component: {fileID: 8857303051815274175}
+  - component: {fileID: 251312827145065187}
   m_Layer: 0
   m_Name: SpawnEnemyManager
   m_TagString: Untagged
@@ -44,8 +46,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9c2e4eb90f6044aa8e215363db22dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetPoints: []
-  _enemyFactory: {fileID: 0}
+  _patrolPoints: []
   Kormos: 0
   Skinwalker: 0
   Dybbuk: 0
+  spawnPoints: []
+  _enemiesPunPools: {fileID: 0}
+--- !u!114 &8857303051815274175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872167629950398818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 251312827145065187}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &251312827145065187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3872167629950398818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 0
+  m_SynchronizeScale: 0
+  m_UseLocal: 1

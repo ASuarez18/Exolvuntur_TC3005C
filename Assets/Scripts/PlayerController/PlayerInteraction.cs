@@ -19,7 +19,7 @@ namespace PlayerController
             _mainCamera = Camera.main;
             interactText = GameObject.Find("HUD_Interaction").GetComponent<CanvasGroup>();
             interactText.alpha = 0f;
-            Debug.LogError(interactText);
+            //Debug.LogError(interactText);
         }
 
         private void Update()
@@ -57,7 +57,7 @@ namespace PlayerController
                     interactText.alpha = 1f;
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        interactableObject.InteractObject();
+                        interactableObject.InteractObject(this.gameObject);
                     }
                 }
                 else

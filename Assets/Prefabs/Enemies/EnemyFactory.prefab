@@ -44,6 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d3044a3b32e394384fbc2c140711be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _kormosPrefab: {fileID: 0}
-  _skinwalkerPrefab: {fileID: 0}
-  _dybbukPrefab: {fileID: 0}
+  _kormosPrefab: {fileID: 5028084269882181368, guid: f04476fbe4ff10f41a880e4b8b95b9b9,
+    type: 3}
+  _skinwalkerPrefab: {fileID: 6658961073227572184, guid: 27a568ac15500844196cd591fd4aa5a0,
+    type: 3}
+  _dybbukPrefab: {fileID: 1416712234999444817, guid: 7be42126ed7188948ae238900250f2dc,
+    type: 3}
