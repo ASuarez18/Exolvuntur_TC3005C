@@ -203,7 +203,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3449578737731025316}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 11006e0deba1090419e9bb5352377f33, type: 3}
+  m_Avatar: {fileID: 9000000, guid: b484eeefe663bc44a82cf65966632966, type: 3}
   m_Controller: {fileID: 9100000, guid: 9ea8a70733e25b74fbdcac35a53d9d1d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -385,6 +385,15 @@ MonoBehaviour:
   - Type: 9
     SynchronizeType: 2
     Name: crucifijo
+  - Type: 9
+    SynchronizeType: 0
+    Name: hit
+  - Type: 9
+    SynchronizeType: 0
+    Name: heal
+  - Type: 4
+    SynchronizeType: 0
+    Name: healing
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0

@@ -91,7 +91,7 @@ namespace PlayerController.Inventory
         private void Update()
         {
            
-            if(!enabled) return;
+            //if(!enabled) return;
 
             // Change the slot with mouse wheel
             if (Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -102,7 +102,8 @@ namespace PlayerController.Inventory
                 {
                     _currentSlotIndex = 0;
                 }
-                ChangeSlot();
+                photonView.RPC(nameof(ChangeWeapon),RpcTarget.All, _currentSlotIndex);
+                //ChangeSlot();
             }
             else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
             {
@@ -112,7 +113,8 @@ namespace PlayerController.Inventory
                     _currentSlotIndex = _utilities.Length - 1;
                 }
                 //photonView.RPC(nameof(PUNChangeUtility), RpcTarget.All, _currentSlotIndex);
-                ChangeSlot();
+                 photonView.RPC(nameof(ChangeWeapon),RpcTarget.All, _currentSlotIndex);
+                //ChangeSlot();
             }
 
             // Select the slot with the number keys
@@ -121,7 +123,8 @@ namespace PlayerController.Inventory
                 if (Input.GetKeyDown(i.ToString()))
                 {
                     _currentSlotIndex = i - 1;
-                    ChangeSlot();
+                     photonView.RPC(nameof(ChangeWeapon),RpcTarget.All, _currentSlotIndex);
+                    //ChangeSlot();
                 }
             }
         }
@@ -185,12 +188,23 @@ namespace PlayerController.Inventory
             collectableObject.transform.localPosition = Vector3.zero;
         } 
 
+        [PunRPC]
+        public void ChangeWeapon(int currentObjSlot)
+        {
+            _currentSlotIndex = currentObjSlot;
+
+            Debug.LogWarning("Cambio de arma: " + _currentSlotIndex);
+
+            ChangeSlot();
+        } 
+
         /// <summary>
         /// Method to change the slot of the inventory
         /// </summary>
         private void ChangeSlot()
         {
-            if (!enabled) return;
+            //if (!enabled) return;
+            Debug.LogWarning("Tamaño de armas:" + _utilities.Length);
             if (_utilities.Length == 0) return;
 
             if (_currentSlotIndex < 0)
