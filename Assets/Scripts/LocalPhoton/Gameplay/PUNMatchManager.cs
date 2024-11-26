@@ -313,7 +313,7 @@ namespace LocalPhoton.Gameplay
             PhotonNetwork.RaiseEvent(
                 (byte)PUNEventCodes.EventCodes.UpdateStat,
                 data,
-                new RaiseEventOptions { Receivers = ReceiverGroup.All },
+                new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient },
                 new SendOptions { Reliability = true }
             );
         }

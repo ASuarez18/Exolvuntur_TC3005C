@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ScriptableObjects;
 using Photon.Pun;
+using LocalPhoton.Gameplay;
 // using Photon.Pun;
 
 namespace PlayerController.Inventory
@@ -53,8 +54,9 @@ namespace PlayerController.Inventory
         /// <summary>
         /// Method to enable the component
         /// </summary>
-        void OnEnable()
+        public override void OnEnable()
         {
+            base.OnEnable();
             // enabled = photonView.IsMine;
             ChangeSlot();
         }
@@ -131,7 +133,7 @@ namespace PlayerController.Inventory
 
         public void CollectObject(GameObject currentCollectable)
         {
-            if (!enabled) return;
+            //if (!enabled) return;
 
             //currentObjectInteracted = currentCollectable;
 
@@ -143,6 +145,11 @@ namespace PlayerController.Inventory
                 return;
             }
 
+            if(currentCollectable.transform.tag == "Finish"){
+                PUNMatchManager.Instance.UpdateStatSent(0, PUNEventCodes.PlayerStats.TotalObjects ,1);
+            }
+            
+
             //GameObject currentCollectable = collectables[currentCollectableIndex];
             SpriteRenderer _spriteRenderer = currentCollectable.GetComponent<SpriteRenderer>();
 
@@ -152,12 +159,7 @@ namespace PlayerController.Inventory
                 return;
             }
 
-            Array.Resize(ref _utilities, _utilities.Length + 1);
-            _utilities[_utilities.Length - 1] = new UtilityData
-            {
-                utilityInstance = currentCollectable,
-                utilitySprite = currentCollectable.GetComponent<SpriteRenderer>().sprite
-            };
+            photonView.RPC(nameof(ParentObjet),RpcTarget.All, currentCollectable.name);
 
             // Emparenta el objeto con el objeto padre
             if(currentCollectable.TryGetComponent<Seguro>(out Seguro seguro))
@@ -167,7 +169,7 @@ namespace PlayerController.Inventory
 
             }
 
-            photonView.RPC(nameof(ParentObjet),RpcTarget.All, currentCollectable.name);
+            
             
 
             // Actualiza el índice para el siguiente objeto
@@ -176,12 +178,22 @@ namespace PlayerController.Inventory
             UpdateHUD();
         }
 
+
         [PunRPC]
         public void ParentObjet(string objectName)
         {
             Debug.LogWarning("Nombre: " + objectName);
+            
             GameObject collectableObject = GameObject.Find(objectName);
             //Debug.LogWarning("Previo a emparentado: " + collectableObject.transform.parent.name);
+
+            Array.Resize(ref _utilities, _utilities.Length + 1);
+            _utilities[_utilities.Length - 1] = new UtilityData
+            {
+                utilityInstance = collectableObject,
+                utilitySprite = collectableObject.GetComponent<SpriteRenderer>().sprite
+            };
+
             collectableObject.transform.SetParent(_inventoryOwnPoint);
             Debug.LogWarning("Posterior a emparentado: " + collectableObject.transform.parent.name);
 
@@ -226,7 +238,10 @@ namespace PlayerController.Inventory
 
             _utilities[_currentSlotIndex].utilityInstance.SetActive(true);
 
-            UpdateHUD();
+            if(photonView.IsMine){
+                UpdateHUD();
+            }
+            
         }
 
         private void UpdateHUD()
