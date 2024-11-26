@@ -31,6 +31,7 @@ namespace PlayerController
         [SerializeField] private float soundRage = 200.0f; //Distancia en metros en la que el jugador escucha el sonido de pasos
         //Controlador de audio
         //private AudioController audioController ;
+        [SerializeField] private Avatar _playerAvatar;
 
         void Start()
         {
@@ -41,7 +42,12 @@ namespace PlayerController
             if (enabled)
             {
                 /*_playerModel.SetActive(false)*/;
+                
                
+            }else{
+                this.transform.GetChild(0).gameObject.SetActive(false);
+                this.transform.GetChild(1).gameObject.SetActive(true);
+                GetComponent<CharacterController>().GetComponent<Animator>().avatar = _playerAvatar;
             }
             //Instanciamos un nuevo objeto de tipo Player y su constructor
             character = new PlayerMovement(GetComponent<CharacterController>(), groundMask);
