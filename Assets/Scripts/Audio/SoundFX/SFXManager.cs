@@ -14,7 +14,7 @@ namespace Audio.SoundFX
     public class SFXManager : MonoBehaviour
     {
         // Singletoning the SFXManager
-        public static SFXManager instance;
+        public SFXManager instance;
 
         [SerializeField] private AudioSource soundFXObject;
 
