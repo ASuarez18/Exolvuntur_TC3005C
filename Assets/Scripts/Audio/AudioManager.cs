@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource idleAudioSource;
     [SerializeField] private AudioClip[] _stepsSFX;
     [SerializeField] private AudioClip[] _attackSFX;
+    [SerializeField] private AudioClip[] _damageSFX;
     [SerializeField] private AudioClip _agressiveSFX;
     [SerializeField] private AudioClip _deathSFX;
     [SerializeField] private AudioClip _scratchingSFX;
@@ -25,6 +26,12 @@ public class AudioManager : MonoBehaviour
     {
         AudioClip _currentAttack = _attackSFX[Random.Range(0, _attackSFX.Length)];
         PlayAttackClip(_currentAttack);
+    }
+
+    public void PlayDamageSFX()
+    {
+        AudioClip _currentDamage = _damageSFX[Random.Range(0, _damageSFX.Length)];
+        PlayDamageClip(_currentDamage);
     }
 
     public void PlayClip(AudioClip clip)
@@ -70,5 +77,10 @@ public class AudioManager : MonoBehaviour
     public void PlayExhaleSFX()
     {
         PlayClip(_exhaleSFX);
+    }
+
+    public void PlayDamageClip(AudioClip clip)
+    {
+        idleAudioSource.PlayOneShot(clip);
     }
 }
