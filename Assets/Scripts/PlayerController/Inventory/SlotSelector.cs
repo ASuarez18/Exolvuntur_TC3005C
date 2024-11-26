@@ -153,6 +153,7 @@ namespace PlayerController.Inventory
             //GameObject currentCollectable = collectables[currentCollectableIndex];
             SpriteRenderer _spriteRenderer = currentCollectable.GetComponent<SpriteRenderer>();
 
+            // Si no hay un objeto en el slot 
             if (_spriteRenderer == null)
             {
                 Debug.LogError($"No SpriteRenderer found on {currentCollectable.name}");
