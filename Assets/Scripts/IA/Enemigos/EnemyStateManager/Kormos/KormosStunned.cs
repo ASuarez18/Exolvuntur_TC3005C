@@ -89,6 +89,8 @@ namespace Enemy.Behaviour
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerOnAreaFar = false;
+                kormosSM.PlayerPosition = Vector3.zero;
+                kormosSM.PlayerGameObject = null;
             }
         }
     }

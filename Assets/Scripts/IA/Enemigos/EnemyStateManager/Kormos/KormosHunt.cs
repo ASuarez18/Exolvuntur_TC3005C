@@ -112,6 +112,7 @@ namespace Enemy.Behaviour
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerPosition = other.transform.position;
+                kormosSM.PlayerGameObject = other.gameObject;
             }
         }
 
@@ -122,6 +123,8 @@ namespace Enemy.Behaviour
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerOnAreaFar = false;
+                kormosSM.PlayerPosition = Vector3.zero;
+                kormosSM.PlayerGameObject = null;
             }
         }
 

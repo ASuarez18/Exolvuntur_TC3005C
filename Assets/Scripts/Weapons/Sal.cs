@@ -58,15 +58,15 @@ public class Sal : MonoBehaviour, IInteraction
     {
         if(collision.collider.CompareTag("EnemyKormos"))
         {
-            collision.collider.GetComponent<EnemyKormosManager>().enemyMachine.ApplyStun();
+            collision.collider.GetComponent<EnemyKormosManager>().StunActive();
         }
         if(collision.collider.CompareTag("EnemyDybbuk"))
         {
-            collision.collider.GetComponent<EnemyDybbukManager>().enemyMachine.ApplyStun();
+            collision.collider.GetComponent<EnemyDybbukManager>().StunActive();
         }
         if(collision.collider.CompareTag("EnemySkinwalker"))
         {
-            collision.collider.GetComponent<EnemySkinWalkerManager>().enemyMachine.ApplyStun();
+            collision.collider.GetComponent<EnemySkinWalkerManager>().StunActive();
         }
 
     }

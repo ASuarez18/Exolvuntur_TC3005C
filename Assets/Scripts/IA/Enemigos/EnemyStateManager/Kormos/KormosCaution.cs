@@ -85,7 +85,12 @@ namespace Enemy.Behaviour
 
         public override void OnAreaStay(Collider other)
         {   
-
+            if(!PhotonNetwork.IsMasterClient) return;
+            if(other.gameObject.tag == "Player")
+            {
+                kormosSM.PlayerPosition = other.transform.position;
+                kormosSM.PlayerGameObject = other.gameObject;
+            }
         }
 
         public override void OnAreaExit(Collider other)
@@ -94,6 +99,8 @@ namespace Enemy.Behaviour
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerOnAreaFar = false;
+                kormosSM.PlayerPosition = Vector3.zero;
+                kormosSM.PlayerGameObject = null;
             }
         }
 

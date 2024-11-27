@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using PlayerController.PUN;
 using Photon.Pun;
 
 
@@ -31,6 +32,15 @@ namespace Enemy.Behaviour
             if(!PhotonNetwork.IsMasterClient) return;
             manager.agent.isStopped = true;
             manager.animator.SetTrigger("ataque");
+            //Generamos un overslpa sphere para detectar game objets con el tag player justo frente del nuestro transform
+            Collider[] hitColliders = Physics.OverlapSphere(new Vector3(manager.transform.position.x,manager.transform.position.y,manager.transform.position.z + 2), 5f);
+            foreach (var hitCollider in hitColliders)
+            {
+                if(hitCollider.gameObject.tag == "Player")
+                {
+                    hitCollider.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
+                }
+            }
         }
 
         //Actualizamos el estado en el Update
@@ -56,7 +66,7 @@ namespace Enemy.Behaviour
             {
                 return KormosStateMachine.EnemyState.Stunned;
             }
-            else if (kormosSM.TimeOfAttack >= 2)
+            else if (kormosSM.TimeOfAttack >= 2f)
             {
                 return KormosStateMachine.EnemyState.Chasing;
             }
@@ -72,7 +82,12 @@ namespace Enemy.Behaviour
 
         public override void OnAreaStay(Collider other)
         {
-            
+            if(!PhotonNetwork.IsMasterClient) return;
+            if(other.gameObject.tag == "Player")
+            {
+                kormosSM.PlayerPosition = other.transform.position;
+                kormosSM.PlayerGameObject = other.gameObject;
+            }
         }
 
         public override void OnAreaExit(Collider other)

@@ -59,18 +59,18 @@ public class biblia : MonoBehaviour, IInteraction
         {
             if (collider.TryGetComponent(out EnemyKormosManager enemyState))
             {
-                enemyState.enemyMachine.ApplyDamage(50);
+                enemyState.ApplyDamageRemote(50);
                 Debug.Log("enemyattack");
             }
 
             if (collider.TryGetComponent(out EnemyDybbukManager enemyState2))
             {
-                enemyState2.enemyMachine.ApplyDamage(50);
+                enemyState2.ApplyDamageRemote(50);
                 Debug.Log("enemyattack");
             }
             if (collider.TryGetComponent(out EnemySkinWalkerManager enemyState3))
             {
-                enemyState3.enemyMachine.ApplyDamage(50);
+                enemyState3.ApplyDamageRemote(50);
                 Debug.Log("enemyattack");
             }
         }

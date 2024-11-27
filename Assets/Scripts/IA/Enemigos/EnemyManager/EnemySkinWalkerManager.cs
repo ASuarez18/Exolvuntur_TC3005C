@@ -76,6 +76,31 @@ namespace Enemy.Manager
             //Ejecutamos el primer estado de nuestra maquina de estados
             enemyMachine.SwitchCase(SkinwalkerStateMachine.EnemyState.Idle);
             
-        }     
+        }    
+
+        #region Remote Procedural Calls (Interactions)
+
+        public void StunActive()
+        {
+            photonView.RPC(nameof(StunActiveSync), RpcTarget.MasterClient);
+        }
+        public void ApplyDamageRemote(int value)
+        {
+            photonView.RPC(nameof(SyncDamage), RpcTarget.MasterClient,value);
+        }
+
+        [PunRPC]
+        public void StunActiveSync()
+        {
+            enemyMachine.ApplyStun();
+        }
+    
+        [PunRPC]
+        public void SyncDamage(int value)
+        {
+            enemyMachine.ApplyDamage(value);
+        }
+
+        #endregion 
     }
 }

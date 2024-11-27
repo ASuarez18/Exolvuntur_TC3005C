@@ -479,6 +479,7 @@ GameObject:
   - component: {fileID: 6350303209052020714}
   - component: {fileID: 4792163142245813935}
   - component: {fileID: -3470050031304507990}
+  - component: {fileID: 6797040005577788736}
   m_Layer: 0
   m_Name: PlayerDayra
   m_TagString: Player
@@ -700,6 +701,20 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
+--- !u!114 &6797040005577788736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017930303069640840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b16582b8021ef847895dd81487b62c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSanity: 100
+  _hudPlayerSanity: {fileID: 0}
 --- !u!1 &8781495721562084711
 GameObject:
   m_ObjectHideFlags: 0

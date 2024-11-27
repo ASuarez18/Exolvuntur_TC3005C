@@ -22,6 +22,13 @@ namespace GamePlay.IA
             }
 
         }
+
+        //Dibujamos un wire esfera
+        public static void DrawWireSphere(Vector3 pos, float range)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(pos, range);
+        }
     }
 
 }

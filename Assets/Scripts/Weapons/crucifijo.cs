@@ -27,17 +27,17 @@ public class crucifijo : MonoBehaviour, IInteraction
             {
                 if (collider.TryGetComponent(out EnemyKormosManager enemyState))
                 { 
-                    enemyState.enemyMachine.ApplyDamage(10);
+                    enemyState.ApplyDamageRemote(20);
                     Debug.Log("enemyattack");
                 }
                 if (collider.TryGetComponent(out EnemyDybbukManager enemyState2))
                 {
-                    enemyState2.enemyMachine.ApplyDamage(10);
+                    enemyState2.ApplyDamageRemote(20);
                     Debug.Log("enemyattack");
                 }
                 if (collider.TryGetComponent(out EnemySkinWalkerManager enemyState3))
                 {
-                    enemyState3.enemyMachine.ApplyDamage(10);
+                    enemyState3.ApplyDamageRemote(20);
                     Debug.Log("enemyattack");
                 }
             }

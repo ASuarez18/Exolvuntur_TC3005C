@@ -38,6 +38,7 @@ namespace Enemy.Behaviour
             public bool SoundDetected { get; set; }
             public Vector3 actualTarget { get; set; }
             public Vector3 PlayerPosition{ get; set; }
+            public GameObject PlayerGameObject { get; set; }
             public float DistanceToPlayer { get; set; }
             public float AgressiveCounter { get; set; }
             public float AggresiveDuration { get; set; }
@@ -91,16 +92,13 @@ namespace Enemy.Behaviour
                 manager.agent.speed = currentSpeed;
                 manager.agent.acceleration = currentAcceleration;
 
-           
-
             }
 
 
 
-        //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
+            //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
             public override void OnTriggerEnter(Collider other)
             {
-                
                 base.OnTriggerEnter(other);
             }
             public override void OnTriggerStay(Collider other)
@@ -124,26 +122,12 @@ namespace Enemy.Behaviour
         #region State Transition
             internal void SwitchCase(EnemyState state)
             {
-            //     if (!PhotonNetwork.IsMasterClient)return;
-
-            //     photonView.RPC(nameof(SyncEnemyState), RpcTarget.AllBuffered state);
-                    TransitionToState(state);
+                TransitionToState(state);
             }
-
-            // [PunRPC]
-            // public void SyncEnemyState(EnemyState state)
-            // {
-            //     TransitionToState(state);
-            // }
             
         #endregion
 
         #region BehaviorFunctions
-        // public void UpdatePlayerPosition(Vector3 playerPosition)
-        // {
-        //     DistanceToPlayer = Vector3.Distance(transform.position, playerPosition);
-        //     Debug.Log("Distance" + DistanceToPlayer);
-        // }
         public void UpdateAgressiveCounter()
         {
             AgressiveCounter += Time.deltaTime;
@@ -157,8 +141,7 @@ namespace Enemy.Behaviour
         }
         public void HealOverTime()
         {
-            Debug.Log("Me estoy curando" + currentHealth);
-            currentHealth += 5 * Time.deltaTime; // TODO: setear propiedad de healingrate para evitar constante magica
+            currentHealth += 5 * Time.deltaTime;
             currentHealth = Mathf.Clamp(currentHealth, 0, manager.enemyStats.Health);
         }
         public void UpdateAttackTime()
@@ -176,42 +159,24 @@ namespace Enemy.Behaviour
         {
             IsStunned = true;
         }
+
+
         public void ApplyDamage(int damage)
         {
             if (IsStunned)
             {
-                Debug.LogWarning($"Aplico {damage} a enemigo");
                 currentHealth -= damage;
             }
         }
-
-        
         #endregion
 
-        #region Remote Procedural Calls
+        //Dibujamos una esfera con gizmos
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, currentAttackRange);
+        }
 
-        // public void SyncStateData()
-        // {
-        //     //EL master client ejecuta un RPC en donde pasa como por parametro las variables o banderas de su enemigo (estado)
-        //     if(PhotonNetwork.IsMasterClient)
-        //     {
-        //         photonView.RPC(nameof(SyncEnemyStateData), RpcTarget.AllBuffered,PlayerOnAreaClose,PlayerOnAreaFar,SoundDetected,actualTarget,PlayerPosition,DistanceToPlayer,AgressiveCounter,AggresiveDuration,AggresiveMode,IsStunned,TimeStunned,Attacking,TimeOfAttack);
-        //     }
-        // }
-
-
-        // [PunRPC]
-        // public void SyncEnemyStateData(List<T> listOf)
-        // {
-
-        // }
-
-        #endregion
-        // private void OnDrawGizmos()
-        // {
-        //     Gizmos.color = Color.yellow;
-        //     Gizmos.DrawSphere(manager.transform.position, manager.enemyStats.AttackRange);
-        // }
     }
 }
 

@@ -103,13 +103,18 @@ namespace Enemy.Behaviour
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerOnAreaFar = true;
-                kormosSM.PlayerPosition = other.transform.position;
+                kormosSM.PlayerGameObject = other.gameObject;
             }
         }
 
         public override void OnAreaStay(Collider other)
         {
-            //No realizamos nada
+            if(!PhotonNetwork.IsMasterClient) return;
+            if(other.gameObject.tag == "Player")
+            {
+                kormosSM.PlayerPosition = other.transform.position;
+                kormosSM.PlayerGameObject = other.gameObject;
+            }
         }
 
         public override void OnAreaExit(Collider other)

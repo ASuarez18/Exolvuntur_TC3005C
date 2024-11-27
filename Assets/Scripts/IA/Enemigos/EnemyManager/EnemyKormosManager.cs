@@ -76,32 +76,31 @@ namespace Enemy.Manager
             if(!PhotonNetwork.IsMasterClient) return;
             //Ejecutamos el primer estado de nuestra maquina de estados
             enemyMachine.SwitchCase(KormosStateMachine.EnemyState.Idle);
-
-            // if(PhotonNetwork.IsMasterClient)
-            // {
-            //     //Lanzamos el evento para que todos los clientes se sincronizen con el estado inicial
-            //     PhotonNetwork.RPC(PhotonTargets.AllBuffered,nameof(SyncEnemyState), enemyMachine.currentState);
-            // }
-            // else
-            // {
-            //     //Desactivamos el componente de NavMeshAgent
-            //     agent.enabled = false;
-            // }
         }
+
+        #region Remote Procedural Calls (Interactions)
 
         public void dectedsound(Vector3 soundPos)
         {
             photonView.RPC(nameof(ActivateSound), RpcTarget.MasterClient, soundPos);
         }
 
+        public void StunActive()
+        {
+            photonView.RPC(nameof(StunActiveSync), RpcTarget.MasterClient);
+        }
+
+        public void ApplyDamageRemote(int value)
+        {
+            photonView.RPC(nameof(SyncDamage), RpcTarget.MasterClient,value);
+        }
+
         [PunRPC]
         public void ActivateSound(Vector3 soundPos)
         {
             //Primero verificamos si el enemigo se encuntra en Idle
-            Debug.Log("Enemigo encontrado");
             if(enemyMachine.currentState is KormosCaution CautionState)
             { 
-                Debug.Log("Atrape sonido");
                 enemyMachine.SoundDetected =true;
             }
             else if(enemyMachine.currentState is KormosHunt HuntState)
@@ -109,15 +108,19 @@ namespace Enemy.Manager
                 HuntState.Hunt(soundPos);
             }
         }
-        // {
-        //     enemyMachine.SwitchCase(state);
-        // }
-        //Creamos un RPC para que el master sincronice la maquina de estados del enemigo con los demas clientes
-        // [PunRPC]
-        // public void SyncEnemyState(KormosStateMachine.EnemyState state)
-        // {
-        //     enemyMachine.SwitchCase(state);
-        // }        
 
+        [PunRPC]
+        public void StunActiveSync()
+        {
+            enemyMachine.ApplyStun();
+        }
+
+        [PunRPC]
+        public void SyncDamage(int value)
+        {
+            enemyMachine.ApplyDamage(value);
+        }
+    
+        #endregion
     }
 }

@@ -28,7 +28,7 @@ namespace PlayerController
         public LayerMask groundMask;
         //Creamos un objeto de tipo interfaz
         private IMovement character;
-        [SerializeField] private float soundRage = 200.0f; //Distancia en metros en la que el jugador escucha el sonido de pasos
+        [SerializeField] private float soundRage = 20.0f; //Distancia en metros en la que el jugador escucha el sonido de pasos
         //Controlador de audio
         //private AudioController audioController ;
 
@@ -116,6 +116,13 @@ namespace PlayerController
                  //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
+        }
+
+        //Dibujamos una wire esfera
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, soundRage);
         }
 
         // void OnControllerColliderHit(ControllerColliderHit hit)

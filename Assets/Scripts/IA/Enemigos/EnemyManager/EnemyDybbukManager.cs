@@ -83,6 +83,15 @@ namespace Enemy.Manager
             photonView.RPC(nameof(SyncView), RpcTarget.MasterClient,actorNumber,state);
         }     
 
+        public void StunActive()
+        {
+            photonView.RPC(nameof(StunActiveSync), RpcTarget.MasterClient);
+        }
+        public void ApplyDamageRemote(int value)
+        {
+            photonView.RPC(nameof(SyncDamage), RpcTarget.MasterClient,value);
+        }
+
         [PunRPC]
         public void SyncView(int act,bool state)
         {
@@ -96,6 +105,17 @@ namespace Enemy.Manager
             }
         }
 
+        [PunRPC]
+        public void StunActiveSync()
+        {
+            enemyMachine.ApplyStun();
+        }
+
+        [PunRPC]
+        public void SyncDamage(int value)
+        {
+            enemyMachine.ApplyDamage(value);
+        }
     }
 }
 
