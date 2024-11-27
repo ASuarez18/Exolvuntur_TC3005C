@@ -45,8 +45,8 @@ namespace PlayerController
                 
                
             }else{
-                this.transform.GetChild(0).gameObject.SetActive(false);
-                this.transform.GetChild(1).gameObject.SetActive(true);
+                this.transform.GetChild(0).gameObject.SetActive(true);
+                this.transform.GetChild(1).gameObject.SetActive(false);
                 GetComponent<CharacterController>().GetComponent<Animator>().avatar = _playerAvatar;
             }
             //Instanciamos un nuevo objeto de tipo Player y su constructor
