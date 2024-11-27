@@ -40,6 +40,7 @@ namespace Enemy.Behaviour
             if(!PhotonNetwork.IsMasterClient) return;
             // Update aggressivenes time counter
             kormosSM.UpdateAgressiveCounter();
+        
         }
 
         //Salimos del estado

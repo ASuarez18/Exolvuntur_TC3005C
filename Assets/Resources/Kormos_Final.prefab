@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 5697169518772618299}
   - component: {fileID: 8279794474452814369}
   - component: {fileID: 258764727450668211}
-  - component: {fileID: 4852661693509191121}
   - component: {fileID: 6212549126208975049}
   - component: {fileID: 558216372227802424}
   m_Layer: 0
@@ -57,7 +56,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 5.3394756
   m_Height: 30.8
@@ -100,8 +99,8 @@ MonoBehaviour:
   agent: {fileID: 5697169518772618299}
   enemyMachine: {fileID: 258764727450668211}
   animator: {fileID: 8114540799442549970}
-  photonView: {fileID: 0}
   areaAlerta: {fileID: 3193508157721434260}
+  photonView: {fileID: 0}
   enemyStats: {fileID: 11400000, guid: 95cc96a44a7fe5b4396a8d219e3ea00e, type: 2}
   waypoints:
   - {fileID: 0}
@@ -129,33 +128,6 @@ MonoBehaviour:
   currentAcceleration: 0
   currentAttackRange: 0
   currentHealth: 0
---- !u!54 &4852661693509191121
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5028084269882181368}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &6212549126208975049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2277,7 +2249,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b19a316da89d424098f98c3544a22ba,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8729839351272057969}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b19a316da89d424098f98c3544a22ba,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4196552593878004020}
   m_SourcePrefab: {fileID: 100100000, guid: 0b19a316da89d424098f98c3544a22ba, type: 3}
 --- !u!4 &2773248742849128104 stripped
 Transform:
@@ -2285,6 +2265,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2447203322351796547}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3258178019140992018 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b19a316da89d424098f98c3544a22ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 2447203322351796547}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8729839351272057969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3258178019140992018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 4196552593878004020}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &4196552593878004020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3258178019140992018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 2
+    Name: forward
+  - Type: 9
+    SynchronizeType: 2
+    Name: ataque
+  - Type: 4
+    SynchronizeType: 2
+    Name: Stun
+  - Type: 9
+    SynchronizeType: 2
+    Name: Stunning
+  - Type: 9
+    SynchronizeType: 2
+    Name: alerta
+  - Type: 9
+    SynchronizeType: 2
+    Name: agresividad
+  - Type: 9
+    SynchronizeType: 2
+    Name: muerte
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!95 &8114540799442549970 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0b19a316da89d424098f98c3544a22ba,

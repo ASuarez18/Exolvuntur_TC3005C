@@ -34,26 +34,12 @@ namespace Enemy.Behaviour
 
             //Verificamos si es el master client
             if(!PhotonNetwork.IsMasterClient) return;
-            
-            // //Elegimos un destino aleatorio de la lista de puntos y lo guardamos
-            kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
 
-            // //Sincronizamos la variable o lugar para todos
-            // manager.photonView.RPC(nameof(SyncGetRandomPosition),RpcTarget.AllBuffered,kormosSM.actualTarget);
+            //Elegimos un destino aleatorio de la lista de puntos y lo guardamos
+            kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
 
             //Ejecutamos la animacion de patrullaje
             manager.animator.SetFloat("forward", 1f);
-                
-            
-
-            // //Elegimos un destino aleatorio de la lista de puntos y lo guardamos
-            // kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
-
-            
-            // if(PhotonNetwork.IsMasterClient)
-            // {
-                
-            // }
             
         }
 
@@ -72,10 +58,8 @@ namespace Enemy.Behaviour
                
                while(kormosSM.actualTarget == manager.agent.destination)
                 {
-                     //Sincronizamos el nuevo destino
-                    kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
-                    //Lamamos al RPC
-                    // manager.photonView.RPC(nameof(SyncGetRandomPosition),RpcTarget.AllBuffered,kormosSM.actualTarget);                    
+                    //Sincronizamos el nuevo destino
+                    kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;                 
                 }
                 
                 //Actualizamos la posicion del agente al destino
@@ -86,86 +70,11 @@ namespace Enemy.Behaviour
                 //Actualizamos la posicion del agente al destino
                 manager.agent.SetDestination(kormosSM.actualTarget);
             }
-
-            //Sincronizamos el estado actual
-            // manager.photonView.RPC(nameof(SyncGetRandomPosition),RpcTarget.AllBuffered,kormosSM.actualTarget);
-            // manager.photonView.RPC(nameof(SyncUpdatedState),RpcTarget.AllBuffered);
-            
-
-            
-
-            // if (manager.agent.remainingDistance <= 1f)
-            // {  
-                
-            //     // kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
-            //     // //Verificamos que sea aleatorio
-            //     // while(kormosSM.actualTarget == manager.agent.destination)
-            //     // {
-            //     //     kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
-            //     // }
-
-            //     //Verificamos si es el master client
-            //     if(PhotonNetwork.IsMasterClient)
-            //     {
-            //         //Sincronizamos el nuevo destino
-            //         kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
-            //         //Lamamos al RPC
-            //         manager.photonView.RPC(nameof(SyncGetRandomPosition),RpcTarget.AllBuffered,kormosSM.actualTarget);
-            //         while(kormosSM.actualTarget == manager.agent.destination)
-            //         {
-            //              //Sincronizamos el nuevo destino
-            //             kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
-            //             //Lamamos al RPC
-            //             manager.photonView.RPC(nameof(SyncGetRandomPosition),RpcTarget.AllBuffered,kormosSM.actualTarget);                    
-            //         }
-            //     }
-               
-                // if(PhotonNetwork.IsMasterClient)
-                // {
-                    //Sincronizamos el nuevo destino
-                    // kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
-                    // manager.photonView.RPC(nameof(SyncGetRandomPosition),RpcTarget.AllBuffered,kormosSM.actualTarget);
-                // }
-
-
-              
-        
-            
         }
-
-        // [PunRPC]
-        // private void SyncUpdatedState()
-        // {
-        //     // Elegimos un nuevo destino cada ve que se acerca a su destino
-        //     if (manager.agent.remainingDistance <= 1f)
-        //     {  
-                
-        //         kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
-               
-        //         if(PhotonNetwork.IsMasterClient)
-        //         {
-        //             //Sincronizamos el nuevo destino
-        //             kormosSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
-        //             manager.photonView.RPC(nameof(SyncGetRandomPosition),RpcTarget.AllBuffered,kormosSM.actualTarget);
-        //         }
-
-
-        //         //Actualizamos la posicion del agente al destino
-        //         manager.agent.SetDestination(kormosSM.actualTarget);
-        //     }
-        //     else
-        //     {
-        //         //Actualizamos la posicion del agente al destino
-        //         manager.agent.SetDestination(kormosSM.actualTarget);
-        //     }
-
-        // }
-
 
         public override void ExitState()
         {
             //No realizamos nada
-            
         }
 
         //Funcion que revisa si entra en el flujo de un estado o no
@@ -194,6 +103,7 @@ namespace Enemy.Behaviour
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerOnAreaFar = true;
+                kormosSM.PlayerPosition = other.transform.position;
             }
         }
 
@@ -207,17 +117,6 @@ namespace Enemy.Behaviour
             
             //No realizamos nada
         }
-
-        /// <summary>
-        /// Creamos diferentes RPC dentro del estado.
-        /// Los RPC deben de ejecutar la misma logica para todos
-        /// </summary>
-         
-
-        // [PunRPC]
-        // private void SyncGetRandomPosition(Vector3 position){
-        //     kormosSM.actualTarget = position;  
-        // }
 
     }
 }

@@ -22,10 +22,9 @@ namespace Enemy.Behaviour
         //Inicializa el estado
         public override void EnterState()
         {
-            // ? Detenemos el movimiento del agente dado que esta muerto
+            if(!PhotonNetwork.IsMasterClient) return ;
+
             manager.agent.isStopped = true;
-            // TODO: Settear animacion de muerte con corrutina para que no destruya el objeto al momento
-            // ! Destruye el gameObject del enemigo (podria ser desactivado si se usa una pool)
             kormosSM.EnemyDead();
         }
 
@@ -43,6 +42,7 @@ namespace Enemy.Behaviour
         //Funcion que revisa si entra en el flujo de un estado o no
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Dead;
             return KormosStateMachine.EnemyState.Dead;
         }
 

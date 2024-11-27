@@ -11,6 +11,7 @@ namespace Enemy.Behaviour
     /// Maquina de estados que hereda de StateManager.
     /// Agregamos los estados del enemigo Kormos y agregamos la clase del controlador del enemigo.
     /// </summary>
+    /// holip te vengo a joder 
     public class KormosStateMachine : StateManager<KormosStateMachine.EnemyState> , InterfaceAttacking
     {
         #region Estados
@@ -65,19 +66,19 @@ namespace Enemy.Behaviour
 
                 // Initialize the state machine
                 state.Add(EnemyState.Idle, new KormosIdle(manager,this));
-                // state.Add(EnemyState.Caution, new KormosCaution(manager,this));
-                // state.Add(EnemyState.Hunt, new KormosHunt(manager,this));
-                // state.Add(EnemyState.Chasing, new KormosChasing(manager, this));
-                // state.Add(EnemyState.Attack, new KormosAttack(manager,this));
-                // state.Add(EnemyState.Aggresive, new KormosAgressive(manager,this));
-                // state.Add(EnemyState.Scape, new KormosScape(manager,this));
-                // state.Add(EnemyState.Heal, new KormosHeal(manager,this));
-                // state.Add(EnemyState.Stunned, new KormosStunned(manager,this));
-                // state.Add(EnemyState.Dead, new KormosDead(manager,this));
+                state.Add(EnemyState.Caution, new KormosCaution(manager,this));
+                state.Add(EnemyState.Hunt, new KormosHunt(manager,this));
+                state.Add(EnemyState.Chasing, new KormosChasing(manager, this));
+                state.Add(EnemyState.Attack, new KormosAttack(manager,this));
+                state.Add(EnemyState.Aggresive, new KormosAgressive(manager,this));
+                state.Add(EnemyState.Scape, new KormosScape(manager,this));
+                state.Add(EnemyState.Heal, new KormosHeal(manager,this));
+                state.Add(EnemyState.Stunned, new KormosStunned(manager,this));
+                state.Add(EnemyState.Dead, new KormosDead(manager,this));
 
                 currentState = state[EnemyState.Idle];
 
-                photonView = GetComponent<PhotonView>();
+                // photonView = GetComponent<PhotonView>();
 
                 //Inicializamos las estadisticas
                 currentSpeed = manager.enemyStats.Speed;
@@ -138,6 +139,11 @@ namespace Enemy.Behaviour
         #endregion
 
         #region BehaviorFunctions
+        // public void UpdatePlayerPosition(Vector3 playerPosition)
+        // {
+        //     DistanceToPlayer = Vector3.Distance(transform.position, playerPosition);
+        //     Debug.Log("Distance" + DistanceToPlayer);
+        // }
         public void UpdateAgressiveCounter()
         {
             AgressiveCounter += Time.deltaTime;

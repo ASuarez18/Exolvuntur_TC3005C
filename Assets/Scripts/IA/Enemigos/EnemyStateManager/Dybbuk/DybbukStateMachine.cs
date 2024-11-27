@@ -71,7 +71,7 @@ namespace Enemy.Behaviour
 
                 currentState = state[EnemyState.Idle];
 
-                photonView = GetComponent<PhotonView>();
+                // photonView = GetComponent<PhotonView>();
 
                 //Inicializamos las estadisticas
                 currentSpeed = manager.enemyStats.Speed;

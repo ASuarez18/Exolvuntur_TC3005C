@@ -35,8 +35,6 @@ namespace Enemy.Behaviour
         {
             if(!PhotonNetwork.IsMasterClient) return;
             kormosSM.UpdateStunTime();
-            //Revisamos su siguientes estados
-            //GetNextState();
         }
 
         public override void ExitState()
