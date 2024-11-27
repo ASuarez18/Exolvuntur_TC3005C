@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
 using PlayerController.PUN;
+using Photon.Pun;
 
 namespace Enemy.Behaviour
 {
@@ -26,6 +27,7 @@ namespace Enemy.Behaviour
                 Stunned,
                 Dead
             }
+            
         #endregion
 
         #region Variables y Atributos
@@ -63,17 +65,19 @@ namespace Enemy.Behaviour
 
                 // Initialize the state machine
                 state.Add(EnemyState.Idle, new KormosIdle(manager,this));
-                state.Add(EnemyState.Caution, new KormosCaution(manager,this));
-                state.Add(EnemyState.Hunt, new KormosHunt(manager,this));
-                state.Add(EnemyState.Chasing, new KormosChasing(manager, this));
-                state.Add(EnemyState.Attack, new KormosAttack(manager,this));
-                state.Add(EnemyState.Aggresive, new KormosAgressive(manager,this));
-                state.Add(EnemyState.Scape, new KormosScape(manager,this));
-                state.Add(EnemyState.Heal, new KormosHeal(manager,this));
-                state.Add(EnemyState.Stunned, new KormosStunned(manager,this));
-                state.Add(EnemyState.Dead, new KormosDead(manager,this));
+                // state.Add(EnemyState.Caution, new KormosCaution(manager,this));
+                // state.Add(EnemyState.Hunt, new KormosHunt(manager,this));
+                // state.Add(EnemyState.Chasing, new KormosChasing(manager, this));
+                // state.Add(EnemyState.Attack, new KormosAttack(manager,this));
+                // state.Add(EnemyState.Aggresive, new KormosAgressive(manager,this));
+                // state.Add(EnemyState.Scape, new KormosScape(manager,this));
+                // state.Add(EnemyState.Heal, new KormosHeal(manager,this));
+                // state.Add(EnemyState.Stunned, new KormosStunned(manager,this));
+                // state.Add(EnemyState.Dead, new KormosDead(manager,this));
 
                 currentState = state[EnemyState.Idle];
+
+                photonView = GetComponent<PhotonView>();
 
                 //Inicializamos las estadisticas
                 currentSpeed = manager.enemyStats.Speed;
@@ -113,26 +117,24 @@ namespace Enemy.Behaviour
                 target.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
             }
 
-            // public void OnCollisionEnter(Collision other)
-            // {  
-            //     Debug.Log("Colisiono");
-            //     if(currentState.StateKey == EnemyState.Chasing)
-            //     {
-            //         if(other.gameObject.tag == "Player")
-            //         {
-                       
-            //         }
-            //     }
-            // }
-
         #endregion
 
         //Funcion de transicion
         #region State Transition
             internal void SwitchCase(EnemyState state)
             {
-                TransitionToState(state);
+            //     if (!PhotonNetwork.IsMasterClient)return;
+
+            //     photonView.RPC(nameof(SyncEnemyState), RpcTarget.AllBuffered state);
+                    TransitionToState(state);
             }
+
+            // [PunRPC]
+            // public void SyncEnemyState(EnemyState state)
+            // {
+            //     TransitionToState(state);
+            // }
+            
         #endregion
 
         #region BehaviorFunctions
@@ -178,6 +180,26 @@ namespace Enemy.Behaviour
         }
 
         
+        #endregion
+
+        #region Remote Procedural Calls
+
+        // public void SyncStateData()
+        // {
+        //     //EL master client ejecuta un RPC en donde pasa como por parametro las variables o banderas de su enemigo (estado)
+        //     if(PhotonNetwork.IsMasterClient)
+        //     {
+        //         photonView.RPC(nameof(SyncEnemyStateData), RpcTarget.AllBuffered,PlayerOnAreaClose,PlayerOnAreaFar,SoundDetected,actualTarget,PlayerPosition,DistanceToPlayer,AgressiveCounter,AggresiveDuration,AggresiveMode,IsStunned,TimeStunned,Attacking,TimeOfAttack);
+        //     }
+        // }
+
+
+        // [PunRPC]
+        // public void SyncEnemyStateData(List<T> listOf)
+        // {
+
+        // }
+
         #endregion
         // private void OnDrawGizmos()
         // {

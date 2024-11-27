@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 
 /// <summary>
@@ -27,6 +28,7 @@ namespace Enemy.Behaviour
         //Inicializamos el estado
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             manager.agent.isStopped = true;
             manager.animator.SetTrigger("ataque");
         }
@@ -34,13 +36,14 @@ namespace Enemy.Behaviour
         //Actualizamos el estado en el Update
         public override void UpdateState()
         {
-           kormosSM.UpdateAttackTime();
-            GetNextState();
+            if(!PhotonNetwork.IsMasterClient) return;
+            kormosSM.UpdateAttackTime();
         }
 
         //Salimos del estado
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             manager.agent.isStopped = false;
             kormosSM.TimeOfAttack = 0f;
         }
@@ -48,6 +51,7 @@ namespace Enemy.Behaviour
         //Obtenemos el siguiente estado segun las condiciones
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Attack;
             if(kormosSM.IsStunned)
             {
                 return KormosStateMachine.EnemyState.Stunned;

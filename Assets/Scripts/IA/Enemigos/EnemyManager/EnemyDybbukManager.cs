@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Enemy.Behaviour;
 using Enemy.Stats;
+using Photon.Pun;
 
 namespace Enemy.Manager
 {
@@ -61,9 +62,17 @@ namespace Enemy.Manager
             //Accedemos al hijo y obtenemos el componenete de collider
             areaAlerta = transform.GetChild(0).GetComponent<SphereCollider>();
             areaAlerta.radius = enemyStats.ViewRange;
-
-            //Ejecutamos el primer estado de nuestra maquina de estados
-            enemyMachine.SwitchCase(DybbukStateMachine.EnemyState.Idle);
+            
+            if(PhotonNetwork.IsMasterClient)
+            {
+                //Ejecutamos el primer estado de nuestra maquina de estados
+                enemyMachine.SwitchCase(DybbukStateMachine.EnemyState.Idle);
+            }
+            else
+            {
+                //Desactivamos el componente de NavMeshAgent
+                agent.enabled = false;
+            }
         }     
     }
 }

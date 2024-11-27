@@ -195,7 +195,11 @@ namespace PlayerController.Inventory
                 utilitySprite = collectableObject.GetComponent<SpriteRenderer>().sprite
             };
 
-            collectableObject.transform.SetParent(_inventoryOwnPoint);
+            if(photonView.IsMine) 
+                collectableObject.transform.SetParent(_inventoryOwnPoint);
+            else
+                collectableObject.transform.SetParent(_inventoryNetworkPoint);
+
             Debug.LogWarning("Posterior a emparentado: " + collectableObject.transform.parent.name);
 
             collectableObject.transform.localPosition = Vector3.zero;

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Enemy.Behaviour;
 using Enemy.Stats;
+using Photon.Pun;
 
 /// <summary>
 /// El enemigo Skinwalker es administrado y configurado por este script.
@@ -64,8 +65,16 @@ namespace Enemy.Manager
             areaAlerta = transform.GetChild(0).GetComponent<SphereCollider>();
             areaAlerta.radius = enemyStats.ViewRange;
 
-            //Ejecutamos el primer estado de nuestra maquina de estados
-            enemyMachine.SwitchCase(SkinwalkerStateMachine.EnemyState.Idle);
+            if(PhotonNetwork.IsMasterClient)
+            {
+                //Ejecutamos el primer estado de nuestra maquina de estados
+                enemyMachine.SwitchCase(SkinwalkerStateMachine.EnemyState.Idle);
+            }
+            else
+            {
+                //Desactivamos el componente de NavMeshAgent
+                agent.enabled = false;
+            }
         }     
     }
 }

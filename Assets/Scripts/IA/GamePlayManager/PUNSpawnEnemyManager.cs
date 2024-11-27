@@ -47,22 +47,28 @@ namespace GamePlay.IA
             _enemiesPunPools = FindObjectOfType<PUNEnemiesPools>();
 
             // Solo el MasterClient inicializa el spawn de enemigos
-            if (PhotonNetwork.IsMasterClient)
-            {
-                photonView.RPC(nameof(SpawnEnemies), RpcTarget.AllBuffered);
-                //SpawnEnemies();
-            }
+            // photonView.RPC(nameof(SpawnEnemies), RpcTarget.AllBuffered);
+
+
+
+            SpawnEnemies();
+            
         }
 
         /// <summary>
         /// Spawnea enemigos al inicio según las configuraciones.
         /// </summary>
-        [PunRPC]
+        
         public void SpawnEnemies()
         {
+            //El master client ejecuta e inicializa el lugar de los enemigos al inicio según las configuraciones
+            if(!PhotonNetwork.IsMasterClient)return; 
+        
+            // Spawnea enemigos de cada clase
             SpawnEnemyBatch(Kormos, EnemiesTypes.EnemyClass.Kormos);
             SpawnEnemyBatch(Skinwalker, EnemiesTypes.EnemyClass.Skinwalker);
             SpawnEnemyBatch(Dybbuk, EnemiesTypes.EnemyClass.Dybbuk);
+            
         }
 
         /// <summary>
@@ -74,12 +80,34 @@ namespace GamePlay.IA
         {
             for (int i = 0; i < count; i++)
             {
-                Transform spawnPoint = _patrolPoints[Random.Range(0, _patrolPoints.Count)];
-                GameObject enemy = _enemiesPunPools.GetEnemies(enemyClass); // Llama al pool para obtener el enemigo
-                DoSpawnNavMeshAgent(enemy, spawnPoint.position);
-                AssignWaypoints(enemy, enemyClass);
+                Vector3 spawnPoint = _patrolPoints[Random.Range(0, _patrolPoints.Count)].position;
+                photonView.RPC(nameof(SyncronizedLocationEnemy), RpcTarget.AllBuffered, spawnPoint, enemyClass);
             }
         }
+
+        [PunRPC]
+        private void SyncronizedLocationEnemy(Vector3 pointEnemy,EnemiesTypes.EnemyClass enemyClass)
+        {
+            GameObject enemy = _enemiesPunPools.GetEnemies(enemyClass); // Llama al pool para obtener el enemigo
+            Debug.LogWarning("Spawning " + enemyClass + " at " + pointEnemy);
+            DoSpawnNavMeshAgent(enemy, pointEnemy);
+            AssignWaypoints(enemy, enemyClass);
+        }
+
+        /// <summary>
+        /// Creamos una RPC que sincronice el lugar de spawner para cada uno de los enemigos.
+        /// Mandamos a llamar la funcion de remote procedural calls cada vez que un enemigo es spawneado por el master.
+        /// </summary>
+        /// <param name="enemyClass">Clase de enemigo.</param>
+        // [PunRPC]
+        // private void SynchronizeEnemySpawn(int enemyClass, Vector3 position)
+        // {
+        //     // Instanciar un enemigo con la posición sincronizada
+        //     GameObject enemy = _enemiesPunPools.GetEnemies((EnemiesTypes.EnemyClass)enemyClass);
+        //     Debug.Log("Spawning " + (EnemiesTypes.EnemyClass)enemyClass + " at " + position);
+        //     DoSpawnNavMeshAgent(enemy, position);
+        //     AssignWaypoints(enemy, (EnemiesTypes.EnemyClass)enemyClass);
+        // }
 
         /// <summary>
         /// Spawnea un enemigo específico en un punto de navegación aleatorio.
@@ -93,6 +121,11 @@ namespace GamePlay.IA
             {
                 enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().Warp(hit.position);
                 enemy.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = true;
+                 PhotonView enemyPhotonView = enemy.GetComponent<PhotonView>();
+                if (enemyPhotonView != null && PhotonNetwork.IsMasterClient)
+                {
+                    enemyPhotonView.TransferOwnership(PhotonNetwork.MasterClient);
+                }
             }
         }
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Photon.Pun;
 
 /// <summary>
 /// Esta clase se decica a manejar la logica entre varios estados.
@@ -20,26 +21,50 @@ namespace Enemy.Behaviour
         public BaseState<EState> currentState;
         protected bool IsTransitionState = false;
 
+        //Agregamos un photon view
+        public PhotonView photonView;
+
         void Start()
         {
-            //Llamamos al metodo de estado actual para inicializacion
-            currentState.EnterState();
+            // Llamamos al metodo de estado actual para inicializacion
+            if(PhotonNetwork.IsMasterClient)
+            {
+                photonView.RPC(nameof(SyncronizeEnterState),RpcTarget.AllBuffered);
+            }
+            // currentState.EnterState();
+            
         }
         void Update()
         {
-            //Guardamos la conexion del siguiente estado
+            // //Guardamos la conexion del siguiente estado
+            // EState nextState = currentState.GetNextState();
+
+            // if(!IsTransitionState && nextState.Equals(currentState.StateKey))
+            // {
+            //     //Actualizamos el estado actual y revisamos la logica cada frame
+            //     currentState.UpdateState();
+                
+            // }
+            // else if(!IsTransitionState)
+            // {
+            //     TransitionToState(nextState);
+            //     Debug.Log(currentState.StateKey);
+            // }
+
             EState nextState = currentState.GetNextState();
 
-            if(!IsTransitionState && nextState.Equals(currentState.StateKey))
+            if(PhotonNetwork.IsMasterClient)
             {
-                //Actualizamos el estado actual y revisamos la logica cada frame
-                currentState.UpdateState();
-                
-            }
-            else if(!IsTransitionState)
-            {
-                TransitionToState(nextState);
-                Debug.Log(currentState.StateKey);
+                if(!IsTransitionState && nextState.Equals(currentState.StateKey))
+                {
+                    //Actualizamos el estado actual y revisamos la logica cada frame
+                    photonView.RPC(nameof(SyncronizeUpdateState),RpcTarget.AllBuffered);
+                }
+                else if(!IsTransitionState)
+                {
+                    TransitionToState(nextState);
+                    Debug.Log(currentState.StateKey);
+                }
             }
 
         }
@@ -47,9 +72,11 @@ namespace Enemy.Behaviour
         public void TransitionToState(EState stateKey)
         {
             IsTransitionState = true;
-            currentState.ExitState();
+            // currentState.ExitState();
+            photonView.RPC(nameof(SyncronizeExitState),RpcTarget.AllBuffered);
             currentState = state[stateKey];
-            currentState.EnterState();
+            // currentState.EnterState();
+            photonView.RPC(nameof(SyncronizeEnterState),RpcTarget.AllBuffered);
             IsTransitionState = false;
         }
 
@@ -66,5 +93,23 @@ namespace Enemy.Behaviour
             currentState.OnAreaExit(other);
         }
 
+        // Creamos varios RPC de sincornizacion de los enemigos
+        [PunRPC]
+        public void SyncronizeEnterState()
+        {
+            currentState.EnterState();
+        }
+
+        [PunRPC]
+        public void SyncronizeUpdateState()
+        {
+            currentState.UpdateState();
+        }
+
+        [PunRPC]
+        public void SyncronizeExitState()
+        {
+            currentState.ExitState();
+        }
     }
 }

@@ -231,6 +231,7 @@ MonoBehaviour:
   enemyMachine: {fileID: 258764727450668211}
   animator: {fileID: 8114540799442549970}
   areaAlerta: {fileID: 3193508157721434260}
+  photonView: {fileID: 0}
   enemyStats: {fileID: 11400000, guid: 95cc96a44a7fe5b4396a8d219e3ea00e, type: 2}
   waypoints:
   - {fileID: 0}
@@ -253,6 +254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab267a339eff40419f5eb34505ff32a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  photonView: {fileID: 0}
   currentSpeed: 0
   currentRunningSpeed: 0
   currentAcceleration: 0
