@@ -12,7 +12,7 @@ namespace Enemy.Manager
     /// El enemigo hereda de la clase abstracta de EnemyBlueprint.
     /// Define su propia maquina de estados mientras utiliza metodos abstractos de la interfaz.
     /// </summary>
-    public class EnemyKormosManager : MonoBehaviour
+    public class EnemyKormosManager : MonoBehaviourPunCallbacks
     {
 
         //Atributos de AI
@@ -69,8 +69,9 @@ namespace Enemy.Manager
             areaAlerta.radius = enemyStats.ViewRange;
 
             //Inicializamos su photon view
-            photonView = GetComponent<PhotonView>();
+            // photonView = GetComponent<PhotonView>();
 
+            if(!PhotonNetwork.IsMasterClient) return;
             //Ejecutamos el primer estado de nuestra maquina de estados
             enemyMachine.SwitchCase(KormosStateMachine.EnemyState.Idle);
 

@@ -22,8 +22,10 @@ namespace Enemy.Behaviour
         //Inicializamos el estado
         public override void EnterState()
         {
-            manager.agent.SetDestination(kormosSM.actualTarget);
+            if(!PhotonNetwork.IsMasterClient) return ;
 
+            //EL enemigo persigue al jugador
+            manager.agent.SetDestination(kormosSM.actualTarget);
             //Inicializamos la animacion de persecucion
             manager.animator.SetFloat("forward", 2f);
         }
@@ -31,6 +33,9 @@ namespace Enemy.Behaviour
         //Actualizamos el estado en el Update
         public override void UpdateState()
         {
+
+            if(!PhotonNetwork.IsMasterClient) return ;
+
             //Verificamos que el jugador esta en nuestra area de ataque o cercana
             manager.agent.SetDestination(kormosSM.actualTarget);
             kormosSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,kormosSM.actualTarget);
@@ -39,18 +44,23 @@ namespace Enemy.Behaviour
             {
                 kormosSM.PlayerOnAreaClose = false;
             }
-            GetNextState();
+            else if (kormosSM.DistanceToPlayer <= 20)
+            {
+                kormosSM.Attacking = true;
+            }
         }
 
         //Salimos del estado
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             kormosSM.Attacking = false;
         }
 
         //Obtenemos el siguiente estado segun las condiciones
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Chasing;
             //Si el jugador salio del area cambiamos al estado Idle
             if(kormosSM.IsStunned)
             {
@@ -72,6 +82,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaEnter(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             if(other.CompareTag("Player"))
             {
                 kormosSM.actualTarget = other.gameObject.transform.position;
@@ -80,6 +91,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaStay(Collider other)
         {
+             if(!PhotonNetwork.IsMasterClient) return ;
             //Verificamos si alguien esta en el area del enemigo
             if (other.CompareTag("Player"))
             {
@@ -90,6 +102,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             if (other.gameObject.tag == "Player")
             {
                 kormosSM.PlayerOnAreaFar = false;

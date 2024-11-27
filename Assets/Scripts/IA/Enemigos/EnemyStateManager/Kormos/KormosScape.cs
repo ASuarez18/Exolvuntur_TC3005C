@@ -50,7 +50,6 @@ namespace Enemy.Behaviour
                 if(!PhotonNetwork.IsMasterClient) return;
                 //Actualizamos la posicion del agente al destino
                 manager.agent.SetDestination(kormosSM.actualTarget);
-                // Debug.Log(manager.agent.remainingDistance);
 
                 //Una vez que llego a su destino
                 if (manager.agent.remainingDistance <= 1f)
@@ -58,8 +57,6 @@ namespace Enemy.Behaviour
                     reachedTarget = true;
                 }
             
-                //Revisamos su siguientes estados
-                //GetNextState();
             }
 
             public override void ExitState()

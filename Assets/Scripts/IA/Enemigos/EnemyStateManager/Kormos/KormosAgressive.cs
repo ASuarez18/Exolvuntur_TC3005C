@@ -47,7 +47,6 @@ namespace Enemy.Behaviour
             if(!PhotonNetwork.IsMasterClient) return;
             //Obtenemos la funcion de Update Aggresive Counter
             kormosSM.UpdateAggressiveDuration();
-            // Debug.LogWarning(kormosSM.AggresiveDuration);
         }
 
         public override void ExitState()

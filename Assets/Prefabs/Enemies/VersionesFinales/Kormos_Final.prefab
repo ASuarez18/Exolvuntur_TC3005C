@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 436188060083883059}
   - component: {fileID: 3992804430956409642}
+  - component: {fileID: 9017535539863754356}
   - component: {fileID: 5697169518772618299}
   - component: {fileID: 8279794474452814369}
   - component: {fileID: 258764727450668211}
-  - component: {fileID: 4852661693509191121}
   - component: {fileID: 722236304827832328}
   - component: {fileID: 1852160090954756674}
   m_Layer: 0
@@ -57,12 +57,38 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 5.3394756
   m_Height: 30.8
   m_Direction: 1
   m_Center: {x: 0, y: 11.67, z: 0.17947578}
+--- !u!143 &9017535539863754356
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5028084269882181368}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 34.5
+  m_Radius: 10.62
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 11.79, z: 0}
 --- !u!195 &5697169518772618299
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -124,39 +150,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab267a339eff40419f5eb34505ff32a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 0}
   currentSpeed: 0
   currentRunningSpeed: 0
   currentAcceleration: 0
   currentAttackRange: 0
   currentHealth: 0
---- !u!54 &4852661693509191121
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5028084269882181368}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &722236304827832328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2282,7 +2280,11 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b19a316da89d424098f98c3544a22ba,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2348394822266824838}
+      addedObject: {fileID: 6259378303736705539}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b19a316da89d424098f98c3544a22ba,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2983929514026881364}
   m_SourcePrefab: {fileID: 100100000, guid: 0b19a316da89d424098f98c3544a22ba, type: 3}
 --- !u!4 &2773248742849128104 stripped
 Transform:
@@ -2296,7 +2298,30 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2447203322351796547}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2348394822266824838
+--- !u!114 &6259378303736705539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3258178019140992018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 2983929514026881364}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &2983929514026881364
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

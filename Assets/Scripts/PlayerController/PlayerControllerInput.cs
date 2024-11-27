@@ -118,14 +118,14 @@ namespace PlayerController
 
         }
 
-        void OnControllerColliderHit(ControllerColliderHit hit)
-        {
-             InterfaceAttacking enemy = hit.transform.GetComponent<InterfaceAttacking>();
-             if(enemy != null)
-             {
-                 enemy.Attack(gameObject);
-             }
-        }
+        // void OnControllerColliderHit(ControllerColliderHit hit)
+        // {
+        //      InterfaceAttacking enemy = hit.transform.GetComponent<InterfaceAttacking>();
+        //      if(enemy != null)
+        //      {
+        //          enemy.Attack(gameObject);
+        //      }
+        // }
 
     }
 }
