@@ -94,11 +94,11 @@ namespace Enemy.Behaviour
         }
 
         //Metodos de cambio de flujo del estado
-        public void Hunt(SoundGame sound)
+        public void Hunt(Vector3 soundPos)
         {
             if(!PhotonNetwork.IsMasterClient) return;
             //Actualizamos la posicion del sonido
-            kormosSM.actualTarget = sound.pos;
+            kormosSM.actualTarget = soundPos;
         }
 
         public override void OnAreaEnter(Collider other)

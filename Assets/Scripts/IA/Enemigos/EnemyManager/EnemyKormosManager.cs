@@ -59,6 +59,8 @@ namespace Enemy.Manager
             sensor.TriggerEventExit -= enemyMachine.OnTriggerExit;
         }
 
+
+
         //Inicializamos la funcion
 
         void Start()
@@ -68,8 +70,8 @@ namespace Enemy.Manager
             areaAlerta = transform.GetChild(0).GetComponent<SphereCollider>();
             areaAlerta.radius = enemyStats.ViewRange;
 
-            //Inicializamos su photon view
-            // photonView = GetComponent<PhotonView>();
+            // Inicializamos su photon view
+            photonView = GetComponent<PhotonView>();
 
             if(!PhotonNetwork.IsMasterClient) return;
             //Ejecutamos el primer estado de nuestra maquina de estados
@@ -87,6 +89,29 @@ namespace Enemy.Manager
             // }
         }
 
+        public void dectedsound(Vector3 soundPos)
+        {
+            photonView.RPC(nameof(ActivateSound), RpcTarget.MasterClient, soundPos);
+        }
+
+        [PunRPC]
+        public void ActivateSound(Vector3 soundPos)
+        {
+            //Primero verificamos si el enemigo se encuntra en Idle
+            Debug.Log("Enemigo encontrado");
+            if(enemyMachine.currentState is KormosCaution CautionState)
+            { 
+                Debug.Log("Atrape sonido");
+                enemyMachine.SoundDetected =true;
+            }
+            else if(enemyMachine.currentState is KormosHunt HuntState)
+            {
+                HuntState.Hunt(soundPos);
+            }
+        }
+        // {
+        //     enemyMachine.SwitchCase(state);
+        // }
         //Creamos un RPC para que el master sincronice la maquina de estados del enemigo con los demas clientes
         // [PunRPC]
         // public void SyncEnemyState(KormosStateMachine.EnemyState state)
