@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 /// <summary>
 /// En este estado nuestor enemigo SkinWalker patrulla alrededor del mapa.
@@ -27,6 +28,7 @@ namespace Enemy.Behaviour
 
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Elegimos un destino al azar
             skinwalkerSM.actualTarget = manager.waypoints[Random.Range(0,manager.waypoints.Count)].position;
             manager.animator.SetFloat("Move",1f);
@@ -34,6 +36,7 @@ namespace Enemy.Behaviour
 
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Ejecutamos la funcion o el contador para activar la busqueda
             skinwalkerSM.UpdateSearchTimer();
 
@@ -76,6 +79,7 @@ namespace Enemy.Behaviour
 
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Reiniciamos la banderas o contadores
             skinwalkerSM.SearchCounter = 0f;
         }
@@ -83,6 +87,7 @@ namespace Enemy.Behaviour
         //Función para cambiar de estados
         public override SkinwalkerStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return SkinwalkerStateMachine.EnemyState.Idle;
             //Verificamos si esta estuneado
             if(skinwalkerSM.IsStunned)
             {
@@ -109,6 +114,7 @@ namespace Enemy.Behaviour
         //Metodos de cambio de flujo del estado
         public override void OnAreaEnter(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             if(other.CompareTag("Player"))
             {
                 skinwalkerSM.PlayerOnAreaFar = true;
@@ -118,12 +124,13 @@ namespace Enemy.Behaviour
 
         public override void OnAreaStay(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             skinwalkerSM.PlayerPosition = other.transform.position;
         }
 
         public override void OnAreaExit(Collider other)
         {
-            
+            if(!PhotonNetwork.IsMasterClient) return ;
             if(other.CompareTag("Player"))
             {
                 skinwalkerSM.PlayerOnAreaFar = false;

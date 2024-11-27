@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 /// <summary>
 /// En este estado nuestor enemigo SkinWalker patrulla alrededor del mapa.
@@ -32,6 +33,7 @@ namespace Enemy.Behaviour
 
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             //Perseguimos al jugadro ya que es nuestro actual target
             manager.agent.SetDestination(skinwalkerSM.actualTarget); 
 
@@ -50,6 +52,7 @@ namespace Enemy.Behaviour
         //Función para cambiar de estados
         public override SkinwalkerStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return SkinwalkerStateMachine.EnemyState.Chasing;
         //Verificamos si esta estuneado
             if(skinwalkerSM.IsStunned)
             {
@@ -72,6 +75,7 @@ namespace Enemy.Behaviour
         //Metodos de cambio de flujo del estado
         public override void OnAreaEnter(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             if(other.CompareTag("Player"))
             {
                 skinwalkerSM.PlayerOnAreaFar = true;
@@ -80,6 +84,8 @@ namespace Enemy.Behaviour
 
         public override void OnAreaStay(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
+            
             if(other.CompareTag("Player"))
             {
                 skinwalkerSM.actualTarget = other.transform.position;
@@ -88,7 +94,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
-            
+            if(!PhotonNetwork.IsMasterClient) return;
             if(other.CompareTag("Player"))
             {
                 skinwalkerSM.PlayerOnAreaFar = false;

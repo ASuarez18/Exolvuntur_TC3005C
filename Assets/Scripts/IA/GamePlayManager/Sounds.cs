@@ -16,6 +16,7 @@ namespace GamePlay.IA
             {
                 if(col[i].TryGetComponent(out EnemyKormosManager enemyState))
                 {
+                    Debug.LogWarning("Encontro enemigo");
                     enemyState.dectedsound(sound.pos);
                 }
             }

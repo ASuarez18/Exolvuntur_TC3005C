@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 /// <summary>
 /// En este estado nuestor enemigo SkinWalker patrulla alrededor del mapa.
@@ -28,6 +29,7 @@ namespace Enemy.Behaviour
 
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             //Realizamos una busqueda a objetos con el Tag player
             skinwalkerSM.actualTarget = GameObject.FindGameObjectWithTag("Player").transform.position;
             //Actualizamos la posicion del agente al destino
@@ -38,6 +40,7 @@ namespace Enemy.Behaviour
 
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             //Verificamos que el enemigoi llego a la posicion del jugador
             if (manager.agent.remainingDistance <= 0.5f)
             {
@@ -66,12 +69,14 @@ namespace Enemy.Behaviour
 
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             OnDestination = false;
         }
 
         //Función para cambiar de estados
         public override SkinwalkerStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return SkinwalkerStateMachine.EnemyState.Search ;
             //Verificamos si esta estuneado
             if(OnDestination)
             {
@@ -98,6 +103,7 @@ namespace Enemy.Behaviour
         //Metodos de cambio de flujo del estado
         public override void OnAreaEnter(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             if(other.CompareTag("Player"))
             {
                 skinwalkerSM.PlayerOnAreaFar = true;
@@ -111,7 +117,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
-            
+            if(!PhotonNetwork.IsMasterClient) return ;
             if(other.CompareTag("Player"))
             {
                 skinwalkerSM.PlayerOnAreaFar = false;

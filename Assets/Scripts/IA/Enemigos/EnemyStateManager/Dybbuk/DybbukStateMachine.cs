@@ -31,6 +31,7 @@ namespace Enemy.Behaviour
         public Vector3 actualTarget { get; set; }
         public bool PlayerOnAreaClose { get; set; }
         public bool OnView { get; set; }
+        public Dictionary <int,bool> actorViews;
         public bool Attacking { get; set; }
         public float TimeOfAttack { get; set; }
         public float AgressiveCounter { get; set; }
@@ -81,6 +82,7 @@ namespace Enemy.Behaviour
                 currentHealth = manager.enemyStats.Health;
                 AgroTime = manager.enemyStats.AggroTime;
                 AgroDuration = manager.enemyStats.AggroDuration;
+                actorViews = new Dictionary<int, bool>();
 
                 //Inicializamos las estadisticas en el componente de agente y sus sensores
                 manager.agent.speed = currentSpeed;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 /// <summary>
 /// Estado de Patrullaje: Aqui el estado del enemigo Dybbuk , se encarga de patrullar diferentes puntos.
@@ -26,6 +27,7 @@ namespace Enemy.Behaviour
          //Inicializa el estado
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Detenemos el movimeinto del agente
             manager.agent.isStopped = true;
             manager.animator.SetFloat("States", 0f);
@@ -34,11 +36,13 @@ namespace Enemy.Behaviour
         //Actualiza el estado en el Update del MonoBehaviour
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             dybbukSM.UpdateAgressiveCounter();
         }
 
         public override void ExitState()
         { 
+            if(!PhotonNetwork.IsMasterClient) return;
             //Reanudamos el movimiento del agente
             manager.agent.isStopped = false;
             dybbukSM.AgressiveCounter = 0f;
@@ -48,12 +52,13 @@ namespace Enemy.Behaviour
          //Funcion que revisa si entra en el flujo de un estado o no
         public override DybbukStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return DybbukStateMachine.EnemyState.Still;
             //Revisamos si el enemigo esta a la vista
             if(dybbukSM.IsStunned)
             {
                 return DybbukStateMachine.EnemyState.Stunned;
             }
-            else if(!dybbukSM.OnView)
+            else if(!dybbukSM.actorViews.ContainsValue(true))
             {
                 return DybbukStateMachine.EnemyState.Idle;
             }
@@ -67,6 +72,7 @@ namespace Enemy.Behaviour
         //Metodos de cambio de flujo del estado
         public override void OnAreaEnter(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = true;
@@ -80,7 +86,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
-            
+            if(!PhotonNetwork.IsMasterClient) return;   
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = false;

@@ -27,6 +27,9 @@ namespace Enemy.Manager
         //Atrivutos de sensores
         public SphereCollider areaAlerta;
 
+        //Atributos de sincronizacion en red
+        public PhotonView photonView;
+
         //Atrivutos de estadisticas
         [SerializeField] public EnemyScriptableObject enemyStats;
         [SerializeField] public List<Transform> waypoints;
@@ -65,16 +68,14 @@ namespace Enemy.Manager
             areaAlerta = transform.GetChild(0).GetComponent<SphereCollider>();
             areaAlerta.radius = enemyStats.ViewRange;
 
-            if(PhotonNetwork.IsMasterClient)
-            {
-                //Ejecutamos el primer estado de nuestra maquina de estados
-                enemyMachine.SwitchCase(SkinwalkerStateMachine.EnemyState.Idle);
-            }
-            else
-            {
-                //Desactivamos el componente de NavMeshAgent
-                agent.enabled = false;
-            }
+            // Inicializamos su photon view
+            photonView = GetComponent<PhotonView>();
+
+            if(PhotonNetwork.IsMasterClient) return;
+            
+            //Ejecutamos el primer estado de nuestra maquina de estados
+            enemyMachine.SwitchCase(SkinwalkerStateMachine.EnemyState.Idle);
+            
         }     
     }
 }

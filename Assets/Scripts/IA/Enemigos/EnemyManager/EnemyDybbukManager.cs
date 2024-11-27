@@ -14,7 +14,7 @@ namespace Enemy.Manager
     /// Define su propia maquina de estados mientras utiliza metodos abstractos de la interfaz.
     /// </summary>
     
-    public class EnemyDybbukManager : MonoBehaviour
+    public class EnemyDybbukManager : MonoBehaviourPunCallbacks
     {
         //Atributos de AI
         [SerializeField] public NavMeshAgent agent;
@@ -24,6 +24,9 @@ namespace Enemy.Manager
 
         //Atrivutos de sensores
         public SphereCollider areaAlerta;
+
+        //Atributos de sincronizacion en red
+        public PhotonView photonView;
 
         //Atrivutos de estadisticas
         [SerializeField] public EnemyScriptableObject enemyStats;
@@ -62,18 +65,37 @@ namespace Enemy.Manager
             //Accedemos al hijo y obtenemos el componenete de collider
             areaAlerta = transform.GetChild(0).GetComponent<SphereCollider>();
             areaAlerta.radius = enemyStats.ViewRange;
+
             
-            if(PhotonNetwork.IsMasterClient)
+
+            //Obtenemos el photonView
+            photonView = GetComponent<PhotonView>();
+            
+            if(!PhotonNetwork.IsMasterClient) return;
+
+            //Ejecutamos el primer estado de nuestra maquina de estados
+            enemyMachine.SwitchCase(DybbukStateMachine.EnemyState.Idle);
+            
+        }
+
+        public void ActivateView(int actorNumber, bool state)
+        {
+            photonView.RPC(nameof(SyncView), RpcTarget.MasterClient,actorNumber,state);
+        }     
+
+        [PunRPC]
+        public void SyncView(int act,bool state)
+        {
+            if(enemyMachine.actorViews.ContainsKey(act))
             {
-                //Ejecutamos el primer estado de nuestra maquina de estados
-                enemyMachine.SwitchCase(DybbukStateMachine.EnemyState.Idle);
+                enemyMachine.actorViews[act] = state;
             }
             else
             {
-                //Desactivamos el componente de NavMeshAgent
-                agent.enabled = false;
+                enemyMachine.actorViews.Add(act,state);
             }
-        }     
+        }
+
     }
 }
 

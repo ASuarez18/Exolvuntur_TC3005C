@@ -75,13 +75,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6822036946613130262}
-  - component: {fileID: 6343280260659073010}
-  - component: {fileID: 5678989077028154487}
   - component: {fileID: 1287083834104846949}
   - component: {fileID: 5110656276774412886}
   - component: {fileID: 6495596040001968957}
   - component: {fileID: 5447664679326344670}
-  - component: {fileID: 4427281773069175845}
   - component: {fileID: 8116985248721099000}
   - component: {fileID: 1794698330164716712}
   m_Layer: 0
@@ -109,56 +106,6 @@ Transform:
   - {fileID: 4119995887027537539}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &6343280260659073010
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6658961073227572184}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5678989077028154487
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6658961073227572184}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!136 &1287083834104846949
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -222,6 +169,7 @@ MonoBehaviour:
   enemyFakeModel: {fileID: 3631865863351082041}
   animator: {fileID: 7967462368003980181}
   areaAlerta: {fileID: 2233782502772174064}
+  photonView: {fileID: 0}
   enemyStats: {fileID: 11400000, guid: a2a496c757472bc4daf050c0a9650fa8, type: 2}
   waypoints:
   - {fileID: 0}
@@ -241,39 +189,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cdd15ca378d4d448253e865aefccf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 0}
   currentSpeed: 0
   currentRunningSpeed: 0
   currentAcceleration: 0
   currentAttackRange: 0
   currentHealth: 0
---- !u!54 &4427281773069175845
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6658961073227572184}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!114 &8116985248721099000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +325,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 38f93b3919e6bc249afcc53f68672ac8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5314804923110713250}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 38f93b3919e6bc249afcc53f68672ac8,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7899123997717486612}
   m_SourcePrefab: {fileID: 100100000, guid: 38f93b3919e6bc249afcc53f68672ac8, type: 3}
 --- !u!1 &3631865863351082041 stripped
 GameObject:
@@ -413,6 +341,71 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4514738862431773032}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5314804923110713250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3631865863351082041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 7899123997717486612}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &7899123997717486612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3631865863351082041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 2
+    Name: Move
+  - Type: 9
+    SynchronizeType: 2
+    Name: Attack
+  - Type: 9
+    SynchronizeType: 2
+    Name: Dead
+  - Type: 9
+    SynchronizeType: 2
+    Name: Search
+  - Type: 4
+    SynchronizeType: 2
+    Name: Stun
+  - Type: 9
+    SynchronizeType: 2
+    Name: Stunning
+  - Type: 9
+    SynchronizeType: 2
+    Name: Step
+  - Type: 4
+    SynchronizeType: 2
+    Name: walk2
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!4 &4119995887027537539 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 38f93b3919e6bc249afcc53f68672ac8,
@@ -505,7 +498,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e414069458696c4d838aa9db67975bc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1315507083562697354}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0e414069458696c4d838aa9db67975bc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4994084053124094821}
   m_SourcePrefab: {fileID: 100100000, guid: 0e414069458696c4d838aa9db67975bc, type: 3}
 --- !u!1 &3691228448101432149 stripped
 GameObject:
@@ -513,6 +514,71 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 4609585292308628996}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1315507083562697354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691228448101432149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 4994084053124094821}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &4994084053124094821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3691228448101432149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 2
+    Name: Move
+  - Type: 9
+    SynchronizeType: 2
+    Name: Attack
+  - Type: 9
+    SynchronizeType: 2
+    Name: Dead
+  - Type: 9
+    SynchronizeType: 2
+    Name: Search
+  - Type: 4
+    SynchronizeType: 2
+    Name: Stun
+  - Type: 9
+    SynchronizeType: 2
+    Name: Stunning
+  - Type: 9
+    SynchronizeType: 2
+    Name: Step
+  - Type: 4
+    SynchronizeType: 2
+    Name: walk2
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!4 &4067366309939552751 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0e414069458696c4d838aa9db67975bc,

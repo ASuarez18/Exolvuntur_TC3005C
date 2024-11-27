@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 namespace Enemy.Behaviour
 {
@@ -21,6 +22,7 @@ namespace Enemy.Behaviour
         //Inicializa el estado
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             // ? Detenemos el movimiento del agente dado que esta muerto
             manager.agent.isStopped = true;
             manager.animator.SetTrigger("Dead");
@@ -30,17 +32,20 @@ namespace Enemy.Behaviour
         //Actualiza el estado en el Update del MonoBehaviour
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             
         }
 
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             
         }
 
         //Funcion que revisa si entra en el flujo de un estado o no
         public override DybbukStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return DybbukStateMachine.EnemyState.Dead;
             return DybbukStateMachine.EnemyState.Dead;
         }
 

@@ -89,7 +89,7 @@ namespace PlayerController
                 var soundDetector = new SoundGame(transform.position, soundRage);
                 soundDetector.soundType = SoundGame.SoundType.Interesting;
                 Sounds.MakeSound(soundDetector);
-                Debug.Log("Haciendo ruido");
+                // Debug.Log("Haciendo ruido");
                 //Rotamos al jugador según la dirección del movimiento
             }
 

@@ -80,6 +80,7 @@ MonoBehaviour:
   enemyRender: {fileID: 4531579636406564397}
   animator: {fileID: 4531579636402473199}
   areaAlerta: {fileID: 1752691053492096132}
+  photonView: {fileID: 0}
   enemyStats: {fileID: 11400000, guid: 3f0494afaa0c9884f9e24ee33996dbbd, type: 2}
   waypoints:
   - {fileID: 0}

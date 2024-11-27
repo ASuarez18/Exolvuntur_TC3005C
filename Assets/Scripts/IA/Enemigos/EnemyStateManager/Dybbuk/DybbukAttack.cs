@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 /// <summary>
 /// Estado de ataque se activa cuando el enemigo detecta una colision con el jugador.
@@ -27,6 +28,7 @@ namespace Enemy.Behaviour
          //Inicializa el estado
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Detenemos el movimiento del agente y activamos sus animaciones
             manager.agent.isStopped = true;
             manager.animator.SetTrigger("Attack");
@@ -35,6 +37,7 @@ namespace Enemy.Behaviour
         //Actualiza el estado en el Update del MonoBehaviour
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Revisamos el contador de tiempo en que ejecuta el ataque
             dybbukSM.UpdateAttackTime();
 
@@ -42,6 +45,7 @@ namespace Enemy.Behaviour
 
         public override void ExitState()
         { 
+            if(!PhotonNetwork.IsMasterClient) return;
             //Reanudamos el movimiento del agente
             manager.agent.isStopped = false;
             dybbukSM.TimeOfAttack = 0f;
@@ -51,6 +55,7 @@ namespace Enemy.Behaviour
          //Funcion que revisa si entra en el flujo de un estado o no
         public override DybbukStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return DybbukStateMachine.EnemyState.Attack;
             //Revisamos si el enemigo esta a la vista
             if(dybbukSM.IsStunned)
             {
@@ -66,6 +71,7 @@ namespace Enemy.Behaviour
         //Metodos de cambio de flujo del estado
         public override void OnAreaEnter(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = true;
@@ -79,6 +85,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = false;

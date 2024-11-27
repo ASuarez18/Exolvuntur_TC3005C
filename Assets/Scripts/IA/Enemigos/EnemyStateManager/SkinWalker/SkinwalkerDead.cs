@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 /// <summary>
 /// En este estado nuestor enemigo SkinWalker patrulla alrededor del mapa.
@@ -27,6 +28,7 @@ namespace Enemy.Behaviour
 
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             manager.agent.isStopped = true;
             manager.animator.SetTrigger("Dead");
             skinwalkerSM.EnemyDead();

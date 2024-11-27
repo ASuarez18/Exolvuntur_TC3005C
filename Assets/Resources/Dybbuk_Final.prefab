@@ -80,6 +80,7 @@ MonoBehaviour:
   enemyRender: {fileID: 4531579636406564397}
   animator: {fileID: 4531579636402473199}
   areaAlerta: {fileID: 1752691053492096132}
+  photonView: {fileID: 0}
   enemyStats: {fileID: 11400000, guid: 3f0494afaa0c9884f9e24ee33996dbbd, type: 2}
   waypoints:
   - {fileID: 0}
@@ -99,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8626412f68ec104a8ceeac7f3d28a45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  photonView: {fileID: 0}
   currentSpeed: 0
   currentRunningSpeed: 0
   currentAcceleration: 0
@@ -1186,7 +1186,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 707587139157058990, guid: 6f4d03eac92625443ac474b23f955d84,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2110307020314535190}
+    - targetCorrespondingSourceObject: {fileID: 707587139157058990, guid: 6f4d03eac92625443ac474b23f955d84,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3406205052679218796}
   m_SourcePrefab: {fileID: 100100000, guid: 6f4d03eac92625443ac474b23f955d84, type: 3}
 --- !u!95 &4531579636402473199 stripped
 Animator:
@@ -1200,6 +1208,68 @@ SkinnedMeshRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 3977449686279642755}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4531579636411841325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 707587139157058990, guid: 6f4d03eac92625443ac474b23f955d84,
+    type: 3}
+  m_PrefabInstance: {fileID: 3977449686279642755}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2110307020314535190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4531579636411841325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 0
+  ObservedComponents:
+  - {fileID: 3406205052679218796}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &3406205052679218796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4531579636411841325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 1
+    SynchronizeType: 2
+    Name: States
+  - Type: 9
+    SynchronizeType: 2
+    Name: Dead
+  - Type: 9
+    SynchronizeType: 2
+    Name: Stunning
+  - Type: 4
+    SynchronizeType: 2
+    Name: Stun
+  - Type: 9
+    SynchronizeType: 2
+    Name: Attack
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!4 &4531579636412262157 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 707587139156638094, guid: 6f4d03eac92625443ac474b23f955d84,

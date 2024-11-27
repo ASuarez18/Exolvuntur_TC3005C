@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 /// <summary>
 /// EEstado de persecucion al jugador.
@@ -27,6 +28,7 @@ namespace Enemy.Behaviour
          //Inicializa el estado
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             manager.animator.SetFloat("States",2);
            
         }
@@ -34,6 +36,7 @@ namespace Enemy.Behaviour
         //Actualiza el estado en el Update del MonoBehaviour
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Actualizamos el movimiento hacia el jugador
             manager.agent.SetDestination(dybbukSM.actualTarget);
         }
@@ -46,12 +49,13 @@ namespace Enemy.Behaviour
          //Funcion que revisa si entra en el flujo de un estado o no
         public override DybbukStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return DybbukStateMachine.EnemyState.Chasing;
             //Revisamos si el enemigo esta a la vista
             if(dybbukSM.IsStunned)
             {
                 return DybbukStateMachine.EnemyState.Stunned;
             }
-            else if(dybbukSM.OnView)
+            else if(dybbukSM.actorViews.ContainsValue(true))
             {
                 return DybbukStateMachine.EnemyState.Still;
             }
@@ -69,6 +73,7 @@ namespace Enemy.Behaviour
         //Metodos de cambio de flujo del estado
         public override void OnAreaEnter(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = true;
@@ -77,6 +82,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaStay(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             if(other.CompareTag("Player"))
             {
                 dybbukSM.actualTarget = other.transform.position;
@@ -85,7 +91,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
-            
+            if(!PhotonNetwork.IsMasterClient) return;
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = false;

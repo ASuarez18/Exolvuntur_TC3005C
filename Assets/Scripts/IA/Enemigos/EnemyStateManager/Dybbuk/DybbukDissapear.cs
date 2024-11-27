@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 namespace Enemy.Behaviour
 {
@@ -21,6 +22,7 @@ namespace Enemy.Behaviour
         //Inicializa el estado
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Desactivamos el render o modelo del enemigo
             manager.enemyRender.enabled  = false;
         }
@@ -39,6 +41,7 @@ namespace Enemy.Behaviour
         //Funcion que revisa si entra en el flujo de un estado o no
         public override DybbukStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return DybbukStateMachine.EnemyState.Dissappear;
             return DybbukStateMachine.EnemyState.Scape;
         }
 
@@ -55,6 +58,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             if (other.gameObject.tag == "Player")
                 {
                     dybbukSM.PlayerOnAreaClose = false;

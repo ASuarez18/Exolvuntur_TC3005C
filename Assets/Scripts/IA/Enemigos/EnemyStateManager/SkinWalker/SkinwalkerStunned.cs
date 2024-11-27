@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 /// <summary>
 /// En este estado nuestor enemigo SkinWalker patrulla alrededor del mapa.
@@ -27,6 +28,7 @@ namespace Enemy.Behaviour
 
         public override void EnterState()
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             //Detenemos el movimiento del enemigo
             manager.agent.isStopped = true;
             manager.animator.SetTrigger("Stunning");
@@ -35,6 +37,7 @@ namespace Enemy.Behaviour
 
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
              skinwalkerSM.UpdateStunTime();
              //Revisamos la funcion de ya esta transformado
             if(skinwalkerSM.IsTransformed)
@@ -45,6 +48,7 @@ namespace Enemy.Behaviour
 
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             //Detenemos el movimiento del enemigo
             manager.animator.SetBool("Stun", false);
             manager.agent.isStopped = false;
@@ -55,6 +59,7 @@ namespace Enemy.Behaviour
         //Función para cambiar de estados
         public override SkinwalkerStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return SkinwalkerStateMachine.EnemyState.Stunned;
             //Revisamos si el enemigo sigue stunned
             if(skinwalkerSM.currentHealth <= 0)
             {
@@ -71,6 +76,7 @@ namespace Enemy.Behaviour
         //Metodos de cambio de flujo del estado
         public override void OnAreaEnter(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             if(other.CompareTag("Player"))
             {
                 skinwalkerSM.PlayerOnAreaFar = true;
@@ -84,6 +90,7 @@ namespace Enemy.Behaviour
 
         public override void OnAreaExit(Collider other)
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             
             if(other.CompareTag("Player"))
             {

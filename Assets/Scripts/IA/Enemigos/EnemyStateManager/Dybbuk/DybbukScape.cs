@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 namespace Enemy.Behaviour 
 {
@@ -22,6 +23,7 @@ namespace Enemy.Behaviour
             //Inicializa el estado
             public override void EnterState()
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 //Aumentanmos la velocidad del enemigo y elegimos un punto alejado
                 dybbukSM.currentSpeed += dybbukSM.currentSpeed;
                 dybbukSM.currentRunningSpeed += dybbukSM.currentRunningSpeed;
@@ -41,6 +43,7 @@ namespace Enemy.Behaviour
             //Actualiza el estado en el Update del MonoBehaviour
             public override void UpdateState()
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 //Actualizamos la posicion del agente al destino
                 manager.agent.SetDestination(dybbukSM.actualTarget);
 
@@ -59,6 +62,7 @@ namespace Enemy.Behaviour
 
             public override void ExitState()
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 //Activamos el mesh renderer del enemigo
                 manager.enemyRender.enabled = true;
             }
@@ -66,6 +70,7 @@ namespace Enemy.Behaviour
             //Funcion que revisa si entra en el flujo de un estado o no
             public override DybbukStateMachine.EnemyState GetNextState()
             {
+                if(!PhotonNetwork.IsMasterClient) return DybbukStateMachine.EnemyState.Scape;
                 if (reachedTarget)
                 {
                     return DybbukStateMachine.EnemyState.Idle;
@@ -87,6 +92,7 @@ namespace Enemy.Behaviour
 
             public override void OnAreaExit(Collider other)
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 if (other.gameObject.tag == "Player")
                 {
                     dybbukSM.PlayerOnAreaClose = false;

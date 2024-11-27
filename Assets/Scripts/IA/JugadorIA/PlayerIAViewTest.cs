@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
-public class PlayerIAViewTest : MonoBehaviour
+public class PlayerIAViewTest : MonoBehaviourPunCallbacks
 {
     // Atributos
     public Camera cam;
@@ -13,6 +14,7 @@ public class PlayerIAViewTest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         // Encontramos la cámara principal
         cam = Camera.main;
     }
@@ -55,19 +57,21 @@ public class PlayerIAViewTest : MonoBehaviour
                         // Verifica si el raycast impacta al enemigo
                         if (hit.transform == enemy.transform)
                         {
-                            enemyManager.enemyMachine.OnView = true;
-                            enemyInView = true;
+                            // enemyManager.enemyMachine.OnView = true;
+                            enemyManager.ActivateView(PhotonNetwork.LocalPlayer.ActorNumber, true);
+                            // enemyInView = true;
                         }
                         else
                         {
                             enemyManager.enemyMachine.OnView = false;
+                            enemyManager.ActivateView(PhotonNetwork.LocalPlayer.ActorNumber, false);
                         }
                     }
                 }
                 else
                 {
                     // Si no está en el viewport, desactivamos "OnView"
-                    enemyManager.enemyMachine.OnView = false;
+                    enemyManager.ActivateView(PhotonNetwork.LocalPlayer.ActorNumber, false);
                 }
             }
         }
