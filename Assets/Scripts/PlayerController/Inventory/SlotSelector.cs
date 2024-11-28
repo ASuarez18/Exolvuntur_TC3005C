@@ -305,7 +305,6 @@ namespace PlayerController.Inventory
         public void SetHealBottleAlpha(float alpha, float time)
         {
             Debug.LogWarning("Entro a Alpha");
-            //_healBottleImage.color = new Color(255f, 255f, 255f, alpha);
             _healBottleImage.SetActive(false);
 
             StartCoroutine(ResetHealBottleAlpha(time));
@@ -320,7 +319,6 @@ namespace PlayerController.Inventory
         {
             yield return new WaitForSeconds(time);
             _healBottleImage.SetActive(true);
-            //_healBottleImage.color = new Color(255, 255, 255, 255);
         }
     }
 }
