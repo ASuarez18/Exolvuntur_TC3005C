@@ -63,24 +63,24 @@ namespace Enemy.Behaviour
             }
 
             //Metodos de cambio de flujo del estado
-            public override void OnAreaEnter(Collider other)
-            {
+            // public override void OnAreaEnter(Collider other)
+            // {
                     
-            }
+            // }
 
-            public override void OnAreaStay(Collider other)
-            {
+            // public override void OnAreaStay(Collider other)
+            // {
             
-            }
+            // }
 
-            public override void OnAreaExit(Collider other)
-            {
-                if(!PhotonNetwork.IsMasterClient) return;
+            // public override void OnAreaExit(Collider other)
+            // {
+            //     if(!PhotonNetwork.IsMasterClient) return;
 
-                if (other.gameObject.tag == "Player")
-                {
-                    kormosSM.PlayerOnAreaFar = false;
-                }
-            }
+            //     if (other.gameObject.tag == "Player")
+            //     {
+            //         kormosSM.PlayerOnAreaFar = false;
+            //     }
+            // }
     }
 }

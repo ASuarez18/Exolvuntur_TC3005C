@@ -92,9 +92,27 @@ namespace Enemy.Manager
             photonView.RPC(nameof(SyncDamage), RpcTarget.MasterClient,value);
         }
 
+        public void Animatorfuc(string name)
+        {
+            photonView.RPC(nameof(AnimatorSync),RpcTarget.All,name);
+
+        }
+
+        [PunRPC]
+        public void AnimatorSync(string name)
+        {
+            animator.SetTrigger(name);
+        }
+
         [PunRPC]
         public void SyncView(int act,bool state)
         {
+            if (!PhotonNetwork.IsConnected && !PhotonNetwork.OfflineMode)
+            {
+                Debug.LogError("No se puede activar el view porque Photon no está disponible.");
+                return;
+            }
+
             if(enemyMachine.actorViews.ContainsKey(act))
             {
                 enemyMachine.actorViews[act] = state;

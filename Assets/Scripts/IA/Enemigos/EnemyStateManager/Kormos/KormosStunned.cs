@@ -22,11 +22,12 @@ namespace Enemy.Behaviour
         //Inicializa el estado
         public override void EnterState()
         {
+            manager.animator.SetTrigger("Stunning");
             if(!PhotonNetwork.IsMasterClient) return;
             //Detenemos el movimiento del agente dado que esta en stunneado
             manager.agent.isStopped = true;
             // TODO: Settear animacion de aturdimiento
-            manager.animator.SetTrigger("Stunning");
+            //manager.Animatorfuc("Stunning");
             manager.animator.SetBool("Stun",true);
         }
 
@@ -73,25 +74,25 @@ namespace Enemy.Behaviour
         }
 
         //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
+        // public override void OnAreaEnter(Collider other)
+        // {
                 
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
+        // public override void OnAreaStay(Collider other)
+        // {
         
-        }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if (other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerOnAreaFar = false;
-                kormosSM.PlayerPosition = Vector3.zero;
-                kormosSM.PlayerGameObject = null;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if (other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerOnAreaFar = false;
+        //         kormosSM.PlayerPosition = Vector3.zero;
+        //         kormosSM.PlayerGameObject = null;
+        //     }
+        // }
     }
 }

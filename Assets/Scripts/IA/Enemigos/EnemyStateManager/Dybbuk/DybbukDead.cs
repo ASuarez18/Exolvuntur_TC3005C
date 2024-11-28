@@ -22,10 +22,11 @@ namespace Enemy.Behaviour
         //Inicializa el estado
         public override void EnterState()
         {
+            manager.animator.SetTrigger("Dead");
             if(!PhotonNetwork.IsMasterClient) return;
             // ? Detenemos el movimiento del agente dado que esta muerto
             manager.agent.isStopped = true;
-            manager.animator.SetTrigger("Dead");
+            //manager.Animatorfuc("Dead");
             dybbukSM.EnemyDead();
         }
 
@@ -49,20 +50,20 @@ namespace Enemy.Behaviour
             return DybbukStateMachine.EnemyState.Dead;
         }
 
-        //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
+        // //Metodos de cambio de flujo del estado
+        // public override void OnAreaEnter(Collider other)
+        // {
                 
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
+        // public override void OnAreaStay(Collider other)
+        // {
         
-        }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
+        // public override void OnAreaExit(Collider other)
+        // {
             
-        }
+        // }
     }
 }

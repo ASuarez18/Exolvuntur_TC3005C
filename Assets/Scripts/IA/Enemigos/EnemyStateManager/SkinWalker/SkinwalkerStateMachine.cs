@@ -30,6 +30,7 @@ namespace Enemy.Behaviour
         //Banderas que son utilizadas en toda la maquina de estados
         #region Variables y Atributos
         private EnemySkinWalkerManager manager;
+        public Dictionary<int , GameObject> playerInfo = new Dictionary<int, GameObject>();
         public bool PlayerOnAreaClose { get; set; }
         public bool PlayerOnAreaFar { get; set; }
         public Vector3 actualTarget { get; set; }
@@ -93,26 +94,38 @@ namespace Enemy.Behaviour
         //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
         public override void OnTriggerEnter(Collider other)
         {
-            base.OnTriggerEnter(other);
-        }
-        public override void OnTriggerStay(Collider other)
-        {
-            base.OnTriggerStay(other);
-        }
-        public override void OnTriggerExit(Collider other)
-        {
-            base.OnTriggerExit(other);
-        }
-        public void OnCollisionEnter(Collision other)
-        {  
-            if(currentState.StateKey == EnemyState.Chasing)
+            // base.OnTriggerEnter(other);
+            if (other.CompareTag("Player"))
             {
-                if(other.gameObject.tag == "Player")
+                if (!playerInfo.ContainsKey(other.gameObject.GetPhotonView().Owner.ActorNumber))
                 {
-                    Attacking = true;
+                    playerInfo.Add(other.gameObject.GetPhotonView().Owner.ActorNumber, other.gameObject);
+                }
+                else 
+                {
+                    playerInfo[other.gameObject.GetPhotonView().Owner.ActorNumber] = other.gameObject;
                 }
             }
         }
+        public override void OnTriggerStay(Collider other)
+        {
+            // base.OnTriggerStay(other);
+        }
+        public override void OnTriggerExit(Collider other)
+        {
+            // base.OnTriggerExit(other);
+            playerInfo[other.gameObject.GetPhotonView().Owner.ActorNumber] = null;
+        }
+        // public void OnCollisionEnter(Collision other)
+        // {  
+        //     if(currentState.StateKey == EnemyState.Chasing)
+        //     {
+        //         if(other.gameObject.tag == "Player")
+        //         {
+        //             Attacking = true;
+        //         }
+        //     }
+        // }
 
         #endregion
 
@@ -163,7 +176,96 @@ namespace Enemy.Behaviour
         }
         #endregion
 
+        #region Update Dictionary
+
+        public void ViewOnAreaFarPlayers()
+        {
+            //Recorremos el diccionario y revisamos si todos estan nulos o no
+            foreach (var player in playerInfo)
+            {
+                if (player.Value != null)
+                {
+                    PlayerOnAreaFar = true;
+                }
+                else
+                {
+                    PlayerOnAreaFar = false;
+                }
+            }
+        }
+
+        public void ViewOnAreaClosePlayers()
+            {
+                bool detected = false;
+                //Recorremos el diccionario y verificamos las que no son nulas. A cada quien obtenemos y calculamos la distanciapara ver si hay alguien menor o igual a nuestra zona de ataque
+                foreach (var player in playerInfo)
+                {
+                    if (player.Value != null)
+                    {
+                        DistanceToPlayer = Vector3.Distance(player.Value.transform.position, transform.position);
+                        if (DistanceToPlayer <= currentAttackRange)
+                        {
+                            PlayerOnAreaClose = true;
+                            detected = true;
+                        }
+                        else
+                        {
+                            if(detected) break;
+                            PlayerOnAreaClose = false;
+                        }
+                    }
+                }
+            }
+
+        public void NearPlayer()
+        {
+            var playerdistance = 0f;
+            var playerNear = float.MaxValue;
+            Vector3 playerPos = Vector3.zero;
+
+            foreach (var player in playerInfo)
+            {
+                if (player.Value != null)
+                {
+                    playerdistance = Vector3.Distance(player.Value.transform.position, transform.position);
+
+                    if (playerdistance <= 20f)
+                    {
+                        Attacking = true;
+                        // Usa el ViewID en lugar del ActorNumber
+                        photonView.RPC(nameof(SyncAttack), RpcTarget.All, player.Value.GetComponent<PhotonView>().ViewID,player.Value.GetComponent<PhotonView>().Owner.ActorNumber);
+                        return;
+                    }
+
+                    if (playerdistance <= playerNear)
+                    {
+                        playerNear = playerdistance;
+                        playerPos = player.Value.transform.position;
+                    }
+                }
+            }
+
+            // Actualiza el objetivo más cercano
+            actualTarget = playerPos;
+            manager.agent.SetDestination(actualTarget);
+        }
+
+        #endregion
+
         #region DamageFuntions
+
+
+        [PunRPC]
+        public void SyncAttack(int viewID, int ActorNumber)
+        {
+            PhotonView targetView = PhotonView.Find(viewID);
+            if (targetView != null && ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+            {
+                targetView.GetComponent<PUNPlayerSanity>().TakeDamage(10, "SkinWalker");
+            }
+        }
+
+
         public void ApplyStun()
         {
             IsStunned = true;

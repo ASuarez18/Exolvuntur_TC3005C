@@ -1256,16 +1256,16 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: States
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Dead
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Stunning
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Stun
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Attack
   m_SynchronizeLayers:
   - SynchronizeType: 2

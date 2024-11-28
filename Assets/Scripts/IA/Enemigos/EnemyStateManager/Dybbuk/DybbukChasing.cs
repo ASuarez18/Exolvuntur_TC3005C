@@ -39,16 +39,22 @@ namespace Enemy.Behaviour
         {
             if(!PhotonNetwork.IsMasterClient) return;
 
-            dybbukSM.DistanceToPlayer = Vector3.Distance(manager.transform.position, dybbukSM.PlayerPosition);
+            //Verificar si siguen en el area cercana
+            dybbukSM.ViewOnAreaClosePlayers();
 
-            dybbukSM.actualTarget = dybbukSM.PlayerPosition;
-            manager.agent.SetDestination(dybbukSM.actualTarget);
-            if (dybbukSM.DistanceToPlayer <= 20)
-            {
-                dybbukSM.Attacking = true;
-            }
-            // //Actualizamos el movimiento hacia el jugador
+            dybbukSM.NearPlayer();
+
+
+            // dybbukSM.DistanceToPlayer = Vector3.Distance(manager.transform.position, dybbukSM.PlayerPosition);
+
+            // dybbukSM.actualTarget = dybbukSM.PlayerPosition;
             // manager.agent.SetDestination(dybbukSM.actualTarget);
+            // if (dybbukSM.DistanceToPlayer <= 20)
+            // {
+            //     dybbukSM.Attacking = true;
+            // }
+            // // //Actualizamos el movimiento hacia el jugador
+            // // manager.agent.SetDestination(dybbukSM.actualTarget);
         }
 
         public override void ExitState()
@@ -71,7 +77,7 @@ namespace Enemy.Behaviour
             }
             else if(dybbukSM.Attacking)
             {
-                dybbukSM.PlayerGameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Dybbuk");
+                // dybbukSM.PlayerGameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Dybbuk");
                 return DybbukStateMachine.EnemyState.Attack;
             }
             else if(!dybbukSM.PlayerOnAreaClose)
@@ -82,35 +88,35 @@ namespace Enemy.Behaviour
         }
 
         //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                dybbukSM.PlayerOnAreaClose = true;
-                dybbukSM.PlayerPosition = other.transform.position;
-                dybbukSM.PlayerGameObject = other.gameObject;
-            }
-        }
+        // public override void OnAreaEnter(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.PlayerOnAreaClose = true;
+        //         dybbukSM.PlayerPosition = other.transform.position;
+        //         dybbukSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                dybbukSM.actualTarget = other.transform.position;
-            }
-        }
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.actualTarget = other.transform.position;
+        //     }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                dybbukSM.PlayerOnAreaClose = false;
-                dybbukSM.PlayerPosition = other.transform.position;
-                dybbukSM.PlayerGameObject = null;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.PlayerOnAreaClose = false;
+        //         dybbukSM.PlayerPosition = other.transform.position;
+        //         dybbukSM.PlayerGameObject = null;
+        //     }
+        // }
     }
 }

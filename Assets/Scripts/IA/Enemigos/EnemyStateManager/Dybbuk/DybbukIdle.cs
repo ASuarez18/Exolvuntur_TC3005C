@@ -38,7 +38,13 @@ namespace Enemy.Behaviour
         public override void UpdateState()
         {
             if(!PhotonNetwork.IsMasterClient) return;
+
+            //Verificamos los jugadores que entran y salen de nuestra zona
+            dybbukSM.ViewOnAreaClosePlayers();
+
             //Elegimos un nuevo destino cada ve que se acerca a su destino
+
+
             if (manager.agent.remainingDistance <= 1f)
             {  
                 
@@ -79,27 +85,27 @@ namespace Enemy.Behaviour
             return DybbukStateMachine.EnemyState.Idle;
         }
 
-        //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                dybbukSM.PlayerOnAreaClose = true;
-                dybbukSM.PlayerPosition = other.transform.position;
-                dybbukSM.PlayerGameObject = other.gameObject;
-            }
-        }
+        // //Metodos de cambio de flujo del estado
+        // public override void OnAreaEnter(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.PlayerOnAreaClose = true;
+        //         dybbukSM.PlayerPosition = other.transform.position;
+        //         dybbukSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            //No realizamos nada
-        }
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     //No realizamos nada
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
+        // public override void OnAreaExit(Collider other)
+        // {
             
-            //No realizamos nada
-        }
+        //     //No realizamos nada
+        // }
     }
 }

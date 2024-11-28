@@ -21,6 +21,7 @@ namespace Enemy.Behaviour
 
         public override void EnterState()
         {
+            manager.animator.SetTrigger("agresividad");
             if(!PhotonNetwork.IsMasterClient) return;
             //Detenemos el movimiento del agente
             manager.agent.isStopped = true;
@@ -38,9 +39,11 @@ namespace Enemy.Behaviour
             //Incrementamos las veces que puede entrar en este modo
             kormosSM.AggresiveMode++;
 
-            manager.animator.SetTrigger("agresividad");
+            //manager.Animatorfuc("agresividad");
+            //manager.animator.SetBool("agresividad",true);
 
         }
+
 
         public override void UpdateState()
         {
@@ -68,30 +71,30 @@ namespace Enemy.Behaviour
             
         }
 
-        public override  void OnAreaEnter(Collider other)
-        {
+        // public override  void OnAreaEnter(Collider other)
+        // {
 
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerPosition = other.transform.position;
-                kormosSM.PlayerGameObject = other.gameObject;
-            }
-        }
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerPosition = other.transform.position;
+        //         kormosSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if (other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerOnAreaFar = false;
-                kormosSM.PlayerPosition = Vector3.zero;
-                kormosSM.PlayerGameObject = null;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if (other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerOnAreaFar = false;
+        //         kormosSM.PlayerPosition = Vector3.zero;
+        //         kormosSM.PlayerGameObject = null;
+        //     }
+        // }
     }
 }

@@ -29,9 +29,11 @@ namespace Enemy.Behaviour
         //Inicializamos el estado
         public override void EnterState()
         {
+            manager.animator.SetTrigger("ataque");
             if(!PhotonNetwork.IsMasterClient) return;
             manager.agent.isStopped = true;
-            manager.animator.SetTrigger("ataque");
+            //manager.animator.SetTrigger("ataque");
+            //manager.Animatorfuc("ataque");
             //Generamos un overslpa sphere para detectar game objets con el tag player justo frente del nuestro transform
             // Collider[] hitColliders = Physics.OverlapSphere(manager.transform.forward * 2, 200f);
             // //Dibujamos la esfera
@@ -44,6 +46,7 @@ namespace Enemy.Behaviour
             //     }
             // }
         }
+
 
         //Actualizamos el estado en el Update
         public override void UpdateState()
@@ -59,6 +62,7 @@ namespace Enemy.Behaviour
             if(!PhotonNetwork.IsMasterClient) return;
             manager.agent.isStopped = false;
             kormosSM.TimeOfAttack = 0f;
+            
         }
 
         //Obtenemos el siguiente estado segun las condiciones
@@ -78,32 +82,32 @@ namespace Enemy.Behaviour
 
         //Funciones de sensores
 
-        public override void OnAreaEnter(Collider other)
-        {
+        // public override void OnAreaEnter(Collider other)
+        // {
             
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerPosition = other.transform.position;
-                kormosSM.PlayerGameObject = other.gameObject;
-            }
-        }
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerPosition = other.transform.position;
+        //         kormosSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
+        // public override void OnAreaExit(Collider other)
+        // {
             
-        }
+        // }
 
-         void OnDrawGizmosSelected()
-        {
-            // Display the explosion radius when selected
-            Gizmos.color = Color.white;
-            Gizmos.DrawWireSphere(manager.transform.forward * 2, 5f);
-        }
+        //  void OnDrawGizmosSelected()
+        // {
+        //     // Display the explosion radius when selected
+        //     Gizmos.color = Color.white;
+        //     Gizmos.DrawWireSphere(manager.transform.forward * 2, 5f);
+        // }
 
 
     }

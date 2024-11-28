@@ -100,7 +100,8 @@ MonoBehaviour:
   enemyMachine: {fileID: 258764727450668211}
   animator: {fileID: 8114540799442549970}
   areaAlerta: {fileID: 3193508157721434260}
-  photonView: {fileID: 0}
+  photonView: {fileID: 6212549126208975049}
+  photonAni: {fileID: 8729839351272057969}
   enemyStats: {fileID: 11400000, guid: 95cc96a44a7fe5b4396a8d219e3ea00e, type: 2}
   waypoints:
   - {fileID: 0}
@@ -2257,7 +2258,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b19a316da89d424098f98c3544a22ba,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4196552593878004020}
+      addedObject: {fileID: 9001771340166838638}
   m_SourcePrefab: {fileID: 100100000, guid: 0b19a316da89d424098f98c3544a22ba, type: 3}
 --- !u!4 &2773248742849128104 stripped
 Transform:
@@ -2290,11 +2291,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 0
   ObservedComponents:
-  - {fileID: 4196552593878004020}
+  - {fileID: 9001771340166838638}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &4196552593878004020
+--- !u!114 &9001771340166838638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2312,24 +2313,24 @@ MonoBehaviour:
   - Type: 1
     SynchronizeType: 2
     Name: forward
-  - Type: 9
-    SynchronizeType: 2
-    Name: ataque
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Stun
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Stunning
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: alerta
   - Type: 9
-    SynchronizeType: 2
-    Name: agresividad
-  - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: muerte
+  - Type: 9
+    SynchronizeType: 1
+    Name: ataque
+  - Type: 9
+    SynchronizeType: 1
+    Name: agresividad
   m_SynchronizeLayers:
   - SynchronizeType: 2
     LayerIndex: 0

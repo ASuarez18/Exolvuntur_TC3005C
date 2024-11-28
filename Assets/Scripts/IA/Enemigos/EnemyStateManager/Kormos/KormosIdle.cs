@@ -50,6 +50,9 @@ namespace Enemy.Behaviour
 
             if(!PhotonNetwork.IsMasterClient) return ;
 
+            //Revisamos si algun jugador esta en el area
+            kormosSM.ViewOnAreaFarPlayers();
+
             //Elegimos un nuevo destino cada ve que se acerca a su destino
             if (manager.agent.remainingDistance <= 1f)
             {  
@@ -81,6 +84,7 @@ namespace Enemy.Behaviour
         public override KormosStateMachine.EnemyState GetNextState()
         {
             if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Idle;
+
             //Revisamos si el enemigo esta estuneado
             if(kormosSM.IsStunned)
             {
@@ -96,32 +100,32 @@ namespace Enemy.Behaviour
         }
 
         //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            //Verificamos que el objeto tenga el tag de player
-            if (other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerOnAreaFar = true;
-                kormosSM.PlayerGameObject = other.gameObject;
-            }
-        }
+        // public override void OnAreaEnter(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     //Verificamos que el objeto tenga el tag de player
+        //     if (other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerOnAreaFar = true;
+        //         kormosSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerPosition = other.transform.position;
-                kormosSM.PlayerGameObject = other.gameObject;
-            }
-        }
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerPosition = other.transform.position;
+        //         kormosSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
+        // public override void OnAreaExit(Collider other)
+        // {
             
-            //No realizamos nada
-        }
+        //     //No realizamos nada
+        // }
 
     }
 }

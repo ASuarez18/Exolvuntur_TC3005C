@@ -36,13 +36,16 @@ namespace Enemy.Behaviour
         {
             if(!PhotonNetwork.IsMasterClient) return ;
 
-            skinwalkerSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,skinwalkerSM.PlayerPosition);
-            skinwalkerSM.actualTarget = skinwalkerSM.PlayerPosition;
-            manager.agent.SetDestination(skinwalkerSM.actualTarget);
-            if(skinwalkerSM.DistanceToPlayer <= 20)
-            {
-                skinwalkerSM.Attacking = true;
-            }
+            // skinwalkerSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,skinwalkerSM.PlayerPosition);
+            // skinwalkerSM.actualTarget = skinwalkerSM.PlayerPosition;
+            // manager.agent.SetDestination(skinwalkerSM.actualTarget);
+            // if(skinwalkerSM.DistanceToPlayer <= 20)
+            // {
+            //     skinwalkerSM.Attacking = true;
+            // }
+
+            skinwalkerSM.ViewOnAreaFarPlayers();
+            skinwalkerSM.NearPlayer();
 
             //Verificamos la funcion de tiempo transformado
             if(skinwalkerSM.IsTransformed) 
@@ -73,41 +76,41 @@ namespace Enemy.Behaviour
             //Si el enemigo detecto una colision
             else if(skinwalkerSM.Attacking)
             {
-                skinwalkerSM.PlayerGameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Skinwalker");
+                // skinwalkerSM.PlayerGameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Skinwalker");
                 return SkinwalkerStateMachine.EnemyState.Attack;
             }
             
             return SkinwalkerStateMachine.EnemyState.Chasing; 
         }
 
-        //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                skinwalkerSM.PlayerOnAreaFar = true;
-            }
-        }
+        // //Metodos de cambio de flujo del estado
+        // public override void OnAreaEnter(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         skinwalkerSM.PlayerOnAreaFar = true;
+        //     }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
             
-            if(other.CompareTag("Player"))
-            {
-                skinwalkerSM.actualTarget = other.transform.position;
-            }
-        }
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         skinwalkerSM.actualTarget = other.transform.position;
+        //     }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                skinwalkerSM.PlayerOnAreaFar = false;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         skinwalkerSM.PlayerOnAreaFar = false;
+        //     }
+        // }
     }
 
 }

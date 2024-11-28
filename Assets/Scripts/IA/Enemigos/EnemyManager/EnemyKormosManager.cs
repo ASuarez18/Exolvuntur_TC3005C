@@ -26,6 +26,8 @@ namespace Enemy.Manager
         //Atributos de sincronizacion en red
         public PhotonView photonView;
 
+        public PhotonView photonAni;
+
         //Atrivutos de estadisticas
         [SerializeField] public EnemyScriptableObject enemyStats;
         [SerializeField] public List<Transform> waypoints;
@@ -43,8 +45,9 @@ namespace Enemy.Manager
         //Inicializamos la suscripcion y desuscricion de los eventos
         [SerializeField] private TriggerSensor sensor;
 
-        void OnEnable()
+        public override void OnEnable()
         {
+            base.OnEnable();
             //Suscribimos los eventos
             sensor.TriggerEventEnter += enemyMachine.OnTriggerEnter;
             sensor.TriggerEventStay += enemyMachine.OnTriggerStay;
@@ -94,6 +97,19 @@ namespace Enemy.Manager
         {
             photonView.RPC(nameof(SyncDamage), RpcTarget.MasterClient,value);
         }
+
+        public void Animatorfuc(string name)
+        {
+            photonView.RPC(nameof(AnimatorSync), RpcTarget.All, name);
+        }
+
+        [PunRPC]
+        public void AnimatorSync(string name)
+        {
+            Debug.Log("Animator Sync");
+            animator.SetTrigger(name);
+        }
+
 
         [PunRPC]
         public void ActivateSound(Vector3 soundPos)

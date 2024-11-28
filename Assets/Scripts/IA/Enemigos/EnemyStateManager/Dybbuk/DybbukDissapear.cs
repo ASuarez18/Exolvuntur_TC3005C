@@ -45,27 +45,27 @@ namespace Enemy.Behaviour
             return DybbukStateMachine.EnemyState.Scape;
         }
 
-        //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
+        // //Metodos de cambio de flujo del estado
+        // public override void OnAreaEnter(Collider other)
+        // {
                 
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
+        // public override void OnAreaStay(Collider other)
+        // {
         
-        }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if (other.gameObject.tag == "Player")
-                {
-                    dybbukSM.PlayerOnAreaClose = false;
-                    dybbukSM.PlayerPosition = Vector3.zero;
-                    dybbukSM.PlayerGameObject = null;
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if (other.gameObject.tag == "Player")
+        //         {
+        //             dybbukSM.PlayerOnAreaClose = false;
+        //             dybbukSM.PlayerPosition = Vector3.zero;
+        //             dybbukSM.PlayerGameObject = null;
                     
-                }
-        }
+        //         }
+        // }
     }
 }

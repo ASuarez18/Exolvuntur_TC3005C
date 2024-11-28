@@ -45,8 +45,7 @@ namespace Enemy.Behaviour
             if(!PhotonNetwork.IsMasterClient) return ;
             //Activamos la variable de que si esta transformado
             skinwalkerSM.IsTransformed = true;
-            //Decimos que el jugador ya no esta en el area cercana
-            skinwalkerSM.PlayerOnAreaClose = false;
+            
         }
 
         //Función para cambiar de estados
@@ -57,26 +56,26 @@ namespace Enemy.Behaviour
         }
 
         //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return ;
-            if(other.CompareTag("Player"))
-            {
-                skinwalkerSM.PlayerOnAreaFar = true;
-            }
-        }
+        // public override void OnAreaEnter(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return ;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         skinwalkerSM.PlayerOnAreaFar = true;
+        //     }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-        }
+        // public override void OnAreaStay(Collider other)
+        // {
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return ;   
-            if(other.CompareTag("Player"))
-            {
-                skinwalkerSM.PlayerOnAreaFar = false;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return ;   
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         skinwalkerSM.PlayerOnAreaFar = false;
+        //     }
+        // }
     }
 }

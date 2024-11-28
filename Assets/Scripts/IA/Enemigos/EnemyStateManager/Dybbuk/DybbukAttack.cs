@@ -28,10 +28,11 @@ namespace Enemy.Behaviour
          //Inicializa el estado
         public override void EnterState()
         {
+            manager.animator.SetTrigger("Attack");
             if(!PhotonNetwork.IsMasterClient) return;
             //Detenemos el movimiento del agente y activamos sus animaciones
             manager.agent.isStopped = true;
-            manager.animator.SetTrigger("Attack");
+            manager.Animatorfuc("Attack");
         }
 
         //Actualiza el estado en el Update del MonoBehaviour
@@ -68,32 +69,32 @@ namespace Enemy.Behaviour
             return DybbukStateMachine.EnemyState.Attack;
         }
 
-        //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                dybbukSM.PlayerOnAreaClose = true;
-                dybbukSM.PlayerPosition = other.transform.position;
-                dybbukSM.PlayerGameObject = other.gameObject;
-            }
-        }
+        // //Metodos de cambio de flujo del estado
+        // public override void OnAreaEnter(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.PlayerOnAreaClose = true;
+        //         dybbukSM.PlayerPosition = other.transform.position;
+        //         dybbukSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            //No realizamos nada
-        }
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     //No realizamos nada
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                dybbukSM.PlayerOnAreaClose = false;
-                dybbukSM.PlayerPosition = Vector3.zero;
-                dybbukSM.PlayerGameObject = null;
-            }
-        }   
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.PlayerOnAreaClose = false;
+        //         dybbukSM.PlayerPosition = Vector3.zero;
+        //         dybbukSM.PlayerGameObject = null;
+        //     }
+        // }   
     }
 }

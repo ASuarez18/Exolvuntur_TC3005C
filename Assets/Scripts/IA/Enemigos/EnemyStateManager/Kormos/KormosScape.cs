@@ -83,26 +83,26 @@ namespace Enemy.Behaviour
                 return KormosStateMachine.EnemyState.Scape;
             }
 
-            //Metodos de cambio de flujo del estado
-            public override void OnAreaEnter(Collider other)
-            {
+            // //Metodos de cambio de flujo del estado
+            // public override void OnAreaEnter(Collider other)
+            // {
                 
-            }
+            // }
 
-            public override void OnAreaStay(Collider other)
-            {
+            // public override void OnAreaStay(Collider other)
+            // {
                 
-            }
+            // }
 
-            public override void OnAreaExit(Collider other)
-            {
-                if(!PhotonNetwork.IsMasterClient) return;
-                if (other.gameObject.tag == "Player")
-                {
-                    kormosSM.PlayerOnAreaFar = false;
-                    kormosSM.PlayerPosition = Vector3.zero;
-                    kormosSM.PlayerGameObject = null;
-                }
-            }
+            // public override void OnAreaExit(Collider other)
+            // {
+            //     if(!PhotonNetwork.IsMasterClient) return;
+            //     if (other.gameObject.tag == "Player")
+            //     {
+            //         kormosSM.PlayerOnAreaFar = false;
+            //         kormosSM.PlayerPosition = Vector3.zero;
+            //         kormosSM.PlayerGameObject = null;
+            //     }
+            // }
     }
 }

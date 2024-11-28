@@ -29,8 +29,9 @@ namespace Enemy.Behaviour
         public override void EnterState()
         {   
             if(!PhotonNetwork.IsMasterClient) return;
-            //Activamos el OnView en true
-            dybbukSM.OnView = false;
+
+            //Detenemos el movimiento del agente
+            manager.agent.isStopped = true;
 
             //Incrementamos las estadisticas del enemigo en la maquina de estados un 20%
             dybbukSM.currentSpeed += dybbukSM.currentRunningSpeed;
@@ -46,29 +47,39 @@ namespace Enemy.Behaviour
             //Incrementamos las veces que puede entrar en este modo
             dybbukSM.AggresiveMode++;
 
-            //Buscamos el jugadro mas cercano y lo perseguimos
-            manager.agent.SetDestination(dybbukSM.actualTarget);
+            // dybbukSM.NearPlayer();
 
+            // if(dybbukSM.PlayerOnAreaClose)
+            // {
+            //     //Buscamos el jugadro mas cercano y lo perseguimos
+            //     dybbukSM.OnView = false;
+            //     manager.agent.SetDestination(dybbukSM.actualTarget);
+            // }
+
+            
             manager.animator.SetFloat("States",3);
+
+            
         }
 
         //Actualiza el estado en el Update del MonoBehaviour
         public override void UpdateState()
         {
             if(!PhotonNetwork.IsMasterClient) return;
-            dybbukSM.OnView = false;
-            //Actulizamos el destino directamente al juagador
-            manager.agent.SetDestination(dybbukSM.actualTarget);
+            // dybbukSM.OnView = false;
+            // //Actulizamos el destino directamente al juagador
+            // manager.agent.SetDestination(dybbukSM.actualTarget);
             //Obtenemos la funcion de Update Aggresive Counter
             dybbukSM.UpdateAggressiveDuration();
-
+            // dybbukSM.NearPlayer();
+            
         }
 
         public override void ExitState()
         { 
             if(!PhotonNetwork.IsMasterClient) return;
             dybbukSM.AggresiveDuration = 0f;
-            dybbukSM.Attacking = false;
+            manager.agent.isStopped = false;
         }
 
          //Funcion que revisa si entra en el flujo de un estado o no
@@ -91,37 +102,37 @@ namespace Enemy.Behaviour
             return DybbukStateMachine.EnemyState.Aggresive;
         }
 
-        //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                dybbukSM.PlayerOnAreaClose = true;
-                dybbukSM.PlayerPosition = other.transform.position;
-                dybbukSM.PlayerGameObject = other.gameObject;
+        // //Metodos de cambio de flujo del estado
+        // public override void OnAreaEnter(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.PlayerOnAreaClose = true;
+        //         dybbukSM.PlayerPosition = other.transform.position;
+        //         dybbukSM.PlayerGameObject = other.gameObject;
 
-            }
-        }
+        //     }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-             if(other.CompareTag("Player"))
-            {
-                dybbukSM.actualTarget = other.transform.position;
-            }
-        }
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //      if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.actualTarget = other.transform.position;
+        //     }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                dybbukSM.PlayerOnAreaClose = false;
-                dybbukSM.PlayerPosition = Vector3.zero;
-                dybbukSM.PlayerGameObject = null;
-            }
-        }   
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.PlayerOnAreaClose = false;
+        //         dybbukSM.PlayerPosition = Vector3.zero;
+        //         dybbukSM.PlayerGameObject = null;
+        //     }
+        // }   
     }
 }

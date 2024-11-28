@@ -80,6 +80,7 @@ namespace Enemy.Manager
 
         #region Remote Procedural Calls (Interactions)
 
+
         public void StunActive()
         {
             photonView.RPC(nameof(StunActiveSync), RpcTarget.MasterClient);
@@ -89,6 +90,16 @@ namespace Enemy.Manager
             photonView.RPC(nameof(SyncDamage), RpcTarget.MasterClient,value);
         }
 
+        public void Animatorfuc(string name)
+        {
+            photonView.RPC(nameof(AnimatorSync), RpcTarget.All, name);
+        }
+
+        [PunRPC]
+        public void AnimatorSync(string name)
+        {
+            animator.SetTrigger(name);
+        }
         [PunRPC]
         public void StunActiveSync()
         {

@@ -22,11 +22,14 @@ namespace Enemy.Behaviour
         //Inicializa el estado
         public override void EnterState()
         {
+            manager.animator.SetTrigger("muerte");
             if(!PhotonNetwork.IsMasterClient) return ;
-
+            //manager.Animatorfuc("muerte");
             manager.agent.isStopped = true;
             kormosSM.EnemyDead();
         }
+
+
 
         //Actualiza el estado en el Update del MonoBehaviour
         public override void UpdateState()
@@ -47,19 +50,19 @@ namespace Enemy.Behaviour
         }
 
         //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
+        // public override void OnAreaEnter(Collider other)
+        // {
                 
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
+        // public override void OnAreaStay(Collider other)
+        // {
         
-        }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
+        // public override void OnAreaExit(Collider other)
+        // {
             
-        }
+        // }
     }
 }

@@ -28,9 +28,10 @@ namespace Enemy.Behaviour
 
         public override void EnterState()
         {
+            manager.animator.SetTrigger("Dead");
             if(!PhotonNetwork.IsMasterClient) return ;
             manager.agent.isStopped = true;
-            manager.animator.SetTrigger("Dead");
+            //manager.Animatorfuc("Dead");
             skinwalkerSM.EnemyDead();
         }
 
@@ -50,22 +51,22 @@ namespace Enemy.Behaviour
             return SkinwalkerStateMachine.EnemyState.Dead;
         }
 
-        //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
+        // //Metodos de cambio de flujo del estado
+        // public override void OnAreaEnter(Collider other)
+        // {
            
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
+        // public override void OnAreaStay(Collider other)
+        // {
            
-        }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
+        // public override void OnAreaExit(Collider other)
+        // {
             
             
-        }
+        // }
     }
 
 }

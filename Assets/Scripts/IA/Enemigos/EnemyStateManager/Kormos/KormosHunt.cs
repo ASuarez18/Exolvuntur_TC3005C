@@ -32,7 +32,6 @@ namespace Enemy.Behaviour
         public override void EnterState()
         {
             if(!PhotonNetwork.IsMasterClient) return;
-            
         }
 
         //Actualizamos el estado en el Update
@@ -40,19 +39,23 @@ namespace Enemy.Behaviour
         {
             if(!PhotonNetwork.IsMasterClient) return;
             //Asiganmos el destino a la posicion del sonido
-            manager.agent.SetDestination(kormosSM.actualTarget);
-            
-            //Verificamos la distancia actual del agente y la del jugador
-            kormosSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,kormosSM.PlayerPosition);
+            // manager.agent.SetDestination(kormosSM.actualTarget);
 
-            if(kormosSM.DistanceToPlayer <= kormosSM.currentAttackRange)
-            {
-                //Si el jugador se encuentra en el segundo rango entra en ataque
-                kormosSM.PlayerOnAreaClose = true;
-            }
+            //Verificamos si hay algun dentro del area
+            kormosSM.ViewOnAreaFarPlayers();
+            
+            //Verificamos la distancia actual de cada jugador
+            kormosSM.ViewOnAreaClosePlayers();
+            // kormosSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,kormosSM.PlayerPosition);
+
+            // if(kormosSM.DistanceToPlayer <= kormosSM.currentAttackRange)
+            // {
+            //     //Si el jugador se encuentra en el segundo rango entra en ataque
+            //     kormosSM.PlayerOnAreaClose = true;
+            // }
 
             //Cuando el agente llega a su destino del sonido cambiamos de estado
-            if(manager.agent.remainingDistance == 0f)
+            if(manager.agent.remainingDistance == 1f)
             {
                 //Si el agente llega a su destino cambiamos de estado
                 onDestination = true;
@@ -99,34 +102,35 @@ namespace Enemy.Behaviour
             if(!PhotonNetwork.IsMasterClient) return;
             //Actualizamos la posicion del sonido
             kormosSM.actualTarget = soundPos;
+            manager.agent.SetDestination(soundPos);
         }
 
-        public override void OnAreaEnter(Collider other)
-        {
+        // public override void OnAreaEnter(Collider other)
+        // {
             
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {  
-            if(!PhotonNetwork.IsMasterClient) return;
-            if (other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerPosition = other.transform.position;
-                kormosSM.PlayerGameObject = other.gameObject;
-            }
-        }
+        // public override void OnAreaStay(Collider other)
+        // {  
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if (other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerPosition = other.transform.position;
+        //         kormosSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {  
-            if(!PhotonNetwork.IsMasterClient) return;
-            //Verificamos que el objeto tenga el tag de player
-            if (other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerOnAreaFar = false;
-                kormosSM.PlayerPosition = Vector3.zero;
-                kormosSM.PlayerGameObject = null;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {  
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     //Verificamos que el objeto tenga el tag de player
+        //     if (other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerOnAreaFar = false;
+        //         kormosSM.PlayerPosition = Vector3.zero;
+        //         kormosSM.PlayerGameObject = null;
+        //     }
+        // }
 
     }
 

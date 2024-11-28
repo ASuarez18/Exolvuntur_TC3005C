@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using PlayerController.PUN;
 using Photon.Pun;
 
 namespace Enemy.Behaviour
@@ -28,6 +29,7 @@ namespace Enemy.Behaviour
         #region Variables y Atributos
         //Variables y Atributos de distancia 
         private EnemyDybbukManager manager;
+        public Dictionary<int , GameObject> playerInfo = new Dictionary<int, GameObject>();
         public Vector3 actualTarget { get; set; }
         public bool PlayerOnAreaClose { get; set; }
         public Vector3 PlayerPosition { get; set; }
@@ -96,26 +98,106 @@ namespace Enemy.Behaviour
             //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
             public override void OnTriggerEnter(Collider other)
             {
-                base.OnTriggerEnter(other);
+                // base.OnTriggerEnter(other);
+                if (other.CompareTag("Player"))
+                {
+                    if (!playerInfo.ContainsKey(other.gameObject.GetPhotonView().Owner.ActorNumber))
+                    {
+                        playerInfo.Add(other.gameObject.GetPhotonView().Owner.ActorNumber, other.gameObject);
+                    }
+                    else 
+                    {
+                        playerInfo[other.gameObject.GetPhotonView().Owner.ActorNumber] = other.gameObject;
+                    }
+                }
+
             }
             public override void OnTriggerStay(Collider other)
             {
-                base.OnTriggerStay(other);
+                // base.OnTriggerStay(other);
             }
             public override void OnTriggerExit(Collider other)
             {
-                base.OnTriggerExit(other);
+                // base.OnTriggerExit(other);
+                playerInfo[other.gameObject.GetPhotonView().Owner.ActorNumber] = null;
             }
-            public void OnCollisionEnter(Collision other)
-            {  
-                if(currentState.StateKey == EnemyState.Chasing || currentState.StateKey == EnemyState.Aggresive)
+            // public void OnCollisionEnter(Collision other)
+            // {  
+            //     if(currentState.StateKey == EnemyState.Chasing || currentState.StateKey == EnemyState.Aggresive)
+            //     {
+            //         if(other.gameObject.tag == "Player")
+            //         {
+            //             Attacking = true;
+            //         }
+            //     }
+            // }
+
+        #endregion
+
+        #region Update Dictionary
+
+            public void ViewOnAreaClosePlayers()
+            {
+                //Recorremos el diccionario y revisamos si todos estan nulos o no
+                foreach (var player in playerInfo)
                 {
-                    if(other.gameObject.tag == "Player")
+                    if (player.Value != null)
                     {
-                        Attacking = true;
+                        PlayerOnAreaClose = true;
+                        
+                        
+                    }
+                    else
+                    {
+                        PlayerOnAreaClose = false;
+                        
                     }
                 }
             }
+
+        public void NearPlayer()
+        {
+            var playerdistance = 0f;
+            var playerNear = float.MaxValue;
+            Vector3 playerPos = Vector3.zero;
+
+            foreach (var player in playerInfo)
+            {
+                if (player.Value != null)
+                {
+                    playerdistance = Vector3.Distance(player.Value.transform.position, transform.position);
+
+                    if (playerdistance <= 20f)
+                    {
+                        Attacking = true;
+                        Debug.Log("Atacando");
+                        // Usa el ViewID en lugar del ActorNumber
+                        photonView.RPC(nameof(SyncAttack), RpcTarget.All, player.Value.GetComponent<PhotonView>().ViewID,player.Value.GetComponent<PhotonView>().Owner.ActorNumber);
+                        return;
+                    }
+
+                    if (playerdistance <= playerNear)
+                    {
+                        playerNear = playerdistance;
+                        playerPos = player.Value.transform.position;
+                    }
+                }
+            }
+
+            // Actualiza el objetivo más cercano
+            actualTarget = playerPos;
+            manager.agent.SetDestination(actualTarget);
+        }
+
+        [PunRPC]
+        public void SyncAttack(int viewID, int ActorNumber)
+        {
+            PhotonView targetView = PhotonView.Find(viewID);
+            if (targetView != null && ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+            {
+                targetView.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Dybbuk");
+            }
+        }
 
         #endregion
 

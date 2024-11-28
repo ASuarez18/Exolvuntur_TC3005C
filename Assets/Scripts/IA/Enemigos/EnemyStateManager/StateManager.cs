@@ -75,18 +75,22 @@ namespace Enemy.Behaviour
             IsTransitionState = false;
         }
 
-        public virtual void OnTriggerEnter(Collider other)
-        {  
-            currentState.OnAreaEnter(other);
-        }
-        public virtual void OnTriggerStay(Collider other)
-        {
-            currentState.OnAreaStay(other);
-        }
-        public virtual void OnTriggerExit(Collider other)
-        {
-            currentState.OnAreaExit(other);
-        }
+        public abstract void OnTriggerEnter(Collider other);
+        public abstract void OnTriggerStay(Collider other);
+        public abstract void OnTriggerExit(Collider other);
+
+        // public virtual void OnTriggerEnter(Collider other)
+        // {  
+        //     currentState.OnAreaEnter(other);
+        // }
+        // public virtual void OnTriggerStay(Collider other)
+        // {
+        //     currentState.OnAreaStay(other);
+        // }
+        // public virtual void OnTriggerExit(Collider other)
+        // {
+        //     currentState.OnAreaExit(other);
+        // }
 
         // Creamos varios RPC de sincornizacion de los enemigos
         // [PunRPC]

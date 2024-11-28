@@ -28,10 +28,11 @@ namespace Enemy.Behaviour
 
         public override void EnterState()
         {
+            manager.animator.SetTrigger("Stunning");
             if(!PhotonNetwork.IsMasterClient) return ;
             //Detenemos el movimiento del enemigo
             manager.agent.isStopped = true;
-            manager.animator.SetTrigger("Stunning");
+           //manager.Animatorfuc("Stunning");
             manager.animator.SetBool("Stun", true);
         }
 
@@ -74,29 +75,29 @@ namespace Enemy.Behaviour
         }
 
         //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return ;
-            if(other.CompareTag("Player"))
-            {
-                skinwalkerSM.PlayerOnAreaFar = true;
-            }
-        }
+        // public override void OnAreaEnter(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return ;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         skinwalkerSM.PlayerOnAreaFar = true;
+        //     }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
+        // public override void OnAreaStay(Collider other)
+        // {
            
-        }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return ;
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return ;
             
-            if(other.CompareTag("Player"))
-            {
-                skinwalkerSM.PlayerOnAreaFar = false;
-            }
-        }
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         skinwalkerSM.PlayerOnAreaFar = false;
+        //     }
+        // }
     }
 
 }

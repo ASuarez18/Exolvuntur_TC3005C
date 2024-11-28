@@ -383,25 +383,25 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: Move
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Attack
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Dead
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Search
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Stun
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Stunning
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Step
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: walk2
   m_SynchronizeLayers:
   - SynchronizeType: 2
@@ -556,25 +556,25 @@ MonoBehaviour:
     SynchronizeType: 2
     Name: Move
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Attack
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Dead
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Search
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Stun
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Stunning
   - Type: 9
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Step
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: walk2
   m_SynchronizeLayers:
   - SynchronizeType: 2

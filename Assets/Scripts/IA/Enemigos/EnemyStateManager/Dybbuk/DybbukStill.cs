@@ -37,6 +37,9 @@ namespace Enemy.Behaviour
         public override void UpdateState()
         {
             if(!PhotonNetwork.IsMasterClient) return;
+            //Verificamos si hay jugadores que se acercaron al area cercana
+            dybbukSM.ViewOnAreaClosePlayers();
+
             dybbukSM.UpdateAgressiveCounter();
         }
 
@@ -58,6 +61,10 @@ namespace Enemy.Behaviour
             {
                 return DybbukStateMachine.EnemyState.Stunned;
             }
+            else if(!dybbukSM.actorViews.ContainsValue(true)  && dybbukSM.PlayerOnAreaClose)
+            {
+                return DybbukStateMachine.EnemyState.Chasing;
+            }
             else if(!dybbukSM.actorViews.ContainsValue(true))
             {
                 return DybbukStateMachine.EnemyState.Idle;
@@ -69,33 +76,33 @@ namespace Enemy.Behaviour
             return DybbukStateMachine.EnemyState.Still;
         }
 
-        //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;
-            if(other.CompareTag("Player"))
-            {
-                dybbukSM.PlayerOnAreaClose = true;
-                dybbukSM.PlayerPosition = other.transform.position;
-                dybbukSM.PlayerGameObject = other.gameObject;
-            }
-        }
+        // //Metodos de cambio de flujo del estado
+        // public override void OnAreaEnter(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.PlayerOnAreaClose = true;
+        //         dybbukSM.PlayerPosition = other.transform.position;
+        //         dybbukSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            //No realizamos nada
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     //No realizamos nada
             
-        }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
-            if(!PhotonNetwork.IsMasterClient) return;   
-            if(other.CompareTag("Player"))
-            {
-                dybbukSM.PlayerOnAreaClose = false;
-                dybbukSM.PlayerPosition = Vector3.zero;
-                dybbukSM.PlayerGameObject = null;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;   
+        //     if(other.CompareTag("Player"))
+        //     {
+        //         dybbukSM.PlayerOnAreaClose = false;
+        //         dybbukSM.PlayerPosition = Vector3.zero;
+        //         dybbukSM.PlayerGameObject = null;
+        //     }
+        // }
     }
 }
