@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &9092678023230166001
+--- !u!1 &5899430074027808157
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,58 +8,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2081696769438288748}
-  - component: {fileID: 4264220896449511391}
+  - component: {fileID: 2694723999925132971}
+  - component: {fileID: 8780397437131087273}
   m_Layer: 0
-  m_Name: SFXObject
+  m_Name: WhispersSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2081696769438288748
+--- !u!4 &2694723999925132971
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9092678023230166001}
+  m_GameObject: {fileID: 5899430074027808157}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 100, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &4264220896449511391
+--- !u!82 &8780397437131087273
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9092678023230166001}
+  m_GameObject: {fileID: 5899430074027808157}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -6369798228739780146, guid: 2b8148c760572fa47acc3b0e86ae8bb6,
     type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
+  m_audioClip: {fileID: 8300000, guid: 695e00fee0885c34886717b07d85ab7d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
-  DopplerLevel: 1
+  DopplerLevel: 0
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 0
+  rolloffMode: 1
   BypassEffects: 0
   BypassListenerEffects: 0
-  BypassReverbZones: 0
+  BypassReverbZones: 1
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -89,7 +89,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.215
       inSlope: 0
       outSlope: 0
       tangentMode: 0

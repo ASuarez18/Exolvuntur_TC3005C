@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 7702021120034766951}
   - component: {fileID: -7057659640073199660}
   - component: {fileID: 5430048101705596587}
+  - component: {fileID: -8596030714874942363}
   m_Layer: 0
   m_Name: PlayerMateo
   m_TagString: Player
@@ -205,6 +206,7 @@ MonoBehaviour:
     m_Bits: 1
   soundRage: 100
   _playerAvatar: {fileID: 9000000, guid: 68c79c3ddb8ac4d4eb39028818e39919, type: 3}
+  _healValue: 20
 --- !u!114 &836779058595798971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,6 +407,20 @@ MonoBehaviour:
   _scratchingSFX: {fileID: 0}
   _inhaleSFX: {fileID: 0}
   _exhaleSFX: {fileID: 0}
+--- !u!114 &-8596030714874942363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486079440831292792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b16582b8021ef847895dd81487b62c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSanity: 100
+  _hudPlayerSanity: {fileID: 0}
 --- !u!1 &2491850167863969504
 GameObject:
   m_ObjectHideFlags: 0

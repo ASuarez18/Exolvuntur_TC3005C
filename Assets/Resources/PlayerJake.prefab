@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: -8994926171598035675}
   - component: {fileID: -8347614517380273106}
   - component: {fileID: 4718235634645611783}
+  - component: {fileID: 7114863154316336240}
   m_Layer: 0
   m_Name: PlayerJake
   m_TagString: Player
@@ -365,6 +366,7 @@ MonoBehaviour:
     m_Bits: 1
   soundRage: 100
   _playerAvatar: {fileID: 9000000, guid: 11006e0deba1090419e9bb5352377f33, type: 3}
+  _healValue: 20
 --- !u!114 &7359540290789708241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -565,6 +567,20 @@ MonoBehaviour:
   _scratchingSFX: {fileID: 0}
   _inhaleSFX: {fileID: 0}
   _exhaleSFX: {fileID: 0}
+--- !u!114 &7114863154316336240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3449578737731025316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b16582b8021ef847895dd81487b62c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSanity: 100
+  _hudPlayerSanity: {fileID: 0}
 --- !u!1 &3504369769955151767
 GameObject:
   m_ObjectHideFlags: 0

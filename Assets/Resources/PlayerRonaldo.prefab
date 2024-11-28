@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 2006056826907933844}
   - component: {fileID: -7059682833345788379}
   - component: {fileID: 8743316620907987401}
+  - component: {fileID: -8823414477051822451}
   m_Layer: 0
   m_Name: PlayerRonaldo
   m_TagString: Player
@@ -279,7 +280,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3923320657845891992}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: b484eeefe663bc44a82cf65966632966, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 38f93b3919e6bc249afcc53f68672ac8, type: 3}
   m_Controller: {fileID: 9100000, guid: 9ea8a70733e25b74fbdcac35a53d9d1d, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -310,6 +311,7 @@ MonoBehaviour:
     m_Bits: 1
   soundRage: 100
   _playerAvatar: {fileID: 9000000, guid: 447713a7bbc4d5e4faa9c76b159fa6f7, type: 3}
+  _healValue: 20
 --- !u!114 &7870955596256246429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -534,6 +536,20 @@ MonoBehaviour:
   _scratchingSFX: {fileID: 0}
   _inhaleSFX: {fileID: 0}
   _exhaleSFX: {fileID: 0}
+--- !u!114 &-8823414477051822451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923320657845891992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b16582b8021ef847895dd81487b62c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSanity: 100
+  _hudPlayerSanity: {fileID: 0}
 --- !u!1 &5008382957927602058
 GameObject:
   m_ObjectHideFlags: 0
