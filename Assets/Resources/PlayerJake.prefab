@@ -363,7 +363,7 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 1
-  soundRage: 10
+  soundRage: 100
   _playerAvatar: {fileID: 9000000, guid: 11006e0deba1090419e9bb5352377f33, type: 3}
 --- !u!114 &7359540290789708241
 MonoBehaviour:

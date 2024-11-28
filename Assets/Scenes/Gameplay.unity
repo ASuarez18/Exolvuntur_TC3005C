@@ -521,6 +521,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dybbuk_Final
       objectReference: {fileID: 0}
+    - target: {fileID: 1416712234999444817, guid: 71990f97c5d931546938cd4b0930f2af,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2110307020314535190, guid: 71990f97c5d931546938cd4b0930f2af,
         type: 3}
       propertyPath: sceneViewId
@@ -4106,6 +4111,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SkinwalkerEnemy (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6658961073227572184, guid: 4fd73eb57f9d9cb46a1db1784ad4f46c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6822036946613130262, guid: 4fd73eb57f9d9cb46a1db1784ad4f46c,
         type: 3}
