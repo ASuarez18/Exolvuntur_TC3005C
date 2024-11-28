@@ -16,8 +16,7 @@ namespace PlayerController.UI
         [SerializeField] private Image _sanityFillImage;
         [SerializeField] private Volume _postProcessingVolume;
         [SerializeField] private Camera _camera;
-        [SerializeField] private SFXManager _sfxManager;
-        [SerializeField] private AudioClip _whisperSFX;
+        [SerializeField] private AudioSource _whisperSFX;
         private AudioSource _whisperAudioSource;
 
         private void Start()
@@ -27,7 +26,7 @@ namespace PlayerController.UI
             _sanitySlider.onValueChanged.AddListener(OnSanityValueChanged);
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             UpdateSanityColorValue();
         }
@@ -70,6 +69,10 @@ namespace PlayerController.UI
             // Update the post processing volume
             float sanityPercentage = _sanitySlider.value / _sanitySlider.maxValue;
             _postProcessingVolume.weight = 1 - sanityPercentage;
+
+            float volume = 1 - (_sanitySlider.value / 100f);
+
+            _whisperSFX.volume = volume;
 
             // Update the camera rotation in the z axis
             float maxRotationZ = 30f; // Define el máximo ángulo de rotación en el eje Z

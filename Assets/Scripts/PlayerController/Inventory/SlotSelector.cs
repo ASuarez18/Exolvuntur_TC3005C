@@ -253,6 +253,24 @@ namespace PlayerController.Inventory
             
         }
 
+        public void RemoveUtility(string utilityName)
+        {
+            for (int i = 0; i < _utilities.Length; i++)
+            {
+                if (_utilities[i].utilityInstance.name == utilityName)
+                {
+                    // Eliminar la utilidad del array
+                    List<UtilityData> utilityList = new List<UtilityData>(_utilities);
+                    utilityList.RemoveAt(i);
+                    _utilities = utilityList.ToArray();
+
+                    // Actualizar el HUD
+                    UpdateHUD();
+                    break;
+                }
+            }
+        }
+
         private void UpdateHUD()
         {
             for (int i = 0; i < hudSlots.Length; i++)
