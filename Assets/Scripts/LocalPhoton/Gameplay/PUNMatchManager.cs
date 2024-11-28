@@ -31,6 +31,10 @@ namespace LocalPhoton.Gameplay
         public int TotalObjects { get; set; }
         public int PlayersDead { get; set; }
         private bool _winners;
+        private bool _end;
+
+        [SerializeField, Space] private CanvasGroup _winCanvasGroup;
+        [SerializeField, Space] private CanvasGroup _loseCanvasGroup;
 
         //public HUDPlayerScore _hudPlayerScore;
 
@@ -470,6 +474,7 @@ namespace LocalPhoton.Gameplay
 
         private IEnumerator EndOfGameCor()
         {
+
             yield return new WaitForSeconds(_waitTimeAfterEndingMatch);
             Debug.LogWarning("End of game coroutine");
             if (!_keepRunning)
@@ -520,15 +525,29 @@ namespace LocalPhoton.Gameplay
             {
                 gameState = PUNEventCodes.GameStates.Ending;
                 _winners = true;
+                _end = true;
             }
             if (PlayersDead >= 4)
             {
                 gameState = PUNEventCodes.GameStates.Ending;
+                _end = true;
                 _winners = false;
             }
 
-            if (_winners)
+            if (_end && _winners)
             {
+                SetWinCanvasGroup(true);
+                // Notify players the game has ended
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    gameState = PUNEventCodes.GameStates.Ending;
+                    Debug.LogFormat($"*** PUNMatchManager: Score check STATE - {gameState}");
+                    UpdateGameStateSend();
+                }
+            }
+            else if (_end && !_winners)
+            {
+                SetLoseCanvasGroup(true);
                 // Notify players the game has ended
                 if (PhotonNetwork.IsMasterClient)
                 {
@@ -538,5 +557,56 @@ namespace LocalPhoton.Gameplay
                 }
             }
         }
+
+        /// <summary>
+        /// Method to avoiding repetiotion of code
+        /// </summary>
+        /// <param name="canvasGroup"></param>
+        /// <param name="activeStatus"></param>
+        private void SetCanvasGroupState(CanvasGroup canvasGroup, bool activeStatus)
+        {
+            // Target Alpha based on the status of canvas
+            float targetAlpha = activeStatus ? 1f : 0f;
+
+            // Fade using LeanTween
+            LeanTween.alphaCanvas(canvasGroup, targetAlpha, 0.5f);
+
+            // If is activating, sets values to true instantly
+            if (activeStatus)
+            {
+                canvasGroup.interactable = true;
+                canvasGroup.blocksRaycasts = true;
+            }
+            else
+            {
+                // If not, waits fade to end to set values to false
+                LeanTween.delayedCall(0.5f, () =>
+                {
+                    canvasGroup.interactable = false;
+                    canvasGroup.blocksRaycasts = false;
+                });
+            }
+        }
+
+        /// <summary>
+        /// Sets the create room canvas group active status
+        /// </summary>
+        /// <param name="activeStatus"></param>
+        public void SetWinCanvasGroup(bool activeStatus)
+        {
+
+            SetCanvasGroupState(_winCanvasGroup, activeStatus);
+        }
+
+        /// <summary>
+        /// Sets the create room canvas group active status
+        /// </summary>
+        /// <param name="activeStatus"></param>
+        public void SetLoseCanvasGroup(bool activeStatus)
+        {
+
+            SetCanvasGroupState(_loseCanvasGroup, activeStatus);
+        }
+
     }
 }
