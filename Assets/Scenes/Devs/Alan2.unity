@@ -959,6 +959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloqueado: 1
+  anim: {fileID: 0}
 --- !u!1 &462320865 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6354792183205462925, guid: 371666c59ed3bee47a8eab78b2a92966,
@@ -1080,6 +1081,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloqueado: 1
+  anim: {fileID: 0}
 --- !u!1 &488630795
 GameObject:
   m_ObjectHideFlags: 0
@@ -1241,6 +1243,11 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[3]
       value: 
       objectReference: {fileID: 2037452559}
+    - target: {fileID: 5215599646432240333, guid: 7be42126ed7188948ae238900250f2dc,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6342714485981991437, guid: 7be42126ed7188948ae238900250f2dc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1598,6 +1605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloqueado: 1
+  anim: {fileID: 0}
 --- !u!1001 &788082530
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2519,6 +2527,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5038569817068401947, guid: 27a568ac15500844196cd591fd4aa5a0,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6495596040001968957, guid: 27a568ac15500844196cd591fd4aa5a0,
         type: 3}
       propertyPath: waypoints.Array.data[0]
@@ -6228,10 +6241,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 722236304827832328, guid: f04476fbe4ff10f41a880e4b8b95b9b9,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5028084269882181368, guid: f04476fbe4ff10f41a880e4b8b95b9b9,
         type: 3}
       propertyPath: m_Name
       value: Kormos_Final
+      objectReference: {fileID: 0}
+    - target: {fileID: 5028084269882181368, guid: f04476fbe4ff10f41a880e4b8b95b9b9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8279794474452814369, guid: f04476fbe4ff10f41a880e4b8b95b9b9,
         type: 3}

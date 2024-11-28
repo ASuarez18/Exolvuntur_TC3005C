@@ -58,8 +58,11 @@ public class crucifijo : MonoBehaviour, IInteraction
 
     public void InteractObject()
     {
-        FindObjectOfType<SlotSelector>().CollectObject(this.gameObject);
+        //FindObjectOfType<SlotSelector>().CollectObject(this.gameObject);
     }
 
-
+    public void InteractObject(GameObject player)
+    {
+        player.GetComponent<SlotSelector>().CollectObject(this.gameObject);
+    }
 }

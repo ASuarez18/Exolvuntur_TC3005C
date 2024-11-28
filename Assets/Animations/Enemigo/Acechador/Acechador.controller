@@ -45,7 +45,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 49785025f613c8e498f33406f454187d, type: 3}
+  m_Motion: {fileID: 7400000, guid: 78b2ec77f6c02434db0a55db5fc898cc, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -72,7 +72,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: e3602a3644a4cec4a8bd1eecd649ab2b, type: 3}
+  m_Motion: {fileID: 7400000, guid: 334275f05b5d8cd418c1677748661c35, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -346,15 +346,15 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 12b7e4bdfe34a1342af802efc4a77378, type: 3}
-    m_Threshold: 0
+    m_Motion: {fileID: 7400000, guid: d141a291bec86044ca7280a9b1bda075, type: 2}
+    m_Threshold: -0.12529
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: c1011898b4d5836479b735e3ce23e236, type: 3}
+    m_Motion: {fileID: 7400000, guid: f18d8f9fc05c7d540af19c5bc9da87c5, type: 2}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -362,7 +362,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: 831f9b169d0c8134f834cd1ac10e77fe, type: 3}
+    m_Motion: {fileID: 7400000, guid: b362f47ca20840a4aaf7455f7a6beb2f, type: 2}
     m_Threshold: 2
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -370,7 +370,7 @@ BlendTree:
     m_DirectBlendParameter: Blend
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 7400000, guid: d18349a20520d32448a209d02d59dba3, type: 3}
+    m_Motion: {fileID: 7400000, guid: b7da0654d2f954642aa18d5a75371e06, type: 2}
     m_Threshold: 3
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -379,7 +379,7 @@ BlendTree:
     m_Mirror: 0
   m_BlendParameter: States
   m_BlendParameterY: Blend
-  m_MinThreshold: 0
+  m_MinThreshold: -0.12529
   m_MaxThreshold: 3
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0

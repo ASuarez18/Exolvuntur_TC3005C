@@ -313,7 +313,7 @@ namespace LocalPhoton.Gameplay
             PhotonNetwork.RaiseEvent(
                 (byte)PUNEventCodes.EventCodes.UpdateStat,
                 data,
-                new RaiseEventOptions { Receivers = ReceiverGroup.All },
+                new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient },
                 new SendOptions { Reliability = true }
             );
         }
@@ -329,6 +329,17 @@ namespace LocalPhoton.Gameplay
             var statToUpdate = (PUNEventCodes.PlayerStats)(byte)dataReceived[1];
             int value = (int)dataReceived[2];
 
+            switch (statToUpdate)
+            {
+                case PUNEventCodes.PlayerStats.TotalObjects:
+                    TotalObjects += value;
+                    break;
+                case PUNEventCodes.PlayerStats.Kills:
+                    PlayersDead += value;
+                    break;
+            }
+
+            /*
             for (int i = 0; i < playersInGame.Count; i++)
             {
                 // We find the player that sent the stat change and update their stat accordingly
@@ -353,7 +364,7 @@ namespace LocalPhoton.Gameplay
 
                     break;
                 }
-            }
+            }*/
 
             ScoreCheck();
         }
@@ -385,6 +396,7 @@ namespace LocalPhoton.Gameplay
             Debug.LogFormat($"*** PUNMatchManager: Game State Received - {gameState}");
 
             if (gameState == PUNEventCodes.GameStates.Ending) EndMatch();
+            //ScoreCheck();
         }
 
         //public void UpdateNextMatchSend()
@@ -450,6 +462,7 @@ namespace LocalPhoton.Gameplay
 
         public override void OnLeftRoom()
         {
+            Debug.LogWarning("Left room");
             base.OnLeftRoom();
             SceneManager.LoadScene(0);
             // TODO: End match for evryone
@@ -458,13 +471,18 @@ namespace LocalPhoton.Gameplay
         private IEnumerator EndOfGameCor()
         {
             yield return new WaitForSeconds(_waitTimeAfterEndingMatch);
+            Debug.LogWarning("End of game coroutine");
             if (!_keepRunning)
             {
+                Debug.LogWarning("End of wainting for next match");
                 PhotonNetwork.AutomaticallySyncScene = false;
                 PhotonNetwork.LeaveRoom();
             }
             else
             {
+                 Debug.LogWarning("End of wainting for next match");
+                PhotonNetwork.AutomaticallySyncScene = false;
+                PhotonNetwork.LeaveRoom();
                 // TODO: Logic for aftermath of match
 
                 // Only the master client can restart the match
@@ -497,6 +515,7 @@ namespace LocalPhoton.Gameplay
 
         private void ScoreCheck()
         {
+            Debug.LogWarning("Numero total de objtetos: " + TotalObjects);
             if (TotalObjects >= 4)
             {
                 gameState = PUNEventCodes.GameStates.Ending;

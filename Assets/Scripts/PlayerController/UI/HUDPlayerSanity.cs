@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Audio.SoundFX;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -15,11 +16,15 @@ namespace PlayerController.UI
         [SerializeField] private Image _sanityFillImage;
         [SerializeField] private Volume _postProcessingVolume;
         [SerializeField] private Camera _camera;
+        [SerializeField] private SFXManager _sfxManager;
+        [SerializeField] private AudioClip _whisperSFX;
+        private AudioSource _whisperAudioSource;
 
         private void Start()
         {
             _camera = Camera.main;
-
+            _whisperAudioSource = _sfxManager.PlayWhisperSFX(_whisperSFX, transform, 0f);
+            _sanitySlider.onValueChanged.AddListener(OnSanityValueChanged);
         }
 
         private void Update()
@@ -44,6 +49,15 @@ namespace PlayerController.UI
         {
             _sanitySlider.value = value;
             UpdateSanityColorValue();
+        }
+
+        private void OnSanityValueChanged(float value)
+        {
+            if (_whisperAudioSource != null)
+            {
+                float normalizedValue = 1 - (value / _sanitySlider.maxValue); // Normalizar el valor
+                _whisperAudioSource.volume = normalizedValue; // Ajustar el volumen directamente
+            }
         }
 
         private void UpdateSanityColorValue()
