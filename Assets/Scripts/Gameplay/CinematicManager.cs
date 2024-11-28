@@ -52,10 +52,11 @@ public class CinematicManager : MonoBehaviourPunCallbacks
                 image.SetActive(false);
             }
             Cinematicas[i].SetActive(true);
-            Debug.Log("Antes de espera");
-            yield return new WaitForSeconds(1f);
+            float length = Cinematicas[i].gameObject.transform.GetComponentInChildren<AudioSource>().clip.length;
+            Debug.Log("Duracion" + length);
+            yield return new WaitForSeconds(length);
             
-            Debug.Log("Despues de espera");
+            
         }
         CinematicaFinalizada = true;
         
