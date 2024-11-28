@@ -53,8 +53,8 @@ public class CinematicManager : MonoBehaviourPunCallbacks
             }
             Cinematicas[i].SetActive(true);
             float length = Cinematicas[i].gameObject.transform.GetComponentInChildren<AudioSource>().clip.length;
-            //yield return new WaitForSeconds(length);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(length);
+            //yield return new WaitForSeconds(1f);
             
             
         }

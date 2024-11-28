@@ -525,16 +525,16 @@ namespace LocalPhoton.Gameplay
             {
                 gameState = PUNEventCodes.GameStates.Ending;
                 _winners = true;
-                _end = true;
+                //_end = true;
             }
             if (PlayersDead >= 4)
             {
                 gameState = PUNEventCodes.GameStates.Ending;
-                _end = true;
+                //_end = true;
                 _winners = false;
             }
 
-            if (_end && _winners)
+            if (_winners)
             {
                 SetWinCanvasGroup(true);
                 // Notify players the game has ended
@@ -545,17 +545,7 @@ namespace LocalPhoton.Gameplay
                     UpdateGameStateSend();
                 }
             }
-            else if (_end && !_winners)
-            {
-                SetLoseCanvasGroup(true);
-                // Notify players the game has ended
-                if (PhotonNetwork.IsMasterClient)
-                {
-                    gameState = PUNEventCodes.GameStates.Ending;
-                    Debug.LogFormat($"*** PUNMatchManager: Score check STATE - {gameState}");
-                    UpdateGameStateSend();
-                }
-            }
+            
         }
 
         /// <summary>
