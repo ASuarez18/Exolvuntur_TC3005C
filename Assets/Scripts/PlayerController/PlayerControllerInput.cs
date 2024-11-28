@@ -3,6 +3,8 @@ using Interfaces;
 using GamePlay.IA;
 using Photon.Pun;
 using Unity.VisualScripting;
+using PlayerController.PUN;
+using PlayerController.Inventory;
 
 
 namespace PlayerController
@@ -32,6 +34,20 @@ namespace PlayerController
         //Controlador de audio
         //private AudioController audioController ;
         [SerializeField] private Avatar _playerAvatar;
+
+        // Heal values
+        private float _healCooldown = 5f;
+        private float _timeSinceHeal = 5f;
+        private PUNPlayerSanity _playerSanity;
+        [SerializeField] private int _healValue = 20;
+
+        private SlotSelector _slotSelector;
+
+        private void Awake()
+        {
+            _playerSanity = GetComponent<PUNPlayerSanity>();
+            _slotSelector = GetComponent<SlotSelector>();
+        }
 
         void Start()
         {
@@ -101,6 +117,19 @@ namespace PlayerController
 
             // Ground character
             character.AreYouOnTheGround();
+
+            // Update heal cooldown
+            _timeSinceHeal += Time.deltaTime;
+            //Debug.Log($"TimeSinceHeal: {_timeSinceHeal} | HealCooldown: {_healCooldown}");
+            if (Input.GetKeyDown(KeyCode.C) && _timeSinceHeal >= _healCooldown)
+            {
+                //Debug.Log($"EnterHeal: {_playerSanity.Sanity}");
+                _timeSinceHeal = 0f;
+                _playerSanity.HealItself(_healValue);
+                _slotSelector.SetHealBottleAlpha(30f, _healCooldown);
+            }
+            if (Input.GetKeyDown(KeyCode.G))
+                _playerSanity.TakeDamage(30, "test");
         }
 
         private void LateUpdate()

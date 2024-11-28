@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using ScriptableObjects;
 using Photon.Pun;
 using LocalPhoton.Gameplay;
+using System.Collections;
 // using Photon.Pun;
 
 namespace PlayerController.Inventory
@@ -51,6 +52,8 @@ namespace PlayerController.Inventory
 
         public Image[] hudSlots;
 
+        private GameObject _healBottleImage;
+
         /// <summary>
         /// Method to enable the component
         /// </summary>
@@ -70,7 +73,11 @@ namespace PlayerController.Inventory
 
             // Change the weapon in all clients
             //photonView.RPC(nameof(PUNChangeUtility), RpcTarget.All, _currentSlotIndex);
-            
+
+            // Get reference to heal bottle image
+            _healBottleImage = GameObject.Find("Image_ampolla");
+            //Debug.LogWarning(_healBottleImage.name);
+
             hudSlots = new Image[MAX_SLOTS];
             collectables = GameObject.FindGameObjectsWithTag("Collectable");
             GameObject HUDReference = GameObject.Find("Canvas_HUDobjs");
@@ -84,9 +91,6 @@ namespace PlayerController.Inventory
                 }
                 
             }
-            Debug.LogError("Numero de childs con image" + hudSlots.Length);
-
-            
         }
         
 
@@ -291,6 +295,32 @@ namespace PlayerController.Inventory
         {
             _currentSlotIndex = slotIndex;
             ChangeSlot();
+        }
+
+        /// <summary>
+        /// Set Alpha of Heal Bottle Image
+        /// </summary>
+        /// <param name="alpha"></param>
+        /// <param name="time"></param>
+        public void SetHealBottleAlpha(float alpha, float time)
+        {
+            Debug.LogWarning("Entro a Alpha");
+            //_healBottleImage.color = new Color(255f, 255f, 255f, alpha);
+            _healBottleImage.SetActive(false);
+
+            StartCoroutine(ResetHealBottleAlpha(time));
+        }
+
+        /// <summary>
+        /// Coroutine that will reset the alpha of Heal Bottle after given time
+        /// </summary>
+        /// <param name="time"></param>
+        /// <returns></returns>
+        private IEnumerator ResetHealBottleAlpha (float time)
+        {
+            yield return new WaitForSeconds(time);
+            _healBottleImage.SetActive(true);
+            //_healBottleImage.color = new Color(255, 255, 255, 255);
         }
     }
 }

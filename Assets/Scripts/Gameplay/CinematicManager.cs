@@ -53,7 +53,7 @@ public class CinematicManager : MonoBehaviourPunCallbacks
             }
             Cinematicas[i].SetActive(true);
             Debug.Log("Antes de espera");
-            yield return new WaitForSeconds(5f);
+            yield return new WaitForSeconds(1f);
             
             Debug.Log("Despues de espera");
         }
