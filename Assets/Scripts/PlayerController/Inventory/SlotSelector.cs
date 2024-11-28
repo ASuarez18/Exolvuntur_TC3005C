@@ -61,7 +61,6 @@ namespace PlayerController.Inventory
             ChangeSlot();
         }
 
-
         // Start is called before the first frame update
         private void Start()
         {
@@ -70,31 +69,26 @@ namespace PlayerController.Inventory
 
             // Change the weapon in all clients
             //photonView.RPC(nameof(PUNChangeUtility), RpcTarget.All, _currentSlotIndex);
-            
+
             hudSlots = new Image[MAX_SLOTS];
             collectables = GameObject.FindGameObjectsWithTag("Collectable");
             GameObject HUDReference = GameObject.Find("Canvas_HUDobjs");
             Image[] childImages = HUDReference.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject.GetComponentsInChildren<Image>();
             Debug.LogError("Numero de childs con image" + childImages.Length);
-            for (int i=0;i<=childImages.Length;i++)
+            for (int i = 0; i <= childImages.Length; i++)
             {
                 if (i != 0)
                 {
-                    hudSlots[i-1] = childImages[i];
+                    hudSlots[i - 1] = childImages[i];
                 }
-                
             }
             Debug.LogError("Numero de childs con image" + hudSlots.Length);
-
-            
         }
-        
+
 
         private void Update()
         {
-           
             //if(!enabled) return;
-
             // Change the slot with mouse wheel
             if (Input.GetAxis("Mouse ScrollWheel") > 0f)
             {
@@ -104,7 +98,7 @@ namespace PlayerController.Inventory
                 {
                     _currentSlotIndex = 0;
                 }
-                photonView.RPC(nameof(ChangeWeapon),RpcTarget.All, _currentSlotIndex);
+                photonView.RPC(nameof(ChangeWeapon), RpcTarget.All, _currentSlotIndex);
                 //ChangeSlot();
             }
             else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
@@ -115,17 +109,16 @@ namespace PlayerController.Inventory
                     _currentSlotIndex = _utilities.Length - 1;
                 }
                 //photonView.RPC(nameof(PUNChangeUtility), RpcTarget.All, _currentSlotIndex);
-                 photonView.RPC(nameof(ChangeWeapon),RpcTarget.All, _currentSlotIndex);
+                photonView.RPC(nameof(ChangeWeapon), RpcTarget.All, _currentSlotIndex);
                 //ChangeSlot();
             }
-
             // Select the slot with the number keys
             for (int i = 1; i <= _utilityData.Length; i++)
             {
                 if (Input.GetKeyDown(i.ToString()))
                 {
                     _currentSlotIndex = i - 1;
-                     photonView.RPC(nameof(ChangeWeapon),RpcTarget.All, _currentSlotIndex);
+                    photonView.RPC(nameof(ChangeWeapon), RpcTarget.All, _currentSlotIndex);
                     //ChangeSlot();
                 }
             }
@@ -145,10 +138,11 @@ namespace PlayerController.Inventory
                 return;
             }
 
-            if(currentCollectable.transform.tag == "Finish"){
-                PUNMatchManager.Instance.UpdateStatSent(0, PUNEventCodes.PlayerStats.TotalObjects ,1);
+            if (currentCollectable.transform.tag == "Finish")
+            {
+                PUNMatchManager.Instance.UpdateStatSent(0, PUNEventCodes.PlayerStats.TotalObjects, 1);
             }
-            
+
 
             //GameObject currentCollectable = collectables[currentCollectableIndex];
             SpriteRenderer _spriteRenderer = currentCollectable.GetComponent<SpriteRenderer>();
@@ -160,19 +154,15 @@ namespace PlayerController.Inventory
                 return;
             }
 
-            photonView.RPC(nameof(ParentObjet),RpcTarget.All, currentCollectable.name);
+            photonView.RPC(nameof(ParentObjet), RpcTarget.All, currentCollectable.name);
 
             // Emparenta el objeto con el objeto padre
-            if(currentCollectable.TryGetComponent<Seguro>(out Seguro seguro))
+            if (currentCollectable.TryGetComponent<Seguro>(out Seguro seguro))
             {
                 seguro.bloqueado = false;
                 seguro.anim = _animator;
 
             }
-
-            
-            
-
             // Actualiza el índice para el siguiente objeto
             currentCollectableIndex = (currentCollectableIndex + 1) % collectables.Length;
 
@@ -184,7 +174,7 @@ namespace PlayerController.Inventory
         public void ParentObjet(string objectName)
         {
             Debug.LogWarning("Nombre: " + objectName);
-            
+
             GameObject collectableObject = GameObject.Find(objectName);
             //Debug.LogWarning("Previo a emparentado: " + collectableObject.transform.parent.name);
 
@@ -195,15 +185,34 @@ namespace PlayerController.Inventory
                 utilitySprite = collectableObject.GetComponent<SpriteRenderer>().sprite
             };
 
-            if(photonView.IsMine) 
+            if (photonView.IsMine)
                 collectableObject.transform.SetParent(_inventoryOwnPoint);
             else
                 collectableObject.transform.SetParent(_inventoryNetworkPoint);
 
             Debug.LogWarning("Posterior a emparentado: " + collectableObject.transform.parent.name);
 
+            collectableObject.GetComponent<BoxCollider>().enabled = false;
             collectableObject.transform.localPosition = Vector3.zero;
-        } 
+        }
+
+        public void RemoveUtility(string utilityName)
+        {
+            for (int i = 0; i < _utilities.Length; i++)
+            {
+                if (_utilities[i].utilityInstance.name == utilityName)
+                {
+                    // Eliminar la utilidad del array
+                    List<UtilityData> utilityList = new List<UtilityData>(_utilities);
+                    utilityList.RemoveAt(i);
+                    _utilities = utilityList.ToArray();
+
+                    // Actualizar el HUD
+                    UpdateHUD();
+                    break;
+                }
+            }
+        }
 
         [PunRPC]
         public void ChangeWeapon(int currentObjSlot)
@@ -213,7 +222,7 @@ namespace PlayerController.Inventory
             Debug.LogWarning("Cambio de arma: " + _currentSlotIndex);
 
             ChangeSlot();
-        } 
+        }
 
         /// <summary>
         /// Method to change the slot of the inventory
@@ -233,7 +242,7 @@ namespace PlayerController.Inventory
                 _currentSlotIndex = 0;
             }
 
-            // Lógica de cambio de ranura
+            // Logic to change the slot
             OnSlotChangedEvent?.Invoke(_utilityData[_currentSlotIndex]);
 
             foreach (var utility in _utilities)
@@ -243,10 +252,21 @@ namespace PlayerController.Inventory
 
             _utilities[_currentSlotIndex].utilityInstance.SetActive(true);
 
-            if(photonView.IsMine){
+            // Desactivate the collider of the object when it is a child of the inventory
+            if (_utilities[_currentSlotIndex].utilityInstance.transform.IsChildOf(_inventoryOwnPoint))
+            {
+                Collider collider = _utilities[_currentSlotIndex].utilityInstance.GetComponent<Collider>();
+                if (collider != null)
+                {
+                    collider.enabled = false;
+                }
+            }
+
+            if (photonView.IsMine)
+            {
                 UpdateHUD();
             }
-            
+
         }
 
         private void UpdateHUD()
@@ -268,6 +288,14 @@ namespace PlayerController.Inventory
                         hudSlots[i].color = Color.gray;
                         hudSlots[i].rectTransform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
                     }
+
+                    // Set off the salt sprite when it was used
+                    if (_utilities[i].utilityInstance.name == "aguabindita" && !_utilities[i].utilityInstance.activeSelf)
+                    {
+                        hudSlots[i].sprite = null;
+                    }
+
+
                 }
                 else
                 {
@@ -282,6 +310,20 @@ namespace PlayerController.Inventory
         {
             return _utilities[_currentSlotIndex];
         }
+
+        public void RemoveSpriteFromHUD(string utilityName)
+        {
+            for (int i = 0; i < _utilities.Length; i++)
+            {
+                if (_utilities[i].utilityInstance.name == utilityName)
+                {
+                    hudSlots[i].sprite = null; // Eliminar sprite del HUD
+                    Debug.Log($"{utilityName} usada. Sprite eliminado del HUD.");
+                    break;
+                }
+            }
+        }
+
 
         /// <summary>
         /// Method to update the slot selector in all clients
