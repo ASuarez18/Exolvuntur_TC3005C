@@ -23,7 +23,7 @@ namespace PlayerController.UI
         private void Start()
         {
             _camera = Camera.main;
-            _whisperAudioSource = _sfxManager.PlayWhisperSFX(_whisperSFX, transform, 0f);
+            // _whisperAudioSource = _sfxManager.PlayWhisperSFX(_whisperSFX, transform, 0f);
             _sanitySlider.onValueChanged.AddListener(OnSanityValueChanged);
         }
 

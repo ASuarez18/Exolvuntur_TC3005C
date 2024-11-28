@@ -86,7 +86,8 @@ namespace Enemy.Behaviour
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = true;
-                dybbukSM.actualTarget = other.transform.position;
+                dybbukSM.PlayerPosition = other.transform.position;
+                dybbukSM.PlayerGameObject = other.gameObject;
             }
         }
 

@@ -30,6 +30,9 @@ namespace Enemy.Behaviour
         private EnemyDybbukManager manager;
         public Vector3 actualTarget { get; set; }
         public bool PlayerOnAreaClose { get; set; }
+        public Vector3 PlayerPosition { get; set; }
+        public GameObject PlayerGameObject { get; set; }
+        public float DistanceToPlayer { get; set; }
         public bool OnView { get; set; }
         public Dictionary <int,bool> actorViews;
         public bool Attacking { get; set; }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using PlayerController.PUN;
 using Photon.Pun;
 
 /// <summary>
@@ -37,8 +38,17 @@ namespace Enemy.Behaviour
         public override void UpdateState()
         {
             if(!PhotonNetwork.IsMasterClient) return;
-            //Actualizamos el movimiento hacia el jugador
+
+            dybbukSM.DistanceToPlayer = Vector3.Distance(manager.transform.position, dybbukSM.PlayerPosition);
+
+            dybbukSM.actualTarget = dybbukSM.PlayerPosition;
             manager.agent.SetDestination(dybbukSM.actualTarget);
+            if (dybbukSM.DistanceToPlayer <= 20)
+            {
+                dybbukSM.Attacking = true;
+            }
+            // //Actualizamos el movimiento hacia el jugador
+            // manager.agent.SetDestination(dybbukSM.actualTarget);
         }
 
         public override void ExitState()
@@ -61,6 +71,7 @@ namespace Enemy.Behaviour
             }
             else if(dybbukSM.Attacking)
             {
+                dybbukSM.PlayerGameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Dybbuk");
                 return DybbukStateMachine.EnemyState.Attack;
             }
             else if(!dybbukSM.PlayerOnAreaClose)
@@ -77,6 +88,8 @@ namespace Enemy.Behaviour
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = true;
+                dybbukSM.PlayerPosition = other.transform.position;
+                dybbukSM.PlayerGameObject = other.gameObject;
             }
         }
 
@@ -95,6 +108,8 @@ namespace Enemy.Behaviour
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = false;
+                dybbukSM.PlayerPosition = other.transform.position;
+                dybbukSM.PlayerGameObject = null;
             }
         }
     }

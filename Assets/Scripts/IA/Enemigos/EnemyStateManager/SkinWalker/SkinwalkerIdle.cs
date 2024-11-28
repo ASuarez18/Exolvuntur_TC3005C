@@ -119,6 +119,7 @@ namespace Enemy.Behaviour
             {
                 skinwalkerSM.PlayerOnAreaFar = true;
                 skinwalkerSM.PlayerPosition = other.transform.position;
+                skinwalkerSM.PlayerGameObject = other.gameObject;
             }
         }
 

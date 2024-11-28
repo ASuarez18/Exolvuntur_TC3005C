@@ -33,6 +33,9 @@ namespace Enemy.Behaviour
         public bool PlayerOnAreaClose { get; set; }
         public bool PlayerOnAreaFar { get; set; }
         public Vector3 actualTarget { get; set; }
+        public Vector3 PlayerPosition { get; set; }
+        public GameObject PlayerGameObject { get; set; }
+        public float DistanceToPlayer { get; set; }
         public bool IsTransformed { get; set; }
         public float TimeTransformed { get; set; }
         public bool IsStunned { get; set; }
@@ -43,8 +46,6 @@ namespace Enemy.Behaviour
         public float AggresiveDuration { get; set; }
         public int AggresiveMode { get; set; }
         public float SearchCounter { get; set; }
-        public float DistanceToPlayer { get; set; }
-        public Vector3 PlayerPosition { get; set; }
 
         #endregion
 

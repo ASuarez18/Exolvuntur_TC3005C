@@ -76,12 +76,15 @@ namespace Enemy.Behaviour
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = true;
+                dybbukSM.PlayerPosition = other.transform.position;
+                dybbukSM.PlayerGameObject = other.gameObject;
             }
         }
 
         public override void OnAreaStay(Collider other)
         {
             //No realizamos nada
+            
         }
 
         public override void OnAreaExit(Collider other)
@@ -90,6 +93,8 @@ namespace Enemy.Behaviour
             if(other.CompareTag("Player"))
             {
                 dybbukSM.PlayerOnAreaClose = false;
+                dybbukSM.PlayerPosition = Vector3.zero;
+                dybbukSM.PlayerGameObject = null;
             }
         }
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using PlayerController.PUN;
 using Photon.Pun;
 
 namespace Enemy.Behaviour
@@ -78,6 +79,7 @@ namespace Enemy.Behaviour
             }
             else if(kormosSM.Attacking)
             {   
+                kormosSM.PlayerGameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
                 //LLamamos al RPC del game object del jugador
                 return KormosStateMachine.EnemyState.Attack;
             }

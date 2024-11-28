@@ -96,6 +96,8 @@ namespace Enemy.Behaviour
                 if (other.gameObject.tag == "Player")
                 {
                     dybbukSM.PlayerOnAreaClose = false;
+                    dybbukSM.PlayerPosition = Vector3.zero;
+                    dybbukSM.PlayerGameObject = null;
                 }
             }
     }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using PlayerController.PUN;
 using Photon.Pun;
 
 /// <summary>
@@ -34,8 +35,14 @@ namespace Enemy.Behaviour
         public override void UpdateState()
         {
             if(!PhotonNetwork.IsMasterClient) return ;
-            //Perseguimos al jugadro ya que es nuestro actual target
-            manager.agent.SetDestination(skinwalkerSM.actualTarget); 
+
+            skinwalkerSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,skinwalkerSM.PlayerPosition);
+            skinwalkerSM.actualTarget = skinwalkerSM.PlayerPosition;
+            manager.agent.SetDestination(skinwalkerSM.actualTarget);
+            if(skinwalkerSM.DistanceToPlayer <= 20)
+            {
+                skinwalkerSM.Attacking = true;
+            }
 
             //Verificamos la funcion de tiempo transformado
             if(skinwalkerSM.IsTransformed) 
@@ -66,6 +73,7 @@ namespace Enemy.Behaviour
             //Si el enemigo detecto una colision
             else if(skinwalkerSM.Attacking)
             {
+                skinwalkerSM.PlayerGameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Skinwalker");
                 return SkinwalkerStateMachine.EnemyState.Attack;
             }
             

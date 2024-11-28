@@ -33,20 +33,23 @@ namespace Enemy.Behaviour
             manager.agent.isStopped = true;
             manager.animator.SetTrigger("ataque");
             //Generamos un overslpa sphere para detectar game objets con el tag player justo frente del nuestro transform
-            Collider[] hitColliders = Physics.OverlapSphere(new Vector3(manager.transform.position.x,manager.transform.position.y,manager.transform.position.z + 2), 5f);
-            foreach (var hitCollider in hitColliders)
-            {
-                if(hitCollider.gameObject.tag == "Player")
-                {
-                    hitCollider.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
-                }
-            }
+            // Collider[] hitColliders = Physics.OverlapSphere(manager.transform.forward * 2, 200f);
+            // //Dibujamos la esfera
+            
+            // foreach (var hitCollider in hitColliders)
+            // {
+            //     if(hitCollider.gameObject.tag == "Player")
+            //     {
+            //         hitCollider.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
+            //     }
+            // }
         }
 
         //Actualizamos el estado en el Update
         public override void UpdateState()
         {
             if(!PhotonNetwork.IsMasterClient) return;
+            Debug.DrawRay(manager.transform.position, manager.transform.forward * 2, Color.red, 5f);
             kormosSM.UpdateAttackTime();
         }
 
@@ -93,6 +96,13 @@ namespace Enemy.Behaviour
         public override void OnAreaExit(Collider other)
         {
             
+        }
+
+         void OnDrawGizmosSelected()
+        {
+            // Display the explosion radius when selected
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(manager.transform.forward * 2, 5f);
         }
 
 
