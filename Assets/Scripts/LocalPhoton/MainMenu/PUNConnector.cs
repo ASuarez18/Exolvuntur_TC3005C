@@ -237,7 +237,7 @@ namespace LocalPhoton.MainMenu
         {
             // Loads Main Scene that will be index 1
 
-            PhotonNetwork.LoadLevel(1);
+            PhotonNetwork.LoadLevel(2);
         }
     }
 }

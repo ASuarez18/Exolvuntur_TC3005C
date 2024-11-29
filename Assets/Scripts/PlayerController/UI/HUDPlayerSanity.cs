@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Audio.SoundFX;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -15,14 +16,17 @@ namespace PlayerController.UI
         [SerializeField] private Image _sanityFillImage;
         [SerializeField] private Volume _postProcessingVolume;
         [SerializeField] private Camera _camera;
+        [SerializeField] private AudioSource _whisperSFX;
+        private AudioSource _whisperAudioSource;
 
         private void Start()
         {
             _camera = Camera.main;
-
+            // _whisperAudioSource = _sfxManager.PlayWhisperSFX(_whisperSFX, transform, 0f);
+            _sanitySlider.onValueChanged.AddListener(OnSanityValueChanged);
         }
 
-        private void Update()
+        private void LateUpdate()
         {
             UpdateSanityColorValue();
         }
@@ -46,6 +50,15 @@ namespace PlayerController.UI
             UpdateSanityColorValue();
         }
 
+        private void OnSanityValueChanged(float value)
+        {
+            if (_whisperAudioSource != null)
+            {
+                float normalizedValue = 1 - (value / _sanitySlider.maxValue); // Normalizar el valor
+                _whisperAudioSource.volume = normalizedValue; // Ajustar el volumen directamente
+            }
+        }
+
         private void UpdateSanityColorValue()
         {
             // Get the value of the slider and normalize it
@@ -56,6 +69,10 @@ namespace PlayerController.UI
             // Update the post processing volume
             float sanityPercentage = _sanitySlider.value / _sanitySlider.maxValue;
             _postProcessingVolume.weight = 1 - sanityPercentage;
+
+            float volume = 1 - (_sanitySlider.value / 100f);
+
+            _whisperSFX.volume = volume;
 
             // Update the camera rotation in the z axis
             float maxRotationZ = 30f; // Define el máximo ángulo de rotación en el eje Z

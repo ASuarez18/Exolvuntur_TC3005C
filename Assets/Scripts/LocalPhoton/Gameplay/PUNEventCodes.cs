@@ -23,7 +23,8 @@ namespace LocalPhoton.Gameplay
 
         public enum PlayerStats : byte
         {
-            Kills
+            Kills,
+            TotalObjects
             // More stats
         }
     }

@@ -1,10 +1,11 @@
 using UnityEngine;
 using Interfaces;
+using Photon.Pun;
 
 
 namespace PlayerController
 {
-    public class PlayerInteraction : MonoBehaviour
+    public class PlayerInteraction : MonoBehaviourPunCallbacks
     {
 
         private Camera _mainCamera;
@@ -13,17 +14,20 @@ namespace PlayerController
 
 
        
-        private void OnEnable()
+        public override void OnEnable()
         {
+            base.OnEnable();
             rayDistance = 20f;
             _mainCamera = Camera.main;
             interactText = GameObject.Find("HUD_Interaction").GetComponent<CanvasGroup>();
             interactText.alpha = 0f;
-            Debug.LogError(interactText);
+            //Debug.LogError(interactText);
         }
 
         private void Update()
         {
+            if(!photonView.IsMine) return;
+
             if(interactText != null)
             {
                 CheckRayInteraction();
@@ -57,7 +61,7 @@ namespace PlayerController
                     interactText.alpha = 1f;
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        interactableObject.InteractObject();
+                        interactableObject.InteractObject(this.gameObject);
                     }
                 }
                 else

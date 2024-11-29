@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
+
 
 namespace Enemy.Behaviour 
 {
@@ -22,6 +24,7 @@ namespace Enemy.Behaviour
             //Inicializa el estado
             public override void EnterState()
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 // ! Aumentar la velocidad al doble
                 kormosSM.currentSpeed += kormosSM.currentSpeed;
                 kormosSM.currentRunningSpeed += kormosSM.currentRunningSpeed;
@@ -44,9 +47,9 @@ namespace Enemy.Behaviour
             //Actualiza el estado en el Update del MonoBehaviour
             public override void UpdateState()
             {
+                if(!PhotonNetwork.IsMasterClient) return;
                 //Actualizamos la posicion del agente al destino
                 manager.agent.SetDestination(kormosSM.actualTarget);
-                // Debug.Log(manager.agent.remainingDistance);
 
                 //Una vez que llego a su destino
                 if (manager.agent.remainingDistance <= 1f)
@@ -54,8 +57,6 @@ namespace Enemy.Behaviour
                     reachedTarget = true;
                 }
             
-                //Revisamos su siguientes estados
-                GetNextState();
             }
 
             public override void ExitState()
@@ -66,6 +67,7 @@ namespace Enemy.Behaviour
             //Funcion que revisa si entra en el flujo de un estado o no
             public override KormosStateMachine.EnemyState GetNextState()
             {
+                if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Scape;
                 if(kormosSM.IsStunned)
                 {
                     // ! Manda a estado de stunneado
@@ -81,23 +83,26 @@ namespace Enemy.Behaviour
                 return KormosStateMachine.EnemyState.Scape;
             }
 
-            //Metodos de cambio de flujo del estado
-            public override void OnAreaEnter(Collider other)
-            {
+            // //Metodos de cambio de flujo del estado
+            // public override void OnAreaEnter(Collider other)
+            // {
                 
-            }
+            // }
 
-            public override void OnAreaStay(Collider other)
-            {
+            // public override void OnAreaStay(Collider other)
+            // {
                 
-            }
+            // }
 
-            public override void OnAreaExit(Collider other)
-            {
-                if (other.gameObject.tag == "Player")
-                {
-                    kormosSM.PlayerOnAreaFar = false;
-                }
-            }
+            // public override void OnAreaExit(Collider other)
+            // {
+            //     if(!PhotonNetwork.IsMasterClient) return;
+            //     if (other.gameObject.tag == "Player")
+            //     {
+            //         kormosSM.PlayerOnAreaFar = false;
+            //         kormosSM.PlayerPosition = Vector3.zero;
+            //         kormosSM.PlayerGameObject = null;
+            //     }
+            // }
     }
 }

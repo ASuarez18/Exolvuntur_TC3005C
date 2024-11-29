@@ -32,8 +32,8 @@ namespace Enemy.Behaviour
         public abstract EState GetNextState();
 
         //Creamos metodos abstractos encargados de cambiar el flujo del estado actual
-        public abstract void OnAreaEnter(Collider other);
-        public abstract void OnAreaStay(Collider other);
-        public abstract void OnAreaExit(Collider other);
+        // public abstract void OnAreaEnter(Collider other);
+        // public abstract void OnAreaStay(Collider other);
+        // public abstract void OnAreaExit(Collider other);
     }
 }

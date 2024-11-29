@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
 using GamePlay.IA;
+using Photon.Pun;
 
 ///<summary>
 ///El estado de caza se activa con reaccion al sonido.
@@ -30,38 +31,44 @@ namespace Enemy.Behaviour
         //Inicializmos el estado
         public override void EnterState()
         {
-            
+            if(!PhotonNetwork.IsMasterClient) return;
         }
 
         //Actualizamos el estado en el Update
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Asiganmos el destino a la posicion del sonido
-            manager.agent.SetDestination(kormosSM.actualTarget);
-            
-            //Verificamos la distancia actual del agente y la del jugador
-            kormosSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,kormosSM.PlayerPosition);
+            // manager.agent.SetDestination(kormosSM.actualTarget);
 
-            if(kormosSM.DistanceToPlayer <= kormosSM.currentAttackRange)
-            {
-                //Si el jugador se encuentra en el segundo rango entra en ataque
-                kormosSM.PlayerOnAreaClose = true;
-            }
+            //Verificamos si hay algun dentro del area
+            kormosSM.ViewOnAreaFarPlayers();
+            
+            //Verificamos la distancia actual de cada jugador
+            kormosSM.ViewOnAreaClosePlayers();
+            // kormosSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,kormosSM.PlayerPosition);
+
+            // if(kormosSM.DistanceToPlayer <= kormosSM.currentAttackRange)
+            // {
+            //     //Si el jugador se encuentra en el segundo rango entra en ataque
+            //     kormosSM.PlayerOnAreaClose = true;
+            // }
 
             //Cuando el agente llega a su destino del sonido cambiamos de estado
-            if(manager.agent.remainingDistance == 0f)
+            if(manager.agent.remainingDistance == 1f)
             {
                 //Si el agente llega a su destino cambiamos de estado
                 onDestination = true;
             }
 
             //Verificamos si entra a otro estados
-            GetNextState();
+            //GetNextState();
         }
 
         //Salimos del estado
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             onDestination = false;
             kormosSM.SoundDetected = false;
         }
@@ -69,6 +76,7 @@ namespace Enemy.Behaviour
         //Funcion que conecta con otros estados
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Hunt;
             //Si el jugador se encuentra en el segundo rango entra en ataque
             if(kormosSM.IsStunned)
             {
@@ -89,34 +97,40 @@ namespace Enemy.Behaviour
         }
 
         //Metodos de cambio de flujo del estado
-        public void Hunt(SoundGame sound)
+        public void Hunt(Vector3 soundPos)
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Actualizamos la posicion del sonido
-            kormosSM.actualTarget = sound.pos;
+            kormosSM.actualTarget = soundPos;
+            manager.agent.SetDestination(soundPos);
         }
 
-        public override void OnAreaEnter(Collider other)
-        {
+        // public override void OnAreaEnter(Collider other)
+        // {
             
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {  
-            
-            if (other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerPosition = other.transform.position;
-            }
-        }
+        // public override void OnAreaStay(Collider other)
+        // {  
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if (other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerPosition = other.transform.position;
+        //         kormosSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {  
-            //Verificamos que el objeto tenga el tag de player
-            if (other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerOnAreaFar = false;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {  
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     //Verificamos que el objeto tenga el tag de player
+        //     if (other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerOnAreaFar = false;
+        //         kormosSM.PlayerPosition = Vector3.zero;
+        //         kormosSM.PlayerGameObject = null;
+        //     }
+        // }
 
     }
 

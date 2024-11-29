@@ -1,5 +1,4 @@
 using ExitGames.Client.Photon;
-using LocalPhoton.MainMenu;
 using Photon.Pun;
 using Photon.Realtime;
 using System;
@@ -28,6 +27,14 @@ namespace LocalPhoton.Gameplay
 
         // Used to keep track of the players in the match
         public List<PUNPlayerInfo> playersInGame = new();
+
+        public int TotalObjects { get; set; }
+        public int PlayersDead { get; set; }
+        private bool _winners;
+        private bool _end;
+
+        [SerializeField, Space] private CanvasGroup _winCanvasGroup;
+        [SerializeField, Space] private CanvasGroup _loseCanvasGroup;
 
         //public HUDPlayerScore _hudPlayerScore;
 
@@ -168,12 +175,12 @@ namespace LocalPhoton.Gameplay
                 case PUNEventCodes.EventCodes.UpdateGameState:
                     UpdateGameStateReceived(data);
                     break;
-                //case PUNEventCodes.EventCodes.NextMatch:
-                //    UpdateNextMatchReceived();
-                //    break;
-                //case PUNEventCodes.EventCodes.TimerSync:
-                //    UpdateTimerSyncReceived(data);
-                //    break;
+                    //case PUNEventCodes.EventCodes.NextMatch:
+                    //    UpdateNextMatchReceived();
+                    //    break;
+                    //case PUNEventCodes.EventCodes.TimerSync:
+                    //    UpdateTimerSyncReceived(data);
+                    //    break;
             }
         }
 
@@ -310,7 +317,7 @@ namespace LocalPhoton.Gameplay
             PhotonNetwork.RaiseEvent(
                 (byte)PUNEventCodes.EventCodes.UpdateStat,
                 data,
-                new RaiseEventOptions { Receivers = ReceiverGroup.All },
+                new RaiseEventOptions { Receivers = ReceiverGroup.MasterClient },
                 new SendOptions { Reliability = true }
             );
         }
@@ -326,6 +333,17 @@ namespace LocalPhoton.Gameplay
             var statToUpdate = (PUNEventCodes.PlayerStats)(byte)dataReceived[1];
             int value = (int)dataReceived[2];
 
+            switch (statToUpdate)
+            {
+                case PUNEventCodes.PlayerStats.TotalObjects:
+                    TotalObjects += value;
+                    break;
+                case PUNEventCodes.PlayerStats.Kills:
+                    PlayersDead += value;
+                    break;
+            }
+
+            /*
             for (int i = 0; i < playersInGame.Count; i++)
             {
                 // We find the player that sent the stat change and update their stat accordingly
@@ -336,9 +354,9 @@ namespace LocalPhoton.Gameplay
                         case PUNEventCodes.PlayerStats.Kills: // Kills
                             playersInGame[i].kills += value;
                             break;
-                        //case PUNEventCodes.PlayerStats.Deaths: // Deaths
-                        //    playersInGame[i].deaths += value;
-                        //    break;
+                            //case PUNEventCodes.PlayerStats.Deaths: // Deaths
+                            //    playersInGame[i].deaths += value;
+                            //    break;
                     }
 
                     //Debug.LogFormat($"*** PUNMatchManager: Player {sendingActor} - Kills {playersInGame[i].kills} - Deaths {playersInGame[i].deaths}");
@@ -350,7 +368,7 @@ namespace LocalPhoton.Gameplay
 
                     break;
                 }
-            }
+            }*/
 
             ScoreCheck();
         }
@@ -382,6 +400,7 @@ namespace LocalPhoton.Gameplay
             Debug.LogFormat($"*** PUNMatchManager: Game State Received - {gameState}");
 
             if (gameState == PUNEventCodes.GameStates.Ending) EndMatch();
+            //ScoreCheck();
         }
 
         //public void UpdateNextMatchSend()
@@ -447,6 +466,7 @@ namespace LocalPhoton.Gameplay
 
         public override void OnLeftRoom()
         {
+            Debug.LogWarning("Left room");
             base.OnLeftRoom();
             SceneManager.LoadScene(0);
             // TODO: End match for evryone
@@ -454,14 +474,20 @@ namespace LocalPhoton.Gameplay
 
         private IEnumerator EndOfGameCor()
         {
+
             yield return new WaitForSeconds(_waitTimeAfterEndingMatch);
+            Debug.LogWarning("End of game coroutine");
             if (!_keepRunning)
             {
+                Debug.LogWarning("End of wainting for next match");
                 PhotonNetwork.AutomaticallySyncScene = false;
                 PhotonNetwork.LeaveRoom();
             }
             else
             {
+                 Debug.LogWarning("End of wainting for next match");
+                PhotonNetwork.AutomaticallySyncScene = false;
+                PhotonNetwork.LeaveRoom();
                 // TODO: Logic for aftermath of match
 
                 // Only the master client can restart the match
@@ -494,21 +520,23 @@ namespace LocalPhoton.Gameplay
 
         private void ScoreCheck()
         {
-            bool winner = false;
-            foreach (var player in playersInGame)
+            Debug.LogWarning("Numero total de objtetos: " + TotalObjects);
+            if (TotalObjects >= 4)
             {
-                if (player.kills >= ITEMS_TO_WIN)
-                {
-                    gameState = PUNEventCodes.GameStates.Ending;
-                    winner = true;
-                    break;
-                }
+                gameState = PUNEventCodes.GameStates.Ending;
+                _winners = true;
+                //_end = true;
+            }
+            if (PlayersDead >= 4)
+            {
+                gameState = PUNEventCodes.GameStates.Ending;
+                //_end = true;
+                _winners = false;
             }
 
-            Debug.LogFormat($"*** PUNMatchManager: Score check - Winner {winner}");
-
-            if (winner)
+            if (_winners)
             {
+                SetWinCanvasGroup(true);
                 // Notify players the game has ended
                 if (PhotonNetwork.IsMasterClient)
                 {
@@ -517,6 +545,58 @@ namespace LocalPhoton.Gameplay
                     UpdateGameStateSend();
                 }
             }
+            
         }
+
+        /// <summary>
+        /// Method to avoiding repetiotion of code
+        /// </summary>
+        /// <param name="canvasGroup"></param>
+        /// <param name="activeStatus"></param>
+        private void SetCanvasGroupState(CanvasGroup canvasGroup, bool activeStatus)
+        {
+            // Target Alpha based on the status of canvas
+            float targetAlpha = activeStatus ? 1f : 0f;
+
+            // Fade using LeanTween
+            LeanTween.alphaCanvas(canvasGroup, targetAlpha, 0.5f);
+
+            // If is activating, sets values to true instantly
+            if (activeStatus)
+            {
+                canvasGroup.interactable = true;
+                canvasGroup.blocksRaycasts = true;
+            }
+            else
+            {
+                // If not, waits fade to end to set values to false
+                LeanTween.delayedCall(0.5f, () =>
+                {
+                    canvasGroup.interactable = false;
+                    canvasGroup.blocksRaycasts = false;
+                });
+            }
+        }
+
+        /// <summary>
+        /// Sets the create room canvas group active status
+        /// </summary>
+        /// <param name="activeStatus"></param>
+        public void SetWinCanvasGroup(bool activeStatus)
+        {
+
+            SetCanvasGroupState(_winCanvasGroup, activeStatus);
+        }
+
+        /// <summary>
+        /// Sets the create room canvas group active status
+        /// </summary>
+        /// <param name="activeStatus"></param>
+        public void SetLoseCanvasGroup(bool activeStatus)
+        {
+
+            SetCanvasGroupState(_loseCanvasGroup, activeStatus);
+        }
+
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 namespace Enemy.Behaviour
 {
@@ -21,12 +22,14 @@ namespace Enemy.Behaviour
         //Inicializa el estado
         public override void EnterState()
         {
-            // ? Detenemos el movimiento del agente dado que esta muerto
+            manager.animator.SetTrigger("muerte");
+            if(!PhotonNetwork.IsMasterClient) return ;
+            //manager.Animatorfuc("muerte");
             manager.agent.isStopped = true;
-            // TODO: Settear animacion de muerte con corrutina para que no destruya el objeto al momento
-            // ! Destruye el gameObject del enemigo (podria ser desactivado si se usa una pool)
             kormosSM.EnemyDead();
         }
+
+
 
         //Actualiza el estado en el Update del MonoBehaviour
         public override void UpdateState()
@@ -42,23 +45,24 @@ namespace Enemy.Behaviour
         //Funcion que revisa si entra en el flujo de un estado o no
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Dead;
             return KormosStateMachine.EnemyState.Dead;
         }
 
         //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
+        // public override void OnAreaEnter(Collider other)
+        // {
                 
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
+        // public override void OnAreaStay(Collider other)
+        // {
         
-        }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
+        // public override void OnAreaExit(Collider other)
+        // {
             
-        }
+        // }
     }
 }

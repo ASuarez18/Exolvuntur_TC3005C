@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using PlayerController.PUN;
+using Photon.Pun;
 
 namespace Enemy.Behaviour
 {
@@ -10,6 +12,8 @@ namespace Enemy.Behaviour
         //Llamamos a nuestro controlador del enemigo
         private EnemyKormosManager manager;
         private KormosStateMachine kormosSM;
+
+
 
         //Creamos el constructor
         public KormosChasing(EnemyKormosManager manager,KormosStateMachine machine) : base(KormosStateMachine.EnemyState.Chasing)
@@ -21,35 +25,58 @@ namespace Enemy.Behaviour
         //Inicializamos el estado
         public override void EnterState()
         {
-            manager.agent.SetDestination(kormosSM.actualTarget);
+            if(!PhotonNetwork.IsMasterClient) return ;
 
+            //EL enemigo persigue al jugador
+            // manager.agent.SetDestination(kormosSM.actualTarget);
             //Inicializamos la animacion de persecucion
             manager.animator.SetFloat("forward", 2f);
+            
         }
 
         //Actualizamos el estado en el Update
         public override void UpdateState()
         {
-            //Verificamos que el jugador esta en nuestra area de ataque o cercana
-            manager.agent.SetDestination(kormosSM.actualTarget);
-            kormosSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,kormosSM.actualTarget);
 
-            if (kormosSM.DistanceToPlayer > kormosSM.currentAttackRange)
-            {
-                kormosSM.PlayerOnAreaClose = false;
-            }
-            GetNextState();
+            if(!PhotonNetwork.IsMasterClient) return ;
+
+            // //Verificamos que el jugador esta en nuestra area de ataque o cercana
+            // kormosSM.DistanceToPlayer = Vector3.Distance(manager.transform.position,kormosSM.PlayerPosition);
+
+            // if (kormosSM.DistanceToPlayer > kormosSM.currentAttackRange)
+            // {
+                
+            //     kormosSM.PlayerOnAreaClose = false;
+            // }
+            // else
+            // {
+            //     kormosSM.actualTarget = kormosSM.PlayerPosition;
+            //     manager.agent.SetDestination(kormosSM.actualTarget);
+            //     if (kormosSM.DistanceToPlayer <= 20)
+            //     {
+            //         kormosSM.Attacking = true;
+            //     }
+            // }
+
+            //Verificamos si ya no hay nadie en el area cercana
+            kormosSM.ViewOnAreaClosePlayers();
+
+            //Verificamos la distanaci hacia cada jugadro verificando si alcanzo a uno
+            kormosSM.NearPlayer();
+            
         }
 
         //Salimos del estado
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return ;
             kormosSM.Attacking = false;
         }
 
         //Obtenemos el siguiente estado segun las condiciones
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Chasing;
             //Si el jugador salio del area cambiamos al estado Idle
             if(kormosSM.IsStunned)
             {
@@ -60,7 +87,9 @@ namespace Enemy.Behaviour
                 return KormosStateMachine.EnemyState.Caution;
             }
             else if(kormosSM.Attacking)
-            {
+            {   
+                
+                //LLamamos al RPC del game object del jugador
                 return KormosStateMachine.EnemyState.Attack;
             }
 
@@ -69,31 +98,35 @@ namespace Enemy.Behaviour
 
         //Funciones de sensores
 
-        public override void OnAreaEnter(Collider other)
-        {
-            if(other.CompareTag("Player"))
-            {
-                kormosSM.actualTarget = other.gameObject.transform.position;
-            }
-        }
+        // public override void OnAreaEnter(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return ;
+        //     // if(other.CompareTag("Player"))
+        //     // {
+        //     //     kormosSM.actualTarget = other.gameObject.transform.position;
+        //     // }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            //Verificamos si alguien esta en el area del enemigo
-            if (other.CompareTag("Player"))
-            {
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerPosition = other.transform.position;
+        //         kormosSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-                kormosSM.actualTarget = other.gameObject.transform.position;
-            }
-        }
-
-        public override void OnAreaExit(Collider other)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerOnAreaFar = false;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return ;
+        //     if (other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerOnAreaFar = false;
+        //         kormosSM.PlayerPosition = Vector3.zero;
+        //         kormosSM.PlayerGameObject = null;
+        //     }
+        // }
 
     }
 }

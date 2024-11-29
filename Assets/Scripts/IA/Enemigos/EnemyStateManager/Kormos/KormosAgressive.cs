@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
+
 
 namespace Enemy.Behaviour
 {
@@ -19,6 +21,8 @@ namespace Enemy.Behaviour
 
         public override void EnterState()
         {
+            manager.animator.SetTrigger("agresividad");
+            if(!PhotonNetwork.IsMasterClient) return;
             //Detenemos el movimiento del agente
             manager.agent.isStopped = true;
 
@@ -35,19 +39,22 @@ namespace Enemy.Behaviour
             //Incrementamos las veces que puede entrar en este modo
             kormosSM.AggresiveMode++;
 
-            manager.animator.SetTrigger("agresividad");
+            //manager.Animatorfuc("agresividad");
+            //manager.animator.SetBool("agresividad",true);
 
         }
 
+
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             //Obtenemos la funcion de Update Aggresive Counter
             kormosSM.UpdateAggressiveDuration();
-            // Debug.LogWarning(kormosSM.AggresiveDuration);
         }
 
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             kormosSM.AgressiveCounter = 0f;
             kormosSM.AggresiveDuration = 0f;
             manager.agent.isStopped = false;
@@ -55,6 +62,7 @@ namespace Enemy.Behaviour
 
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Aggresive;
             if(kormosSM.AggresiveDuration >= manager.enemyStats.AggroDuration)
             {
                 return KormosStateMachine.EnemyState.Chasing;
@@ -63,22 +71,30 @@ namespace Enemy.Behaviour
             
         }
 
-        public override  void OnAreaEnter(Collider other)
-        {
+        // public override  void OnAreaEnter(Collider other)
+        // {
 
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerPosition = other.transform.position;
+        //         kormosSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        }
-
-        public override void OnAreaExit(Collider other)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerOnAreaFar = false;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if (other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerOnAreaFar = false;
+        //         kormosSM.PlayerPosition = Vector3.zero;
+        //         kormosSM.PlayerGameObject = null;
+        //     }
+        // }
     }
 }

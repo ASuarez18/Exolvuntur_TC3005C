@@ -16,18 +16,18 @@ namespace GamePlay.IA
             {
                 if(col[i].TryGetComponent(out EnemyKormosManager enemyState))
                 {
-                    //Primero verificamos si el enemigo se encuntra en Idle
-                    if(enemyState.enemyMachine.currentState is KormosCaution CautionState)
-                    {
-                        enemyState.enemyMachine.SoundDetected =true;
-                    }
-                    else if(enemyState.enemyMachine.currentState is KormosHunt HuntState)
-                    {
-                        HuntState.Hunt(sound);
-                    }
+                    Debug.LogWarning("Encontro enemigo");
+                    enemyState.dectedsound(sound.pos);
                 }
             }
 
+        }
+
+        //Dibujamos un wire esfera
+        public static void DrawWireSphere(Vector3 pos, float range)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(pos, range);
         }
     }
 

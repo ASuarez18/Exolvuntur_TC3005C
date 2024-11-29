@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using Photon.Pun;
 
 /// <summary>
 /// El estado de alerta detiene el movimiento del enemigo.
@@ -27,33 +28,43 @@ namespace Enemy.Behaviour
         //Inicializamos el estado
         public override void EnterState()
         {
+            manager.animator.SetTrigger("alerta");
+            if(!PhotonNetwork.IsMasterClient) return;
             //Detenemos el movimiento del agente
             manager.agent.isStopped = true;
-            manager.animator.SetTrigger("alerta");
+            //manager.animator.SetTrigger("alerta");
+            //manager.Animatorfuc("alerta");
         }
 
         //Actualizamos el estado en el Update del Monobehaviour
         public override void UpdateState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
+            //Revisamos si algun jugador esta en el area
+            kormosSM.ViewOnAreaFarPlayers();
+
             // Update aggressivenes time counter
             kormosSM.UpdateAgressiveCounter();
-
-            // Debug.LogWarning(kormosSM.AgressiveCounter);
-
-            //Revisamos los estados
-            GetNextState();
+        
         }
 
         //Salimos del estado
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             manager.agent.isStopped = false;
             kormosSM.AgressiveCounter = 0f;
+
+
+            
+            
         }
+
 
         //Revisamos el siguiente estado a partir de las condiciones de la bandera y el contador agresivo
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Caution;
             //Si el jugador sale del area o se encuentra en el area lejano
             if(kormosSM.IsStunned)
             {
@@ -77,23 +88,31 @@ namespace Enemy.Behaviour
         }
 
         //Metodos de cambio de flujo del estado
-        public override void OnAreaEnter(Collider other)
-        {
+        // public override void OnAreaEnter(Collider other)
+        // {
 
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {   
+        // public override void OnAreaStay(Collider other)
+        // {   
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerPosition = other.transform.position;
+        //         kormosSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        }
-
-        public override void OnAreaExit(Collider other)
-        {       
-            if (other.gameObject.tag == "Player")
-            {
-                kormosSM.PlayerOnAreaFar = false;
-            }
-        }
+        // public override void OnAreaExit(Collider other)
+        // {   
+        //     if(!PhotonNetwork.IsMasterClient) return;    
+        //     if (other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerOnAreaFar = false;
+        //         kormosSM.PlayerPosition = Vector3.zero;
+        //         kormosSM.PlayerGameObject = null;
+        //     }
+        // }
 
     }
 

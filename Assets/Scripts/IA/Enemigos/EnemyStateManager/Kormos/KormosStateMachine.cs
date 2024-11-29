@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
 using PlayerController.PUN;
+using Photon.Pun;
 
 namespace Enemy.Behaviour
 {
@@ -10,7 +11,8 @@ namespace Enemy.Behaviour
     /// Maquina de estados que hereda de StateManager.
     /// Agregamos los estados del enemigo Kormos y agregamos la clase del controlador del enemigo.
     /// </summary>
-    public class KormosStateMachine : StateManager<KormosStateMachine.EnemyState>
+    /// holip te vengo a joder 
+    public class KormosStateMachine : StateManager<KormosStateMachine.EnemyState> , InterfaceAttacking
     {
         #region Estados
             public enum EnemyState
@@ -21,21 +23,23 @@ namespace Enemy.Behaviour
                 Aggresive,
                 Attack,
                 Chasing,
-                Search,
                 Scape,
                 Heal,
                 Stunned,
                 Dead
             }
+            
         #endregion
 
         #region Variables y Atributos
             private EnemyKormosManager manager;
+            public Dictionary<int , GameObject> playerInfo = new Dictionary<int, GameObject>();
             public bool PlayerOnAreaClose { get; set; }
             public bool PlayerOnAreaFar { get; set; }
             public bool SoundDetected { get; set; }
             public Vector3 actualTarget { get; set; }
             public Vector3 PlayerPosition{ get; set; }
+            public GameObject PlayerGameObject { get; set; }
             public float DistanceToPlayer { get; set; }
             public float AgressiveCounter { get; set; }
             public float AggresiveDuration { get; set; }
@@ -44,6 +48,8 @@ namespace Enemy.Behaviour
             public float TimeStunned { get; set; }
             public bool Attacking { get; set; }
             public float TimeOfAttack { get; set; }
+
+            
           
         #endregion
 
@@ -87,36 +93,43 @@ namespace Enemy.Behaviour
                 manager.agent.speed = currentSpeed;
                 manager.agent.acceleration = currentAcceleration;
 
-           
-
             }
 
 
 
-        //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
-        public void OnTriggerEnter(Collider other)
+            //Funciones que se activan los Trigger de la maquina de estados -> Trigger del current State
+            public override void OnTriggerEnter(Collider other)
             {
-                base.OnTriggerEnter(other);
-            }
-            public void OnTriggerStay(Collider other)
-            {
-                base.OnTriggerStay(other);
-            }
-            public void OnTriggerExit(Collider other)
-            {
-                base.OnTriggerExit(other);
-            }
-            public void OnCollisionEnter(Collision other)
-            {  
-                Debug.LogError(other.ToString());
-                if(currentState.StateKey == EnemyState.Chasing)
+                // base.OnTriggerEnter(other);
+                //Primero verificamos si nuestro diccionario contiene el actor number
+                if (other.CompareTag("Player"))
                 {
-                    if(other.gameObject.tag == "Player")
+                    if (!playerInfo.ContainsKey(other.gameObject.GetPhotonView().Owner.ActorNumber))
                     {
-                        Attacking = true;
-                    other.gameObject.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
+                        playerInfo.Add(other.gameObject.GetPhotonView().Owner.ActorNumber, other.gameObject);
+                    }
+                    else 
+                    {
+                        playerInfo[other.gameObject.GetPhotonView().Owner.ActorNumber] = other.gameObject;
                     }
                 }
+            }
+            public override void OnTriggerStay(Collider other)
+            {
+                // base.OnTriggerStay(other);
+                //Recorremos los jugadores en el diccionario y updateamos su posicion unicamente siempre y cuando su posicion no sea null
+            }
+                
+            public override void OnTriggerExit(Collider other)
+            {
+                // base.OnTriggerExit(other);
+                playerInfo[other.gameObject.GetPhotonView().Owner.ActorNumber] = null;
+            }
+
+            void InterfaceAttacking.Attack(GameObject target)
+            {
+                Attacking = true;
+                target.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
             }
 
         #endregion
@@ -127,6 +140,7 @@ namespace Enemy.Behaviour
             {
                 TransitionToState(state);
             }
+            
         #endregion
 
         #region BehaviorFunctions
@@ -143,8 +157,7 @@ namespace Enemy.Behaviour
         }
         public void HealOverTime()
         {
-            Debug.Log("Me estoy curando" + currentHealth);
-            currentHealth += 5 * Time.deltaTime; // TODO: setear propiedad de healingrate para evitar constante magica
+            currentHealth += 5 * Time.deltaTime;
             currentHealth = Mathf.Clamp(currentHealth, 0, manager.enemyStats.Health);
         }
         public void UpdateAttackTime()
@@ -155,6 +168,95 @@ namespace Enemy.Behaviour
         {
             Destroy(manager.gameObject);
         }
+
+        #endregion
+
+        #region Update Dictionary
+
+        public void ViewOnAreaFarPlayers()
+        {
+            //Recorremos el diccionario y revisamos si todos estan nulos o no
+            foreach (var player in playerInfo)
+            {
+                if (player.Value != null)
+                {
+                    PlayerOnAreaFar = true;
+                }
+                else
+                {
+                    PlayerOnAreaFar = false;
+                }
+            }
+        }
+
+        public void ViewOnAreaClosePlayers()
+        {
+            bool detected = false;
+            //Recorremos el diccionario y verificamos las que no son nulas. A cada quien obtenemos y calculamos la distanciapara ver si hay alguien menor o igual a nuestra zona de ataque
+            foreach (var player in playerInfo)
+            {
+                if (player.Value != null)
+                {
+                    DistanceToPlayer = Vector3.Distance(player.Value.transform.position, transform.position);
+                    if (DistanceToPlayer <= currentAttackRange)
+                    {
+                        PlayerOnAreaClose = true;
+                        detected = true;
+                    }
+                    else
+                    {
+                        if(detected) break;
+                        PlayerOnAreaClose = false;
+                    }
+                }
+            }
+
+        }
+
+        public void NearPlayer()
+        {
+            var playerdistance = 0f;
+            var playerNear = float.MaxValue;
+            Vector3 playerPos = Vector3.zero;
+
+            foreach (var player in playerInfo)
+            {
+                if (player.Value != null)
+                {
+                    playerdistance = Vector3.Distance(player.Value.transform.position, transform.position);
+
+                    if (playerdistance <= 20f)
+                    {
+                        Attacking = true;
+                        // Usa el ViewID en lugar del ActorNumber
+                        photonView.RPC(nameof(SyncAttack), RpcTarget.All, player.Value.GetComponent<PhotonView>().ViewID,player.Value.GetComponent<PhotonView>().Owner.ActorNumber);
+                        return;
+                    }
+
+                    if (playerdistance <= playerNear)
+                    {
+                        playerNear = playerdistance;
+                        playerPos = player.Value.transform.position;
+                    }
+                }
+            }
+
+            // Actualiza el objetivo más cercano
+            actualTarget = playerPos;
+            manager.agent.SetDestination(actualTarget);
+        }
+
+        [PunRPC]
+        public void SyncAttack(int viewID, int ActorNumber)
+        {
+            PhotonView targetView = PhotonView.Find(viewID);
+            if (targetView != null && ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+            {
+                targetView.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
+            }
+        }
+
+
         #endregion
 
         #region DamageFuntions
@@ -162,21 +264,23 @@ namespace Enemy.Behaviour
         {
             IsStunned = true;
         }
+
+
         public void ApplyDamage(int damage)
         {
             if (IsStunned)
             {
-                Debug.LogWarning($"Aplico {damage} a enemigo");
                 currentHealth -= damage;
             }
         }
         #endregion
 
-        //private void OnDrawGizmos()
-        //{
-        //    Gizmos.color = Color.yellow;
-        //    Gizmos.DrawSphere(manager.transform.position, currentAttackRange);
-        //}
+        //Dibujamos una esfera con gizmos
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, currentAttackRange);
+        }
 
     }
 }

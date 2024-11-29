@@ -1,0 +1,489 @@
+fileFormatVersion: 2
+guid: 4d5623907d8232d489750aff81dde66e
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 1
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: mixamo.com
+      takeName: mixamo.com
+      internalID: -203655887218126122
+      firstFrame: 0
+      lastFrame: 1
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton:
+    - name: vampireFixed(Clone)
+      parentName: 
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.00000003774895, y: -0.00000019712533, z: -7.441274e-15, w: 1}
+      scale: {x: 100, y: 100, z: 100}
+    - name: SK_Vampire
+      parentName: vampireFixed(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: root
+      parentName: vampireFixed(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_
+      parentName: root
+      position: {x: -6.294244e-16, y: 0.26499763, z: 1.4173405}
+      rotation: {x: 0.00000044816113, y: -0.00000044816105, z: 0.7071068, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ Pelvis
+      parentName: VAMPIRE_
+      position: {x: 0.000000012070997, y: 4.440892e-14, z: 0.1809571}
+      rotation: {x: 0.5, y: -0.5, z: -0.5, w: -0.5}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: VAMPIRE_ Spine
+      parentName: VAMPIRE_ Pelvis
+      position: {x: -0.14340769, y: -0.00024784668, z: 0.00000020826762}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ Spine1
+      parentName: VAMPIRE_ Spine
+      position: {x: -0.3241356, y: -0.00024787904, z: -0.000000010578824}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 0.9999999, z: 1}
+    - name: VAMPIRE_ Neck
+      parentName: VAMPIRE_ Spine1
+      position: {x: -0.3241001, y: -0.00011749997, z: 0.000000009152641}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1}
+    - name: VAMPIRE_ Neck1
+      parentName: VAMPIRE_ Neck
+      position: {x: -0.15421517, y: -0.00011752606, z: 0.000000006393302}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 0.9999998, z: 0.99999976}
+    - name: VAMPIRE_ Head
+      parentName: VAMPIRE_ Neck1
+      position: {x: -0.15417975, y: -0.00000010491086, z: 0.0000000116373595}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: VAMPIRE_ Ponytail1
+      parentName: VAMPIRE_ Head
+      position: {x: 0.009317722, y: 0.092475906, z: 0.0000015502258}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+    - name: VAMPIRE_ Ponytail1_end
+      parentName: VAMPIRE_ Ponytail1
+      position: {x: -0, y: 0.092943914, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ R Clavicle
+      parentName: VAMPIRE_ Spine1
+      position: {x: -0.32406473, y: 0.00000019547768, z: -0.08124866}
+      rotation: {x: 0.7071068, y: -0.000000030908623, z: 0.7071068, w: -0.000000030908623}
+      scale: {x: 1, y: 1.0000004, z: 1.0000001}
+    - name: VAMPIRE_ R UpperArm
+      parentName: VAMPIRE_ R Clavicle
+      position: {x: -0.2093964, y: 0.00000002310653, z: 0.00000010251999}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
+    - name: VAMPIRE_ R Forearm
+      parentName: VAMPIRE_ R UpperArm
+      position: {x: -0.5829747, y: 0.00000016212462, z: -0.00000027179715}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 0.9999999}
+    - name: VAMPIRE_ R Hand
+      parentName: VAMPIRE_ R Forearm
+      position: {x: -0.62253207, y: -0.000000076293944, z: -0.0000002002716}
+      rotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: VAMPIRE_ R Finger0
+      parentName: VAMPIRE_ R Hand
+      position: {x: -0.066339016, y: 0.008854561, z: 0.05141855}
+      rotation: {x: 0, y: 0.38268346, z: 0, w: 0.9238795}
+      scale: {x: 0.99999994, y: 0.9999998, z: 1.0000001}
+    - name: VAMPIRE_ R Finger01
+      parentName: VAMPIRE_ R Finger0
+      position: {x: -0.07215266, y: 0.000000019073486, z: 0.0000001645088}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000002, z: 0.99999994}
+    - name: VAMPIRE_ R Finger02
+      parentName: VAMPIRE_ R Finger01
+      position: {x: -0.053729467, y: -0.000000047683713, z: -0.00000008344651}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999994, y: 0.9999999, z: 0.99999994}
+    - name: VAMPIRE_ R Finger02_end
+      parentName: VAMPIRE_ R Finger02
+      position: {x: -0, y: 0.05372954, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ R Finger1
+      parentName: VAMPIRE_ R Hand
+      position: {x: -0.227507, y: -0.0054683303, z: 0.08032838}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: VAMPIRE_ R Finger11
+      parentName: VAMPIRE_ R Finger1
+      position: {x: -0.07500326, y: -0.00000020980835, z: -0.00000014305115}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000001, y: 1, z: 0.9999998}
+    - name: VAMPIRE_ R Finger12
+      parentName: VAMPIRE_ R Finger11
+      position: {x: -0.056883775, y: -0.00000019073485, z: -0.000000076293944}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 0.99999994, z: 1}
+    - name: VAMPIRE_ R Finger12_end
+      parentName: VAMPIRE_ R Finger12
+      position: {x: -0, y: 0.056883745, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ R Finger2
+      parentName: VAMPIRE_ R Hand
+      position: {x: -0.22734469, y: -0.008575429, z: 0.024715044}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: VAMPIRE_ R Finger21
+      parentName: VAMPIRE_ R Finger2
+      position: {x: -0.073858485, y: 0.000000076293944, z: -0.0000001335144}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: VAMPIRE_ R Finger22
+      parentName: VAMPIRE_ R Finger21
+      position: {x: -0.06565274, y: -0.0000001335144, z: -0.000000076293944}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999994, y: 1.0000001, z: 1}
+    - name: VAMPIRE_ R Finger22_end
+      parentName: VAMPIRE_ R Finger22
+      position: {x: -0, y: 0.06565281, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ R Finger3
+      parentName: VAMPIRE_ R Hand
+      position: {x: -0.22216018, y: -0.010763283, z: -0.024004038}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: VAMPIRE_ R Finger31
+      parentName: VAMPIRE_ R Finger3
+      position: {x: -0.07152652, y: 0.000000095367426, z: 0.00000011444092}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: VAMPIRE_ R Finger32
+      parentName: VAMPIRE_ R Finger31
+      position: {x: -0.052702084, y: -0.000000095367426, z: 0.00000017166137}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 1.0000001, z: 1.0000002}
+    - name: VAMPIRE_ R Finger32_end
+      parentName: VAMPIRE_ R Finger32
+      position: {x: -0, y: 0.05270223, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ R Finger4
+      parentName: VAMPIRE_ R Hand
+      position: {x: -0.20469828, y: -0.013076506, z: -0.0644426}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: VAMPIRE_ R Finger41
+      parentName: VAMPIRE_ R Finger4
+      position: {x: -0.06001643, y: 0.0000001335144, z: 0.00000017166137}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 0.9999998, z: 1}
+    - name: VAMPIRE_ R Finger42
+      parentName: VAMPIRE_ R Finger41
+      position: {x: -0.054512803, y: -0.00000047683716, z: 0.000000019073486}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1}
+    - name: VAMPIRE_ R Finger42_end
+      parentName: VAMPIRE_ R Finger42
+      position: {x: -0, y: 0.05451269, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ L Clavicle
+      parentName: VAMPIRE_ Spine1
+      position: {x: -0.32406458, y: -0.0000001470555, z: 0.08124869}
+      rotation: {x: 0.7071068, y: -0.000000030908623, z: -0.7071068, w: 0.000000030908623}
+      scale: {x: 0.9999998, y: 1.0000002, z: 1.0000001}
+    - name: VAMPIRE_ L UpperArm
+      parentName: VAMPIRE_ L Clavicle
+      position: {x: -0.20939638, y: 0.00000013164303, z: 0.000000041723254}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 1, z: 1.0000002}
+    - name: VAMPIRE_ L Forearm
+      parentName: VAMPIRE_ L UpperArm
+      position: {x: -0.5829749, y: -0.00000005722046, z: -0.00000039339065}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999976, y: 0.99999976, z: 0.99999964}
+    - name: VAMPIRE_ L Hand
+      parentName: VAMPIRE_ L Forearm
+      position: {x: -0.6225323, y: 0.000000009536743, z: 0.00000028133394}
+      rotation: {x: 0.7071068, y: 0, z: 0, w: -0.7071068}
+      scale: {x: 1, y: 1.0000001, z: 1.0000002}
+    - name: VAMPIRE_ L Finger0
+      parentName: VAMPIRE_ L Hand
+      position: {x: -0.066338874, y: 0.008854198, z: -0.05141838}
+      rotation: {x: 0, y: 0.3826835, z: 0, w: -0.9238795}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: VAMPIRE_ L Finger01
+      parentName: VAMPIRE_ L Finger0
+      position: {x: -0.07215226, y: -0.00000015258789, z: -0.00000012397766}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999976, y: 0.9999997, z: 0.9999997}
+    - name: VAMPIRE_ L Finger02
+      parentName: VAMPIRE_ L Finger01
+      position: {x: -0.053729285, y: 0.00000002861023, z: 0.00000006198883}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1.0000002}
+    - name: VAMPIRE_ L Finger02_end
+      parentName: VAMPIRE_ L Finger02
+      position: {x: -0, y: 0.053729605, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ L Finger1
+      parentName: VAMPIRE_ L Hand
+      position: {x: -0.22750707, y: -0.0054685785, z: -0.08032833}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: VAMPIRE_ L Finger11
+      parentName: VAMPIRE_ L Finger1
+      position: {x: -0.0750032, y: 0.000000038146972, z: 0.00000005722046}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.9999998}
+    - name: VAMPIRE_ L Finger12
+      parentName: VAMPIRE_ L Finger11
+      position: {x: -0.05688385, y: -0.000000076293944, z: -0.000000076293944}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999994, y: 0.9999999, z: 1}
+    - name: VAMPIRE_ L Finger12_end
+      parentName: VAMPIRE_ L Finger12
+      position: {x: -0, y: 0.0568836, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ L Finger2
+      parentName: VAMPIRE_ L Hand
+      position: {x: -0.22734474, y: -0.008575944, z: -0.024714792}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 0.99999994, z: 1.0000001}
+    - name: VAMPIRE_ L Finger21
+      parentName: VAMPIRE_ L Finger2
+      position: {x: -0.07385864, y: -0.00000005722046, z: 0.00000011444092}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999998, y: 1.0000001, z: 1}
+    - name: VAMPIRE_ L Finger22
+      parentName: VAMPIRE_ L Finger21
+      position: {x: -0.06565291, y: -0.00000015258789, z: 0.00000015258789}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 0.9999999, z: 0.9999999}
+    - name: VAMPIRE_ L Finger22_end
+      parentName: VAMPIRE_ L Finger22
+      position: {x: -0, y: 0.06565294, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ L Finger3
+      parentName: VAMPIRE_ L Hand
+      position: {x: -0.2221601, y: -0.010763702, z: 0.024004098}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000002, y: 0.9999999, z: 1.0000001}
+    - name: VAMPIRE_ L Finger31
+      parentName: VAMPIRE_ L Finger3
+      position: {x: -0.07152671, y: -0.000000076293944, z: 0.0000002861023}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.9999999, y: 1.0000001, z: 1}
+    - name: VAMPIRE_ L Finger32
+      parentName: VAMPIRE_ L Finger31
+      position: {x: -0.052702054, y: 0, z: -0.000000038146972}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999976, y: 0.9999998, z: 0.99999994}
+    - name: VAMPIRE_ L Finger32_end
+      parentName: VAMPIRE_ L Finger32
+      position: {x: -0, y: 0.052702084, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ L Finger4
+      parentName: VAMPIRE_ L Hand
+      position: {x: -0.20469841, y: -0.013076706, z: 0.06444271}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: VAMPIRE_ L Finger41
+      parentName: VAMPIRE_ L Finger4
+      position: {x: -0.060016103, y: 0.000000104904174, z: -0.000000076293944}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1.0000001, y: 0.9999998, z: 0.99999994}
+    - name: VAMPIRE_ L Finger42
+      parentName: VAMPIRE_ L Finger41
+      position: {x: -0.05451271, y: -0.00000022888185, z: 0.000000076293944}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999964, y: 1, z: 0.9999998}
+    - name: VAMPIRE_ L Finger42_end
+      parentName: VAMPIRE_ L Finger42
+      position: {x: -0, y: 0.05451262, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ R Thigh
+      parentName: VAMPIRE_ Pelvis
+      position: {x: -0.000000114420274, y: -0.0000002171218, z: -0.1531008}
+      rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: VAMPIRE_ R Calf
+      parentName: VAMPIRE_ R Thigh
+      position: {x: -0.70818436, y: 0.00000012695789, z: 0.00000010371208}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000004, z: 1.0000002}
+    - name: VAMPIRE_ R Foot
+      parentName: VAMPIRE_ R Calf
+      position: {x: -0.7236031, y: 0.00000027656552, z: -0.00000018596648}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1.0000002, z: 0.99999994}
+    - name: VAMPIRE_ R Toe0
+      parentName: VAMPIRE_ R Foot
+      position: {x: -0.11995809, y: 0.21688904, z: -0.0000000205636}
+      rotation: {x: 0, y: 0, z: 0.7071068, w: -0.7071068}
+      scale: {x: 0.99999994, y: 0.9999999, z: 1}
+    - name: VAMPIRE_ R Toe0_end
+      parentName: VAMPIRE_ R Toe0
+      position: {x: -0, y: 0.24785233, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: VAMPIRE_ L Thigh
+      parentName: VAMPIRE_ Pelvis
+      position: {x: 0.00000021022157, y: 0.00000021417956, z: 0.15310083}
+      rotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+      scale: {x: 1, y: 1.0000001, z: 0.99999964}
+    - name: VAMPIRE_ L Calf
+      parentName: VAMPIRE_ L Thigh
+      position: {x: -0.70818436, y: 0.0000001335144, z: 0.00000011265278}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
+    - name: VAMPIRE_ L Foot
+      parentName: VAMPIRE_ L Calf
+      position: {x: -0.72360295, y: 0.00000027894973, z: -0.00000005483627}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1.0000001}
+    - name: VAMPIRE_ L Toe0
+      parentName: VAMPIRE_ L Foot
+      position: {x: -0.11995812, y: 0.21688908, z: -0.000000019967555}
+      rotation: {x: 0, y: 0, z: 0.7071068, w: -0.7071068}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+    - name: VAMPIRE_ L Toe0_end
+      parentName: VAMPIRE_ L Toe0
+      position: {x: -0, y: 0.24785237, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: root
+    hasTranslationDoF: 1
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 52658ec8f2a1f804da2a013a031ca92d,
+    type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

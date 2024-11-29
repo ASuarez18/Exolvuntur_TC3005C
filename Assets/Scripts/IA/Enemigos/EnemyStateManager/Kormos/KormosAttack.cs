@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enemy.Manager;
+using PlayerController.PUN;
+using Photon.Pun;
 
 
 /// <summary>
@@ -27,37 +29,52 @@ namespace Enemy.Behaviour
         //Inicializamos el estado
         public override void EnterState()
         {
-            Debug.Log("Atacando a la verga");
-            //TODO: Animacion de ataque
-            manager.agent.isStopped = true;
             manager.animator.SetTrigger("ataque");
+            if(!PhotonNetwork.IsMasterClient) return;
+            manager.agent.isStopped = true;
+            //manager.animator.SetTrigger("ataque");
+            //manager.Animatorfuc("ataque");
+            //Generamos un overslpa sphere para detectar game objets con el tag player justo frente del nuestro transform
+            // Collider[] hitColliders = Physics.OverlapSphere(manager.transform.forward * 2, 200f);
+            // //Dibujamos la esfera
+            
+            // foreach (var hitCollider in hitColliders)
+            // {
+            //     if(hitCollider.gameObject.tag == "Player")
+            //     {
+            //         hitCollider.GetComponent<PUNPlayerSanity>().TakeDamage(10, "Kormos");
+            //     }
+            // }
         }
+
 
         //Actualizamos el estado en el Update
         public override void UpdateState()
         {
-           kormosSM.UpdateAttackTime();
-            GetNextState();
+            if(!PhotonNetwork.IsMasterClient) return;
+            Debug.DrawRay(manager.transform.position, manager.transform.forward * 2, Color.red, 5f);
+            kormosSM.UpdateAttackTime();
         }
 
         //Salimos del estado
         public override void ExitState()
         {
+            if(!PhotonNetwork.IsMasterClient) return;
             manager.agent.isStopped = false;
             kormosSM.TimeOfAttack = 0f;
+            
         }
 
         //Obtenemos el siguiente estado segun las condiciones
         public override KormosStateMachine.EnemyState GetNextState()
         {
+            if(!PhotonNetwork.IsMasterClient) return KormosStateMachine.EnemyState.Attack;
             if(kormosSM.IsStunned)
             {
-                // ! Fue stuneado
                 return KormosStateMachine.EnemyState.Stunned;
             }
-            else if (kormosSM.TimeOfAttack >= 2) //TODO: eliminar constante magica de tiempo de ataque
+            else if (kormosSM.TimeOfAttack >= 2f)
             {
-                // ! Se mantiene en ataque hasta que termine la duracion de esta
                 return KormosStateMachine.EnemyState.Chasing;
             }
             return KormosStateMachine.EnemyState.Attack;
@@ -65,20 +82,32 @@ namespace Enemy.Behaviour
 
         //Funciones de sensores
 
-        public override void OnAreaEnter(Collider other)
-        {
+        // public override void OnAreaEnter(Collider other)
+        // {
             
-        }
+        // }
 
-        public override void OnAreaStay(Collider other)
-        {
-            
-        }
+        // public override void OnAreaStay(Collider other)
+        // {
+        //     if(!PhotonNetwork.IsMasterClient) return;
+        //     if(other.gameObject.tag == "Player")
+        //     {
+        //         kormosSM.PlayerPosition = other.transform.position;
+        //         kormosSM.PlayerGameObject = other.gameObject;
+        //     }
+        // }
 
-        public override void OnAreaExit(Collider other)
-        {
+        // public override void OnAreaExit(Collider other)
+        // {
             
-        }
+        // }
+
+        //  void OnDrawGizmosSelected()
+        // {
+        //     // Display the explosion radius when selected
+        //     Gizmos.color = Color.white;
+        //     Gizmos.DrawWireSphere(manager.transform.forward * 2, 5f);
+        // }
 
 
     }
